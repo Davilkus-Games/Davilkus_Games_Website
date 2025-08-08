@@ -238,17 +238,23 @@
       <!-- Slides -->
       <div class="swiper hero-swiper h-full relative z-0">
         <div class="swiper-wrapper">
+          <!--
           <div class="swiper-slide relative">
             <img src="/assets/showcase/etb_level94.webp" alt="Exit the Backrooms: Level 94"
               class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
           </div>
+        -->
           <div class="swiper-slide relative">
-            <img src="/assets/showcase/scp087.webp" alt="SCP-087: Into the Abyss" class="w-full h-full object-cover"
-              loading="lazy" decoding="async" />
+            <img src="/assets/showcase/scp087.webp" alt="SCP-087: Into the Abyss" 
+            class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
           </div>
           <div class="swiper-slide relative">
             <img src="/assets/showcase/etb_level2.webp" alt="Exit the Backrooms: Level 2"
               class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div class="swiper-slide relative">
+            <img src="/assets/showcase/etb_level37.webp" alt="Exit the Backrooms: Level 37" class="w-full h-full object-cover"
+              loading="lazy" decoding="async" />
           </div>
           <div class="swiper-slide relative">
             <img src="/assets/showcase/sus_horror.webp" alt="Sus Horror" class="w-full h-full object-cover"
@@ -300,6 +306,7 @@
               <path d="M9 5l7 7-7 7" />
             </svg>
           </button>
+
         </div>
       </div>
 
@@ -317,12 +324,27 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-2 gap-10 items-start">
           <div>
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-3" data-i18n="about.title">About Us
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 flex items-center gap-3" data-i18n="about.title">
+              About Us
             </h2>
-            <p class="text-[17px] md:text-lg text-ink/80 leading-relaxed" data-i18n="about.body">We create mobile and
-              browser games — often tense, atmospheric horror like Backrooms — and we’re not afraid to experiment beyond
-              horror. Expect tight controls, clean UI, and moody worlds.</p>
+            <p class="text-[15px] md:text-base text-ink/80 leading-relaxed mb-3" data-i18n="about.body1">
+              Davilkus Games is a small indie game studio based in Moscow, Russia. We create games for web, mobile, and
+              PC, and publish them on Google Play, itch.io, Yandex Games, and other platforms.
+            </p>
+            <p class="text-[15px] md:text-base text-ink/80 leading-relaxed mb-3" data-i18n="about.body2">
+              While horror is one of our key genres — with titles that aim to immerse players in tense, atmospheric
+              worlds — we also explore projects far beyond horror.
+            </p>
+            <p class="text-[15px] md:text-base text-ink/80 leading-relaxed mb-3" data-i18n="about.body3">
+              Our priority is creating compelling gameplay mechanics and rich atmospheres that keep players engaged.
+              Every project is optimized for performance and accessibility, no matter the device.
+            </p>
+            <p class="text-[15px] md:text-base text-ink/80 leading-relaxed" data-i18n="about.body4">
+              We value our community and work to keep it active, connected, and involved — through updates, events, and
+              direct communication with our players.
+            </p>
           </div>
+
           <div class="bg-panel/60 border border-line rounded-2xl p-6 md:p-8 shadow-soft">
             <h3 class="text-xl font-semibold mb-5" data-i18n="about.team">Team & Partners</h3>
             <div class="grid sm:grid-cols-2 gap-6">
@@ -442,13 +464,7 @@
         <div class="grid md:grid-cols-2 gap-10 items-start">
           <div class="bg-panel/60 border border-line rounded-2xl p-6 shadow-soft" data-animate>
             <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true">
-                <path
-                  d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5v-9Z"
-                  stroke="currentColor" stroke-width="1.5" />
-                <path d="M4 7l7.41 5.56a2 2 0 0 0 2.18 0L21 7" stroke="currentColor" stroke-width="1.5" />
-              </svg>
+              <img src="/assets/icons/email.svg" alt="" class="w-5 h-5" />
               <span data-i18n="contact.emailTitle">Email</span>
             </h3>
             <ul class="space-y-3 text-sm">
@@ -471,13 +487,8 @@
           </div>
           <div class="bg-panel/60 border border-line rounded-2xl p-6 shadow-soft" data-animate>
             <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true">
-                <path d="M7.5 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm9 5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"
-                  stroke="currentColor" stroke-width="1.5" />
-                <path d="M1.5 22a6 6 0 0 1 12 0M10.5 22a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" />
-              </svg>
-              <span data-i18n="contact.socialTitle">Communities</span>
+              <img src="/assets/icons/community.svg" alt="" class="w-5 h-5" />
+              <span data-i18n="contact.socialTitle">Community</span>
             </h3>
             <div class="flex flex-wrap gap-3">
               <a href="https://discord.gg/y3hE847S"
@@ -625,15 +636,27 @@
           brand: 'Davilkus Games',
           nav: { games: 'Games', about: 'About', contact: 'Contact Us' },
           games: {
-            etb94: { title: 'Exit the Backrooms: Level 94', tagline: 'A mysterious, dreamlike world beyond the familiar Backrooms.' },
+            etb94: { title: 'Exit the Backrooms: Level 94', tagline: 'A mysterious, dreamlike level beyond the familiar Backrooms.' },
             scp087: { title: 'SCP-087: Into the Abyss', tagline: 'Descend into the endless darkness of SCP-087.' },
-            etb2: { title: 'Exit the Backrooms: Level 2', tagline: 'Navigate the industrial halls and evade lurking threats.' },
+            etb2: { title: 'Exit the Backrooms: Level 2', tagline: 'You find yourself in a labyrinth of technical corridors filled with entities...' },
+            etb37: { title: 'Exit the Backrooms: Level 37', tagline: 'You find yourself in an endless complex of liminal pools, but there is someone else here...' },
             sus: { title: 'Sus Horror', tagline: 'An unexpected twist on the classic horror genre.' },
           },
           buttons: { play: 'Play!', coming: 'Coming soon', more: 'Learn More' },
-          about: { title: 'About Us', body: 'We create mobile and browser games — often tense, atmospheric horror like Backrooms — and we’re not afraid to experiment beyond horror. Expect tight controls, clean UI, and moody worlds.', team: 'Team & Partners', davilkus: 'Codes gameplay, networking, shaders.', haalo: 'Keeps the community informed and runs events.', burger: 'Writes original soundtracks for our games.', omega: 'UX design, 3D models, and Unity scripting.' },
+          about: {
+            title: 'About Us',
+            body1: 'Davilkus Games is a small indie game studio based in Russia. We create games for web, mobile, and PC, and publish them on Google Play, itch.io, Yandex Games, and other platforms.',
+            body2: 'While horror is one of our key genres — with titles that aim to immerse players in tense, atmospheric worlds — we also explore projects far beyond horror.',
+            body3: 'Our priority is creating compelling gameplay mechanics and rich atmospheres that keep players engaged. Every project is optimized for performance and accessibility, no matter the device.',
+            body4: 'We value our community and work to keep it active, connected, and involved — through updates, events, and direct communication with our players.',
+            team: 'Team & Partners',
+            davilkus: 'Codes gameplay, networking, shaders.',
+            haalo: 'Keeps the community informed and runs events.',
+            burger: 'Writes original soundtracks for our games.',
+            omega: 'UX design, 3D models, and Unity scripting.'
+          },
           roles: { founder: 'Founder, Lead Dev', cm: 'Community Manager', partner: 'Partner – Composer', codev: 'Partner – Co‑dev' },
-          contact: { title: 'Contact Us', emailTitle: 'Email', general: 'General', support: 'In‑game Support', direct: 'Direct', socialTitle: 'Communities' },
+          contact: { title: 'Contact Us', emailTitle: 'Email', general: 'General', support: 'In‑game Support', direct: 'Direct', socialTitle: 'Community' },
           cookie: { title: 'Cookie time!', desc: 'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', accept: 'Accept', decline: 'Decline' }
         }
       },
@@ -642,15 +665,27 @@
           brand: 'Davilkus Games',
           nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' },
           games: {
-            etb94: { title: 'Побег из Закулисья: Уровень 94', tagline: 'Таинственный, сновидческий мир за пределами привычных Бэкрумс.' },
+            etb94: { title: 'Побег из Закулисья: Уровень 94', tagline: 'Таинственный, похожий на сон уровень за пределами знакомого Закулисья.' },
             scp087: { title: 'SCP-087: Лестница в Бездну', tagline: 'Спуститесь в бесконечную темноту SCP-087.' },
-            etb2: { title: 'Побег из Закулисья: Уровень 2', tagline: 'Исследуйте промышленные залы и избегайте скрытых угроз.' },
+            etb2: { title: 'Побег из Закулисья: Уровень 2', tagline: 'Вы оказались в лабиринте технических коридоров, заполненных сущностями...' },
+            etb37: { title: 'Побег из Закулисья: Уровень 37', tagline: 'Вы оказались в бесконечном комплексе лиминальных бассейнов, но здесь есть кто-то еще...' },
             sus: { title: 'Sus Horror', tagline: 'Неожиданный поворот классического хоррора.' },
           },
           buttons: { play: 'Играть!', coming: 'Скоро', more: 'Подробнее' },
-          about: { title: 'О нас', body: 'Мы создаём мобильные и браузерные игры — часто напряжённый атмосферный хоррор вроде Backrooms — но не ограничиваемся только хоррором. Ждите точное управление, чистый UI и мрачные миры.', team: 'Команда и партнёры', davilkus: 'Пишет геймплей, сеть и шейдеры.', haalo: 'Держит сообщество в курсе, проводит ивенты.', burger: 'Пишет оригинальные саундтреки ко всем играм.', omega: 'UX‑дизайн, 3D‑модели и скрипты Unity.' },
+          about: {
+            title: 'О нас',
+            body1: 'Davilkus Games — небольшая инди-студия из России. Мы создаём игры для веба, мобильных устройств и ПК, публикуя их в Google Play, itch.io, Yandex Games и на других платформах.',
+            body2: 'Хоррор — один из наших ключевых жанров: мы стараемся погрузить игроков в напряжённые, атмосферные миры, но при этом не ограничиваемся только хоррором.',
+            body3: 'Наш приоритет — интересные игровые механики и глубокая атмосфера, удерживающая внимание. Каждая игра оптимизирована для высокой производительности и доступности на любых устройствах.',
+            body4: 'Мы ценим своё сообщество и поддерживаем его активность — через обновления, события и прямое общение с игроками.',
+            team: 'Команда и партнёры',
+            davilkus: 'Пишет геймплей, сеть и шейдеры.',
+            haalo: 'Держит сообщество в курсе, проводит ивенты.',
+            burger: 'Пишет оригинальные саундтреки ко всем играм.',
+            omega: 'UX-дизайн, 3D-модели и скрипты Unity.'
+          },
           roles: { founder: 'Основатель, лид‑разработчик', cm: 'Комьюнити‑менеджер', partner: 'Партнёр — композитор', codev: 'Партнёр — со‑разработчик' },
-          contact: { title: 'Контакты', emailTitle: 'Email', general: 'Общий', support: 'Поддержка в игре', direct: 'Лично', socialTitle: 'Сообщества' },
+          contact: { title: 'Контакты', emailTitle: 'Email', general: 'Общий', support: 'Поддержка в игре', direct: 'Лично', socialTitle: 'Сообщество' },
           cookie: { title: 'Время печенек!', desc: 'Мы используем cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на использование cookie.', accept: 'Принять', decline: 'Отклонить' }
         }
       }
@@ -749,9 +784,9 @@
       const rmm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       const GAMES = [
-        { titleKey: 'games.etb94.title', taglineKey: 'games.etb94.tagline', slug: 'etb-level94', status: 'coming' },
         { titleKey: 'games.scp087.title', taglineKey: 'games.scp087.tagline', slug: 'scp087', status: 'active' },
         { titleKey: 'games.etb2.title', taglineKey: 'games.etb2.tagline', slug: 'etb-level2', status: 'active' },
+        { titleKey: 'games.etb37.title', taglineKey: 'games.etb37.tagline', slug: 'etb-level37', status: 'active' },
         { titleKey: 'games.sus.title', taglineKey: 'games.sus.tagline', slug: 'sus-horror', status: 'active' },
       ];
 
