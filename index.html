@@ -169,6 +169,16 @@
     #heroTag {
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
     }
+
+    .hero-prev svg,
+    .hero-next svg {
+      transition: transform .15s ease;
+    }
+
+    .hero-prev:hover svg,
+    .hero-next:hover svg {
+      transform: scale(1.08);
+    }
   </style>
 </head>
 
@@ -271,6 +281,25 @@
               <span>Learn More</span>
             </a>
           </div>
+
+          <!-- Navigation arrows -->
+          <button
+            class="hero-prev absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-50 cursor-pointer pointer-events-auto"
+            aria-label="Previous slide">
+            <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="white" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 19L8 12l7-7" />
+            </svg>
+          </button>
+
+          <button
+            class="hero-next absolute right-6 md:right-10 top-1/2 -translate-y-1/2 z-50 cursor-pointer pointer-events-auto"
+            aria-label="Next slide">
+            <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="white" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -280,11 +309,11 @@
       </div>
     </section>
 
-    <div class="border-t border-line"></div>
-
-    <section id="about" class="relative py-16 md:py-20">
+    <section id="about" class="relative py-16 md:py-15">
       <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.12),_transparent_60%)]">
       </div>
+
+      <div class="pt-5"></div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-2 gap-10 items-start">
           <div>
@@ -401,6 +430,7 @@
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
 
@@ -784,6 +814,8 @@
           document.title = i18next.t('brand') + ' - Indie Game Studio';
           setLangUI(lang);
 
+          if (hasGSAP()) initAnimations();
+
           bindLangToggle('langToggle');
           bindLangToggle('langToggleMobile');
 
@@ -798,6 +830,10 @@
             pagination: { el: '.swiper-pagination', clickable: true },
             observer: true,
             observeParents: true,
+            navigation: {
+              nextEl: '.hero-next',
+              prevEl: '.hero-prev'
+            }
           });
 
           heroSwiper.on('autoplayTimeLeft', (_, time, progress) => {
