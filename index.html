@@ -14,6 +14,7 @@
   <link rel="canonical" href="https://davilkusgames.com/" />
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="ru_RU">
+  
   <link rel="alternate" href="https://davilkusgames.com/?lang=en" hreflang="en">
   <link rel="alternate" href="https://davilkusgames.com/?lang=ru" hreflang="ru">
   <link rel="alternate" href="https://davilkusgames.com/" hreflang="x-default">
@@ -694,7 +695,7 @@
           },
           roles: { founder: 'Основатель, лид‑разработчик', cm: 'Комьюнити‑менеджер', partner: 'Партнёр — композитор', codev: 'Партнёр — со‑разработчик' },
           contact: { title: 'Контакты', emailTitle: 'Email', general: 'Общий', support: 'Поддержка в игре', direct: 'Лично', socialTitle: 'Сообщество' },
-          cookie: { title: 'Время печенек!', desc: 'Мы используем cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на использование cookie.', accept: 'Принять', decline: 'Отклонить' }
+          cookie: { title: 'Время печенек!', desc: 'Мы используем куки-файлы, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на их использование.', accept: 'Принять', decline: 'Отклонить' }
         }
       }
     };
@@ -882,8 +883,6 @@
           document.title = i18next.t('brand') + ' — Indie Game Studio';
           setLangUI(lang);
 
-          if (hasGSAP()) initAnimations();
-
           bindLangToggle('langToggle');
           bindLangToggle('langToggleMobile');
 
@@ -916,6 +915,7 @@
           overlayFadeIn(true);
         });
 
+      if (hasGSAP()) initAnimations();
       initCookieBar();
       markActiveNav();
       loadCounter();
