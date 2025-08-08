@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Davilkus Games — Indie Game Studio</title>
-  <meta name="description" content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences. Explore our games, meet the team, and get in touch." />
+  <meta name="description"
+    content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences. Explore our games, meet the team, and get in touch." />
 
   <!-- Canonical (client-side i18n, no hreflang variants) -->
   <link rel="canonical" href="https://davilkusgames.com/" />
@@ -13,7 +15,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Davilkus Games — Indie Game Studio" />
   <meta property="og:site_name" content="Davilkus Games" />
-  <meta property="og:description" content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences." />
+  <meta property="og:description"
+    content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences." />
   <meta property="og:url" content="https://davilkusgames.com/" />
   <meta property="og:image" content="https://davilkusgames.com/assets/og/hero-1200x630.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -66,7 +69,8 @@
 
   <!-- i18next + Browser Language Detector -->
   <script defer src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
 
   <!-- JSON-LD Organization -->
   <script type="application/ld+json">
@@ -88,26 +92,89 @@
   </script>
 
   <style>
-    ::-webkit-scrollbar{width:10px;height:10px}
-    ::-webkit-scrollbar-track{background:#0b0f1a}
-    ::-webkit-scrollbar-thumb{background:#1b2336;border-radius:10px}
-    ::-webkit-scrollbar-thumb:hover{background:#2a3552}
-    .swiper-pagination-bullet{width:44px;height:3px;border-radius:9999px;background:#3b4663;opacity:1;margin:0 6px !important}
-    .swiper-pagination-bullet-active{background:#a9b4d8}
-    .hero-timer{position:absolute;bottom:-10px;left:0;height:2px;background:#2563eb;width:0}
-    .hero-timer.animating{animation:fill 4s linear forwards}
-    @keyframes fill{from{width:0}to{width:100%}}
-    @media (prefers-reduced-motion: reduce){.hero-timer{display:none}}
-    .menu-overlay{backdrop-filter:blur(4px)}
-    #about,#contact{scroll-margin-top:5rem}
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0b0f1a
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1b2336;
+      border-radius: 10px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2a3552
+    }
+
+    /* Top-right dots as thin bars */
+    .swiper-pagination-bullet {
+      width: 44px;
+      height: 3px;
+      border-radius: 9999px;
+      background: #3b4663;
+      opacity: 1;
+      margin: 0 6px !important;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #a9b4d8;
+    }
+
+    .hero-timer {
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      height: 2px;
+      background: #2563eb;
+      width: 0
+    }
+
+    .hero-timer.animating {
+      animation: fill 4s linear forwards
+    }
+
+    @keyframes fill {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-timer {
+        display: none
+      }
+    }
+
+    .menu-overlay {
+      backdrop-filter: blur(4px)
+    }
+
+    #about,
+    #contact {
+      scroll-margin-top: 5rem
+    }
+
+    #heroTag {
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
   </style>
 </head>
+
 <body class="bg-bg text-ink font-sans antialiased">
   <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3 group">
         <img src="/assets/logo.png" alt="Davilkus Games logo" width="64" height="64" class="h-9 w-9 rounded-xl" />
-        <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus Games</span>
+        <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus
+          Games</span>
       </a>
 
       <div class="hidden md:flex items-center gap-6 text-sm">
@@ -117,7 +184,9 @@
           <a href="#contact" class="hover:opacity-80 transition" data-i18n="nav.contact">Contact Us</a>
         </nav>
         <!-- Language toggle (longer pill, short text). Both left-1/right-1 are safelisted elsewhere. -->
-        <button id="langToggle" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.75rem] h-8 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
+        <button id="langToggle"
+          class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.75rem] h-8 select-none focus:outline-none focus:ring-2 focus:ring-brand transition"
+          aria-label="Toggle language">
           <span class="flex-1 text-center text-[10px]">EN</span>
           <span class="flex-1 text-center text-[10px]">RU</span>
           <span id="langThumb" class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
@@ -125,12 +194,16 @@
       </div>
 
       <div class="md:hidden flex items-center gap-2">
-        <button id="langToggleMobile" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.25rem] h-7 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
+        <button id="langToggleMobile"
+          class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.25rem] h-7 select-none focus:outline-none focus:ring-2 focus:ring-brand transition"
+          aria-label="Toggle language">
           <span class="flex-1 text-center text-[9px]">EN</span>
           <span class="flex-1 text-center text-[9px]">RU</span>
-          <span id="langThumbMobile" class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
+          <span id="langThumbMobile"
+            class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
         </button>
-        <button id="menuBtn" class="p-2 rounded-lg hover:bg-panel/70 focus:outline-none focus:ring-2 focus:ring-brand" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <button id="menuBtn" class="p-2 rounded-lg hover:bg-panel/70 focus:outline-none focus:ring-2 focus:ring-brand"
+          aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
           <img src="/assets/icons/menu.svg" alt="menu" class="w-6 h-6" />
         </button>
       </div>
@@ -146,42 +219,86 @@
   </header>
 
   <main class="pt-16">
-    <section class="relative">
-      <div class="swiper hero-swiper select-none">
+    <!-- Major showcase hero redesign (GSAP-controlled, fixed overlay) -->
+    <section id="hero" class="relative h-[65vh] min-h-[420px] overflow-hidden bg-black">
+      <!-- Slides -->
+      <div class="swiper hero-swiper h-full relative z-0">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="/assets/showcase/img_0.webp" alt="Showcase 0" width="2560" height="1440" fetchpriority="high" decoding="async" class="w-full h-[60vh] md:h-[70vh] object-cover" />
+          <div class="swiper-slide relative">
+            <img src="/assets/showcase/etb_level94.webp" alt="Exit the Backrooms: Level 94"
+              class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
           </div>
-          <div class="swiper-slide">
-            <img src="/assets/showcase/img_1.webp" alt="Showcase 1" width="2560" height="1440" loading="lazy" decoding="async" class="w-full h-[60vh] md:h-[70vh] object-cover" />
+          <div class="swiper-slide relative">
+            <img src="/assets/showcase/scp087.webp" alt="SCP-087: Into the Abyss" class="w-full h-full object-cover"
+              loading="lazy" decoding="async" />
           </div>
-          <div class="swiper-slide">
-            <img src="/assets/showcase/img_2.webp" alt="Showcase 2" width="2560" height="1440" loading="lazy" decoding="async" class="w-full h-[60vh] md:h-[70vh] object-cover" />
+          <div class="swiper-slide relative">
+            <img src="/assets/showcase/etb_level2.webp" alt="Exit the Backrooms: Level 2"
+              class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div class="swiper-slide relative">
+            <img src="/assets/showcase/sus_horror.webp" alt="Sus Horror" class="w-full h-full object-cover"
+              loading="lazy" decoding="async" />
           </div>
         </div>
-        <div class="swiper-button-prev !text-ink/80 hover:!text-white"></div>
-        <div class="swiper-button-next !text-ink/80 hover:!text-white"></div>
-        <div class="swiper-pagination !bottom-6"></div>
-        <div class="hero-timer" aria-hidden="true"></div>
+        <div class="swiper-pagination absolute top-4 right-4"></div>
+      </div>
+
+      <!-- Overlay layer aligned to site container -->
+      <div class="absolute inset-0 z-40 pointer-events-none">
+        <div class="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex flex-col">
+          <!-- Title + tagline (top-left, aligned with logo gutters) -->
+          <div class="mt-8 md:mt-10 max-w-3xl">
+            <div id="heroLabel"
+              class="inline-flex flex-col gap-1 px-3 py-2 rounded-lg bg-header/70 border border-line pointer-events-auto">
+              <span id="heroTitle" class="text-2xl md:text-3xl font-bold">—</span>
+              <span id="heroTag" class="text-sm md:text-base text-ink/70 line-clamp-2">—</span>
+            </div>
+          </div>
+
+          <!-- Buttons (bottom-right, but within same container width) -->
+          <div class="mt-auto mb-8 md:mb-10 flex justify-end gap-3 md:gap-4">
+            <a id="btnPlay" href="#"
+              class="pointer-events-auto inline-flex items-center justify-center rounded-full px-5 py-3 md:px-6 md:py-3.5 text-sm md:text-base font-semibold bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand/60 transition-shadow">
+              <span>Play!</span>
+            </a>
+            <a id="btnMore" href="#"
+              class="pointer-events-auto inline-flex items-center justify-center rounded-full px-5 py-3 md:px-6 md:py-3.5 text-sm md:text-base font-semibold bg-header/70 border border-line hover:bg-header focus:outline-none focus:ring-2 focus:ring-brand/40">
+              <span>Learn More</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress bar (full-bleed; bump z to stay above slides) -->
+      <div class="absolute bottom-0 left-0 w-full h-[3px] bg-white/15 z-40 pointer-events-none">
+        <div id="heroProgress" class="h-full w-0 bg-white/90"></div>
       </div>
     </section>
 
     <div class="border-t border-line"></div>
 
     <section id="about" class="relative py-16 md:py-20">
-      <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.12),_transparent_60%)]"></div>
+      <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.12),_transparent_60%)]">
+      </div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-2 gap-10 items-start">
           <div>
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-3" data-i18n="about.title">About Us</h2>
-            <p class="text-[17px] md:text-lg text-ink/80 leading-relaxed" data-i18n="about.body">We create mobile and browser games — often tense, atmospheric horror like Backrooms — and we’re not afraid to experiment beyond horror. Expect tight controls, clean UI, and moody worlds.</p>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-3" data-i18n="about.title">About Us
+            </h2>
+            <p class="text-[17px] md:text-lg text-ink/80 leading-relaxed" data-i18n="about.body">We create mobile and
+              browser games — often tense, atmospheric horror like Backrooms — and we’re not afraid to experiment beyond
+              horror. Expect tight controls, clean UI, and moody worlds.</p>
           </div>
           <div class="bg-panel/60 border border-line rounded-2xl p-6 md:p-8 shadow-soft">
             <h3 class="text-xl font-semibold mb-5" data-i18n="about.team">Team & Partners</h3>
             <div class="grid sm:grid-cols-2 gap-6">
-              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3" data-animate>
+              <div
+                class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3"
+                data-animate>
                 <div class="flex items-center gap-4">
-                  <img src="/assets/team/davilkus.webp" alt="Davilkus" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
+                  <img src="/assets/team/davilkus.webp" alt="Davilkus" width="56" height="56" loading="lazy"
+                    decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
                     <div class="font-semibold">Davilkus</div>
                     <div class="text-xs text-ink/70" data-i18n="roles.founder">Founder, Lead Dev</div>
@@ -189,29 +306,48 @@
                 </div>
                 <p class="text-sm text-ink/80" data-i18n="about.davilkus">Codes gameplay, networking, shaders.</p>
                 <div class="flex justify-end gap-2 pt-1">
-                  <a href="https://vk.com/davilkus" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="VK"><img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="VK"/></a>
-                  <a href="https://t.me/davilkus" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Telegram"/></a>
+                  <a href="https://vk.com/davilkus"
+                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
+                    aria-label="VK"><img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy"
+                      decoding="async" class="w-5 h-5" alt="VK" /></a>
+                  <a href="https://t.me/davilkus"
+                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
+                    aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy"
+                      decoding="async" class="w-5 h-5" alt="Telegram" /></a>
                 </div>
               </div>
 
-              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3" data-animate>
+              <div
+                class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3"
+                data-animate>
                 <div class="flex items-center gap-4">
-                  <img src="/assets/team/haalo.webp" alt="Haalo" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
+                  <img src="/assets/team/haalo.webp" alt="Haalo" width="56" height="56" loading="lazy" decoding="async"
+                    class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
                     <div class="font-semibold">Haalo</div>
                     <div class="text-xs text-ink/70" data-i18n="roles.cm">Community Manager</div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80" data-i18n="about.haalo">Keeps the community informed and engaged. Runs events.</p>
+                <p class="text-sm text-ink/80" data-i18n="about.haalo">Keeps the community informed and engaged. Runs
+                  events.</p>
                 <div class="flex justify-end gap-2 pt-1">
-                  <a href="https://vk.com/nseleznev2020" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="VK"><img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="VK"/></a>
-                  <a href="https://t.me/paylife2680" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Telegram"/></a>
+                  <a href="https://vk.com/nseleznev2020"
+                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
+                    aria-label="VK"><img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy"
+                      decoding="async" class="w-5 h-5" alt="VK" /></a>
+                  <a href="https://t.me/paylife2680"
+                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
+                    aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy"
+                      decoding="async" class="w-5 h-5" alt="Telegram" /></a>
                 </div>
               </div>
 
-              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3" data-animate>
+              <div
+                class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3"
+                data-animate>
                 <div class="flex items-center gap-4">
-                  <img src="/assets/team/burger-kerman.webp" alt="Burger Kerman" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
+                  <img src="/assets/team/burger-kerman.webp" alt="Burger Kerman" width="56" height="56" loading="lazy"
+                    decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
                     <div class="font-semibold">Burger Kerman</div>
                     <div class="text-xs text-ink/70" data-i18n="roles.partner">Partner – Composer</div>
@@ -219,15 +355,27 @@
                 </div>
                 <p class="text-sm text-ink/80" data-i18n="about.burger">Writes original soundtracks for our games.</p>
                 <div class="flex justify-end gap-2 pt-1">
-                  <a href="https://open.spotify.com/artist/71yAyS7L72UpNn1VlymHQU" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Spotify"><img src="/assets/icons/spotify.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Spotify"/></a>
-                  <a href="https://music.yandex.ru/artist/19603802" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Yandex Music"><img src="/assets/icons/yandex-music.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Yandex Music"/></a>
-                  <a href="https://www.youtube.com/@BurgerKerman" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="YouTube"><img src="/assets/icons/youtube.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="YouTube"/></a>
+                  <a href="https://open.spotify.com/artist/71yAyS7L72UpNn1VlymHQU"
+                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
+                    aria-label="Spotify"><img src="/assets/icons/spotify.svg" width="20" height="20" loading="lazy"
+                      decoding="async" class="w-5 h-5" alt="Spotify" /></a>
+                  <a href="https://music.yandex.ru/artist/19603802"
+                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
+                    aria-label="Yandex Music"><img src="/assets/icons/yandex-music.svg" width="20" height="20"
+                      loading="lazy" decoding="async" class="w-5 h-5" alt="Yandex Music" /></a>
+                  <a href="https://www.youtube.com/@BurgerKerman"
+                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
+                    aria-label="YouTube"><img src="/assets/icons/youtube.svg" width="20" height="20" loading="lazy"
+                      decoding="async" class="w-5 h-5" alt="YouTube" /></a>
                 </div>
               </div>
 
-              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3" data-animate>
+              <div
+                class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3"
+                data-animate>
                 <div class="flex items-center gap-4">
-                  <img src="/assets/team/omega-studio.webp" alt="OMEGA Studio" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
+                  <img src="/assets/team/omega-studio.webp" alt="OMEGA Studio" width="56" height="56" loading="lazy"
+                    decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
                     <div class="font-semibold">OMEGA Studio</div>
                     <div class="text-xs text-ink/70" data-i18n="roles.codev">Partner – Co‑dev</div>
@@ -235,8 +383,14 @@
                 </div>
                 <p class="text-sm text-ink/80" data-i18n="about.omega">UX design, 3D models, and Unity scripting.</p>
                 <div class="flex justify-end gap-2 pt-1">
-                  <a href="https://t.me/omega_gamedev" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Telegram"/></a>
-                  <a href="https://yandex.com/games/developer/88490" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Yandex Games"><img src="/assets/icons/yandex-games.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Yandex Games"/></a>
+                  <a href="https://t.me/omega_gamedev"
+                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
+                    aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy"
+                      decoding="async" class="w-5 h-5" alt="Telegram" /></a>
+                  <a href="https://yandex.com/games/developer/88490"
+                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
+                    aria-label="Yandex Games"><img src="/assets/icons/yandex-games.svg" width="20" height="20"
+                      loading="lazy" decoding="async" class="w-5 h-5" alt="Yandex Games" /></a>
                 </div>
               </div>
 
@@ -254,40 +408,60 @@
         <div class="grid md:grid-cols-2 gap-10 items-start">
           <div class="bg-panel/60 border border-line rounded-2xl p-6 shadow-soft" data-animate>
             <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5v-9Z" stroke="currentColor" stroke-width="1.5"/><path d="M4 7l7.41 5.56a2 2 0 0 0 2.18 0L21 7" stroke="currentColor" stroke-width="1.5"/></svg>
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path
+                  d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5v-9Z"
+                  stroke="currentColor" stroke-width="1.5" />
+                <path d="M4 7l7.41 5.56a2 2 0 0 0 2.18 0L21 7" stroke="currentColor" stroke-width="1.5" />
+              </svg>
               <span data-i18n="contact.emailTitle">Email</span>
             </h3>
             <ul class="space-y-3 text-sm">
               <li class="flex items-start justify-between gap-4">
                 <span class="text-ink/70" data-i18n="contact.general">General</span>
-                <a href="mailto:contact@davilkusgames.com" class="font-semibold hover:underline">contact@davilkusgames.com</a>
+                <a href="mailto:contact@davilkusgames.com"
+                  class="font-semibold hover:underline">contact@davilkusgames.com</a>
               </li>
               <li class="flex items-start justify-between gap-4">
                 <span class="text-ink/70" data-i18n="contact.support">In‑game Support</span>
-                <a href="mailto:support@davilkusgames.com" class="font-semibold hover:underline">support@davilkusgames.com</a>
+                <a href="mailto:support@davilkusgames.com"
+                  class="font-semibold hover:underline">support@davilkusgames.com</a>
               </li>
               <li class="flex items-start justify-between gap-4">
                 <span class="text-ink/70" data-i18n="contact.direct">Direct</span>
-                <a href="mailto:davilkus@davilkusgames.com" class="font-semibold hover:underline">davilkus@davilkusgames.com</a>
+                <a href="mailto:davilkus@davilkusgames.com"
+                  class="font-semibold hover:underline">davilkus@davilkusgames.com</a>
               </li>
             </ul>
           </div>
           <div class="bg-panel/60 border border-line rounded-2xl p-6 shadow-soft" data-animate>
             <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7.5 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm9 5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 22a6 6 0 0 1 12 0M10.5 22a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5"/></svg>
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path d="M7.5 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm9 5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"
+                  stroke="currentColor" stroke-width="1.5" />
+                <path d="M1.5 22a6 6 0 0 1 12 0M10.5 22a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" />
+              </svg>
               <span data-i18n="contact.socialTitle">Communities</span>
             </h3>
             <div class="flex flex-wrap gap-3">
-              <a href="https://discord.gg/y3hE847S" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
-                <img src="/assets/icons/discord.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Discord"/>
+              <a href="https://discord.gg/y3hE847S"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
+                <img src="/assets/icons/discord.svg" width="20" height="20" loading="lazy" decoding="async"
+                  class="w-5 h-5" alt="Discord" />
                 <span>Discord</span>
               </a>
-              <a href="https://t.me/davilkus_games_news" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
-                <img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Telegram"/>
+              <a href="https://t.me/davilkus_games_news"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
+                <img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy" decoding="async"
+                  class="w-5 h-5" alt="Telegram" />
                 <span>Telegram</span>
               </a>
-              <a href="https://www.youtube.com/@davilkusgames" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
-                <img src="/assets/icons/youtube.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="YouTube"/>
+              <a href="https://www.youtube.com/@davilkusgames"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
+                <img src="/assets/icons/youtube.svg" width="20" height="20" loading="lazy" decoding="async"
+                  class="w-5 h-5" alt="YouTube" />
                 <span>YouTube</span>
               </a>
             </div>
@@ -298,7 +472,8 @@
   </main>
 
   <footer class="bg-header border-t border-line">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div>
         <div class="text-base md:text-lg">© 2025 Davilkus Games</div>
         <div class="mt-2 flex items-center gap-4 text-xs">
@@ -307,12 +482,24 @@
         </div>
       </div>
       <div class="flex items-center gap-5">
-        <a href="https://discord.gg/y3hE847S" class="opacity-80 hover:opacity-100" aria-label="Discord"><img src="/assets/icons/discord.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="Discord"/></a>
-        <a href="https://t.me/davilkus_games_news" class="opacity-80 hover:opacity-100" aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="Telegram"/></a>
-        <a href="https://www.youtube.com/@davilkusgames" class="opacity-80 hover:opacity-100" aria-label="YouTube"><img src="/assets/icons/youtube.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="YouTube"/></a>
-        <a href="https://x.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="X"><img src="/assets/icons/x.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="X"/></a>
-        <a href="https://github.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="GitHub"><img src="/assets/icons/github.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="GitHub"/></a>
-        <a href="https://vk.com/davilkusgames" class="opacity-80 hover:opacity-100" aria-label="VK"><img src="/assets/icons/vk.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="VK"/></a>
+        <a href="https://discord.gg/y3hE847S" class="opacity-80 hover:opacity-100" aria-label="Discord"><img
+            src="/assets/icons/discord.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+            alt="Discord" /></a>
+        <a href="https://t.me/davilkus_games_news" class="opacity-80 hover:opacity-100" aria-label="Telegram"><img
+            src="/assets/icons/telegram.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+            alt="Telegram" /></a>
+        <a href="https://www.youtube.com/@davilkusgames" class="opacity-80 hover:opacity-100" aria-label="YouTube"><img
+            src="/assets/icons/youtube.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+            alt="YouTube" /></a>
+        <a href="https://x.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="X"><img
+            src="/assets/icons/x.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+            alt="X" /></a>
+        <a href="https://github.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="GitHub"><img
+            src="/assets/icons/github.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+            alt="GitHub" /></a>
+        <a href="https://vk.com/davilkusgames" class="opacity-80 hover:opacity-100" aria-label="VK"><img
+            src="/assets/icons/vk.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+            alt="VK" /></a>
       </div>
     </div>
   </footer>
@@ -326,11 +513,16 @@
         <img src="/assets/icons/cookie.svg" alt="cookie" width="28" height="28" class="w-8 h-8 mt-0.5" />
         <div class="flex-1">
           <div class="font-semibold text-sm md:text-base mb-0.5" data-i18n="cookie.title">Cookie time!</div>
-          <p class="text-xs md:text-sm text-ink/80" data-i18n="cookie.desc">We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.</p>
+          <p class="text-xs md:text-sm text-ink/80" data-i18n="cookie.desc">We use cookies to ensure you get the best
+            experience on our website. By using our website you agree to our use of cookies.</p>
         </div>
         <div class="flex items-center gap-2 self-center">
-          <button id="cookieDecline" class="text-sm px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium transition" data-i18n="cookie.decline">Decline</button>
-          <button id="cookieAccept" class="text-sm px-3 py-1.5 rounded-lg bg-brand hover:bg-brandDark text-white font-medium transition" data-i18n="cookie.accept">Accept</button>
+          <button id="cookieDecline"
+            class="text-sm px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium transition"
+            data-i18n="cookie.decline">Decline</button>
+          <button id="cookieAccept"
+            class="text-sm px-3 py-1.5 rounded-lg bg-brand hover:bg-brandDark text-white font-medium transition"
+            data-i18n="cookie.accept">Accept</button>
         </div>
       </div>
     </div>
@@ -346,11 +538,11 @@
     let menuOpen = false; let outsideHandler; let trapHandler; let first; let last;
     const focusables = 'a,button,[tabindex]:not([tabindex="-1"])';
 
-    function openMenu(){
+    function openMenu() {
       menuOpen = true;
       mobileMenu.classList.remove('hidden');
-      mobileMenu.setAttribute('aria-hidden','false');
-      menuBtn.setAttribute('aria-expanded','true');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      menuBtn.setAttribute('aria-expanded', 'true');
       if (hasGSAP()) gsap.fromTo(mobileMenu, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.35, ease: 'power3.out' });
       const focusableEls = mobileMenu.querySelectorAll(focusables);
       first = focusableEls[0]; last = focusableEls[focusableEls.length - 1];
@@ -364,12 +556,12 @@
       outsideHandler = (e) => { if (!mobileMenu.contains(e.target) && e.target !== menuBtn) closeMenu(); };
       document.addEventListener('mousedown', outsideHandler);
     }
-    function closeMenu(){
+    function closeMenu() {
       menuOpen = false;
       if (hasGSAP()) gsap.to(mobileMenu, { height: 0, opacity: 0, duration: 0.3, ease: 'power3.inOut', onComplete: () => mobileMenu.classList.add('hidden') });
       else mobileMenu.classList.add('hidden');
-      mobileMenu.setAttribute('aria-hidden','true');
-      menuBtn.setAttribute('aria-expanded','false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      menuBtn.setAttribute('aria-expanded', 'false');
       menuBtn.focus();
       document.removeEventListener('keydown', trapHandler);
       document.removeEventListener('mousedown', outsideHandler);
@@ -378,64 +570,60 @@
     menuBtn && menuBtn.addEventListener('click', () => { menuOpen ? closeMenu() : openMenu(); });
     document.addEventListener('keydown', e => (e.key === 'Escape' && menuOpen) && closeMenu());
 
-    // Swiper (respect reduced motion)
-    const timerBar = document.querySelector('.hero-timer');
-    let heroSwiper;
-    function startTimer(){ if (!timerBar || rmm) return; timerBar.classList.remove('animating'); void timerBar.offsetWidth; timerBar.classList.add('animating'); }
-    function zoomActiveSlide(){
-      if (rmm || !hasGSAP()) return;
-      const activeImg = document.querySelector('.hero-swiper .swiper-slide-active img');
-      if (activeImg) { activeImg.style.willChange='transform'; gsap.fromTo(activeImg,{scale:1.02},{scale:1,duration:4,ease:'power2.out',onComplete:()=>{activeImg.style.willChange='auto';}}); }
-    }
-    function initSwiper(){
-      heroSwiper = new Swiper('.hero-swiper', {
-        loop:true,
-        autoplay: rmm ? false : { delay:4000, disableOnInteraction:false },
-        speed: rmm ? 0 : 700,
-        effect:'slide',
-        navigation:{ nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev' },
-        pagination:{ el:'.swiper-pagination', clickable:true },
-        on:{ init(){ startTimer(); zoomActiveSlide(); }, slideChange(){ startTimer(); zoomActiveSlide(); } }
-      });
-      if (rmm) timerBar && timerBar.remove();
-    }
-
     // GSAP guarded
-    function initAnimations(){
+    function initAnimations() {
       if (!hasGSAP()) return;
       gsap.registerPlugin(ScrollTrigger);
-      document.querySelectorAll('[data-animate]').forEach((el,i)=>{
-        gsap.from(el,{ y:24, opacity:0, duration:0.8, delay:i*0.06, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 85%' } });
+      document.querySelectorAll('[data-animate]').forEach((el, i) => {
+        gsap.from(el, { y: 24, opacity: 0, duration: 0.8, delay: i * 0.06, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
       });
-      gsap.from('header',{ y:-40, opacity:0, duration:0.7, ease:'power3.out' });
-      document.querySelectorAll('.team-card a').forEach(a=>{
-        a.addEventListener('mouseenter',()=>gsap.to(a,{ scale:1.05, duration:0.15, ease:'power2.out' }));
-        a.addEventListener('mouseleave',()=>gsap.to(a,{ scale:1, duration:0.15, ease:'power2.out' }));
+      gsap.from('header', { y: -40, opacity: 0, duration: 0.7, ease: 'power3.out' });
+      document.querySelectorAll('.team-card a').forEach(a => {
+        a.addEventListener('mouseenter', () => gsap.to(a, { scale: 1.05, duration: 0.15, ease: 'power2.out' }));
+        a.addEventListener('mouseleave', () => gsap.to(a, { scale: 1, duration: 0.15, ease: 'power2.out' }));
       });
     }
 
     // i18n
     const resources = {
-      en:{ translation:{
-        brand:'Davilkus Games',
-        nav:{ games:'Games', about:'About', contact:'Contact Us' },
-        about:{ title:'About Us', body:'We create mobile and browser games — often tense, atmospheric horror like Backrooms — and we’re not afraid to experiment beyond horror. Expect tight controls, clean UI, and moody worlds.', team:'Team & Partners', davilkus:'Codes gameplay, networking, shaders.', haalo:'Keeps the community informed and runs events.', burger:'Writes original soundtracks for our games.', omega:'UX design, 3D models, and Unity scripting.' },
-        roles:{ founder:'Founder, Lead Dev', cm:'Community Manager', partner:'Partner – Composer', codev:'Partner – Co‑dev' },
-        contact:{ title:'Contact Us', emailTitle:'Email', general:'General', support:'In‑game Support', direct:'Direct', socialTitle:'Communities' },
-        cookie:{ title:'Cookie time!', desc:'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', accept:'Accept', decline:'Decline' }
-      }},
-      ru:{ translation:{
-        brand:'Davilkus Games',
-        nav:{ games:'Игры', about:'О нас', contact:'Контакты' },
-        about:{ title:'О нас', body:'Мы создаём мобильные и браузерные игры — часто напряжённый атмосферный хоррор вроде Backrooms — но не ограничиваемся только хоррором. Ждите точное управление, чистый UI и мрачные миры.', team:'Команда и партнёры', davilkus:'Пишет геймплей, сеть и шейдеры.', haalo:'Держит сообщество в курсе, проводит ивенты.', burger:'Пишет оригинальные саундтреки ко всем играм.', omega:'UX‑дизайн, 3D‑модели и скрипты Unity.' },
-        roles:{ founder:'Основатель, лид‑разработчик', cm:'Комьюнити‑менеджер', partner:'Партнёр — композитор', codev:'Партнёр — со‑разработчик' },
-        contact:{ title:'Контакты', emailTitle:'Email', general:'Общий', support:'Поддержка в игре', direct:'Лично', socialTitle:'Сообщества' },
-        cookie:{ title:'Время печенек!', desc:'Мы используем cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на использование cookie.', accept:'Принять', decline:'Отклонить' }
-      }}
+      en: {
+        translation: {
+          brand: 'Davilkus Games',
+          nav: { games: 'Games', about: 'About', contact: 'Contact Us' },
+          games: {
+            etb94: { title: 'Exit the Backrooms: Level 94', tagline: 'A mysterious, dreamlike world beyond the familiar Backrooms.' },
+            scp087: { title: 'SCP-087: Into the Abyss', tagline: 'Descend into the endless darkness of SCP-087.' },
+            etb2: { title: 'Exit the Backrooms: Level 2', tagline: 'Navigate the industrial halls and evade lurking threats.' },
+            sus: { title: 'Sus Horror', tagline: 'An unexpected twist on the classic horror genre.' },
+          },
+          buttons: { play: 'Play!', coming: 'Coming soon', more: 'Learn More' },
+          about: { title: 'About Us', body: 'We create mobile and browser games — often tense, atmospheric horror like Backrooms — and we’re not afraid to experiment beyond horror. Expect tight controls, clean UI, and moody worlds.', team: 'Team & Partners', davilkus: 'Codes gameplay, networking, shaders.', haalo: 'Keeps the community informed and runs events.', burger: 'Writes original soundtracks for our games.', omega: 'UX design, 3D models, and Unity scripting.' },
+          roles: { founder: 'Founder, Lead Dev', cm: 'Community Manager', partner: 'Partner – Composer', codev: 'Partner – Co‑dev' },
+          contact: { title: 'Contact Us', emailTitle: 'Email', general: 'General', support: 'In‑game Support', direct: 'Direct', socialTitle: 'Communities' },
+          cookie: { title: 'Cookie time!', desc: 'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', accept: 'Accept', decline: 'Decline' }
+        }
+      },
+      ru: {
+        translation: {
+          brand: 'Davilkus Games',
+          nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' },
+          games: {
+            etb94: { title: 'Побег из Закулисья: Уровень 94', tagline: 'Таинственный, сновидческий мир за пределами привычных Бэкрумс.' },
+            scp087: { title: 'SCP-087: Лестница в Бездну', tagline: 'Спуститесь в бесконечную темноту SCP-087.' },
+            etb2: { title: 'Побег из Закулисья: Уровень 2', tagline: 'Исследуйте промышленные залы и избегайте скрытых угроз.' },
+            sus: { title: 'Sus Horror', tagline: 'Неожиданный поворот классического хоррора.' },
+          },
+          buttons: { play: 'Играть!', coming: 'Скоро', more: 'Подробнее' },
+          about: { title: 'О нас', body: 'Мы создаём мобильные и браузерные игры — часто напряжённый атмосферный хоррор вроде Backrooms — но не ограничиваемся только хоррором. Ждите точное управление, чистый UI и мрачные миры.', team: 'Команда и партнёры', davilkus: 'Пишет геймплей, сеть и шейдеры.', haalo: 'Держит сообщество в курсе, проводит ивенты.', burger: 'Пишет оригинальные саундтреки ко всем играм.', omega: 'UX‑дизайн, 3D‑модели и скрипты Unity.' },
+          roles: { founder: 'Основатель, лид‑разработчик', cm: 'Комьюнити‑менеджер', partner: 'Партнёр — композитор', codev: 'Партнёр — со‑разработчик' },
+          contact: { title: 'Контакты', emailTitle: 'Email', general: 'Общий', support: 'Поддержка в игре', direct: 'Лично', socialTitle: 'Сообщества' },
+          cookie: { title: 'Время печенек!', desc: 'Мы используем cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на использование cookie.', accept: 'Принять', decline: 'Отклонить' }
+        }
+      }
     };
 
-    function localize(){
-      document.querySelectorAll('[data-i18n]').forEach(el=>{
+    function localize() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         const val = i18next.t(key);
         if (!val) return;
@@ -443,68 +631,70 @@
       });
     }
 
-    function setLangUI(lang){
+    function setLangUI(lang) {
       const thumb = document.getElementById('langThumb');
       const thumbM = document.getElementById('langThumbMobile');
       const isRU = lang && lang.startsWith('ru');
-      if (thumb){ thumb.classList.toggle('left-1', !isRU); thumb.classList.toggle('right-1', isRU); }
-      if (thumbM){ thumbM.classList.toggle('left-1', !isRU); thumbM.classList.toggle('right-1', isRU); }
+      if (thumb) { thumb.classList.toggle('left-1', !isRU); thumb.classList.toggle('right-1', isRU); }
+      if (thumbM) { thumbM.classList.toggle('left-1', !isRU); thumbM.classList.toggle('right-1', isRU); }
     }
-    function bindLangToggle(id){
+    function bindLangToggle(id) {
       const btn = document.getElementById(id);
       if (!btn) return;
-      btn.addEventListener('click', ()=>{
+      btn.addEventListener('click', () => {
         const newLang = (i18next.language || 'en').startsWith('ru') ? 'en' : 'ru';
-        i18next.changeLanguage(newLang, ()=>{
-          try{ localStorage.setItem('i18nextLng', newLang); }catch(_){}
+        i18next.changeLanguage(newLang, () => {
+          try { localStorage.setItem('i18nextLng', newLang); } catch (_) { }
           document.documentElement.lang = newLang.startsWith('ru') ? 'ru' : 'en';
           localize();
           document.title = i18next.t('brand') + ' - Indie Game Studio';
           setLangUI(newLang);
+
+          applyContent();
         });
       });
     }
 
-    function initCookieBar(){
+    function initCookieBar() {
       const key = 'dg_cookie_v1';
       const bar = document.getElementById('cookieBar');
       const accept = document.getElementById('cookieAccept');
       const decline = document.getElementById('cookieDecline');
       let stored = null;
-      try{ stored = localStorage.getItem(key); }catch(_){}
-      const showBar = ()=>{ bar.classList.remove('hidden'); if (hasGSAP()) gsap.fromTo(bar,{y:90,opacity:0},{y:0,opacity:1,duration:0.45,ease:'power3.out'}); };
-      const hideBar = ()=>{ if (hasGSAP()) gsap.to('#cookieBar',{y:90,opacity:0,duration:0.35,ease:'power3.inOut',onComplete:()=>bar.classList.add('hidden')}); else bar.classList.add('hidden'); };
-      if (!stored){
+      try { stored = localStorage.getItem(key); } catch (_) { }
+      const showBar = () => { bar.classList.remove('hidden'); if (hasGSAP()) gsap.fromTo(bar, { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }); };
+      const hideBar = () => { if (hasGSAP()) gsap.to('#cookieBar', { y: 90, opacity: 0, duration: 0.35, ease: 'power3.inOut', onComplete: () => bar.classList.add('hidden') }); else bar.classList.add('hidden'); };
+      if (!stored) {
         showBar();
-        const setAndHide = ()=>{ try{ localStorage.setItem(key,'1'); }catch(_){} hideBar(); };
+        const setAndHide = () => { try { localStorage.setItem(key, '1'); } catch (_) { } hideBar(); };
         accept && accept.addEventListener('click', setAndHide);
         decline && decline.addEventListener('click', setAndHide);
       }
     }
 
-    function markActiveNav(){
+    function markActiveNav() {
       const path = location.pathname;
       const isHome = path === '/' || /\/index(\.html?)?$/i.test(path);
       const gamesLink = document.querySelector('nav a[href="/games/"]');
       const homeAnchors = document.querySelectorAll('nav a[href^="#"]');
       const mobileAnchors = document.querySelectorAll('#mobileMenu a[href^="#"]');
-      if (isHome){
-        homeAnchors.forEach(a=>a.setAttribute('aria-current','page'));
-        mobileAnchors.forEach(a=>a.setAttribute('aria-current','page'));
+      if (isHome) {
+        homeAnchors.forEach(a => a.setAttribute('aria-current', 'page'));
+        mobileAnchors.forEach(a => a.setAttribute('aria-current', 'page'));
       } else if (path.startsWith('/games')) {
-        gamesLink && gamesLink.setAttribute('aria-current','page');
+        gamesLink && gamesLink.setAttribute('aria-current', 'page');
       }
     }
 
-    function scrollToTarget(idOrHash){
+    function scrollToTarget(idOrHash) {
       const id = (idOrHash || '').replace(/^#/, '');
       if (!id) return false;
       const el = document.getElementById(id);
       if (!el) return false;
-      el.scrollIntoView({ behavior:'smooth', block:'start' });
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       return true;
     }
-    function handleGoto(){
+    function handleGoto() {
       const params = new URLSearchParams(window.location.search);
       const fromQuery = params.get('goto');
       const fromHash = window.location.hash ? window.location.hash.slice(1) : '';
@@ -512,37 +702,115 @@
       if (fromHash && scrollToTarget(fromHash)) return;
     }
 
-    function loadCounter(){
+    function loadCounter() {
       if (document.getElementById('counterjs')) return;
-      const s=document.createElement('script');
-      s.id='counterjs'; s.defer=true; s.src='https://cdn.counter.dev/script.js';
-      s.dataset.id='cc931e21-a972-4ffe-aaf1-52b0f23da9d3';
-      s.dataset.utcoffset= String(-new Date().getTimezoneOffset()/60);
+      const s = document.createElement('script');
+      s.id = 'counterjs'; s.defer = true; s.src = 'https://cdn.counter.dev/script.js';
+      s.dataset.id = 'cc931e21-a972-4ffe-aaf1-52b0f23da9d3';
+      s.dataset.utcoffset = String(-new Date().getTimezoneOffset() / 60);
       document.head.appendChild(s);
     }
 
-    window.addEventListener('DOMContentLoaded', ()=>{
+    window.addEventListener('DOMContentLoaded', function () {
+      const rmm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const GAMES = [
+        { titleKey: 'games.etb94.title', taglineKey: 'games.etb94.tagline', slug: 'etb-level94', status: 'coming' },
+        { titleKey: 'games.scp087.title', taglineKey: 'games.scp087.tagline', slug: 'scp087', status: 'active' },
+        { titleKey: 'games.etb2.title', taglineKey: 'games.etb2.tagline', slug: 'etb-level2', status: 'active' },
+        { titleKey: 'games.sus.title', taglineKey: 'games.sus.tagline', slug: 'sus-horror', status: 'active' },
+      ];
+
+      const titleEl = document.getElementById('heroTitle');
+      const tagEl = document.getElementById('heroTag');
+      const btnPlay = document.getElementById('btnPlay');
+      const btnMore = document.getElementById('btnMore');
+      const progressEl = document.getElementById('heroProgress');
+
+      function setButtons(game) {
+        const playText = btnPlay.querySelector('span');
+        if (game.status === 'coming') {
+          btnPlay.setAttribute('aria-disabled', 'true');
+          btnPlay.setAttribute('tabindex', '-1');
+          btnPlay.classList.add('bg-gray-600', 'cursor-not-allowed');
+          btnPlay.classList.remove('bg-brand', 'hover:bg-brandDark');
+          btnPlay.href = '#';
+          btnPlay.title = 'Coming Soon';
+          if (playText) playText.textContent = i18next.t('buttons.coming');
+        } else {
+          btnPlay.removeAttribute('aria-disabled');
+          btnPlay.removeAttribute('tabindex');
+          btnPlay.classList.remove('bg-gray-600', 'cursor-not-allowed');
+          btnPlay.classList.add('bg-brand', 'hover:bg-brandDark');
+          btnPlay.href = `/games/${game.slug}#play`;
+          btnPlay.title = '';
+          if (playText) playText.textContent = i18next.t('buttons.play');
+        }
+        btnMore.querySelector('span').textContent = i18next.t('buttons.more');
+        btnMore.href = `/games/${game.slug}`;
+      }
+
+      window.applyContent = function () {
+        const game = GAMES[heroSwiper.realIndex] || GAMES[0];
+        titleEl.textContent = i18next.t(game.titleKey);
+        tagEl.textContent = i18next.t(game.taglineKey);
+        setButtons(game);
+      };
+
+      function overlayFadeIn(initial = false) {
+        if (rmm || !window.gsap) return;
+        const dur = initial ? .5 : .25;
+        const y = initial ? 10 : 0;
+        gsap.fromTo(['#heroLabel', '#heroTag', '#btnMore', '#btnPlay'],
+          { y, opacity: 0 }, { y: 0, opacity: 1, duration: dur, ease: 'power2.out', stagger: initial ? .06 : 0 });
+      }
+
+      function overlayFadeOut() {
+        if (rmm || !window.gsap) return;
+        return gsap.to(['#heroLabel', '#heroTag', '#btnMore', '#btnPlay'], { opacity: 0, duration: .2, ease: 'power1.in' });
+      }
+
+      // i18next init
       i18next
         .use(window.i18nextBrowserLanguageDetector)
-        .init({ resources, fallbackLng:'en', detection:{ order:['querystring','cookie','localStorage','navigator'], caches:['localStorage','cookie'] } }, ()=>{
+        .init({ resources, fallbackLng: 'en', detection: { order: ['querystring', 'cookie', 'localStorage', 'navigator'], caches: ['localStorage', 'cookie'] } }, () => {
           const lang = i18next.language || 'en';
           document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
           localize();
           document.title = i18next.t('brand') + ' - Indie Game Studio';
           setLangUI(lang);
+
+          bindLangToggle('langToggle');
+          bindLangToggle('langToggleMobile');
+
+          // Only start swiper *after* translations ready
+          heroSwiper = new Swiper('.hero-swiper', {
+            loop: true,
+            effect: 'fade',
+            fadeEffect: { crossFade: true },
+            speed: rmm ? 0 : 600,
+            allowTouchMove: true,
+            autoplay: rmm ? false : { delay: 5000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            observer: true,
+            observeParents: true,
+          });
+
+          heroSwiper.on('autoplayTimeLeft', (_, time, progress) => {
+            if (progressEl) progressEl.style.width = `${(1 - Math.max(0, Math.min(1, progress))) * 100}%`;
+          });
+          heroSwiper.on('slideChange', () => { if (progressEl) progressEl.style.width = '0%'; });
+
+          heroSwiper.on('slideChangeTransitionStart', overlayFadeOut);
+          heroSwiper.on('slideChangeTransitionEnd', () => { applyContent(); overlayFadeIn(false); });
+
+          applyContent();
+          overlayFadeIn(true);
         });
-
-      if (document.querySelector('.hero-swiper')) initSwiper();
-      if (hasGSAP()) initAnimations();
-      initCookieBar();
-      markActiveNav();
-      loadCounter();
-
-      bindLangToggle('langToggle');
-      bindLangToggle('langToggleMobile');
     });
 
-    window.addEventListener('load', ()=>{ setTimeout(handleGoto, 50); });
+    window.addEventListener('load', () => { setTimeout(handleGoto, 50); });
   </script>
 </body>
+
 </html>
