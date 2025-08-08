@@ -9,16 +9,18 @@
   <!-- Canonical + hreflang -->
   <link rel="canonical" href="https://davilkusgames.com/" />
   <link rel="alternate" hreflang="en" href="https://davilkusgames.com/" />
-  <link rel="alternate" hreflang="ru" href="https://davilkusgames.com/ru/" />
-
+  
   <!-- Open Graph / Social Preview -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Davilkus Games - Indie Game Studio" />
   <meta property="og:site_name" content="Davilkus Games" />
   <meta property="og:description" content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences." />
-  <meta property="og:url" content="https://davilkusgames.com" />
+  <meta property="og:url" content="https://davilkusgames.com/" />
   <meta property="og:image" content="https://davilkusgames.com/assets/og/hero-1200x630.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:site" content="@DavilkusGames" />
   <meta name="twitter:image" content="https://davilkusgames.com/assets/og/hero-1200x630.jpg" />
   <meta name="theme-color" content="#0B0F1A" />
 
@@ -105,14 +107,14 @@
     .menu-overlay { backdrop-filter: blur(4px); }
 
     /* Scroll offset for fixed header */
-    #contact { scroll-margin-top: 5rem; }
+    #about, #contact { scroll-margin-top: 5rem; }
   </style>
 </head>
 <body class="bg-bg text-ink font-sans antialiased">
   <!-- Header -->
   <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group">
+      <a href="/" class="flex items-center gap-3 group">
         <img src="/assets/logo.png" alt="Davilkus Games logo" width="64" height="64" class="h-9 w-9 rounded-xl" />
         <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus Games</span>
       </a>
@@ -125,19 +127,19 @@
           <a href="#contact" class="hover:opacity-80 transition" data-i18n="nav.contact">Contact Us</a>
         </nav>
         <!-- Language toggle -->
-        <button id="langToggle" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-24 h-9 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
-          <span class="flex-1 text-center text-xs">EN</span>
-          <span class="flex-1 text-center text-xs">RU</span>
-          <span id="langThumb" class="absolute top-1 left-1 w-10 h-7 rounded-full bg-brand transition-transform"></span>
+        <button id="langToggle" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-16 h-8 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
+          <span class="flex-1 text-center text-[11px]">EN</span>
+          <span class="flex-1 text-center text-[11px]">RU</span>
+          <span id="langThumb" class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
         </button>
       </div>
 
       <!-- Mobile menu button + Lang switch -->
       <div class="md:hidden flex items-center gap-2">
-        <button id="langToggleMobile" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-20 h-8 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
-          <span class="flex-1 text-center text-[11px]">EN</span>
-          <span class="flex-1 text-center text-[11px]">RU</span>
-          <span id="langThumbMobile" class="absolute top-1 left-1 w-8 h-6 rounded-full bg-brand transition-transform"></span>
+        <button id="langToggleMobile" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-14 h-7 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
+          <span class="flex-1 text-center text-[10px]">EN</span>
+          <span class="flex-1 text-center text-[10px]">RU</span>
+          <span id="langThumbMobile" class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
         </button>
         <button id="menuBtn" class="p-2 rounded-lg hover:bg-panel/70 focus:outline-none focus:ring-2 focus:ring-brand" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
           <img src="/assets/icons/menu.svg" alt="menu" class="w-6 h-6" />
@@ -394,10 +396,11 @@
       const first = focusableEls[0]; const last = focusableEls[focusableEls.length - 1];
       first && first.focus();
       trapHandler = (e) => {
-        if (e.key === 'Tab') {
-          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-        }
+        const focusableEls = mobileMenu.querySelectorAll(focusables);
+        const first = focusableEls[0], last = focusableEls[focusableEls.length - 1];
+        if (e.key !== 'Tab' || !first || !last) return;
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
       };
       document.addEventListener('keydown', trapHandler);
       // outside click
@@ -519,9 +522,9 @@
     function setLangUI(lang){
       const thumb = document.getElementById('langThumb');
       const thumbM = document.getElementById('langThumbMobile');
-      const isRU = lang.startsWith('ru');
-      if (thumb) thumb.style.transform = isRU ? 'translateX(52px)' : 'translateX(0)';
-      if (thumbM) thumbM.style.transform = isRU ? 'translateX(44px)' : 'translateX(0)';
+      const isRU = lang && lang.startsWith('ru');
+      if (thumb) { thumb.classList.toggle('left-1', !isRU); thumb.classList.toggle('right-1', isRU); }
+      if (thumbM) { thumbM.classList.toggle('left-1', !isRU); thumbM.classList.toggle('right-1', isRU); }
     }
     function bindLangToggle(id){
       const btn = document.getElementById(id);
@@ -534,8 +537,7 @@
           localize();
           document.title = i18next.t('brand') + ' - Indie Game Studio';
           const metaDesc = document.querySelector('meta[name="description"]');
-          if (metaDesc) metaDesc.setAttribute('content', i18next.t('about.body'));
-          setLangUI(newLang);
+                    setLangUI(newLang);
         });
       });
     }
@@ -554,12 +556,16 @@
 
     // --- Active nav aria-current ---
     function markActiveNav(){
-      const path = location.pathname.replace(/\/$/, '');
+      const path = location.pathname;
+      const isHome = path === '/' || /\/index(\.html?)?$/i.test(path);
       const gamesLink = document.querySelector('nav a[href="/games/"]');
       const homeAnchors = document.querySelectorAll('nav a[href^="#"]');
-      if (path === '' || path === '/index.html' || path === '/index') {
+      if (isHome) {
         homeAnchors.forEach(a => a.setAttribute('aria-current','page'));
       } else if (path.startsWith('/games')) {
+        gamesLink && gamesLink.setAttribute('aria-current','page');
+      }
+    } else if (path.startsWith('/games')) {
         gamesLink && gamesLink.setAttribute('aria-current','page');
       }
     }
