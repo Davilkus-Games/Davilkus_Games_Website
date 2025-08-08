@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Davilkus Games — Privacy Policy</title>
+    <meta name="description"
+        content="Privacy Policy of Davilkus Games. We don’t create accounts or collect personal data, except anonymous analytics with IP country for basic statistics." />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+    <!-- Allow indexing -->
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical + hreflang (client-side i18n via ?lang=) -->
+    <link rel="canonical" href="https://davilkusgames.com/privacy-policy/" />
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ru_RU">
+    <link rel="alternate" href="https://davilkusgames.com/privacy-policy/?lang=en" hreflang="en">
+    <link rel="alternate" href="https://davilkusgames.com/privacy-policy/?lang=ru" hreflang="ru">
+    <link rel="alternate" href="https://davilkusgames.com/privacy-policy/" hreflang="x-default">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Privacy Policy — Davilkus Games" />
+    <meta property="og:site_name" content="Davilkus Games" />
+    <meta property="og:description"
+        content="We don’t create accounts or collect personal data, except anonymous analytics with IP country for basic statistics." />
+    <meta property="og:url" content="https://davilkusgames.com/privacy-policy/" />
+    <meta property="og:image" content="https://davilkusgames.com/assets/logo.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Davilkus Games logo" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@DavilkusGames" />
+    <meta name="twitter:title" content="Privacy Policy — Davilkus Games" />
+    <meta name="twitter:description"
+        content="We don’t create accounts or collect personal data, except anonymous analytics with IP country for basic statistics." />
+    <meta name="twitter:image" content="https://davilkusgames.com/assets/logo.png" />
+
+    <meta name="theme-color" content="#0B0F1A" />
+
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Apple Color Emoji'] },
+                    colors: {
+                        bg: '#0B0F1A',
+                        panel: '#0F1524',
+                        ink: '#E8EAF2',
+                        brand: '#2563eb',
+                        brandDark: '#1e40af',
+                        header: '#070a12',
+                        line: '#1b2336'
+                    },
+                    boxShadow: { soft: '0 6px 30px rgba(0,0,0,0.35)' }
+                }
+            }
+        }
+    </script>
+
+    <!-- i18next + detector -->
+    <script defer src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
+    <script defer
+        src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
+
+    <style>
+        /* Basic page utilities; removed flicker/noise/scanlines/vignette */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0b0f1a
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1b2336;
+            border-radius: 10px
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2a3552
+        }
+
+        /* Sticky left label on desktop */
+        .sticky-col {
+            position: sticky;
+            top: 5.25rem;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .content a {
+            text-decoration: underline;
+        }
+
+        .content h2 {
+            margin-top: 2rem;
+        }
+
+        .content h3 {
+            margin-top: 1.25rem;
+        }
+
+        .content p+p {
+            margin-top: .75rem;
+        }
+
+        .content ul {
+            list-style: disc;
+            margin-left: 1.25rem;
+            padding-left: .75rem;
+        }
+
+        .content li+li {
+            margin-top: .4rem;
+        }
+
+        .content h2,
+        .content h3 {
+            scroll-margin-top: 6rem;
+        }
+
+        .content h2 {
+            margin-top: 2.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .content h3 {
+            margin-top: 1.5rem;
+            margin-bottom: .75rem;
+        }
+
+        .content h2+*,
+        .content h3+* {
+            margin-top: 1rem;
+        }
+
+        .content p+p {
+            margin-top: 1rem;
+        }
+
+        .content ul {
+            margin-top: .625rem;
+        }
+
+        .pp-title {
+            max-width: 20ch;
+            /* clamp line length */
+            line-height: 1.05;
+            overflow-wrap: anywhere;
+            /* break long tokens if needed */
+            word-break: break-word;
+            hyphens: auto;
+            /* nice hyphenation where supported */
+        }
+    </style>
+</head>
+
+<body class="bg-bg text-ink font-sans antialiased">
+    <!-- Header (keep simple, like your 404) -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
+            <a href="/" class="flex items-center gap-3 group" aria-label="Go to homepage">
+                <img src="/assets/logo.png" alt="Davilkus Games logo" width="64" height="64"
+                    class="h-9 w-9 rounded-2xl" />
+                <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus
+                    Games</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="pt-28">
+        <section class="relative">
+            <div
+                class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-18">
+                <div class="grid md:grid-cols-12 gap-10">
+                    <!-- Left label -->
+                    <aside class="md:col-span-3">
+                        <div class="sticky-col">
+                            <h1 class="pp-title text-3xl md:text-4xl font-extrabold tracking-tight"
+                                data-i18n="pp.title">
+                                Privacy Policy
+                            </h1>
+                            <p class="text-sm text-ink/70 mt-2">
+                                <span data-i18n="pp.updatedLabel">Last updated:</span>
+                                <time data-i18n="pp.date">2025-08-08</time>
+                            </p>
+                        </div>
+                    </aside>
+
+                    <!-- Content -->
+                    <article class="md:col-span-9 content text-[15px] md:text-base leading-relaxed text-ink/90">
+                        <p data-i18n="pp.intro.0">
+                            This Privacy Policy explains how Davilkus Games (“we”, “us”) handles information on our
+                            website and game pages. We do not create user accounts and we do not collect personal
+                            information, except limited anonymous analytics as described below. Our Cookie Policy is
+                            published separately.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.scope.title">Scope</h2>
+                        <p data-i18n="pp.sections.scope.body">
+                            This policy applies to davilkusgames.com and any pages we host under this domain. It does
+                            not cover third-party platforms where our games are distributed (e.g., Google Play, itch.io,
+                            Yandex Games) or any services they operate.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.dataWeCollect.title">Information We
+                            Collect</h2>
+                        <p data-i18n="pp.sections.dataWeCollect.body.0">
+                            We collect anonymous usage statistics to understand traffic and improve our site. This
+                            includes your IP address processed only to derive non-precise location (country) and to
+                            maintain basic fraud/abuse prevention. We do not build profiles and do not track you across
+                            sites.
+                        </p>
+                        <ul>
+                            <li data-i18n="pp.sections.dataWeCollect.items.0">Pages visited, referrer (if any),
+                                timestamps, and basic device information (e.g., screen size, browser).</li>
+                            <li data-i18n="pp.sections.dataWeCollect.items.1">IP address (used to infer country-level
+                                location and for aggregate statistics).</li>
+                        </ul>
+                        <p data-i18n="pp.sections.dataWeCollect.body.1">
+                            We do not collect names, emails, payment data, or precise location through our website. If
+                            you choose to email us, your message will include your email address by nature of email
+                            itself, and we will use it only to reply.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.legalBasis.title">Legal Basis (EEA/UK)
+                        </h2>
+                        <p data-i18n="pp.sections.legalBasis.body">
+                            Where GDPR or similar laws apply, our legal basis for processing analytics data is our
+                            legitimate interests in operating, securing, and improving our website, balanced against
+                            your privacy. You can opt out of optional analytics in your browser or via our Cookie Policy
+                            controls when applicable.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.use.title">How We Use Information</h2>
+                        <ul>
+                            <li data-i18n="pp.sections.use.items.0">Measure site performance and popularity of pages.
+                            </li>
+                            <li data-i18n="pp.sections.use.items.1">Detect and prevent abuse (e.g., traffic spikes from
+                                bots).</li>
+                            <li data-i18n="pp.sections.use.items.2">Plan content and improvements for our community.
+                            </li>
+                        </ul>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.retention.title">Retention</h2>
+                        <p data-i18n="pp.sections.retention.body">
+                            Analytics records are kept only as long as necessary for aggregate reporting and security
+                            (typically short to moderate periods, depending on the analytics provider’s defaults). We do
+                            not attempt to re-identify individuals.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.sharing.title">Sharing & Disclosure
+                        </h2>
+                        <p data-i18n="pp.sections.sharing.body.0">
+                            We do not sell your data. We may share anonymous, aggregated insights (e.g., visits by
+                            country) publicly. Service providers that operate analytics or hosting may process limited
+                            data on our behalf under contracts and only as instructed.
+                        </p>
+                        <p data-i18n="pp.sections.sharing.body.1">
+                            We may disclose information if required by law or to respond to valid legal requests, or to
+                            protect our rights, users, or the public.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.transfers.title">International
+                            Transfers</h2>
+                        <p data-i18n="pp.sections.transfers.body">
+                            Our site infrastructure and service providers may be located in various countries. Where
+                            required, we rely on appropriate safeguards for cross-border transfers (such as standard
+                            contractual clauses) provided by our vendors.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.rights.title">Your Rights</h2>
+                        <p data-i18n="pp.sections.rights.body.0">
+                            Depending on your location (e.g., EEA/UK/California), you may have rights to access, delete,
+                            or object to processing of your personal data. Because we do not maintain user accounts or
+                            identify you, our ability to act on requests may be limited. You can still contact us and
+                            we’ll do our best within the technical constraints.
+                        </p>
+                        <p data-i18n="pp.sections.rights.body.1">
+                            To exercise rights or ask questions, email <a
+                                href="mailto:contact@davilkusgames.com">contact@davilkusgames.com</a>.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.children.title">Children’s Privacy
+                        </h2>
+                        <p data-i18n="pp.sections.children.body">
+                            Our website is not directed to children. We do not knowingly collect personal information
+                            from children through this site.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.security.title">Security</h2>
+                        <p data-i18n="pp.sections.security.body">
+                            We use reasonable technical and organizational measures to protect our site and the limited
+                            analytics we process. No method of transmission or storage is completely secure.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.thirdparty.title">Third-Party Services
+                        </h2>
+                        <p data-i18n="pp.sections.thirdparty.body">
+                            Our site may link to third-party platforms (e.g., Discord, YouTube, Telegram) or storefronts
+                            (e.g., Google Play, itch.io). Their privacy practices are governed by their own policies.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.dnt.title">“Do Not Track”</h2>
+                        <p data-i18n="pp.sections.dnt.body">
+                            Some browsers send a “Do Not Track” signal. Because there is no common industry standard,
+                            our website does not respond to these signals. You can control analytics and storage via
+                            your browser settings and our separate Cookie Policy when applicable.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.changes.title">Changes to This Policy
+                        </h2>
+                        <p data-i18n="pp.sections.changes.body">
+                            We may update this Privacy Policy from time to time. We will post the new version with a new
+                            “Last updated” date. Material changes will be highlighted for a reasonable period.
+                        </p>
+
+                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.contact.title">Contact Us</h2>
+                        <p>
+                            <span data-i18n="pp.sections.contact.body.prefix">
+                                If you have any questions, contact us at
+                            </span>
+                            <a href="mailto:contact@davilkusgames.com">contact@davilkusgames.com</a>
+                            <span class="mx-1" data-i18n="pp.sections.contact.body.or">or</span>
+                            <a href="mailto:support@davilkusgames.com">support@davilkusgames.com</a>.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-header border-t border-line">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div>
+                <div class="text-sm">© 2025 Davilkus Games</div>
+                <div class="mt-2 flex items-center gap-4 text-xs">
+                    <a href="/privacy-policy/" class="hover:opacity-80">Privacy Policy</a>
+                    <a href="/cookie-policy/" class="hover:opacity-80">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const resources = {
+            en: {
+                translation: {
+                    brand: 'Davilkus Games',
+                    pp: {
+                        title: 'Privacy Policy',
+                        updatedLabel: 'Last updated:',
+                        date: '2025-08-08',
+                        intro: [
+                            'This Privacy Policy explains how Davilkus Games (“we”, “us”) handles information on our website and game pages. We do not create user accounts and we do not collect personal information, except limited anonymous analytics as described below. Our Cookie Policy is published separately.'
+                        ],
+                        sections: {
+                            scope: {
+                                title: 'Scope',
+                                body: 'This policy applies to davilkusgames.com and any pages we host under this domain. It does not cover third-party platforms where our games are distributed (e.g., Google Play, itch.io, Yandex Games) or any services they operate.'
+                            },
+                            dataWeCollect: {
+                                title: 'Information We Collect',
+                                body: [
+                                    'We collect anonymous usage statistics to understand traffic and improve our site. This includes your IP address processed only to derive non-precise location (country) and to maintain basic fraud/abuse prevention. We do not build profiles and do not track you across sites.',
+                                    'We do not collect names, emails, payment data, or precise location through our website. If you choose to email us, your message will include your email address by nature of email itself, and we will use it only to reply.'
+                                ],
+                                items: [
+                                    'Pages visited, referrer (if any), timestamps, and basic device information (e.g., screen size, browser).',
+                                    'IP address (used to infer country-level location and for aggregate statistics).'
+                                ]
+                            },
+                            legalBasis: {
+                                title: 'Legal Basis (EEA/UK)',
+                                body: 'Where GDPR or similar laws apply, our legal basis for processing analytics data is our legitimate interests in operating, securing, and improving our website, balanced against your privacy. You can opt out of optional analytics in your browser or via our Cookie Policy controls when applicable.'
+                            },
+                            use: {
+                                title: 'How We Use Information',
+                                items: [
+                                    'Measure site performance and popularity of pages.',
+                                    'Detect and prevent abuse (e.g., traffic spikes from bots).',
+                                    'Plan content and improvements for our community.'
+                                ]
+                            },
+                            retention: {
+                                title: 'Retention',
+                                body: 'Analytics records are kept only as long as necessary for aggregate reporting and security (typically short to moderate periods, depending on the analytics provider’s defaults). We do not attempt to re-identify individuals.'
+                            },
+                            sharing: {
+                                title: 'Sharing & Disclosure',
+                                body: [
+                                    'We do not sell your data. We may share anonymous, aggregated insights (e.g., visits by country) publicly. Service providers that operate analytics or hosting may process limited data on our behalf under contracts and only as instructed.',
+                                    'We may disclose information if required by law or to respond to valid legal requests, or to protect our rights, users, or the public.'
+                                ]
+                            },
+                            transfers: {
+                                title: 'International Transfers',
+                                body: 'Our site infrastructure and service providers may be located in various countries. Where required, we rely on appropriate safeguards for cross-border transfers (such as standard contractual clauses) provided by our vendors.'
+                            },
+                            rights: {
+                                title: 'Your Rights',
+                                body: [
+                                    'Depending on your location (e.g., EEA/UK/California), you may have rights to access, delete, or object to processing of your personal data. Because we do not maintain user accounts or identify you, our ability to act on requests may be limited. You can still contact us and we’ll do our best within the technical constraints.',
+                                    'To exercise rights or ask questions, email contact@davilkusgames.com.'
+                                ]
+                            },
+                            children: { title: 'Children’s Privacy', body: 'Our website is not directed to children. We do not knowingly collect personal information from children through this site.' },
+                            security: { title: 'Security', body: 'We use reasonable technical and organizational measures to protect our site and the limited analytics we process. No method of transmission or storage is completely secure.' },
+                            thirdparty: { title: 'Third-Party Services', body: 'Our site may link to third-party platforms (e.g., Discord, YouTube, Telegram) or storefronts (e.g., Google Play, itch.io). Their privacy practices are governed by their own policies.' },
+                            dnt: { title: '“Do Not Track”', body: 'Some browsers send a “Do Not Track” signal. Because there is no common industry standard, our website does not respond to these signals. You can control analytics and storage via your browser settings and our separate Cookie Policy when applicable.' },
+                            changes: { title: 'Changes to This Policy', body: 'We may update this Privacy Policy from time to time. We will post the new version with a new “Last updated” date. Material changes will be highlighted for a reasonable period.' },
+                            contact: { title: 'Contact Us', body: { prefix: 'If you have any questions, contact us at', or: ' or ' } }
+                        }
+                    }
+                }
+            },
+            ru: {
+                translation: {
+                    brand: 'Davilkus Games',
+                    pp: {
+                        title: 'Политика конфиденциальности',
+                        updatedLabel: 'Последнее обновление:',
+                        date: '2025-08-08',
+                        intro: [
+                            'Эта Политика конфиденциальности объясняет, как Davilkus Games («мы») обрабатывает информацию на нашем сайте и страницах игр. Мы не создаём учётные записи пользователей и не собираем персональные данные, за исключением ограниченной анонимной аналитики, описанной ниже. Политика использования файлов cookie опубликована отдельно.'
+                        ],
+                        sections: {
+                            scope: {
+                                title: 'Область действия',
+                                body: 'Данная политика применяется к davilkusgames.com и всем страницам, размещённым в этом домене. Она не распространяется на сторонние платформы, где публикуются наши игры (например, Google Play, itch.io, Yandex Games), и их сервисы.'
+                            },
+                            dataWeCollect: {
+                                title: 'Какие данные мы собираем',
+                                body: [
+                                    'Мы собираем анонимную статистику использования, чтобы понимать трафик и улучшать сайт. В неё входит IP-адрес, используемый только для определения неприближённого местоположения (страна) и для базовой защиты от злоупотреблений. Мы не создаём профилей и не отслеживаем вас на других сайтах.',
+                                    'Мы не собираем имена, e-mail, платёжные данные или точную геолокацию через наш сайт. Если вы решите написать нам на e-mail, ваш адрес будет указан в письме по своей природе; мы используем его только для ответа.'
+                                ],
+                                items: [
+                                    'Посещённые страницы, реферер (если есть), время визитов и базовая информация об устройстве (например, размер экрана, браузер).',
+                                    'IP-адрес (для определения страны и агрегированной статистики).'
+                                ]
+                            },
+                            legalBasis: {
+                                title: 'Правовые основания (ЕЭЗ/Великобритания)',
+                                body: 'Там, где применимы GDPR или аналогичные законы, нашим правовым основанием является законный интерес — работа, безопасность и улучшение сайта — с учётом вашего права на конфиденциальность. Вы можете отключить необязательную аналитику в браузере и через нашу Политику cookie (когда применимо).'
+                            },
+                            use: {
+                                title: 'Как мы используем данные',
+                                items: [
+                                    'Измерение производительности сайта и популярности страниц.',
+                                    'Выявление и предотвращение злоупотреблений (например, бот-трафик).',
+                                    'Планирование контента и улучшений для сообщества.'
+                                ]
+                            },
+                            retention: {
+                                title: 'Сроки хранения',
+                                body: 'Записи аналитики хранятся лишь столько, сколько необходимо для агрегированной отчётности и безопасности (обычно короткие или умеренные сроки — по умолчанию у провайдера аналитики). Мы не пытаемся де-идентифицировать пользователей.'
+                            },
+                            sharing: {
+                                title: 'Передача и раскрытие',
+                                body: [
+                                    'Мы не продаём ваши данные. Мы можем публиковать анонимные агрегированные сведения (например, визиты по странам). Провайдеры услуг (аналитика, хостинг) могут обрабатывать ограниченные данные от нашего имени по договору и только по нашим инструкциям.',
+                                    'Информация может быть раскрыта по требованию закона или для защиты наших прав, пользователей или общественной безопасности.'
+                                ]
+                            },
+                            transfers: {
+                                title: 'Международные передачи',
+                                body: 'Инфраструктура сайта и провайдеры услуг могут находиться в разных странах. При необходимости применяются надлежащие гарантии трансграничной передачи данных (например, стандартные договорные положения), предоставляемые нашими поставщиками.'
+                            },
+                            rights: {
+                                title: 'Ваши права',
+                                body: [
+                                    'В зависимости от вашего региона (например, ЕЭЗ/Великобритания/Калифорния) у вас могут быть права на доступ, удаление или возражение против обработки персональных данных. Поскольку мы не ведём учётные записи и не идентифицируем посетителей, наши возможности по выполнению таких запросов ограничены. Тем не менее, вы можете связаться с нами, и мы постараемся помочь в рамках технических возможностей.',
+                                    'Для запросов и вопросов пишите на contact@davilkusgames.com.'
+                                ]
+                            },
+                            children: { title: 'Дети', body: 'Наш сайт не ориентирован на детей. Мы не собираем заведомо персональную информацию детей через этот сайт.' },
+                            security: { title: 'Безопасность', body: 'Мы используем разумные технические и организационные меры для защиты сайта и ограниченной аналитики. Однако ни один метод передачи и хранения данных не является абсолютно безопасным.' },
+                            thirdparty: { title: 'Сторонние сервисы', body: 'На сайте могут быть ссылки на сторонние платформы (например, Discord, YouTube, Telegram) или магазины (Google Play, itch.io). Их практика конфиденциальности регулируется их собственными политиками.' },
+                            dnt: { title: '«Do Not Track»', body: 'Некоторые браузеры отправляют сигнал «Не отслеживать». Из-за отсутствия единых стандартов наш сайт не реагирует на эти сигналы. Управляйте аналитикой и хранением данных через настройки браузера и нашу отдельную Политику cookie, когда применимо.' },
+                            changes: { title: 'Изменения политики', body: 'Мы можем периодически обновлять эту Политику. Новая версия будет опубликована с новой датой «Последнее обновление». Существенные изменения будут выделены в разумный срок.' },
+                            contact: { title: 'Связаться с нами', body: { prefix: 'Вопросы по конфиденциальности:', or: ' или ' } }
+                        }
+                    }
+                }
+            }
+        };
+
+        function localize() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const val = i18next.t(key);
+                if (!val) return;
+                // Only replace text on leaf nodes so we don't nuke inner <a>/<span>
+                if (el.children.length === 0) {
+                    el.textContent = val;
+                }
+                // If you ever want HTML translations, do it explicitly with a separate data-i18n-html flag.
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            i18next
+                .use(window.i18nextBrowserLanguageDetector)
+                .init({
+                    resources,
+                    fallbackLng: 'en',
+                    detection: { order: ['querystring', 'cookie', 'localStorage', 'navigator'], caches: ['localStorage', 'cookie'], lookupQuerystring: 'lang' }
+                }, () => {
+                    const lang = i18next.language || 'en';
+                    document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
+                    localize();
+                    document.title = (i18next.t('brand') || 'Davilkus Games') + ' — ' + (i18next.t('pp.title') || 'Privacy Policy');
+                });
+        });
+    </script>
+</body>
+
+</html>
