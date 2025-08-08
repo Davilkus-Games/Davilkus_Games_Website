@@ -12,6 +12,11 @@
 
   <!-- Canonical (client-side i18n, no hreflang variants) -->
   <link rel="canonical" href="https://davilkusgames.com/" />
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <link rel="alternate" href="https://davilkusgames.com/?lang=en" hreflang="en">
+  <link rel="alternate" href="https://davilkusgames.com/?lang=ru" hreflang="ru">
+  <link rel="alternate" href="https://davilkusgames.com/" hreflang="x-default">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -34,6 +39,10 @@
 
   <meta name="theme-color" content="#0B0F1A" />
 
+  <!-- Preload the first hero image -->
+  <link rel="preload" as="image" href="/assets/showcase/scp087.webp" imagesrcset="/assets/showcase/scp087.webp"
+    type="image/webp" />
+
   <!-- Inter font & CDNs -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +50,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CDN (classic) -->
-  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -62,6 +70,7 @@
       }
     }
   </script>
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Swiper.js -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -245,20 +254,20 @@
           </div>
         -->
           <div class="swiper-slide relative">
-            <img src="/assets/showcase/scp087.webp" alt="SCP-087: Into the Abyss" 
-            class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
+            <img src="/assets/showcase/scp087.webp" alt="SCP-087: Into the Abyss" width="1920" height="1080"
+              class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
           </div>
           <div class="swiper-slide relative">
-            <img src="/assets/showcase/etb_level2.webp" alt="Exit the Backrooms: Level 2"
+            <img src="/assets/showcase/etb_level2.webp" alt="Exit the Backrooms: Level 2" width="1920" height="1080"
               class="w-full h-full object-cover" loading="lazy" decoding="async" />
           </div>
           <div class="swiper-slide relative">
-            <img src="/assets/showcase/etb_level37.webp" alt="Exit the Backrooms: Level 37" class="w-full h-full object-cover"
-              loading="lazy" decoding="async" />
+            <img src="/assets/showcase/etb_level37.webp" alt="Exit the Backrooms: Level 37" width="1920" height="1080"
+              class="w-full h-full object-cover" loading="lazy" decoding="async" />
           </div>
           <div class="swiper-slide relative">
-            <img src="/assets/showcase/sus_horror.webp" alt="Sus Horror" class="w-full h-full object-cover"
-              loading="lazy" decoding="async" />
+            <img src="/assets/showcase/sus_horror.webp" alt="Sus Horror" width="1920" height="1080"
+              class="w-full h-full object-cover" loading="lazy" decoding="async" />
           </div>
         </div>
         <div class="swiper-pagination absolute top-4 right-4"></div>
@@ -328,7 +337,7 @@
               About Us
             </h2>
             <p class="text-[15px] md:text-base text-ink/80 leading-relaxed mb-3" data-i18n="about.body1">
-              Davilkus Games is a small indie game studio based in Moscow, Russia. We create games for web, mobile, and
+              Davilkus Games is a small indie game studio based in Russia. We create games for web, mobile, and
               PC, and publish them on Google Play, itch.io, Yandex Games, and other platforms.
             </p>
             <p class="text-[15px] md:text-base text-ink/80 leading-relaxed mb-3" data-i18n="about.body2">
@@ -452,7 +461,6 @@
             </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
 
@@ -707,6 +715,13 @@
       if (thumb) { thumb.classList.toggle('left-1', !isRU); thumb.classList.toggle('right-1', isRU); }
       if (thumbM) { thumbM.classList.toggle('left-1', !isRU); thumbM.classList.toggle('right-1', isRU); }
     }
+
+    function setUrlLangParam(lang) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', url);
+    }
+
     function bindLangToggle(id) {
       const btn = document.getElementById(id);
       if (!btn) return;
@@ -718,7 +733,7 @@
           localize();
           document.title = i18next.t('brand') + ' - Indie Game Studio';
           setLangUI(newLang);
-
+          setUrlLangParam(newLang);
           applyContent();
         });
       });
@@ -781,8 +796,6 @@
     }
 
     window.addEventListener('DOMContentLoaded', function () {
-      const rmm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
       const GAMES = [
         { titleKey: 'games.scp087.title', taglineKey: 'games.scp087.tagline', slug: 'scp087', status: 'active' },
         { titleKey: 'games.etb2.title', taglineKey: 'games.etb2.tagline', slug: 'etb-level2', status: 'active' },
@@ -842,11 +855,11 @@
       // i18next init
       i18next
         .use(window.i18nextBrowserLanguageDetector)
-        .init({ resources, fallbackLng: 'en', detection: { order: ['querystring', 'cookie', 'localStorage', 'navigator'], caches: ['localStorage', 'cookie'] } }, () => {
+        .init({ resources, fallbackLng: 'en', detection: { order: ['querystring', 'cookie', 'localStorage', 'navigator'], caches: ['localStorage', 'cookie'], lookupQuerystring: 'lang' } }, () => {
           const lang = i18next.language || 'en';
           document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
           localize();
-          document.title = i18next.t('brand') + ' - Indie Game Studio';
+          document.title = i18next.t('brand') + ' — Indie Game Studio';
           setLangUI(lang);
 
           if (hasGSAP()) initAnimations();
