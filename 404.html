@@ -5,13 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>404 — Page not found | Davilkus Games</title>
+    <title>Davilkus Games — 404</title>
     <meta name="description" content="Lost in the void? Return to the hub." />
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Canonical (client-side i18n, no hreflang variants) -->
-    <link rel="canonical" href="https://davilkusgames.com/" />
     <meta property="og:locale" content="en_US">
     <meta property="og:locale:alternate" content="ru_RU">
 
@@ -193,7 +192,7 @@
                         <a href="/"
                             class="inline-flex items-center gap-3 text-base md:text-lg font-medium px-6 md:px-7 py-3 md:py-3.5 rounded-xl bg-brand hover:bg-brandDark transition shadow-soft will-change-transform"
                             id="returnBtn" style="opacity:1">
-                            <img src="/assets/icons/exit404.svg" class="w-5 h-5" alt="" aria-hidden="true">
+                            <img src="/assets/icons/exit404.svg" class="w-5 h-5" alt="" aria-hidden="true" aria-label="Return to homepage">
                             <span data-i18n="notfound.cta">Return to Hub</span>
                         </a>
                     </div>
@@ -276,13 +275,15 @@
                 .init({
                     resources,
                     fallbackLng: 'en',
-                    detection: { order: ['querystring', 'cookie', 'localStorage', 'navigator'], caches: ['localStorage', 'cookie'] }
+                    detection: { order: ['querystring', 'cookie', 'localStorage', 'navigator'], caches: ['localStorage', 'cookie'] },
+                    lookupQuerystring: 'lang'
                 }, () => {
                     const lang = i18next.language || 'en';
                     document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
                     localize();
                     initFx();
                 });
+            document.title = i18next.t('brand') + ' — 404';
         });
     </script>
 </body>
