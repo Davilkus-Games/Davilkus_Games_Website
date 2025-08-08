@@ -6,17 +6,27 @@
   <title>Davilkus Games - Indie Game Studio</title>
   <meta name="description" content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences. Explore our games, meet the team, and get in touch." />
 
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://davilkusgames.com/" />
+  <link rel="alternate" hreflang="en" href="https://davilkusgames.com/" />
+  <link rel="alternate" hreflang="ru" href="https://davilkusgames.com/ru/" />
+
   <!-- Open Graph / Social Preview -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Davilkus Games - Indie Game Studio" />
   <meta property="og:site_name" content="Davilkus Games" />
   <meta property="og:description" content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences." />
   <meta property="og:url" content="https://davilkusgames.com" />
-  <meta property="og:image" content="/assets/favicon.png" />
+  <meta property="og:image" content="https://davilkusgames.com/assets/og/hero-1200x630.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://davilkusgames.com/assets/og/hero-1200x630.jpg" />
   <meta name="theme-color" content="#0B0F1A" />
 
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+  <!-- Preload LCP images -->
+  <link rel="preload" as="image" href="/assets/showcase/img_0.webp" imagesrcset="/assets/showcase/img_0-1280.webp 1280w, /assets/showcase/img_0-2560.webp 2560w" imagesizes="100vw">
+  <link rel="preload" as="image" href="/assets/logo.png">
 
   <!-- Inter font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,9 +60,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-  <!-- Micromodal (loaded but not used) -->
-  <script defer src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
-
   <!-- GSAP + ScrollTrigger -->
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -61,8 +68,24 @@
   <script defer src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
 
-  <!-- Counter.dev -->
-  <script src="https://cdn.counter.dev/script.js" data-id="cc931e21-a972-4ffe-aaf1-52b0f23da9d3" data-utcoffset="3"></script>
+  <!-- JSON-LD Organization -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Davilkus Games",
+    "url":"https://davilkusgames.com",
+    "logo":"https://davilkusgames.com/assets/logo.png",
+    "sameAs":[
+      "https://www.youtube.com/@davilkusgames",
+      "https://x.com/DavilkusGames",
+      "https://t.me/davilkus_games_news",
+      "https://vk.com/davilkusgames",
+      "https://github.com/DavilkusGames",
+      "https://discord.gg/y3hE847S"
+    ]
+  }
+  </script>
 
   <style>
     /* custom scrollbar, subtle */
@@ -75,8 +98,14 @@
     .hero-timer.animating { animation: fill 4s linear forwards; }
     @keyframes fill { from { width: 0; } to { width: 100%; } }
 
+    /* Respect reduced motion: hide timer */
+    @media (prefers-reduced-motion: reduce){ .hero-timer{ display: none; } }
+
     /* mobile dropdown shadow fix over Swiper */
     .menu-overlay { backdrop-filter: blur(4px); }
+
+    /* Scroll offset for fixed header */
+    #contact { scroll-margin-top: 5rem; }
   </style>
 </head>
 <body class="bg-bg text-ink font-sans antialiased">
@@ -84,29 +113,44 @@
   <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <a href="#" class="flex items-center gap-3 group">
-        <img src="/assets/logo.png" alt="Davilkus Games logo" class="h-9 w-9" />
+        <img src="/assets/logo.png" alt="Davilkus Games logo" width="64" height="64" class="h-9 w-9 rounded-xl" />
         <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus Games</span>
       </a>
 
-      <!-- Desktop nav -->
-      <nav class="hidden md:flex items-center gap-8 text-sm">
-        <a href="/games.html" class="hover:opacity-80 transition" data-i18n="nav.games">Games</a>
-        <a href="#about" class="hover:opacity-80 transition" data-i18n="nav.about">About</a>
-        <a href="#contact" class="hover:opacity-80 transition" data-i18n="nav.contact">Contact Us</a>
-      </nav>
+      <!-- Desktop nav + Lang switch -->
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <nav class="flex items-center gap-8">
+          <a href="/games/" class="hover:opacity-80 transition" data-i18n="nav.games">Games</a>
+          <a href="#about" class="hover:opacity-80 transition" data-i18n="nav.about">About</a>
+          <a href="#contact" class="hover:opacity-80 transition" data-i18n="nav.contact">Contact Us</a>
+        </nav>
+        <!-- Language toggle -->
+        <button id="langToggle" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-24 h-9 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
+          <span class="flex-1 text-center text-xs">EN</span>
+          <span class="flex-1 text-center text-xs">RU</span>
+          <span id="langThumb" class="absolute top-1 left-1 w-10 h-7 rounded-full bg-brand transition-transform"></span>
+        </button>
+      </div>
 
-      <!-- Mobile menu button -->
-      <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-panel/70 focus:outline-none focus:ring-2 focus:ring-brand" aria-label="Open menu">
-        <img src="/assets/icons/menu.svg" alt="menu" class="w-6 h-6" />
-      </button>
+      <!-- Mobile menu button + Lang switch -->
+      <div class="md:hidden flex items-center gap-2">
+        <button id="langToggleMobile" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-20 h-8 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
+          <span class="flex-1 text-center text-[11px]">EN</span>
+          <span class="flex-1 text-center text-[11px]">RU</span>
+          <span id="langThumbMobile" class="absolute top-1 left-1 w-8 h-6 rounded-full bg-brand transition-transform"></span>
+        </button>
+        <button id="menuBtn" class="p-2 rounded-lg hover:bg-panel/70 focus:outline-none focus:ring-2 focus:ring-brand" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <img src="/assets/icons/menu.svg" alt="menu" class="w-6 h-6" />
+        </button>
+      </div>
     </div>
 
     <!-- Mobile dropdown -->
-    <div id="mobileMenu" class="hidden md:hidden border-t border-line bg-header/95 menu-overlay">
+    <div id="mobileMenu" class="hidden md:hidden border-t border-line bg-header/95 menu-overlay" aria-hidden="true">
       <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
-        <a href="/games.html" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.games">Games</a>
+        <a href="/games/" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.games">Games</a>
         <a href="#about" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.about">About</a>
-        <a href="#contact" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.contact">Contact</a>
+        <a href="#contact" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.contact">Contact Us</a>
       </div>
     </div>
   </header>
@@ -114,30 +158,30 @@
   <main class="pt-16">
     <!-- Hero / Swiper carousel -->
     <section class="relative">
-      <a href="#" class="block">
-        <div class="swiper hero-swiper select-none">
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
-              <img src="/assets/showcase/img_0.webp" alt="Showcase 0" class="w-full h-[60vh] md:h-[70vh] object-cover will-change-transform" />
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/showcase/img_1.webp" alt="Showcase 1" class="w-full h-[60vh] md:h-[70vh] object-cover will-change-transform" />
-            </div>
-            <div class="swiper-slide">
-              <img src="/assets/showcase/img_2.webp" alt="Showcase 2" class="w-full h-[60vh] md:h-[70vh] object-cover will-change-transform" />
-            </div>
+      <div class="swiper hero-swiper select-none">
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide">
+            <!-- hero first image -->
+            <img src="/assets/showcase/img_0.webp" alt="Showcase 0" width="2560" height="1440" fetchpriority="high" decoding="async" class="w-full h-[60vh] md:h-[70vh] object-cover" />
           </div>
-
-          <!-- Arrows -->
-          <div class="swiper-button-prev !text-ink/80 hover:!text-white"></div>
-          <div class="swiper-button-next !text-ink/80 hover:!text-white"></div>
-
-          <!-- Pagination -->
-          <div class="swiper-pagination !bottom-6"></div>
-          <div class="hero-timer" aria-hidden="true"></div>
+          <div class="swiper-slide">
+            <!-- everywhere else -->
+            <img src="/assets/showcase/img_1.webp" alt="Showcase 1" width="2560" height="1440" loading="lazy" decoding="async" class="w-full h-[60vh] md:h-[70vh] object-cover" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/assets/showcase/img_2.webp" alt="Showcase 2" width="2560" height="1440" loading="lazy" decoding="async" class="w-full h-[60vh] md:h-[70vh] object-cover" />
+          </div>
         </div>
-      </a>
+
+        <!-- Arrows -->
+        <div class="swiper-button-prev !text-ink/80 hover:!text-white"></div>
+        <div class="swiper-button-next !text-ink/80 hover:!text-white"></div>
+
+        <!-- Pagination -->
+        <div class="swiper-pagination !bottom-6"></div>
+        <div class="hero-timer" aria-hidden="true"></div>
+      </div>
     </section>
 
     <!-- Separator -->
@@ -149,7 +193,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-2 gap-10 items-start">
           <div>
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-3" data-i18n="about.title"><!-- About title -->About Us</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-3" data-i18n="about.title">About Us</h2>
             <p class="text-[17px] md:text-lg text-ink/80 leading-relaxed" data-i18n="about.body">
               We create mobile and browser games — often tense, atmospheric horror like Backrooms — and we’re not afraid to experiment beyond horror. Expect tight controls, clean UI, and moody worlds.
             </p>
@@ -158,75 +202,67 @@
             <h3 class="text-xl font-semibold mb-5" data-i18n="about.team">Team & Partners</h3>
             <div class="grid sm:grid-cols-2 gap-6">
               <!-- Davilkus -->
-              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
-                <div class="flex items-center gap-4 mb-3">
-                  <img src="/assets/team/davilkus.webp" alt="Davilkus" class="w-14 h-14 rounded-full object-cover border border-line" />
+              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3" data-animate>
+                <div class="flex items-center gap-4">
+                  <img src="/assets/team/davilkus.webp" alt="Davilkus" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
                     <div class="font-semibold">Davilkus</div>
-                    <div class="text-xs text-ink/60" data-i18n="roles.founder">Founder, Lead Dev</div>
+                    <div class="text-xs text-ink/70" data-i18n="roles.founder">Founder, Lead Dev</div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80 mb-3" data-i18n="about.davilkus">
-                  Codes gameplay, networking, shaders.
-                </p>
-                <div class="flex justify-end gap-2">
-                  <a href="https://vk.com/davilkus" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="VK"><img src="/assets/icons/vk.svg" class="w-5 h-5" alt="VK"/></a>
-                  <a href="https://t.me/davilkus" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-5 h-5" alt="Telegram"/></a>
+                <p class="text-sm text-ink/80" data-i18n="about.davilkus">Codes gameplay, networking, shaders.</p>
+                <div class="flex justify-end gap-2 pt-1">
+                  <a href="https://vk.com/davilkus" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="VK"><img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="VK"/></a>
+                  <a href="https://t.me/davilkus" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Telegram"/></a>
                 </div>
               </div>
 
               <!-- Haalo -->
-              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
-                <div class="flex items-center gap-4 mb-3">
-                  <img src="/assets/team/haalo.webp" alt="Haalo" class="w-14 h-14 rounded-full object-cover border border-line" />
+              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3" data-animate>
+                <div class="flex items-center gap-4">
+                  <img src="/assets/team/haalo.webp" alt="Haalo" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
                     <div class="font-semibold">Haalo</div>
-                    <div class="text-xs text-ink/60" data-i18n="roles.cm">Community Manager</div>
+                    <div class="text-xs text-ink/70" data-i18n="roles.cm">Community Manager</div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80 mb-3" data-i18n="about.haalo">
-                  Keeps the community informed and engaged. Runs events.
-                </p>
-                <div class="flex justify-end gap-2">
-                  <a href="https://vk.com/nseleznev2020" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="VK"><img src="/assets/icons/vk.svg" class="w-5 h-5" alt="VK"/></a>
-                  <a href="https://t.me/paylife2680" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-5 h-5" alt="Telegram"/></a>
+                <p class="text-sm text-ink/80" data-i18n="about.haalo">Keeps the community informed and engaged. Runs events.</p>
+                <div class="flex justify-end gap-2 pt-1">
+                  <a href="https://vk.com/nseleznev2020" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="VK"><img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="VK"/></a>
+                  <a href="https://t.me/paylife2680" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Telegram"/></a>
                 </div>
               </div>
 
               <!-- Burger Kerman (Partner) -->
-              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
-                <div class="flex items-center gap-4 mb-3">
-                  <img src="/assets/team/burger-kerman.webp" alt="Burger Kerman" class="w-14 h-14 rounded-full object-cover border border-line" />
+              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3" data-animate>
+                <div class="flex items-center gap-4">
+                  <img src="/assets/team/burger-kerman.webp" alt="Burger Kerman" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
                     <div class="font-semibold">Burger Kerman</div>
-                    <div class="text-xs text-ink/60" data-i18n="roles.partner">Partner – Composer</div>
+                    <div class="text-xs text-ink/70" data-i18n="roles.partner">Partner – Composer</div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80 mb-3" data-i18n="about.burger">
-                  Writes original soundtracks for our games.
-                </p>
-                <div class="flex justify-end gap-2">
-                  <a href="https://open.spotify.com/artist/71yAyS7L72UpNn1VlymHQU" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Spotify"><img src="/assets/icons/spotify.svg" class="w-5 h-5" alt="Spotify"/></a>
-                  <a href="https://music.yandex.ru/artist/19603802" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Yandex Music"><img src="/assets/icons/yandex-music.svg" class="w-5 h-5" alt="Yandex Music"/></a>
-                  <a href="https://www.youtube.com/@BurgerKerman" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="YouTube"><img src="/assets/icons/youtube.svg" class="w-5 h-5" alt="YouTube"/></a>
+                <p class="text-sm text-ink/80" data-i18n="about.burger">Writes original soundtracks for our games.</p>
+                <div class="flex justify-end gap-2 pt-1">
+                  <a href="https://open.spotify.com/artist/71yAyS7L72UpNn1VlymHQU" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Spotify"><img src="/assets/icons/spotify.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Spotify"/></a>
+                  <a href="https://music.yandex.ru/artist/19603802" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Yandex Music"><img src="/assets/icons/yandex-music.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Yandex Music"/></a>
+                  <a href="https://www.youtube.com/@BurgerKerman" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="YouTube"><img src="/assets/icons/youtube.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="YouTube"/></a>
                 </div>
               </div>
 
               <!-- OMEGA Studio (Partner) -->
-              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
-                <div class="flex items-center gap-4 mb-3">
-                  <img src="/assets/team/omega-studio.webp" alt="OMEGA Studio" class="w-14 h-14 rounded-full object-cover border border-line" />
+              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3" data-animate>
+                <div class="flex items-center gap-4">
+                  <img src="/assets/team/omega-studio.webp" alt="OMEGA Studio" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
                     <div class="font-semibold">OMEGA Studio</div>
-                    <div class="text-xs text-ink/60" data-i18n="roles.codev">Partner – Co‑dev</div>
+                    <div class="text-xs text-ink/70" data-i18n="roles.codev">Partner – Co‑dev</div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80 mb-3" data-i18n="about.omega">
-                  UX design, 3D models, and Unity scripting.
-                </p>
-                <div class="flex justify-end gap-2">
-                  <a href="https://t.me/omega_gamedev" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-5 h-5" alt="Telegram"/></a>
-                  <a href="https://yandex.com/games/developer/88490" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Yandex Games"><img src="/assets/icons/yandex-games.svg" class="w-5 h-5" alt="Yandex Games"/></a>
+                <p class="text-sm text-ink/80" data-i18n="about.omega">UX design, 3D models, and Unity scripting.</p>
+                <div class="flex justify-end gap-2 pt-1">
+                  <a href="https://t.me/omega_gamedev" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Telegram"/></a>
+                  <a href="https://yandex.com/games/developer/88490" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Yandex Games"><img src="/assets/icons/yandex-games.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Yandex Games"/></a>
                 </div>
               </div>
             </div>
@@ -246,9 +282,10 @@
         <div class="grid md:grid-cols-2 gap-10 items-start">
           <!-- Emails -->
           <div class="bg-panel/60 border border-line rounded-2xl p-6 shadow-soft" data-animate>
-            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2" data-i18n="contact.emailTitle">
-              <img src="/assets/icons/email.svg" class="w-5 h-5" alt="Email icon"/>
-              Email
+            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+              <!-- inline email.svg -->
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5v-9Z" stroke="currentColor" stroke-width="1.5"/><path d="M4 7l7.41 5.56a2 2 0 0 0 2.18 0L21 7" stroke="currentColor" stroke-width="1.5"/></svg>
+              <span data-i18n="contact.emailTitle">Email</span>
             </h3>
             <ul class="space-y-3 text-sm">
               <li class="flex items-start justify-between gap-4">
@@ -268,21 +305,22 @@
 
           <!-- Socials -->
           <div class="bg-panel/60 border border-line rounded-2xl p-6 shadow-soft" data-animate>
-            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2" data-i18n="contact.socialTitle">
-              <img src="/assets/icons/community.svg" class="w-5 h-5" alt="Community icon"/>
-              Communities
+            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+              <!-- inline community.svg -->
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7.5 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm9 5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 22a6 6 0 0 1 12 0M10.5 22a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5"/></svg>
+              <span data-i18n="contact.socialTitle">Communities</span>
             </h3>
             <div class="flex flex-wrap gap-3">
               <a href="https://discord.gg/y3hE847S" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
-                <img src="/assets/icons/discord.svg" class="w-5 h-5" alt="Discord"/>
+                <img src="/assets/icons/discord.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Discord"/>
                 <span>Discord</span>
               </a>
               <a href="https://t.me/davilkus_games_news" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
-                <img src="/assets/icons/telegram.svg" class="w-5 h-5" alt="Telegram"/>
+                <img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Telegram"/>
                 <span>Telegram</span>
               </a>
               <a href="https://www.youtube.com/@davilkusgames" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
-                <img src="/assets/icons/youtube.svg" class="w-5 h-5" alt="YouTube"/>
+                <img src="/assets/icons/youtube.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="YouTube"/>
                 <span>YouTube</span>
               </a>
             </div>
@@ -298,93 +336,134 @@
       <div>
         <div class="text-base md:text-lg">© 2025 Davilkus Games</div>
         <div class="mt-2 flex items-center gap-4 text-xs">
-          <a href="/privacy-policy" class="opacity-60 hover:opacity-80 transition">Privacy Policy</a>
-          <a href="/cookie-policy" class="opacity-60 hover:opacity-80 transition">Cookie Policy</a>
+          <a href="/privacy-policy/" class="opacity-60 hover:opacity-80 transition">Privacy Policy</a>
+          <a href="/cookie-policy/" class="opacity-60 hover:opacity-80 transition">Cookie Policy</a>
         </div>
       </div>
       <div class="flex items-center gap-5">
-        <a href="https://discord.gg/y3hE847S" class="opacity-80 hover:opacity-100" aria-label="Discord"><img src="/assets/icons/discord.svg" class="w-8 h-8" alt="Discord"/></a>
-        <a href="https://t.me/davilkus_games_news" class="opacity-80 hover:opacity-100" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-8 h-8" alt="Telegram"/></a>
-        <a href="https://www.youtube.com/@davilkusgames" class="opacity-80 hover:opacity-100" aria-label="YouTube"><img src="/assets/icons/youtube.svg" class="w-8 h-8" alt="YouTube"/></a>
-        <a href="https://x.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="X"><img src="/assets/icons/x.svg" class="w-8 h-8" alt="X"/></a>
-        <a href="https://github.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="GitHub"><img src="/assets/icons/github.svg" class="w-8 h-8" alt="GitHub"/></a>
-        <a href="https://vk.com/davilkusgames" class="opacity-80 hover:opacity-100" aria-label="VK"><img src="/assets/icons/vk.svg" class="w-8 h-8" alt="VK"/></a>
+        <a href="https://discord.gg/y3hE847S" class="opacity-80 hover:opacity-100" aria-label="Discord"><img src="/assets/icons/discord.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="Discord"/></a>
+        <a href="https://t.me/davilkus_games_news" class="opacity-80 hover:opacity-100" aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="Telegram"/></a>
+        <a href="https://www.youtube.com/@davilkusgames" class="opacity-80 hover:opacity-100" aria-label="YouTube"><img src="/assets/icons/youtube.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="YouTube"/></a>
+        <a href="https://x.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="X"><img src="/assets/icons/x.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="X"/></a>
+        <a href="https://github.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="GitHub"><img src="/assets/icons/github.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="GitHub"/></a>
+        <a href="https://vk.com/davilkusgames" class="opacity-80 hover:opacity-100" aria-label="VK"><img src="/assets/icons/vk.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="VK"/></a>
       </div>
     </div>
   </footer>
 
-  <!-- Cookie notice -->
+  <!-- Cookie notice (Consent for advanced only; analytics cookie-free) -->
   <div id="cookieBar" class="fixed left-4 right-4 md:left-8 md:right-auto bottom-4 md:bottom-6 z-[60] hidden">
     <div class="w-full md:w-auto max-w-2xl bg-header border border-line rounded-xl shadow-soft px-4 py-3">
       <div class="flex items-start gap-3">
-        <img src="/assets/icons/cookie.svg" alt="cookie" class="w-7 h-7 mt-0.5" />
+        <img src="/assets/icons/cookie.svg" alt="cookie" width="28" height="28" class="w-8 h-8 mt-0.5" />
         <div class="flex-1">
           <div class="font-semibold text-sm md:text-base mb-0.5" data-i18n="cookie.title">Cookie time!</div>
           <p class="text-xs md:text-sm text-ink/80" data-i18n="cookie.desc">We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.</p>
         </div>
-        <button id="cookieOk" class="text-sm px-3 py-1.5 rounded-lg bg-brand hover:bg-brandDark transition self-center" data-i18n="cookie.ok">OK</button>
+        <div class="flex items-center gap-2 self-center">
+          <button id="cookieDecline" class="text-sm px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium transition" data-i18n="cookie.decline">Decline</button>
+          <button id="cookieAccept" class="text-sm px-3 py-1.5 rounded-lg bg-brand hover:bg-brandDark text-white font-medium transition" data-i18n="cookie.accept">Accept</button>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- App script -->
   <script>
-    // --- Mobile menu toggle with GSAP animation ---
+    // Helpers
+    const hasGSAP = () => !!(window.gsap && window.ScrollTrigger);
+
+    // --- Reduced motion flag ---
+    const rmm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // --- Accessible Mobile Menu ---
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    let menuOpen = false;
-    menuBtn && menuBtn.addEventListener('click', () => {
-      menuOpen = !menuOpen;
-      if (menuOpen) {
-        mobileMenu.classList.remove('hidden');
-        gsap.fromTo(mobileMenu, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.25, ease: 'power2.out' });
-      } else {
-        gsap.to(mobileMenu, { height: 0, opacity: 0, duration: 0.2, ease: 'power2.in', onComplete: () => mobileMenu.classList.add('hidden') });
-      }
-    });
+    let menuOpen = false; let outsideHandler; let trapHandler;
+    const focusables = 'a,button,[tabindex]:not([tabindex="-1"])';
 
-    // --- Swiper Hero with extra motion ---
+    function openMenu() {
+      menuOpen = true;
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.setAttribute('aria-hidden','false');
+      menuBtn.setAttribute('aria-expanded','true');
+      // animation
+      if (hasGSAP()) gsap.fromTo(mobileMenu, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.35, ease: 'power3.out' });
+      // focus trap
+      const focusableEls = mobileMenu.querySelectorAll(focusables);
+      const first = focusableEls[0]; const last = focusableEls[focusableEls.length - 1];
+      first && first.focus();
+      trapHandler = (e) => {
+        if (e.key === 'Tab') {
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      };
+      document.addEventListener('keydown', trapHandler);
+      // outside click
+      outsideHandler = (e) => { if (!mobileMenu.contains(e.target) && e.target !== menuBtn) closeMenu(); };
+      document.addEventListener('mousedown', outsideHandler);
+    }
+
+    function closeMenu() {
+      menuOpen = false;
+      if (hasGSAP()) {
+        gsap.to(mobileMenu, { height: 0, opacity: 0, duration: 0.3, ease: 'power3.inOut', onComplete: () => mobileMenu.classList.add('hidden') });
+      } else {
+        mobileMenu.classList.add('hidden');
+      }
+      mobileMenu.setAttribute('aria-hidden','true');
+      menuBtn.setAttribute('aria-expanded','false');
+      menuBtn.focus();
+      document.removeEventListener('keydown', trapHandler);
+      document.removeEventListener('mousedown', outsideHandler);
+    }
+
+    menuBtn && menuBtn.addEventListener('click', () => { menuOpen ? closeMenu() : openMenu(); });
+    document.addEventListener('keydown', e => (e.key === 'Escape' && menuOpen) && closeMenu());
+
+    // --- Swiper Hero with reduced motion respect ---
     const timerBar = document.querySelector('.hero-timer');
     let heroSwiper;
     function startTimer() {
-      if (!timerBar) return;
+      if (!timerBar || rmm) return;
       timerBar.classList.remove('animating');
       void timerBar.offsetWidth; // restart CSS animation
       timerBar.classList.add('animating');
     }
     function zoomActiveSlide() {
+      if (rmm || !hasGSAP()) return;
       const activeImg = document.querySelector('.hero-swiper .swiper-slide-active img');
-      gsap.fromTo(activeImg, { scale: 1.03 }, { scale: 1, duration: 3.8, ease: 'power1.out' });
+      if (activeImg) {
+        activeImg.style.willChange = 'transform';
+        gsap.fromTo(activeImg, { scale: 1.02 }, { scale: 1, duration: 4.0, ease: 'power2.out', onComplete: () => { activeImg.style.willChange = 'auto'; } });
+      }
     }
     function initSwiper() {
       heroSwiper = new Swiper('.hero-swiper', {
         loop: true,
-        autoplay: { delay: 4000, disableOnInteraction: false },
-        speed: 600,
+        autoplay: rmm ? false : { delay: 4000, disableOnInteraction: false },
+        speed: rmm ? 0 : 700,
         effect: 'slide',
         navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
         pagination: { el: '.swiper-pagination', clickable: true },
         on: { init() { startTimer(); zoomActiveSlide(); }, slideChange() { startTimer(); zoomActiveSlide(); } }
       });
+      if (rmm) timerBar && timerBar.remove();
     }
 
-    // --- GSAP enter / scroll animations + micro-interactions ---
+    // --- GSAP enter / scroll animations + micro-interactions (guarded) ---
     function initAnimations() {
+      if (!hasGSAP()) return; // guard
       gsap.registerPlugin(ScrollTrigger);
-      // Fade-in sections with [data-animate]
       document.querySelectorAll('[data-animate]').forEach((el, i) => {
-        gsap.from(el, {
-          y: 18, opacity: 0, duration: 0.6, delay: i * 0.05, ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 85%' }
-        });
+        gsap.from(el, { y: 24, opacity: 0, duration: 0.8, delay: i * 0.06, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
       });
-      // Team card lift on hover
-      document.querySelectorAll('.team-card').forEach(card => {
-        card.addEventListener('mouseenter', () => gsap.to(card, { y: -4, duration: 0.2, ease: 'power2.out' }));
-        card.addEventListener('mouseleave', () => gsap.to(card, { y: 0, duration: 0.2, ease: 'power2.out' }));
+      gsap.from('header', { y: -40, opacity: 0, duration: 0.7, ease: 'power3.out' });
+      document.querySelectorAll('.team-card a').forEach(a => {
+        a.addEventListener('mouseenter', () => gsap.to(a, { scale: 1.05, duration: 0.15, ease: 'power2.out' }));
+        a.addEventListener('mouseleave', () => gsap.to(a, { scale: 1, duration: 0.15, ease: 'power2.out' }));
       });
-      // Header reveal on load
-      gsap.from('header', { y: -60, opacity: 0, duration: 0.6, ease: 'power2.out' });
     }
 
     // --- i18n ---
@@ -404,7 +483,7 @@
           },
           roles: { founder: 'Founder, Lead Dev', cm: 'Community Manager', partner: 'Partner – Composer', codev: 'Partner – Co‑dev' },
           contact: { title: 'Contact Us', emailTitle: 'Email', general: 'General', support: 'In‑game Support', direct: 'Direct', socialTitle: 'Communities' },
-          cookie: { title: 'Cookie time!', desc: 'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', ok: 'OK' }
+          cookie: { title: 'Cookie time!', desc: 'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', accept: 'Accept', decline: 'Decline' }
         }
       },
       ru: {
@@ -422,7 +501,7 @@
           },
           roles: { founder: 'Основатель, лид‑разработчик', cm: 'Комьюнити‑менеджер', partner: 'Партнёр — композитор', codev: 'Партнёр — со‑разработчик' },
           contact: { title: 'Контакты', emailTitle: 'Email', general: 'Общий', support: 'Поддержка в игре', direct: 'Лично', socialTitle: 'Сообщества' },
-          cookie: { title: 'Время печенек!', desc: 'Мы используем cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на использование cookie.', ok: 'Понятно' }
+          cookie: { title: 'Время печенек!', desc: 'Мы используем cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на использование cookie.', accept: 'Принять', decline: 'Отклонить' }
         }
       }
     };
@@ -432,29 +511,85 @@
         const key = el.getAttribute('data-i18n');
         const val = i18next.t(key);
         if (!val) return;
-        if (key === 'cookie.title' || key === 'cookie.desc') {
-          el.textContent = val;
-        } else if (val.indexOf('<') !== -1) {
-          el.innerHTML = val;
-        } else {
-          el.textContent = val;
-        }
+        el.textContent = val; // text only
       });
     }
 
-    // --- Cookie bar ---
-    function initCookieBar() {
-      const key = 'dg_cookie_ok_v2';
-      const bar = document.getElementById('cookieBar');
-      const ok = document.getElementById('cookieOk');
-      if (!localStorage.getItem(key)) {
-        bar.classList.remove('hidden');
-        gsap.fromTo(bar, { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: 'power2.out' });
-      }
-      ok.addEventListener('click', () => {
-        localStorage.setItem(key, '1');
-        gsap.to('#cookieBar', { y: 80, opacity: 0, duration: 0.25, ease: 'power2.in', onComplete: () => bar.classList.add('hidden') });
+    // --- Language Toggle (animated) ---
+    function setLangUI(lang){
+      const thumb = document.getElementById('langThumb');
+      const thumbM = document.getElementById('langThumbMobile');
+      const isRU = lang.startsWith('ru');
+      if (thumb) thumb.style.transform = isRU ? 'translateX(52px)' : 'translateX(0)';
+      if (thumbM) thumbM.style.transform = isRU ? 'translateX(44px)' : 'translateX(0)';
+    }
+    function bindLangToggle(id){
+      const btn = document.getElementById(id);
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const newLang = (i18next.language || 'en').startsWith('ru') ? 'en' : 'ru';
+        i18next.changeLanguage(newLang, () => {
+          try { localStorage.setItem('i18nextLng', newLang); } catch(_){}
+          document.documentElement.lang = newLang.startsWith('ru') ? 'ru' : 'en';
+          localize();
+          document.title = i18next.t('brand') + ' - Indie Game Studio';
+          const metaDesc = document.querySelector('meta[name="description"]');
+          if (metaDesc) metaDesc.setAttribute('content', i18next.t('about.body'));
+          setLangUI(newLang);
+        });
       });
+    }
+
+    // --- Consent banner (informational; analytics cookie-free) ---
+    function initCookieBar() {
+      const bar = document.getElementById('cookieBar');
+      const accept = document.getElementById('cookieAccept');
+      const decline = document.getElementById('cookieDecline');
+      bar.classList.remove('hidden');
+      if (hasGSAP()) gsap.fromTo(bar, { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' });
+      const hide = () => { if (hasGSAP()) gsap.to('#cookieBar', { y: 90, opacity: 0, duration: 0.35, ease: 'power3.inOut', onComplete: () => bar.classList.add('hidden') }); else bar.classList.add('hidden'); };
+      accept.addEventListener('click', hide);
+      decline.addEventListener('click', hide);
+    }
+
+    // --- Active nav aria-current ---
+    function markActiveNav(){
+      const path = location.pathname.replace(/\/$/, '');
+      const gamesLink = document.querySelector('nav a[href="/games/"]');
+      const homeAnchors = document.querySelectorAll('nav a[href^="#"]');
+      if (path === '' || path === '/index.html' || path === '/index') {
+        homeAnchors.forEach(a => a.setAttribute('aria-current','page'));
+      } else if (path.startsWith('/games')) {
+        gamesLink && gamesLink.setAttribute('aria-current','page');
+      }
+    }
+
+    // --- Deep link scroll helpers ---
+    function scrollToTarget(idOrHash) {
+      const id = (idOrHash || '').replace(/^#/, '');
+      if (!id) return false;
+      const el = document.getElementById(id);
+      if (!el) return false;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return true;
+    }
+    function handleGoto() {
+      const params = new URLSearchParams(window.location.search);
+      const fromQuery = params.get('goto');
+      const fromHash = window.location.hash ? window.location.hash.slice(1) : '';
+      if (fromQuery && scrollToTarget(fromQuery)) return;
+      if (fromHash && scrollToTarget(fromHash)) return;
+    }
+
+    // --- Always load cookie-free Counter.dev ---
+    function loadCounter(){
+      if (document.getElementById('counterjs')) return;
+      const s=document.createElement('script');
+      s.id='counterjs'; s.defer = true;
+      s.src='https://cdn.counter.dev/script.js';
+      s.dataset.id='cc931e21-a972-4ffe-aaf1-52b0f23da9d3';
+      s.dataset.utcoffset= String(-new Date().getTimezoneOffset()/60);
+      document.head.appendChild(s);
     }
 
     // --- Boot ---
@@ -469,12 +604,25 @@
           const lang = i18next.language || 'en';
           document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
           localize();
+          document.title = i18next.t('brand') + ' - Indie Game Studio';
+          const metaDesc = document.querySelector('meta[name="description"]');
+          if (metaDesc) metaDesc.setAttribute('content', i18next.t('about.body'));
+          setLangUI(lang);
         });
 
       initSwiper();
-      initAnimations();
+      if (hasGSAP()) initAnimations();
       initCookieBar();
+      markActiveNav();
+      loadCounter();
+
+      // bind language toggles
+      bindLangToggle('langToggle');
+      bindLangToggle('langToggleMobile');
     });
+
+    // run goto after full load
+    window.addEventListener('load', () => { setTimeout(handleGoto, 50); });
   </script>
 </body>
 </html>
