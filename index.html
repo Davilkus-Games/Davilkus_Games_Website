@@ -6,10 +6,9 @@
   <title>Davilkus Games - Indie Game Studio</title>
   <meta name="description" content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences. Explore our games, meet the team, and get in touch." />
 
-  <!-- Canonical + hreflang -->
+  <!-- Canonical (client-side i18n, no hreflang variants) -->
   <link rel="canonical" href="https://davilkusgames.com/" />
-  <link rel="alternate" hreflang="en" href="https://davilkusgames.com/" />
-  
+
   <!-- Open Graph / Social Preview -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Davilkus Games - Indie Game Studio" />
@@ -17,9 +16,9 @@
   <meta property="og:description" content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences." />
   <meta property="og:url" content="https://davilkusgames.com/" />
   <meta property="og:image" content="https://davilkusgames.com/assets/og/hero-1200x630.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@DavilkusGames" />
   <meta name="twitter:image" content="https://davilkusgames.com/assets/og/hero-1200x630.jpg" />
   <meta name="theme-color" content="#0B0F1A" />
@@ -30,14 +29,15 @@
   <link rel="preload" as="image" href="/assets/showcase/img_0.webp" imagesrcset="/assets/showcase/img_0-1280.webp 1280w, /assets/showcase/img_0-2560.webp 2560w" imagesizes="100vw">
   <link rel="preload" as="image" href="/assets/logo.png">
 
-  <!-- Inter font -->
+  <!-- Inter font & CDNs -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CDN (classic) -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script> 
+  <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
@@ -126,19 +126,19 @@
           <a href="#about" class="hover:opacity-80 transition" data-i18n="nav.about">About</a>
           <a href="#contact" class="hover:opacity-80 transition" data-i18n="nav.contact">Contact Us</a>
         </nav>
-        <!-- Language toggle -->
-        <button id="langToggle" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-16 h-8 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
-          <span class="flex-1 text-center text-[11px]">EN</span>
-          <span class="flex-1 text-center text-[11px]">RU</span>
+        <!-- Language toggle (slightly longer, shorter text) -->
+        <button id="langToggle" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.75rem] h-8 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
+          <span class="flex-1 text-center text-[10px]">EN</span>
+          <span class="flex-1 text-center text-[10px]">RU</span>
           <span id="langThumb" class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
         </button>
       </div>
 
       <!-- Mobile menu button + Lang switch -->
       <div class="md:hidden flex items-center gap-2">
-        <button id="langToggleMobile" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-14 h-7 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
-          <span class="flex-1 text-center text-[10px]">EN</span>
-          <span class="flex-1 text-center text-[10px]">RU</span>
+        <button id="langToggleMobile" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.25rem] h-7 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
+          <span class="flex-1 text-center text-[9px]">EN</span>
+          <span class="flex-1 text-center text-[9px]">RU</span>
           <span id="langThumbMobile" class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
         </button>
         <button id="menuBtn" class="p-2 rounded-lg hover:bg-panel/70 focus:outline-none focus:ring-2 focus:ring-brand" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -353,7 +353,7 @@
     </div>
   </footer>
 
-  <!-- Cookie notice (Consent for advanced only; analytics cookie-free) -->
+  <!-- Cookie notice (informational; hide after first dismiss) -->
   <div id="cookieBar" class="fixed left-4 right-4 md:left-8 md:right-auto bottom-4 md:bottom-6 z-[60] hidden">
     <div class="w-full md:w-auto max-w-2xl bg-header border border-line rounded-xl shadow-soft px-4 py-3">
       <div class="flex items-start gap-3">
@@ -375,10 +375,10 @@
     // Helpers
     const hasGSAP = () => !!(window.gsap && window.ScrollTrigger);
 
-    // --- Reduced motion flag ---
+    // Reduced motion flag
     const rmm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // --- Accessible Mobile Menu ---
+    // Accessible Mobile Menu
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     let menuOpen = false; let outsideHandler; let trapHandler;
@@ -389,9 +389,7 @@
       mobileMenu.classList.remove('hidden');
       mobileMenu.setAttribute('aria-hidden','false');
       menuBtn.setAttribute('aria-expanded','true');
-      // animation
       if (hasGSAP()) gsap.fromTo(mobileMenu, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.35, ease: 'power3.out' });
-      // focus trap
       const focusableEls = mobileMenu.querySelectorAll(focusables);
       const first = focusableEls[0]; const last = focusableEls[focusableEls.length - 1];
       first && first.focus();
@@ -403,7 +401,6 @@
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
       };
       document.addEventListener('keydown', trapHandler);
-      // outside click
       outsideHandler = (e) => { if (!mobileMenu.contains(e.target) && e.target !== menuBtn) closeMenu(); };
       document.addEventListener('mousedown', outsideHandler);
     }
@@ -425,7 +422,7 @@
     menuBtn && menuBtn.addEventListener('click', () => { menuOpen ? closeMenu() : openMenu(); });
     document.addEventListener('keydown', e => (e.key === 'Escape' && menuOpen) && closeMenu());
 
-    // --- Swiper Hero with reduced motion respect ---
+    // Swiper Hero (respect reduced motion)
     const timerBar = document.querySelector('.hero-timer');
     let heroSwiper;
     function startTimer() {
@@ -455,9 +452,9 @@
       if (rmm) timerBar && timerBar.remove();
     }
 
-    // --- GSAP enter / scroll animations + micro-interactions (guarded) ---
+    // GSAP enters/scroll + micro-interactions (guarded)
     function initAnimations() {
-      if (!hasGSAP()) return; // guard
+      if (!hasGSAP()) return;
       gsap.registerPlugin(ScrollTrigger);
       document.querySelectorAll('[data-animate]').forEach((el, i) => {
         gsap.from(el, { y: 24, opacity: 0, duration: 0.8, delay: i * 0.06, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
@@ -469,7 +466,7 @@
       });
     }
 
-    // --- i18n ---
+    // i18n
     const resources = {
       en: {
         translation: {
@@ -518,7 +515,7 @@
       });
     }
 
-    // --- Language Toggle (animated) ---
+    // Language Toggle (animated)
     function setLangUI(lang){
       const thumb = document.getElementById('langThumb');
       const thumbM = document.getElementById('langThumbMobile');
@@ -532,45 +529,52 @@
       btn.addEventListener('click', () => {
         const newLang = (i18next.language || 'en').startsWith('ru') ? 'en' : 'ru';
         i18next.changeLanguage(newLang, () => {
-          try { localStorage.setItem('i18nextLng', newLang); } catch(_){}
+          try { localStorage.setItem('i18nextLng', newLang); } catch(_){ }
           document.documentElement.lang = newLang.startsWith('ru') ? 'ru' : 'en';
           localize();
           document.title = i18next.t('brand') + ' - Indie Game Studio';
-          const metaDesc = document.querySelector('meta[name="description"]');
-                    setLangUI(newLang);
+          setLangUI(newLang);
         });
       });
     }
 
-    // --- Consent banner (informational; analytics cookie-free) ---
+    // Cookie bar (informational; persist dismissal)
     function initCookieBar() {
+      const key = 'dg_cookie_v1';
       const bar = document.getElementById('cookieBar');
       const accept = document.getElementById('cookieAccept');
       const decline = document.getElementById('cookieDecline');
-      bar.classList.remove('hidden');
-      if (hasGSAP()) gsap.fromTo(bar, { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' });
-      const hide = () => { if (hasGSAP()) gsap.to('#cookieBar', { y: 90, opacity: 0, duration: 0.35, ease: 'power3.inOut', onComplete: () => bar.classList.add('hidden') }); else bar.classList.add('hidden'); };
-      accept.addEventListener('click', hide);
-      decline.addEventListener('click', hide);
+      const showBar = () => {
+        bar.classList.remove('hidden');
+        if (hasGSAP()) gsap.fromTo(bar, { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' });
+      };
+      const hideBar = () => {
+        if (hasGSAP()) gsap.to('#cookieBar', { y: 90, opacity: 0, duration: 0.35, ease: 'power3.inOut', onComplete: () => bar.classList.add('hidden') });
+        else bar.classList.add('hidden');
+      };
+      if (!localStorage.getItem(key)) {
+        showBar();
+        const setAndHide = () => { localStorage.setItem(key, '1'); hideBar(); };
+        accept.addEventListener('click', setAndHide);
+        decline.addEventListener('click', setAndHide);
+      }
     }
 
-    // --- Active nav aria-current ---
+    // Active nav aria-current
     function markActiveNav(){
       const path = location.pathname;
       const isHome = path === '/' || /\/index(\.html?)?$/i.test(path);
       const gamesLink = document.querySelector('nav a[href="/games/"]');
       const homeAnchors = document.querySelectorAll('nav a[href^="#"]');
+
       if (isHome) {
         homeAnchors.forEach(a => a.setAttribute('aria-current','page'));
       } else if (path.startsWith('/games')) {
         gamesLink && gamesLink.setAttribute('aria-current','page');
       }
-    } else if (path.startsWith('/games')) {
-        gamesLink && gamesLink.setAttribute('aria-current','page');
-      }
     }
 
-    // --- Deep link scroll helpers ---
+    // Deep link scroll helpers
     function scrollToTarget(idOrHash) {
       const id = (idOrHash || '').replace(/^#/, '');
       if (!id) return false;
@@ -587,7 +591,7 @@
       if (fromHash && scrollToTarget(fromHash)) return;
     }
 
-    // --- Always load cookie-free Counter.dev ---
+    // Always load cookie-free Counter.dev
     function loadCounter(){
       if (document.getElementById('counterjs')) return;
       const s=document.createElement('script');
@@ -598,7 +602,7 @@
       document.head.appendChild(s);
     }
 
-    // --- Boot ---
+    // Boot
     window.addEventListener('DOMContentLoaded', () => {
       i18next
         .use(window.i18nextBrowserLanguageDetector)
@@ -611,18 +615,15 @@
           document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
           localize();
           document.title = i18next.t('brand') + ' - Indie Game Studio';
-          const metaDesc = document.querySelector('meta[name="description"]');
-          if (metaDesc) metaDesc.setAttribute('content', i18next.t('about.body'));
           setLangUI(lang);
         });
 
-      initSwiper();
+      if (document.querySelector('.hero-swiper')) initSwiper();
       if (hasGSAP()) initAnimations();
       initCookieBar();
       markActiveNav();
       loadCounter();
 
-      // bind language toggles
       bindLangToggle('langToggle');
       bindLangToggle('langToggleMobile');
     });
