@@ -12,7 +12,7 @@
   <meta property="og:site_name" content="Davilkus Games" />
   <meta property="og:description" content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences." />
   <meta property="og:url" content="https://davilkusgames.com" />
-  <meta property="og:image" content="/assets/logo.png" />
+  <meta property="og:image" content="/assets/favicon.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0B0F1A" />
 
@@ -40,9 +40,7 @@
             header: '#070a12',       // header/footer super-black
             line: '#1b2336'
           },
-          boxShadow: {
-            soft: '0 6px 30px rgba(0,0,0,0.35)'
-          }
+          boxShadow: { soft: '0 6px 30px rgba(0,0,0,0.35)' }
         }
       }
     }
@@ -151,16 +149,16 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-2 gap-10 items-start">
           <div>
-            <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="about.title">About Us</h2>
-            <p class="text-[15px] md:text-base text-ink/80 leading-relaxed" data-i18n="about.body">
-              We are a small indie team focused on bold ideas, tight game feel, and immersive worlds. Our mission is to build memorable experiences that respect your time and spark curiosity.
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-3" data-i18n="about.title"><!-- About title -->About Us</h2>
+            <p class="text-[17px] md:text-lg text-ink/80 leading-relaxed" data-i18n="about.body">
+              We create mobile and browser games — often tense, atmospheric horror like Backrooms — and we’re not afraid to experiment beyond horror. Expect tight controls, clean UI, and moody worlds.
             </p>
           </div>
           <div class="bg-panel/60 border border-line rounded-2xl p-6 md:p-8 shadow-soft">
             <h3 class="text-xl font-semibold mb-5" data-i18n="about.team">Team & Partners</h3>
             <div class="grid sm:grid-cols-2 gap-6">
               <!-- Davilkus -->
-              <div class="team-card relative group bg-header/40 border border-line rounded-xl p-5 md:p-6 min-h-[200px] hover:shadow-soft transition" data-animate>
+              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
                 <div class="flex items-center gap-4 mb-3">
                   <img src="/assets/team/davilkus.webp" alt="Davilkus" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
@@ -168,17 +166,17 @@
                     <div class="text-xs text-ink/60" data-i18n="roles.founder">Founder, Lead Dev</div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80 pr-20" data-i18n="about.davilkus">
-                  Building systems, worlds and tools. Lover of clean design and chunky game feel.
+                <p class="text-sm text-ink/80 mb-3" data-i18n="about.davilkus">
+                  Codes gameplay, networking, shaders.
                 </p>
-                <div class="absolute bottom-4 right-4 flex gap-2">
+                <div class="flex justify-end gap-2">
                   <a href="https://vk.com/davilkus" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="VK"><img src="/assets/icons/vk.svg" class="w-5 h-5" alt="VK"/></a>
                   <a href="https://t.me/davilkus" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-5 h-5" alt="Telegram"/></a>
                 </div>
               </div>
 
               <!-- Haalo -->
-              <div class="team-card relative group bg-header/40 border border-line rounded-xl p-5 md:p-6 min-h-[200px] hover:shadow-soft transition" data-animate>
+              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
                 <div class="flex items-center gap-4 mb-3">
                   <img src="/assets/team/haalo.webp" alt="Haalo" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
@@ -186,17 +184,17 @@
                     <div class="text-xs text-ink/60" data-i18n="roles.cm">Community Manager</div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80 pr-20" data-i18n="about.haalo">
-                  Keeping the community cozy, informed, and hype. Events, socials, support.
+                <p class="text-sm text-ink/80 mb-3" data-i18n="about.haalo">
+                  Keeps the community informed and engaged. Runs events.
                 </p>
-                <div class="absolute bottom-4 right-4 flex gap-2">
+                <div class="flex justify-end gap-2">
                   <a href="https://vk.com/nseleznev2020" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="VK"><img src="/assets/icons/vk.svg" class="w-5 h-5" alt="VK"/></a>
                   <a href="https://t.me/paylife2680" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-5 h-5" alt="Telegram"/></a>
                 </div>
               </div>
 
               <!-- Burger Kerman (Partner) -->
-              <div class="team-card relative group bg-header/40 border border-line rounded-xl p-5 md:p-6 min-h-[200px] hover:shadow-soft transition" data-animate>
+              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
                 <div class="flex items-center gap-4 mb-3">
                   <img src="/assets/team/burger-kerman.webp" alt="Burger Kerman" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
@@ -204,10 +202,10 @@
                     <div class="text-xs text-ink/60" data-i18n="roles.partner">Partner – Composer</div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80 pr-24" data-i18n="about.burger">
-                  Composer of moody, melodic soundtracks. Available on streaming platforms.
+                <p class="text-sm text-ink/80 mb-3" data-i18n="about.burger">
+                  Writes original soundtracks for our games.
                 </p>
-                <div class="absolute bottom-4 right-4 flex gap-2">
+                <div class="flex justify-end gap-2">
                   <a href="https://open.spotify.com/artist/71yAyS7L72UpNn1VlymHQU" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Spotify"><img src="/assets/icons/spotify.svg" class="w-5 h-5" alt="Spotify"/></a>
                   <a href="https://music.yandex.ru/artist/19603802" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Yandex Music"><img src="/assets/icons/yandex-music.svg" class="w-5 h-5" alt="Yandex Music"/></a>
                   <a href="https://www.youtube.com/@BurgerKerman" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="YouTube"><img src="/assets/icons/youtube.svg" class="w-5 h-5" alt="YouTube"/></a>
@@ -215,7 +213,7 @@
               </div>
 
               <!-- OMEGA Studio (Partner) -->
-              <div class="team-card relative group bg-header/40 border border-line rounded-xl p-5 md:p-6 min-h-[200px] hover:shadow-soft transition" data-animate>
+              <div class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
                 <div class="flex items-center gap-4 mb-3">
                   <img src="/assets/team/omega-studio.webp" alt="OMEGA Studio" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
@@ -223,10 +221,10 @@
                     <div class="text-xs text-ink/60" data-i18n="roles.codev">Partner – Co‑dev</div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80 pr-24" data-i18n="about.omega">
-                  Partner studio collaborating on tech and platform releases.
+                <p class="text-sm text-ink/80 mb-3" data-i18n="about.omega">
+                  UX design, 3D models, and Unity scripting.
                 </p>
-                <div class="absolute bottom-4 right-4 flex gap-2">
+                <div class="flex justify-end gap-2">
                   <a href="https://t.me/omega_gamedev" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-5 h-5" alt="Telegram"/></a>
                   <a href="https://yandex.com/games/developer/88490" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Yandex Games"><img src="/assets/icons/yandex-games.svg" class="w-5 h-5" alt="Yandex Games"/></a>
                 </div>
@@ -248,7 +246,10 @@
         <div class="grid md:grid-cols-2 gap-10 items-start">
           <!-- Emails -->
           <div class="bg-panel/60 border border-line rounded-2xl p-6 shadow-soft" data-animate>
-            <h3 class="text-lg font-semibold mb-4" data-i18n="contact.emailTitle">Email</h3>
+            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2" data-i18n="contact.emailTitle">
+              <img src="/assets/icons/email.svg" class="w-5 h-5" alt="Email icon"/>
+              Email
+            </h3>
             <ul class="space-y-3 text-sm">
               <li class="flex items-start justify-between gap-4">
                 <span class="text-ink/70" data-i18n="contact.general">General</span>
@@ -267,7 +268,10 @@
 
           <!-- Socials -->
           <div class="bg-panel/60 border border-line rounded-2xl p-6 shadow-soft" data-animate>
-            <h3 class="text-lg font-semibold mb-4" data-i18n="contact.socialTitle">Communities</h3>
+            <h3 class="text-lg font-semibold mb-4 flex items-center gap-2" data-i18n="contact.socialTitle">
+              <img src="/assets/icons/community.svg" class="w-5 h-5" alt="Community icon"/>
+              Communities
+            </h3>
             <div class="flex flex-wrap gap-3">
               <a href="https://discord.gg/y3hE847S" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
                 <img src="/assets/icons/discord.svg" class="w-5 h-5" alt="Discord"/>
@@ -292,10 +296,10 @@
   <footer class="bg-header border-t border-line">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div>
-        <div class="text-sm">© 2025 Davilkus Games</div>
+        <div class="text-base md:text-lg">© 2025 Davilkus Games</div>
         <div class="mt-2 flex items-center gap-4 text-xs">
-          <a href="/privacy-policy" class="hover:opacity-80">Privacy Policy</a>
-          <a href="/cookie-policy" class="hover:opacity-80">Cookie Policy</a>
+          <a href="/privacy-policy" class="opacity-60 hover:opacity-80 transition">Privacy Policy</a>
+          <a href="/cookie-policy" class="opacity-60 hover:opacity-80 transition">Cookie Policy</a>
         </div>
       </div>
       <div class="flex items-center gap-5">
@@ -311,10 +315,15 @@
 
   <!-- Cookie notice -->
   <div id="cookieBar" class="fixed left-4 right-4 md:left-8 md:right-auto bottom-4 md:bottom-6 z-[60] hidden">
-    <div class="w-full md:w-auto max-w-2xl bg-header border border-line rounded-xl shadow-soft px-4 py-3 flex items-center gap-3">
-      <img src="/assets/icons/cookie.svg" alt="cookie" class="w-5 h-5" />
-      <p class="text-sm flex-1" data-i18n="cookie.text"><b>Cookie time!</b> We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.</p>
-      <button id="cookieOk" class="text-sm px-3 py-1.5 rounded-lg bg-brand hover:bg-brandDark transition" data-i18n="cookie.ok">OK</button>
+    <div class="w-full md:w-auto max-w-2xl bg-header border border-line rounded-xl shadow-soft px-4 py-3">
+      <div class="flex items-start gap-3">
+        <img src="/assets/icons/cookie.svg" alt="cookie" class="w-7 h-7 mt-0.5" />
+        <div class="flex-1">
+          <div class="font-semibold text-sm md:text-base mb-0.5" data-i18n="cookie.title">Cookie time!</div>
+          <p class="text-xs md:text-sm text-ink/80" data-i18n="cookie.desc">We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.</p>
+        </div>
+        <button id="cookieOk" class="text-sm px-3 py-1.5 rounded-lg bg-brand hover:bg-brandDark transition self-center" data-i18n="cookie.ok">OK</button>
+      </div>
     </div>
   </div>
 
@@ -386,16 +395,16 @@
           nav: { games: 'Games', about: 'About', contact: 'Contact Us' },
           about: {
             title: 'About Us',
-            body: 'We are a small indie team focused on bold ideas, tight game feel, and immersive worlds. Our mission is to build memorable experiences that respect your time and spark curiosity.',
+            body: 'We create mobile and browser games — often tense, atmospheric horror like Backrooms — and we’re not afraid to experiment beyond horror. Expect tight controls, clean UI, and moody worlds.',
             team: 'Team & Partners',
-            davilkus: 'Building systems, worlds and tools. Lover of clean design and chunky game feel.',
-            haalo: 'Keeping the community cozy, informed, and hype. Events, socials, support.',
-            burger: 'Composer of moody, melodic soundtracks. Available on streaming platforms.',
-            omega: 'Partner studio collaborating on tech and platform releases.'
+            davilkus: 'Codes gameplay, networking, shaders.',
+            haalo: 'Keeps the community informed and runs events.',
+            burger: 'Writes original soundtracks for our games.',
+            omega: 'UX design, 3D models, and Unity scripting.'
           },
           roles: { founder: 'Founder, Lead Dev', cm: 'Community Manager', partner: 'Partner – Composer', codev: 'Partner – Co‑dev' },
           contact: { title: 'Contact Us', emailTitle: 'Email', general: 'General', support: 'In‑game Support', direct: 'Direct', socialTitle: 'Communities' },
-          cookie: { text: '<b>Cookie time!</b> We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', ok: 'OK' }
+          cookie: { title: 'Cookie time!', desc: 'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', ok: 'OK' }
         }
       },
       ru: {
@@ -404,16 +413,16 @@
           nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' },
           about: {
             title: 'О нас',
-            body: 'Мы маленькая инди‑команда, сфокусированная на смелых идеях, точном ощущении геймплея и погружающих мирах. Наша цель — создавать запоминающиеся проекты, уважая ваше время и пробуждая любопытство.',
+            body: 'Мы создаём мобильные и браузерные игры — часто напряжённый атмосферный хоррор вроде Backrooms — но не ограничиваемся только хоррором. Ждите точное управление, чистый UI и мрачные миры.',
             team: 'Команда и партнёры',
-            davilkus: 'Создаём системы, миры и инструменты. Любим чистый дизайн и «весомый» геймплей.',
-            haalo: 'Держим сообщество в тепле и в курсе. Ивенты, соцсети, поддержка.',
-            burger: 'Композитор атмосферных и мелодичных саундтреков. Есть на стримингах.',
-            omega: 'Партнёрская студия — техразработка и релизы на платформах.'
+            davilkus: 'Пишет геймплей, сеть и шейдеры.',
+            haalo: 'Держит сообщество в курсе, проводит ивенты.',
+            burger: 'Пишет оригинальные саундтреки ко всем играм.',
+            omega: 'UX‑дизайн, 3D‑модели и скрипты Unity.'
           },
-          roles: { founder: 'Основатель, лид‑разработчик', cm: 'Комьюнити‑менеджер', partner: 'Партнёр — композитор', codev: 'Партнёр — ко‑разработчик' },
+          roles: { founder: 'Основатель, лид‑разработчик', cm: 'Комьюнити‑менеджер', partner: 'Партнёр — композитор', codev: 'Партнёр — со‑разработчик' },
           contact: { title: 'Контакты', emailTitle: 'Email', general: 'Общий', support: 'Поддержка в игре', direct: 'Лично', socialTitle: 'Сообщества' },
-          cookie: { text: '<b>Время печенек!</b> Мы используем cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на использование cookie.', ok: 'Понятно' }
+          cookie: { title: 'Время печенек!', desc: 'Мы используем cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на использование cookie.', ok: 'Понятно' }
         }
       }
     };
@@ -422,9 +431,12 @@
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         const val = i18next.t(key);
-        if (val && val.indexOf('<') !== -1) {
+        if (!val) return;
+        if (key === 'cookie.title' || key === 'cookie.desc') {
+          el.textContent = val;
+        } else if (val.indexOf('<') !== -1) {
           el.innerHTML = val;
-        } else if (val) {
+        } else {
           el.textContent = val;
         }
       });
@@ -432,7 +444,7 @@
 
     // --- Cookie bar ---
     function initCookieBar() {
-      const key = 'dg_cookie_ok_v1';
+      const key = 'dg_cookie_ok_v2';
       const bar = document.getElementById('cookieBar');
       const ok = document.getElementById('cookieOk');
       if (!localStorage.getItem(key)) {
