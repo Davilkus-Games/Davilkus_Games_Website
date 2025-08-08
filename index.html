@@ -1,104 +1,468 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Davilkus Games — Indie Game Studio</title>
-  <link rel="icon" href="assets/favicon.png" type="image/png">
-  <link rel="stylesheet" href="style.css">
-  <script defer src="main.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Davilkus Games - Indie Game Studio</title>
+  <meta name="description" content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences. Explore our games, meet the team, and get in touch." />
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Davilkus Games - Indie Game Studio" />
+  <meta property="og:site_name" content="Davilkus Games" />
+  <meta property="og:description" content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences." />
+  <meta property="og:url" content="https://davilkusgames.com" />
+  <meta property="og:image" content="/assets/favicon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0B0F1A" />
+
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN (classic) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script> 
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Apple Color Emoji'] },
+          colors: {
+            bg: '#0B0F1A',           // page background
+            panel: '#0F1524',        // darker panels / splashes
+            ink: '#E8EAF2',          // near-white text
+            brand: '#2563eb',        // blue (Tailwind blue-600 style)
+            brandDark: '#1e40af',
+            header: '#070a12',       // header/footer super-black
+            line: '#1b2336'
+          },
+          boxShadow: {
+            soft: '0 6px 30px rgba(0,0,0,0.35)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Swiper.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Micromodal (loaded but not used) -->
+  <script defer src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- i18next + Browser Language Detector -->
+  <script defer src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
+
+  <!-- Counter.dev -->
   <script src="https://cdn.counter.dev/script.js" data-id="cc931e21-a972-4ffe-aaf1-52b0f23da9d3" data-utcoffset="3"></script>
+
+  <style>
+    /* custom scrollbar, subtle */
+    ::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:#0b0f1a}::-webkit-scrollbar-thumb{background:#1b2336;border-radius:10px}::-webkit-scrollbar-thumb:hover{background:#2a3552}
+    /* Swiper pagination bullets styled as thin bars */
+    .swiper-pagination-bullet { width: 44px; height: 3px; border-radius: 9999px; background: #3b4663; opacity: 1; margin: 0 6px !important; }
+    .swiper-pagination-bullet-active { background: #a9b4d8; }
+    /* autoplay timer bar under pagination */
+    .hero-timer { position: absolute; bottom: -10px; left: 0; height: 2px; background: #2563eb; width: 0; }
+    .hero-timer.animating { animation: fill 4s linear forwards; }
+    @keyframes fill { from { width: 0; } to { width: 100%; } }
+
+    /* mobile dropdown shadow fix over Swiper */
+    .menu-overlay { backdrop-filter: blur(4px); }
+  </style>
 </head>
-<body>
+<body class="bg-bg text-ink font-sans antialiased">
   <!-- Header -->
-  <header class="site-header">
-    <div class="header-left">
-      <img src="/assets/logo.png" alt="Davilkus Logo" class="logo">
-      <span class="studio-name">Davilkus Games</span>
+  <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="/assets/logo.png" alt="Davilkus Games logo" class="h-9 w-9" />
+        <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus Games</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm">
+        <a href="/games.html" class="hover:opacity-80 transition" data-i18n="nav.games">Games</a>
+        <a href="#about" class="hover:opacity-80 transition" data-i18n="nav.about">About</a>
+        <a href="#contact" class="hover:opacity-80 transition" data-i18n="nav.contact">Contact Us</a>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-panel/70 focus:outline-none focus:ring-2 focus:ring-brand" aria-label="Open menu">
+        <img src="/assets/icons/menu.svg" alt="menu" class="w-6 h-6" />
+      </button>
     </div>
-    <nav class="nav">
-      <a href="/games.html">Games</a>
-      <a href="/about.html">About</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
+
+    <!-- Mobile dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-line bg-header/95 menu-overlay">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
+        <a href="/games.html" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.games">Games</a>
+        <a href="#about" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.about">About</a>
+        <a href="#contact" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.contact">Contact</a>
+      </div>
+    </div>
   </header>
 
-  <!-- Hero Banner / Carousel -->
-  <section class="hero-banner">
-    <div class="carousel">
-      <div class="carousel-slide active">
-        <div class="banner-content">
-          <div class="banner-text">
-            <h1>ChronoFlesh</h1>
-            <p>Available Now!</p>
+  <main class="pt-16">
+    <!-- Hero / Swiper carousel -->
+    <section class="relative">
+      <a href="#" class="block">
+        <div class="swiper hero-swiper select-none">
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <img src="/assets/showcase/img_0.png" alt="Showcase 0" class="w-full h-[60vh] md:h-[70vh] object-cover will-change-transform" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/showcase/img_1.png" alt="Showcase 1" class="w-full h-[60vh] md:h-[70vh] object-cover will-change-transform" />
+            </div>
+            <div class="swiper-slide">
+              <img src="/assets/showcase/img_2.png" alt="Showcase 2" class="w-full h-[60vh] md:h-[70vh] object-cover will-change-transform" />
+            </div>
           </div>
-          <a href="#" class="learn-more-btn">Learn More</a>
+
+          <!-- Arrows -->
+          <div class="swiper-button-prev !text-ink/80 hover:!text-white"></div>
+          <div class="swiper-button-next !text-ink/80 hover:!text-white"></div>
+
+          <!-- Pagination -->
+          <div class="swiper-pagination !bottom-6"></div>
+          <div class="hero-timer" aria-hidden="true"></div>
         </div>
-        <a href="#" class="banner-overlay-link"></a>
+      </a>
+    </section>
+
+    <!-- Separator -->
+    <div class="border-t border-line"></div>
+
+    <!-- About -->
+    <section id="about" class="relative py-16 md:py-20">
+      <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.12),_transparent_60%)]"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-10 items-start">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="about.title">About Us</h2>
+            <p class="text-[15px] md:text-base text-ink/80 leading-relaxed" data-i18n="about.body">
+              We are a small indie team focused on bold ideas, tight game feel, and immersive worlds. Our mission is to build memorable experiences that respect your time and spark curiosity.
+            </p>
+          </div>
+          <div class="bg-panel/60 border border-line rounded-2xl p-6 md:p-8 shadow-soft">
+            <h3 class="text-xl font-semibold mb-5" data-i18n="about.team">Team & Partners</h3>
+            <div class="grid sm:grid-cols-2 gap-6">
+              <!-- Davilkus -->
+              <div class="team-card relative group bg-header/40 border border-line rounded-xl p-5 md:p-6 min-h-[200px] hover:shadow-soft transition" data-animate>
+                <div class="flex items-center gap-4 mb-3">
+                  <img src="/assets/team/davilkus.jpg" alt="Davilkus" class="w-14 h-14 rounded-full object-cover border border-line" />
+                  <div>
+                    <div class="font-semibold">Davilkus</div>
+                    <div class="text-xs text-ink/60" data-i18n="roles.founder">Founder, Lead Dev</div>
+                  </div>
+                </div>
+                <p class="text-sm text-ink/80 pr-20" data-i18n="about.davilkus">
+                  Building systems, worlds and tools. Lover of clean design and chunky game feel.
+                </p>
+                <div class="absolute bottom-4 right-4 flex gap-2">
+                  <a href="https://vk.com/davilkus" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="VK"><img src="/assets/icons/vk.svg" class="w-5 h-5" alt="VK"/></a>
+                  <a href="https://t.me/davilkus" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-5 h-5" alt="Telegram"/></a>
+                </div>
+              </div>
+
+              <!-- Haalo -->
+              <div class="team-card relative group bg-header/40 border border-line rounded-xl p-5 md:p-6 min-h-[200px] hover:shadow-soft transition" data-animate>
+                <div class="flex items-center gap-4 mb-3">
+                  <img src="/assets/team/haalo.jpg" alt="Haalo" class="w-14 h-14 rounded-full object-cover border border-line" />
+                  <div>
+                    <div class="font-semibold">Haalo</div>
+                    <div class="text-xs text-ink/60" data-i18n="roles.cm">Community Manager</div>
+                  </div>
+                </div>
+                <p class="text-sm text-ink/80 pr-20" data-i18n="about.haalo">
+                  Keeping the community cozy, informed, and hype. Events, socials, support.
+                </p>
+                <div class="absolute bottom-4 right-4 flex gap-2">
+                  <a href="https://vk.com/nseleznev2020" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="VK"><img src="/assets/icons/vk.svg" class="w-5 h-5" alt="VK"/></a>
+                  <a href="https://t.me/paylife2680" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-5 h-5" alt="Telegram"/></a>
+                </div>
+              </div>
+
+              <!-- Burger Kerman (Partner) -->
+              <div class="team-card relative group bg-header/40 border border-line rounded-xl p-5 md:p-6 min-h-[200px] hover:shadow-soft transition" data-animate>
+                <div class="flex items-center gap-4 mb-3">
+                  <img src="/assets/team/burger-kerman.jpg" alt="Burger Kerman" class="w-14 h-14 rounded-full object-cover border border-line" />
+                  <div>
+                    <div class="font-semibold">Burger Kerman</div>
+                    <div class="text-xs text-ink/60" data-i18n="roles.partner">Partner – Composer</div>
+                  </div>
+                </div>
+                <p class="text-sm text-ink/80 pr-24" data-i18n="about.burger">
+                  Composer of moody, melodic soundtracks. Available on streaming platforms.
+                </p>
+                <div class="absolute bottom-4 right-4 flex gap-2">
+                  <a href="https://open.spotify.com/artist/71yAyS7L72UpNn1VlymHQU" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Spotify"><img src="/assets/icons/spotify.svg" class="w-5 h-5" alt="Spotify"/></a>
+                  <a href="https://music.yandex.ru/artist/19603802" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Yandex Music"><img src="/assets/icons/yandex-music.svg" class="w-5 h-5" alt="Yandex Music"/></a>
+                  <a href="https://www.youtube.com/@BurgerKerman" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="YouTube"><img src="/assets/icons/youtube.svg" class="w-5 h-5" alt="YouTube"/></a>
+                </div>
+              </div>
+
+              <!-- OMEGA Studio (Partner) -->
+              <div class="team-card relative group bg-header/40 border border-line rounded-xl p-5 md:p-6 min-h-[200px] hover:shadow-soft transition" data-animate>
+                <div class="flex items-center gap-4 mb-3">
+                  <img src="/assets/team/omega-games.jpg" alt="OMEGA Studio" class="w-14 h-14 rounded-full object-cover border border-line" />
+                  <div>
+                    <div class="font-semibold">OMEGA Studio</div>
+                    <div class="text-xs text-ink/60" data-i18n="roles.codev">Partner – Co‑dev</div>
+                  </div>
+                </div>
+                <p class="text-sm text-ink/80 pr-24" data-i18n="about.omega">
+                  Partner studio collaborating on tech and platform releases.
+                </p>
+                <div class="absolute bottom-4 right-4 flex gap-2">
+                  <a href="https://t.me/omega_gamedev" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-5 h-5" alt="Telegram"/></a>
+                  <a href="https://yandex.com/games/developer/88490" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Yandex Games"><img src="/assets/icons/yandex-games.svg" class="w-5 h-5" alt="Yandex Games"/></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- Future slides can go here -->
-    </div>
-  </section>
+    </section>
 
-  <!-- Separator -->
-  <hr class="separator">
+    <!-- Separator -->
+    <div class="border-t border-line"></div>
 
-  <!-- Featured Games Section -->
-  <section id="featured-games">
-    <h2>Featured Games</h2>
-    <div class="games-container">
-      <!-- Game cards will be added here -->
-    </div>
-  </section>
+    <!-- Contact -->
+    <section id="contact" class="py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8" data-i18n="contact.title">Contact Us</h2>
 
-  <!-- Game Modal (hidden by default) -->
-  <div id="game-modal" class="modal hidden">
-    <div class="modal-content">
-      <button class="modal-close">×</button>
-      <div class="modal-body">
-        <!-- Game screenshots/info/links here -->
+        <div class="grid md:grid-cols-2 gap-10 items-start">
+          <!-- Emails -->
+          <div class="bg-panel/60 border border-line rounded-2xl p-6 shadow-soft" data-animate>
+            <h3 class="text-lg font-semibold mb-4" data-i18n="contact.emailTitle">Email</h3>
+            <ul class="space-y-3 text-sm">
+              <li class="flex items-start justify-between gap-4">
+                <span class="text-ink/70" data-i18n="contact.general">General</span>
+                <a href="mailto:contact@davilkusgames.com" class="font-semibold hover:underline">contact@davilkusgames.com</a>
+              </li>
+              <li class="flex items-start justify-between gap-4">
+                <span class="text-ink/70" data-i18n="contact.support">In‑game Support</span>
+                <a href="mailto:support@davilkusgames.com" class="font-semibold hover:underline">support@davilkusgames.com</a>
+              </li>
+              <li class="flex items-start justify-between gap-4">
+                <span class="text-ink/70" data-i18n="contact.direct">Direct</span>
+                <a href="mailto:davilkus@davilkusgames.com" class="font-semibold hover:underline">davilkus@davilkusgames.com</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Socials -->
+          <div class="bg-panel/60 border border-line rounded-2xl p-6 shadow-soft" data-animate>
+            <h3 class="text-lg font-semibold mb-4" data-i18n="contact.socialTitle">Communities</h3>
+            <div class="flex flex-wrap gap-3">
+              <a href="https://discord.gg/y3hE847S" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
+                <img src="/assets/icons/discord.svg" class="w-5 h-5" alt="Discord"/>
+                <span>Discord</span>
+              </a>
+              <a href="https://t.me/davilkus_games_news" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
+                <img src="/assets/icons/telegram.svg" class="w-5 h-5" alt="Telegram"/>
+                <span>Telegram</span>
+              </a>
+              <a href="https://www.youtube.com/@davilkusgames" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition">
+                <img src="/assets/icons/youtube.svg" class="w-5 h-5" alt="YouTube"/>
+                <span>YouTube</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-header border-t border-line">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <div class="text-sm">© 2025 Davilkus Games</div>
+        <div class="mt-2 flex items-center gap-4 text-xs">
+          <a href="/privacy-policy" class="hover:opacity-80">Privacy Policy</a>
+          <a href="/cookie-policy" class="hover:opacity-80">Cookie Policy</a>
+        </div>
+      </div>
+      <div class="flex items-center gap-5">
+        <a href="https://discord.gg/y3hE847S" class="opacity-80 hover:opacity-100" aria-label="Discord"><img src="/assets/icons/discord.svg" class="w-8 h-8" alt="Discord"/></a>
+        <a href="https://t.me/davilkus_games_news" class="opacity-80 hover:opacity-100" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-8 h-8" alt="Telegram"/></a>
+        <a href="https://www.youtube.com/@davilkusgames" class="opacity-80 hover:opacity-100" aria-label="YouTube"><img src="/assets/icons/youtube.svg" class="w-8 h-8" alt="YouTube"/></a>
+        <a href="https://x.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="X"><img src="/assets/icons/x.svg" class="w-8 h-8" alt="X"/></a>
+        <a href="https://github.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="GitHub"><img src="/assets/icons/github.svg" class="w-8 h-8" alt="GitHub"/></a>
+        <a href="https://vk.com/davilkusgames" class="opacity-80 hover:opacity-100" aria-label="VK"><img src="/assets/icons/vk.svg" class="w-8 h-8" alt="VK"/></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie notice -->
+  <div id="cookieBar" class="fixed left-4 right-4 md:left-8 md:right-auto bottom-4 md:bottom-6 z-[60] hidden">
+    <div class="w-full md:w-auto max-w-2xl bg-header border border-line rounded-xl shadow-soft px-4 py-3 flex items-center gap-3">
+      <img src="/assets/icons/cookie.svg" alt="cookie" class="w-5 h-5" />
+      <p class="text-sm flex-1" data-i18n="cookie.text"><b>Cookie time!</b> We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.</p>
+      <button id="cookieOk" class="text-sm px-3 py-1.5 rounded-lg bg-brand hover:bg-brandDark transition" data-i18n="cookie.ok">OK</button>
     </div>
   </div>
 
-  <!-- Separator -->
-  <hr class="separator">
+  <!-- App script -->
+  <script>
+    // --- Mobile menu toggle with GSAP animation ---
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let menuOpen = false;
+    menuBtn && menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        mobileMenu.classList.remove('hidden');
+        gsap.fromTo(mobileMenu, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.25, ease: 'power2.out' });
+      } else {
+        gsap.to(mobileMenu, { height: 0, opacity: 0, duration: 0.2, ease: 'power2.in', onComplete: () => mobileMenu.classList.add('hidden') });
+      }
+    });
 
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p class="about-main">Davilkus Games is a small indie studio focused on creating immersive and experimental Unity-powered games. We love weird ideas and playable atmospheres.</p>
-    <div class="team-container">
-      <!-- Team cards will go here -->
-    </div>
-  </section>
+    // --- Swiper Hero with extra motion ---
+    const timerBar = document.querySelector('.hero-timer');
+    let heroSwiper;
+    function startTimer() {
+      if (!timerBar) return;
+      timerBar.classList.remove('animating');
+      void timerBar.offsetWidth; // restart CSS animation
+      timerBar.classList.add('animating');
+    }
+    function zoomActiveSlide() {
+      const activeImg = document.querySelector('.hero-swiper .swiper-slide-active img');
+      gsap.fromTo(activeImg, { scale: 1.03 }, { scale: 1, duration: 3.8, ease: 'power1.out' });
+    }
+    function initSwiper() {
+      heroSwiper = new Swiper('.hero-swiper', {
+        loop: true,
+        autoplay: { delay: 4000, disableOnInteraction: false },
+        speed: 600,
+        effect: 'slide',
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        on: { init() { startTimer(); zoomActiveSlide(); }, slideChange() { startTimer(); zoomActiveSlide(); } }
+      });
+    }
 
-  <!-- Separator -->
-  <hr class="separator">
+    // --- GSAP enter / scroll animations + micro-interactions ---
+    function initAnimations() {
+      gsap.registerPlugin(ScrollTrigger);
+      // Fade-in sections with [data-animate]
+      document.querySelectorAll('[data-animate]').forEach((el, i) => {
+        gsap.from(el, {
+          y: 18, opacity: 0, duration: 0.6, delay: i * 0.05, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 85%' }
+        });
+      });
+      // Team card lift on hover
+      document.querySelectorAll('.team-card').forEach(card => {
+        card.addEventListener('mouseenter', () => gsap.to(card, { y: -4, duration: 0.2, ease: 'power2.out' }));
+        card.addEventListener('mouseleave', () => gsap.to(card, { y: 0, duration: 0.2, ease: 'power2.out' }));
+      });
+      // Header reveal on load
+      gsap.from('header', { y: -60, opacity: 0, duration: 0.6, ease: 'power2.out' });
+    }
 
-  <!-- Contact & Community Section -->
-  <section id="contact">
-    <h2>Contact & Community</h2>
-    <div class="contact-content">
-      <div class="community-links">
-        <a href="#" class="discord-link">Join us on Discord</a>
-        <a href="#" class="telegram-link">Telegram Channel</a>
-      </div>
-      <div class="email-panel">
-        <p>Email us at:</p>
-        <a href="mailto:contact@davilkusgames.com">contact@davilkusgames.com</a>
-      </div>
-    </div>
-  </section>
+    // --- i18n ---
+    const resources = {
+      en: {
+        translation: {
+          brand: 'Davilkus Games',
+          nav: { games: 'Games', about: 'About', contact: 'Contact Us' },
+          about: {
+            title: 'About Us',
+            body: 'We are a small indie team focused on bold ideas, tight game feel, and immersive worlds. Our mission is to build memorable experiences that respect your time and spark curiosity.',
+            team: 'Team & Partners',
+            davilkus: 'Building systems, worlds and tools. Lover of clean design and chunky game feel.',
+            haalo: 'Keeping the community cozy, informed, and hype. Events, socials, support.',
+            burger: 'Composer of moody, melodic soundtracks. Available on streaming platforms.',
+            omega: 'Partner studio collaborating on tech and platform releases.'
+          },
+          roles: { founder: 'Founder, Lead Dev', cm: 'Community Manager', partner: 'Partner – Composer', codev: 'Partner – Co‑dev' },
+          contact: { title: 'Contact Us', emailTitle: 'Email', general: 'General', support: 'In‑game Support', direct: 'Direct', socialTitle: 'Communities' },
+          cookie: { text: '<b>Cookie time!</b> We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', ok: 'OK' }
+        }
+      },
+      ru: {
+        translation: {
+          brand: 'Davilkus Games',
+          nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' },
+          about: {
+            title: 'О нас',
+            body: 'Мы маленькая инди‑команда, сфокусированная на смелых идеях, точном ощущении геймплея и погружающих мирах. Наша цель — создавать запоминающиеся проекты, уважая ваше время и пробуждая любопытство.',
+            team: 'Команда и партнёры',
+            davilkus: 'Создаём системы, миры и инструменты. Любим чистый дизайн и «весомый» геймплей.',
+            haalo: 'Держим сообщество в тепле и в курсе. Ивенты, соцсети, поддержка.',
+            burger: 'Композитор атмосферных и мелодичных саундтреков. Есть на стримингах.',
+            omega: 'Партнёрская студия — техразработка и релизы на платформах.'
+          },
+          roles: { founder: 'Основатель, лид‑разработчик', cm: 'Комьюнити‑менеджер', partner: 'Партнёр — композитор', codev: 'Партнёр — ко‑разработчик' },
+          contact: { title: 'Контакты', emailTitle: 'Email', general: 'Общий', support: 'Поддержка в игре', direct: 'Лично', socialTitle: 'Сообщества' },
+          cookie: { text: '<b>Время печенек!</b> Мы используем cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на использование cookie.', ok: 'Понятно' }
+        }
+      }
+    };
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="footer-left">© Davilkus Games 2025</div>
-    <div class="footer-right">
-      <button class="footer-link">Privacy Policy</button>
-      <button class="footer-link">Cookie Policy</button>
-    </div>
-  </footer>
+    function localize() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const val = i18next.t(key);
+        if (val && val.indexOf('<') !== -1) {
+          el.innerHTML = val;
+        } else if (val) {
+          el.textContent = val;
+        }
+      });
+    }
+
+    // --- Cookie bar ---
+    function initCookieBar() {
+      const key = 'dg_cookie_ok_v1';
+      const bar = document.getElementById('cookieBar');
+      const ok = document.getElementById('cookieOk');
+      if (!localStorage.getItem(key)) {
+        bar.classList.remove('hidden');
+        gsap.fromTo(bar, { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: 'power2.out' });
+      }
+      ok.addEventListener('click', () => {
+        localStorage.setItem(key, '1');
+        gsap.to('#cookieBar', { y: 80, opacity: 0, duration: 0.25, ease: 'power2.in', onComplete: () => bar.classList.add('hidden') });
+      });
+    }
+
+    // --- Boot ---
+    window.addEventListener('DOMContentLoaded', () => {
+      i18next
+        .use(window.i18nextBrowserLanguageDetector)
+        .init({
+          resources,
+          fallbackLng: 'en',
+          detection: { order: ['querystring', 'cookie', 'localStorage', 'navigator'], caches: ['localStorage', 'cookie'] }
+        }, () => {
+          const lang = i18next.language || 'en';
+          document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
+          localize();
+        });
+
+      initSwiper();
+      initAnimations();
+      initCookieBar();
+    });
+  </script>
 </body>
 </html>
