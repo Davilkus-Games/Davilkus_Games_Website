@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SCP-087 — Davilkus Games</title>
-  <meta name="description" content="Fan-made psychological horror based on SCP-087 — the endless stairwell. Descend alone into a procedurally-generated abyss and survive as long as you can." />
+  <meta name="description"
+    content="Fan-made psychological horror based on SCP-087 — the endless stairwell. Descend alone into a procedurally-generated abyss and survive as long as you can." />
 
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
 
@@ -66,6 +68,9 @@
   <script defer src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
 
+  <!-- MicroModal for screenshot lightbox -->
+  <script defer src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+
   <!-- JSON-LD -->
   <script type="application/ld+json">
   {
@@ -89,8 +94,35 @@
     /* Hero background image behind content (reduced blur) */
     .hero-bg{position:relative}
     .hero-bg::before{content:"";position:absolute;inset:0;background:url('/assets/showcase/scp087.webp') center/cover no-repeat;filter:blur(6px) brightness(.5);transform:scale(1.04);z-index:0;pointer-events:none}
+
+    /* Screenshots row */
+    .no-scrollbar::-webkit-scrollbar{display:none}
+    .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+    .shots-track{scroll-snap-type:x mandatory}
+    .shot{scroll-snap-align:center} /* center for Steam-like feel */
+
+    /* Modal sizing */
+    .modal__overlay{background:rgba(0,0,0,.6)}
+
+    /* Keep MicroModal hidden until opened */
+    .micromodal-slide{display:none}
+    .micromodal-slide.is-open{display:block}
+    .modal[aria-hidden="true"]{display:none}
+    .modal[aria-hidden="false"]{display:block}
+
+    /* Clean scroll behavior and edge-fade */
+    #shotsTrack{
+      -webkit-overflow-scrolling:touch;
+      overscroll-behavior-x:contain;
+      scroll-behavior:smooth;
+      scroll-snap-type:x mandatory;
+      mask-image:linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+      scrollbar-width:none;
+    }
+    #shotsTrack::-webkit-scrollbar{display:none}
   </style>
 </head>
+
 <body class="bg-bg text-ink font-sans antialiased">
   <!-- Header -->
   <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
@@ -144,19 +176,19 @@
 
             <!-- CTA row -->
             <div class="mt-7 md:mt-9 flex flex-wrap gap-3">
-              <a href="/games/scp087#play" class="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand/60">
+              <a href="/games/scp087/play/index.html" class="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand/60">
                 <span data-i18n="btn.play">Play Here</span>
               </a>
               <a href="https://play.google.com/store/apps/details?id=com.davilkus.scp087" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header">
-                <img src="/assets/icons/google-play.svg" alt="Google Play" class="w-5 h-5"/>
+                <img src="/assets/icons/google-play.svg" alt="Google Play" class="w-5 h-5" />
                 <span data-i18n="btn.gp">Get it on Google Play</span>
               </a>
               <a href="https://yandex.com/games/app/xxxxx" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header">
-                <img src="/assets/icons/yandex-games.svg" alt="Yandex Games" class="w-5 h-5"/>
+                <img src="/assets/icons/yandex-games.svg" alt="Yandex Games" class="w-5 h-5" />
                 <span data-i18n="btn.yg">Yandex Games</span>
               </a>
               <a href="https://itch.io" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header">
-                <img src="/assets/icons/itchio.svg" alt="itch.io" class="w-5 h-5"/>
+                <img src="/assets/icons/itchio.svg" alt="itch.io" class="w-5 h-5" />
                 <span>itch.io</span>
               </a>
             </div>
@@ -164,9 +196,19 @@
           <!-- Game icon on the right -->
           <div class="md:col-span-1 md:justify-self-end">
             <div class="bg-header/70 border border-line rounded-2xl p-2 shadow-soft w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56">
-              <img src="game-icon.webp" alt="SCP-087 icon" class="w-full h-full object-cover rounded-xl"/>
+              <img src="game-icon.webp" alt="SCP-087 icon" class="w-full h-full object-cover rounded-xl" />
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshots row (Steam-style) -->
+    <section class="relative py-6">
+      <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div id="shotsTrack" class="shots-track no-scrollbar overflow-x-auto -mx-4 px-4 flex gap-4">
+          <!-- Thumbs injected via JS -->
         </div>
       </div>
     </section>
@@ -305,6 +347,26 @@
     </div>
   </div>
 
+  <!-- Screenshot modal -->
+  <div class="modal micromodal-slide" id="shotModal" aria-hidden="true">
+    <div class="modal__overlay fixed inset-0 z-[1000] grid place-items-center p-4" tabindex="-1" data-micromodal-close>
+      <div class="modal__container relative z-[1001] bg-header/95 border border-line rounded-2xl shadow-soft max-w-5xl w-full" role="dialog" aria-modal="true" aria-labelledby="shotModal-title">
+        <button class="absolute top-3 right-3 w-10 h-10 grid place-items-center rounded-lg bg-header/80 border border-line hover:bg-header" aria-label="Close" data-micromodal-close>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+        </button>
+        <div class="relative aspect-video">
+          <img id="shotLarge" alt="Screenshot" class="absolute inset-0 w-full h-full object-contain bg-black/60" />
+          <button id="shotPrev" class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 grid place-items-center rounded-full bg-header/80 border border-line hover:bg-header" aria-label="Previous">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19L8 12l7-7"/></svg>
+          </button>
+          <button id="shotNext" class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 grid place-items-center rounded-full bg-header/80 border border-line hover:bg-header" aria-label="Next">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const hasGSAP = () => !!window.gsap;
 
@@ -363,7 +425,7 @@
           p2:'SCP-087 is a stairwell of indeterminate depth, located within [REDACTED]. Visibility is restricted, and all light sources above 75W prove ineffective.',
           p3:'At approximately 200m depth, distress vocalizations resembling a child’s cries have been recorded. Attempts to locate the source have failed. Explorations confirm the presence of an anomalous entity, designated SCP-087-1 — a face lacking a mouth, nostrils, or eyes. Its nature and behavior remain unclassified.',
           p4:'Following Exploration IV, external auditory anomalies were documented. Access to SCP-087 is now prohibited.',
-          p5:'This is a first-person psychological horror game. Descend alone into the dark, procedurally-generated stairwell. Experience unpredictable reality shifts, radio messages, hallucinations, and fatal encounters with SCP-087-1.',
+          p5:'This is a first-person psychological horror game. Descend alone into the dark, procedurally-generated stairwell. Experience unpredictable reality shifts, radio messages, hallucinations and fatal encounters with SCP-087-1.',
           l1:'Offline play', l2:'Atmospheric horror', l3:'SCP lore-inspired', l4:'Single-player only',
           p6:'Survive. As long as you can.'
         },
@@ -446,6 +508,55 @@
       wrap.appendChild(iframe); wrap.dataset.loaded='1'; if(ph) ph.remove();
     }
 
+    // Screenshots (5 total)
+    const SHOTS = Array.from({length: 5}, (_, i) => `/games/scp087/screenshots/screenshot_${i}.webp`);
+    let shotIndex = 0;
+    function renderShots(){
+      const track = document.getElementById('shotsTrack');
+      if(!track) return;
+      const frag = document.createDocumentFragment();
+      SHOTS.forEach((src, idx) => {
+        const a = document.createElement('button');
+        a.type='button';
+        a.className = 'shot relative shrink-0 w-[300px] md:w-[360px] aspect-video rounded-xl overflow-hidden border border-line bg-header/60 hover:bg-header focus:outline-none focus:ring-2 focus:ring-brand/40';
+        const img = document.createElement('img');
+        img.src = src; img.alt = `Screenshot ${idx+1}`; img.loading='lazy'; img.decoding='async';
+        img.className = 'absolute inset-0 w-full h-full object-cover';
+        img.onerror = () => a.remove();
+        a.appendChild(img);
+        a.addEventListener('click', () => openShot(idx));
+        frag.appendChild(a);
+      });
+      track.innerHTML = ''; track.appendChild(frag);
+
+      // Enhance scrolling: wheel -> horizontal & drag-to-scroll
+      // Convert vertical wheel to horizontal scroll (desktop mice)
+      track.addEventListener('wheel', (e) => {
+        const dx = Math.abs(e.deltaX), dy = Math.abs(e.deltaY);
+        if (dy > dx) { // mainly vertical wheel
+          track.scrollLeft += e.deltaY;
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      // Click-drag to scroll (pointer events)
+      let isDown=false, startX=0, startLeft=0;
+      track.addEventListener('pointerdown', (e)=>{ isDown=true; startX=e.clientX; startLeft=track.scrollLeft; track.setPointerCapture(e.pointerId); });
+      track.addEventListener('pointermove', (e)=>{ if(!isDown) return; track.scrollLeft = startLeft - (e.clientX - startX); });
+      ['pointerup','pointercancel','pointerleave'].forEach(ev=> track.addEventListener(ev, ()=> isDown=false));
+    }
+
+    function openShot(idx){
+      shotIndex = idx;
+      updateLarge();
+      if(window.MicroModal){ MicroModal.show('shotModal', { disableScroll: true }); }
+    }
+    function updateLarge(){
+      const img = document.getElementById('shotLarge');
+      const src = SHOTS[(shotIndex+SHOTS.length)%SHOTS.length];
+      if(img) img.src = src;
+    }
+
     window.addEventListener('DOMContentLoaded', function(){
       i18next
         .use(window.i18nextBrowserLanguageDetector)
@@ -461,7 +572,7 @@
       // Load YT immediately if already accepted
       loadYouTube();
 
-      // Hook buttons in placeholder
+      // Hook cookie placeholder buttons
       const openCookie=document.getElementById('openCookie');
       const acceptBtn=document.getElementById('acceptCookies');
       openCookie && openCookie.addEventListener('click',()=>{
@@ -474,9 +585,26 @@
         loadYouTube();
       });
 
+      // Render screenshots & init modal
+      renderShots();
+      if(window.MicroModal){ MicroModal.init(); }
+
+      // Modal nav
+      document.getElementById('shotPrev')?.addEventListener('click', () => { shotIndex = (shotIndex - 1 + SHOTS.length) % SHOTS.length; updateLarge(); });
+      document.getElementById('shotNext')?.addEventListener('click', () => { shotIndex = (shotIndex + 1) % SHOTS.length; updateLarge(); });
+
+      // Keyboard nav while modal open
+      document.addEventListener('keydown', (e)=>{
+        const isOpen = document.getElementById('shotModal')?.classList.contains('is-open');
+        if(!isOpen) return;
+        if(e.key === 'ArrowLeft'){ shotIndex = (shotIndex - 1 + SHOTS.length) % SHOTS.length; updateLarge(); }
+        else if(e.key === 'ArrowRight'){ shotIndex = (shotIndex + 1) % SHOTS.length; updateLarge(); }
+      });
+
       // Gentle entrances (no fade-out afterward)
       if(hasGSAP()) document.querySelectorAll('[data-animate]').forEach((el,i)=> gsap.from(el,{ y:22, opacity:0, duration:.6, delay:i*0.05, ease:'power3.out' }));
     });
   </script>
 </body>
+
 </html>
