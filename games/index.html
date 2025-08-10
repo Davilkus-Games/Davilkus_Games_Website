@@ -53,13 +53,7 @@
         extend: {
           fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Apple Color Emoji'] },
           colors: {
-            bg: '#0B0F1A',
-            panel: '#0F1524',
-            ink: '#E8EAF2',
-            brand: '#2563eb',
-            brandDark: '#1e40af',
-            header: '#070a12',
-            line: '#1b2336'
+            bg: '#0B0F1A', panel: '#0F1524', ink: '#E8EAF2', brand: '#2563eb', brandDark: '#1e40af', header: '#070a12', line: '#1b2336'
           },
           boxShadow: { soft: '0 6px 30px rgba(0,0,0,0.35)' }
         }
@@ -150,8 +144,8 @@
       <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]"></div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Plain page title, tighter spacing -->
-        <h1 id="pageTitle" class="text-2xl md:text-3xl font-bold mb-6" data-i18n="page.games">Games</h1>
+        <!-- Page title with a bit more breathing room above cards -->
+        <h1 id="pageTitle" class="text-2xl md:text-3xl font-bold mb-8 md:mb-10" data-i18n="page.games">Games</h1>
 
         <!-- Cards grid -->
         <div id="gamesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
@@ -376,29 +370,34 @@
 
     function gameTitle(key) { return i18next.t('games.' + key + '.title'); }
 
+    // Stretched-link pattern: whole card navigates to game.href without nesting anchors
     function cardTemplate(game) {
       const title = gameTitle(game.key) || game.key;
       const more = i18next.t('buttons.more');
       return `
-        <article class="relative bg-header/50 border border-line rounded-2xl overflow-hidden shadow-soft group" data-animate>
+        <article class="relative bg-header/50 border border-line rounded-2xl overflow-hidden shadow-soft group hover:shadow-lg transition-shadow focus-within:ring-2 focus-within:ring-brand/50" data-animate>
+          <!-- Stretched link overlay -->
+          <a href="${game.href}" aria-label="${title}" class="absolute inset-0 z-10" tabindex="-1"></a>
+
           <div class="relative h-52 md:h-64 lg:h-56 xl:h-64">
             <img src="${game.image}" alt="${title}" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10"></div>
-            <div class="absolute top-3 left-3">
-              <span class="text-lg md:text-xl font-bold px-2 py-1 rounded bg-header/70 border border-line">${title}</span>
+            <!-- more gap from the top -->
+            <div class="absolute top-6 md:top-7 left-3 md:left-4">
+              <span class="text-lg md:text-xl font-bold px-2.5 py-1.5 rounded-xl bg-header/70 border border-line">${title}</span>
             </div>
           </div>
 
-          <div class="p-4 border-t border-line bg-panel/60 flex items-center justify-between gap-3">
+          <div class="relative z-20 p-4 border-t border-line bg-panel/60 flex items-center justify-between gap-3">
             <div class="flex items-center gap-2">
-              <a href="${game.links.google}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Google Play">
+              <a href="${game.links.google}" target="_blank" rel="noopener noreferrer" class="relative z-30 w-10 h-10 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Google Play">
                 <img src="/assets/icons/google-play.svg" alt="Google Play" class="w-5 h-5" loading="lazy" decoding="async" />
               </a>
-              <a href="${game.links.yandex}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Yandex Games">
+              <a href="${game.links.yandex}" target="_blank" rel="noopener noreferrer" class="relative z-30 w-10 h-10 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition" aria-label="Yandex Games">
                 <img src="/assets/icons/yandex-games.svg" alt="Yandex Games" class="w-5 h-5" loading="lazy" decoding="async" />
               </a>
             </div>
-            <a href="${game.href}" class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold bg-header/70 border border-line hover:bg-header focus:outline-none focus:ring-2 focus:ring-brand/40">
+            <a href="${game.href}" class="relative z-30 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold bg-header/70 border border-line hover:bg-header focus:outline-none focus:ring-2 focus:ring-brand/40">
               <span>${more}</span>
             </a>
           </div>

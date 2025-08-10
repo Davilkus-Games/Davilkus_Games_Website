@@ -96,10 +96,8 @@
     .hero-bg::before{content:"";position:absolute;inset:0;background:url('/assets/showcase/scp087.webp') center/cover no-repeat;filter:blur(6px) brightness(.5);transform:scale(1.04);z-index:0;pointer-events:none}
 
     /* Screenshots row */
-    .no-scrollbar::-webkit-scrollbar{display:none}
-    .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
     .shots-track{scroll-snap-type:x mandatory}
-    .shot{scroll-snap-align:center} /* center for Steam-like feel */
+    .shot{scroll-snap-align:center}
 
     /* Modal sizing */
     .modal__overlay{background:rgba(0,0,0,.6)}
@@ -110,16 +108,17 @@
     .modal[aria-hidden="true"]{display:none}
     .modal[aria-hidden="false"]{display:block}
 
-    /* Clean scroll behavior and edge-fade */
+    /* Clean scroll behavior, edge-fade, and top scrollbar */
     #shotsTrack{
       -webkit-overflow-scrolling:touch;
       overscroll-behavior-x:contain;
       scroll-behavior:smooth;
       scroll-snap-type:x mandatory;
       mask-image:linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
-      scrollbar-width:none;
     }
-    #shotsTrack::-webkit-scrollbar{display:none}
+    /* put the native scrollbar on top */
+    .scrollbar-top{ transform: rotateX(180deg); }
+    .scrollbar-top > *{ transform: rotateX(180deg); }
   </style>
 </head>
 
@@ -207,7 +206,7 @@
     <section class="relative py-6">
       <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]"></div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div id="shotsTrack" class="shots-track no-scrollbar overflow-x-auto -mx-4 px-4 flex gap-4">
+        <div id="shotsTrack" class="shots-track overflow-x-auto -mx-4 px-4 flex gap-4 scrollbar-top">
           <!-- Thumbs injected via JS -->
         </div>
       </div>
@@ -511,6 +510,8 @@
     // Screenshots (5 total)
     const SHOTS = Array.from({length: 5}, (_, i) => `/games/scp087/screenshots/screenshot_${i}.webp`);
     let shotIndex = 0;
+    let dragging = false; // NEW: shared drag guard
+
     function renderShots(){
       const track = document.getElementById('shotsTrack');
       if(!track) return;
@@ -524,32 +525,39 @@
         img.className = 'absolute inset-0 w-full h-full object-cover';
         img.onerror = () => a.remove();
         a.appendChild(img);
-        a.addEventListener('click', () => openShot(idx));
+        // open on pointerup only if we didn't drag
+        a.addEventListener('pointerup', () => { if (!dragging) openShot(idx); });
         frag.appendChild(a);
       });
       track.innerHTML = ''; track.appendChild(frag);
 
-      // Enhance scrolling: wheel -> horizontal & drag-to-scroll
-      // Convert vertical wheel to horizontal scroll (desktop mice)
+      // Convert vertical wheel to horizontal scroll (desktop)
       track.addEventListener('wheel', (e) => {
         const dx = Math.abs(e.deltaX), dy = Math.abs(e.deltaY);
-        if (dy > dx) { // mainly vertical wheel
-          track.scrollLeft += e.deltaY;
-          e.preventDefault();
-        }
+        if (dy > dx) { track.scrollLeft += e.deltaY; e.preventDefault(); }
       }, { passive: false });
 
-      // Click-drag to scroll (pointer events)
-      let isDown=false, startX=0, startLeft=0;
-      track.addEventListener('pointerdown', (e)=>{ isDown=true; startX=e.clientX; startLeft=track.scrollLeft; track.setPointerCapture(e.pointerId); });
-      track.addEventListener('pointermove', (e)=>{ if(!isDown) return; track.scrollLeft = startLeft - (e.clientX - startX); });
-      ['pointerup','pointercancel','pointerleave'].forEach(ev=> track.addEventListener(ev, ()=> isDown=false));
+      // Drag-to-scroll without triggering click
+      let isDown = false, startX = 0, startLeft = 0;
+      track.addEventListener('pointerdown', (e) => { isDown = true; dragging = false; startX = e.clientX; startLeft = track.scrollLeft; track.setPointerCapture(e.pointerId); });
+      track.addEventListener('pointermove', (e) => {
+        if (!isDown) return;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) > 6) dragging = true;
+        track.scrollLeft = startLeft - dx;
+      });
+      ['pointerup','pointercancel','pointerleave'].forEach(ev => track.addEventListener(ev, () => { isDown = false; setTimeout(() => dragging = false, 0); }));
     }
 
     function openShot(idx){
       shotIndex = idx;
       updateLarge();
-      if(window.MicroModal){ MicroModal.show('shotModal', { disableScroll: true }); }
+      if (window.MicroModal && typeof MicroModal.show === 'function') {
+        MicroModal.show('shotModal', { disableScroll: true });
+      } else {
+        const m = document.getElementById('shotModal');
+        if (m) { m.classList.add('is-open'); m.setAttribute('aria-hidden','false'); }
+      }
     }
     function updateLarge(){
       const img = document.getElementById('shotLarge');
