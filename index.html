@@ -889,7 +889,7 @@
 
     function openMenu() {
       menuOpen = true;
-      gsap.killTweensOf(mobileMenu);
+      if (hasGSAP()) gsap.killTweensOf(mobileMenu);
       mobileMenu.classList.remove('hidden');
       mobileMenu.setAttribute('aria-hidden', 'false');
       menuBtn.setAttribute('aria-expanded', 'true');
@@ -911,7 +911,7 @@
     }
     function closeMenu() {
       menuOpen = false;
-      gsap.killTweensOf(mobileMenu);
+      if (hasGSAP()) gsap.killTweensOf(mobileMenu);
       if (hasGSAP()) gsap.to(mobileMenu, { height: 0, opacity: 0, duration: 0.3, ease: 'power3.inOut', onComplete: () => mobileMenu.classList.add('hidden') });
       else mobileMenu.classList.add('hidden');
       mobileMenu.setAttribute('aria-hidden', 'true');
