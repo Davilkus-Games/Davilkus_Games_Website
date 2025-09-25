@@ -72,6 +72,10 @@
         src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
 
     <style>
+        body {
+            visibility: hidden;
+        }
+
         ::-webkit-scrollbar {
             width: 10px;
             height: 10px
@@ -156,13 +160,54 @@
 
     <!-- Header -->
     <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
-            <a href="/" class="flex items-center gap-3 group" aria-label="Go to homepage">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
                 <img src="/assets/logo.webp" alt="Davilkus Games logo" width="64" height="64"
                     class="h-9 w-9 rounded-2xl" />
                 <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus
                     Games</span>
             </a>
+
+            <div class="hidden md:flex items-center gap-6 text-sm">
+                <nav class="flex items-center gap-8">
+                    <a href="/games/" class="hover:opacity-80 transition" data-i18n="nav.games">Games</a>
+                    <a href="/#about" class="hover:opacity-80 transition" data-i18n="nav.about">About</a>
+                    <a href="/#contact" class="hover:opacity-80 transition" data-i18n="nav.contact">Contact Us</a>
+                </nav>
+                <button id="langToggle"
+                    class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.75rem] h-8 select-none focus:outline-none focus:ring-2 focus:ring-brand transition"
+                    aria-label="Toggle language">
+                    <span class="flex-1 text-center text-[10px]">EN</span>
+                    <span class="flex-1 text-center text-[10px]">RU</span>
+                    <span id="langThumb"
+                        class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
+                </button>
+            </div>
+
+            <div class="md:hidden flex items-center gap-2">
+                <button id="langToggleMobile"
+                    class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.25rem] h-7 select-none focus:outline-none focus:ring-2 focus:ring-brand transition"
+                    aria-label="Toggle language">
+                    <span class="flex-1 text-center text-[9px]">EN</span>
+                    <span class="flex-1 text-center text-[9px]">RU</span>
+                    <span id="langThumbMobile"
+                        class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
+                </button>
+                <button id="menuBtn"
+                    class="p-2 rounded-lg hover:bg-panel/70 focus:outline-none focus:ring-2 focus:ring-brand"
+                    aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <img src="/assets/icons/menu.svg" alt="menu" class="w-6 h-6" />
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden border-t border-line bg-header/95 menu-overlay" aria-hidden="true">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
+                <a href="/games/" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.games">Games</a>
+                <a href="/#about" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.about">About</a>
+                <a href="/#contact" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.contact">Contact
+                    Us</a>
+            </div>
         </div>
     </header>
 
@@ -192,7 +237,8 @@
                         <a href="/"
                             class="inline-flex items-center gap-3 text-base md:text-lg font-medium px-6 md:px-7 py-3 md:py-3.5 rounded-xl bg-brand hover:bg-brandDark transition shadow-soft will-change-transform"
                             id="returnBtn" style="opacity:1">
-                            <img src="/assets/icons/exit404.svg" class="w-5 h-5" alt="" aria-hidden="true" aria-label="Return to homepage">
+                            <img src="/assets/icons/exit404.svg" class="w-5 h-5" alt="" aria-hidden="true"
+                                aria-label="Return to homepage">
                             <span data-i18n="notfound.cta">Return to Hub</span>
                         </a>
                     </div>
@@ -200,7 +246,7 @@
                     <div class="text-sm text-ink/60 pt-4">
                         <a href="/games/" class="hover:opacity-80" data-i18n="notfound.games">See our games</a>
                         <span class="mx-3">•</span>
-                        <a href="/?goto=contact" class="hover:opacity-80" data-i18n="notfound.contact">Contact us</a>
+                        <a href="/#contact" class="hover:opacity-80" data-i18n="notfound.contact">Contact us</a>
                     </div>
                 </div>
             </div>
@@ -212,20 +258,84 @@
         <div
             class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-                <div class="text-sm">© 2025 Davilkus Games</div>
+                <div class="text-base md:text-lg">© 2025 Davilkus Games</div>
                 <div class="mt-2 flex items-center gap-4 text-xs">
-                    <a href="/privacy-policy/" class="hover:opacity-80">Privacy Policy</a>
-                    <a href="/cookie-policy/" class="hover:opacity-80">Cookie Policy</a>
+                    <a href="/privacy-policy/" class="opacity-60 hover:opacity-80 transition">Privacy Policy</a>
+                    <a href="/cookie-policy/" class="opacity-60 hover:opacity-80 transition">Cookie Policy</a>
                 </div>
+            </div>
+            <div class="flex items-center gap-5">
+                <a href="https://discord.gg/y3hE847S" class="opacity-80 hover:opacity-100" aria-label="Discord"><img
+                        src="/assets/icons/discord.svg" width="32" height="32" loading="lazy" decoding="async"
+                        class="w-8 h-8" alt="Discord" /></a>
+                <a href="https://t.me/davilkus_games_news" class="opacity-80 hover:opacity-100"
+                    aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="32" height="32" loading="lazy"
+                        decoding="async" class="w-8 h-8" alt="Telegram" /></a>
+                <a href="https://www.youtube.com/@davilkusgames" class="opacity-80 hover:opacity-100"
+                    aria-label="YouTube"><img src="/assets/icons/youtube.svg" width="32" height="32" loading="lazy"
+                        decoding="async" class="w-8 h-8" alt="YouTube" /></a>
+                <a href="https://x.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="X"><img
+                        src="/assets/icons/x.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+                        alt="X" /></a>
+                <a href="https://github.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="GitHub"><img
+                        src="/assets/icons/github.svg" width="32" height="32" loading="lazy" decoding="async"
+                        class="w-8 h-8" alt="GitHub" /></a>
+                <a href="https://vk.com/davilkusgames" class="opacity-80 hover:opacity-100" aria-label="VK"><img
+                        src="/assets/icons/vk.svg" width="32" height="32" loading="lazy" decoding="async"
+                        class="w-8 h-8" alt="VK" /></a>
             </div>
         </div>
     </footer>
 
     <script>
+        const hasGSAP = () => !!window.gsap;
+
+        // Mobile menu logic (from main page)
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false; let outsideHandler; let trapHandler; let first; let last;
+        const focusables = 'a,button,[tabindex]:not([tabindex="-1"])';
+
+        function openMenu() {
+            menuOpen = true;
+            if (hasGSAP()) gsap.killTweensOf(mobileMenu);
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.setAttribute('aria-hidden', 'false');
+            menuBtn.setAttribute('aria-expanded', 'true');
+            if (hasGSAP()) gsap.fromTo(mobileMenu, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.35, ease: 'power3.out' });
+            const focusableEls = mobileMenu.querySelectorAll(focusables);
+            first = focusableEls[0]; last = focusableEls[focusableEls.length - 1];
+            first && first.focus();
+            trapHandler = (e) => {
+                if (e.key !== 'Tab' || !first || !last) return;
+                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            };
+            document.addEventListener('keydown', trapHandler);
+            outsideHandler = (e) => { if (mobileMenu.contains(e.target) || menuBtn.contains(e.target)) return; closeMenu(); };
+            document.addEventListener('pointerdown', outsideHandler, { passive: true });
+        }
+        function closeMenu() {
+            menuOpen = false;
+            if (hasGSAP()) gsap.killTweensOf(mobileMenu);
+            if (hasGSAP()) gsap.to(mobileMenu, { height: 0, opacity: 0, duration: 0.3, ease: 'power3.inOut', onComplete: () => mobileMenu.classList.add('hidden') });
+            else mobileMenu.classList.add('hidden');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.focus();
+            document.removeEventListener('keydown', trapHandler);
+            document.removeEventListener('pointerdown', outsideHandler);
+            first = last = null;
+        }
+        menuBtn && menuBtn.addEventListener('click', () => { menuOpen ? closeMenu() : openMenu(); });
+        document.addEventListener('keydown', e => (e.key === 'Escape' && menuOpen) && closeMenu());
+
+        // Translations
         const resources = {
             en: {
                 translation: {
                     brand: 'Davilkus Games',
+                    nav: { games: 'Games', about: 'About', contact: 'Contact Us' },
                     notfound: {
                         subtitle: 'Page not found',
                         desc: 'Oops. You’ve noclipped into an empty level. The hum of the lights goes on forever. Follow the exit sign to get back to the Hub.',
@@ -238,6 +348,7 @@
             ru: {
                 translation: {
                     brand: 'Davilkus Games',
+                    nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' },
                     notfound: {
                         subtitle: 'Страница не найдена',
                         desc: 'Ой. Вы попали на пустой уровень. Жужжание ламп тянется бесконечно. Следуйте к выходу, чтобы вернуться в Хаб.',
@@ -253,9 +364,47 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 const val = i18next.t(key);
-                if (!val) return;
-                el.textContent = val;
+                if (val) el.innerHTML = val;
             });
+        }
+
+        function setLangUI(lang) {
+            const thumb = document.getElementById('langThumb');
+            const thumbM = document.getElementById('langThumbMobile');
+            const isRU = lang && lang.startsWith('ru');
+            if (thumb) { thumb.classList.toggle('left-1', !isRU); thumb.classList.toggle('right-1', isRU); }
+            if (thumbM) { thumbM.classList.toggle('left-1', !isRU); thumbM.classList.toggle('right-1', isRU); }
+        }
+
+        function setUrlLangParam(lang) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.history.replaceState({}, '', url);
+        }
+
+        function bindLangToggle(id) {
+            const btn = document.getElementById(id);
+            if (!btn) return;
+            btn.addEventListener('click', () => {
+                const newLang = (i18next.language || 'en').startsWith('ru') ? 'en' : 'ru';
+                i18next.changeLanguage(newLang, () => {
+                    try { localStorage.setItem('i18nextLng', newLang); } catch (_) { }
+                    document.documentElement.lang = newLang.startsWith('ru') ? 'ru' : 'en';
+                    localize();
+                    document.title = (i18next.t('brand') || 'Davilkus Games') + ' — 404';
+                    setLangUI(newLang);
+                    setUrlLangParam(newLang);
+                });
+            });
+        }
+
+        function loadCounter() {
+            if (document.getElementById('counterjs')) return;
+            const s = document.createElement('script');
+            s.id = 'counterjs'; s.defer = true; s.src = 'https://cdn.counter.dev/script.js';
+            s.dataset.id = 'cc931e21-a972-4ffe-aaf1-52b0f23da9d3';
+            s.dataset.utcoffset = String(-new Date().getTimezoneOffset() / 60);
+            document.head.appendChild(s);
         }
 
         function initFx() {
@@ -275,15 +424,20 @@
                 .init({
                     resources,
                     fallbackLng: 'en',
-                    detection: { order: ['querystring', 'cookie', 'localStorage', 'navigator'], caches: ['localStorage', 'cookie'] },
-                    lookupQuerystring: 'lang'
+                    detection: { order: ['querystring', 'cookie', 'localStorage', 'navigator'], caches: ['localStorage', 'cookie'], lookupQuerystring: 'lang' }
                 }, () => {
                     const lang = i18next.language || 'en';
                     document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
                     localize();
+                    document.body.style.visibility = 'visible';
+                    document.title = (i18next.t('brand') || 'Davilkus Games') + ' — 404';
+                    setLangUI(lang);
+                    bindLangToggle('langToggle');
+                    bindLangToggle('langToggleMobile');
                     initFx();
                 });
-            document.title = i18next.t('brand') + ' — 404';
+
+            loadCounter();
         });
     </script>
 </body>
