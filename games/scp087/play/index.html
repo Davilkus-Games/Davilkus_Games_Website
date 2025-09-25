@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Davilkus Games — Coming Soon</title>
+    <meta name="description" content="The WebGL version of SCP-087: Into the Abyss is currently in development." />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Coming Soon — Davilkus Games" />
+    <meta property="og:site_name" content="Davilkus Games" />
+    <meta property="og:description"
+        content="The WebGL version of SCP-087: Into the Abyss is currently in development." />
+    <meta property="og:image" content="https://davilkusgames.com/assets/logo.webp" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:type" content="image/webp" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@DavilkusGames" />
+    <meta name="twitter:title" content="Coming Soon — Davilkus Games" />
+    <meta name="twitter:description"
+        content="The WebGL version of SCP-087: Into the Abyss is currently in development." />
+    <meta name="twitter:image" content="https://davilkusgames.com/assets/logo.webp" />
+
+    <meta name="theme-color" content="#0B0F1A" />
+
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Apple Color Emoji'] }, colors: { bg: '#0B0F1A', panel: '#0F1524', ink: '#E8EAF2', brand: '#2563eb', brandDark: '#1e40af', header: '#070a12', line: '#1b2336' }, boxShadow: { soft: '0 6px 30px rgba(0,0,0,0.35)' } } } }
+    </script>
+
+    <!-- GSAP -->
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+    <!-- i18next + detector -->
+    <script defer src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
+    <script defer
+        src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
+
+    <style>
+        body {
+            visibility: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0b0f1a
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1b2336;
+            border-radius: 10px
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2a3552
+        }
+
+        .noise::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.07'/></svg>");
+            mix-blend-mode: soft-light;
+            opacity: .25
+        }
+
+        .vignette::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, .55) 100%)
+        }
+
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03) 1px, transparent 2px, transparent 3px);
+            opacity: .06
+        }
+
+        @keyframes flicker {
+
+            0%,
+            19%,
+            21%,
+            23%,
+            80%,
+            100% {
+                opacity: 1
+            }
+
+            20%,
+            22% {
+                opacity: .55
+            }
+
+            81% {
+                opacity: .85
+            }
+        }
+
+        .flicker {
+            animation: flicker 6s infinite
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            * {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-bg text-ink font-sans antialiased noise vignette">
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <img src="/assets/logo.webp" alt="Davilkus Games logo" width="64" height="64"
+                    class="h-9 w-9 rounded-2xl" />
+                <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus
+                    Games</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6 text-sm">
+                <nav class="flex items-center gap-8">
+                    <a href="/games/" class="hover:opacity-80 transition" data-i18n="nav.games">Games</a>
+                    <a href="/#about" class="hover:opacity-80 transition" data-i18n="nav.about">About</a>
+                    <a href="/#contact" class="hover:opacity-80 transition" data-i18n="nav.contact">Contact Us</a>
+                </nav>
+                <button id="langToggle"
+                    class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.75rem] h-8 select-none focus:outline-none focus:ring-2 focus:ring-brand transition"
+                    aria-label="Toggle language">
+                    <span class="flex-1 text-center text-[10px]">EN</span>
+                    <span class="flex-1 text-center text-[10px]">RU</span>
+                    <span id="langThumb"
+                        class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
+                </button>
+            </div>
+            <div class="md:hidden flex items-center gap-2">
+                <button id="langToggleMobile"
+                    class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.25rem] h-7 select-none focus:outline-none focus:ring-2 focus:ring-brand transition"
+                    aria-label="Toggle language">
+                    <span class="flex-1 text-center text-[9px]">EN</span>
+                    <span class="flex-1 text-center text-[9px]">RU</span>
+                    <span id="langThumbMobile"
+                        class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
+                </button>
+                <button id="menuBtn"
+                    class="p-2 rounded-lg hover:bg-panel/70 focus:outline-none focus:ring-2 focus:ring-brand"
+                    aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <img src="/assets/icons/menu.svg" alt="menu" class="w-6 h-6" />
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden border-t border-line bg-header/95 menu-overlay" aria-hidden="true">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
+                <a href="/games/" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.games">Games</a>
+                <a href="/#about" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.about">About</a>
+                <a href="/#contact" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.contact">Contact
+                    Us</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <section class="relative">
+            <div
+                class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]">
+            </div>
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+                <div class="text-center space-y-8">
+                    <p class="text-lg md:text-xl text-ink/70 mb-4" data-i18n="comingsoon.gameName">
+                        SCP-087: Into the Abyss
+                    </p>
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight flicker select-none"
+                        data-i18n="comingsoon.title">
+                        Coming Soon
+                    </h1>
+                    <p class="max-w-2xl mx-auto text-base md:text-lg text-ink/80" data-i18n="comingsoon.desc">
+                        The in-browser WebGL player for this game is currently in development.
+                    </p>
+                    <div class="pt-2">
+                        <a href="../"
+                            class="inline-flex items-center gap-3 text-base font-medium px-6 py-3 rounded-xl bg-brand hover:bg-brandDark transition shadow-soft will-change-transform"
+                            id="returnBtn">
+                            <span data-i18n="comingsoon.cta">Back to Game Page</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-header border-t border-line">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div>
+                <div class="text-base md:text-lg">© 2025 Davilkus Games</div>
+                <div class="mt-2 flex items-center gap-4 text-xs">
+                    <a href="/privacy-policy/" class="opacity-60 hover:opacity-80 transition">Privacy Policy</a>
+                    <a href="/cookie-policy/" class="opacity-60 hover:opacity-80 transition">Cookie Policy</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-5">
+                <a href="https://discord.gg/y3hE847S" class="opacity-80 hover:opacity-100" aria-label="Discord"><img
+                        src="/assets/icons/discord.svg" width="32" height="32" loading="lazy" decoding="async"
+                        class="w-8 h-8" alt="Discord" /></a>
+                <a href="https://t.me/davilkus_games_news" class="opacity-80 hover:opacity-100"
+                    aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="32" height="32" loading="lazy"
+                        decoding="async" class="w-8 h-8" alt="Telegram" /></a>
+                <a href="https://www.youtube.com/@davilkusgames" class="opacity-80 hover:opacity-100"
+                    aria-label="YouTube"><img src="/assets/icons/youtube.svg" width="32" height="32" loading="lazy"
+                        decoding="async" class="w-8 h-8" alt="YouTube" /></a>
+                <a href="https://x.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="X"><img
+                        src="/assets/icons/x.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+                        alt="X" /></a>
+                <a href="https://github.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="GitHub"><img
+                        src="/assets/icons/github.svg" width="32" height="32" loading="lazy" decoding="async"
+                        class="w-8 h-8" alt="GitHub" /></a>
+                <a href="https://vk.com/davilkusgames" class="opacity-80 hover:opacity-100" aria-label="VK"><img
+                        src="/assets/icons/vk.svg" width="32" height="32" loading="lazy" decoding="async"
+                        class="w-8 h-8" alt="VK" /></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hasGSAP = () => !!window.gsap; const menuBtn = document.getElementById("menuBtn"), mobileMenu = document.getElementById("mobileMenu"); let menuOpen = !1, outsideHandler, trapHandler, first, last; const focusables = "a,button,[tabindex]:not([tabindex='-1'])"; function openMenu() { menuOpen = !0, hasGSAP() && gsap.killTweensOf(mobileMenu), mobileMenu.classList.remove("hidden"), mobileMenu.setAttribute("aria-hidden", "false"), menuBtn.setAttribute("aria-expanded", "true"), hasGSAP() && gsap.fromTo(mobileMenu, { height: 0, opacity: 0 }, { height: "auto", opacity: 1, duration: .35, ease: "power3.out" }); const e = mobileMenu.querySelectorAll(focusables); first = e[0], last = e[e.length - 1], first && first.focus(), trapHandler = e => { if ("Tab" !== e.key || !first || !last) return; e.shiftKey && document.activeElement === first ? (e.preventDefault(), last.focus()) : e.shiftKey || document.activeElement !== last || (e.preventDefault(), first.focus()) }, document.addEventListener("keydown", trapHandler), outsideHandler = e => { if (mobileMenu.contains(e.target) || menuBtn.contains(e.target)) return; closeMenu() }, document.addEventListener("pointerdown", outsideHandler, { passive: !0 }) } function closeMenu() { menuOpen = !1, hasGSAP() && gsap.killTweensOf(mobileMenu), hasGSAP() ? gsap.to(mobileMenu, { height: 0, opacity: 0, duration: .3, ease: "power3.inOut", onComplete: () => mobileMenu.classList.add("hidden") }) : mobileMenu.classList.add("hidden"), mobileMenu.setAttribute("aria-hidden", "true"), menuBtn.setAttribute("aria-expanded", "false"), menuBtn.focus(), document.removeEventListener("keydown", trapHandler), document.removeEventListener("pointerdown", outsideHandler), first = last = null } menuBtn && menuBtn.addEventListener("click", () => { menuOpen ? closeMenu() : openMenu() }), document.addEventListener("keydown", e => "Escape" === e.key && menuOpen && closeMenu());
+        const resources = { en: { translation: { brand: "Davilkus Games", nav: { games: "Games", about: "About", contact: "Contact Us" }, comingsoon: { gameName: "SCP-087: Into the Abyss", title: "Coming Soon", desc: "The in-browser WebGL player for this game is currently in development.", cta: "Back to Game Page" } } }, ru: { translation: { brand: "Davilkus Games", nav: { games: "Игры", about: "О нас", contact: "Контакты" }, comingsoon: { gameName: "SCP-087: Лестница в Бездну", title: "В разработке", desc: "Мы работаем над WebGL-версией игры для запуска прямо в браузере.", cta: "Вернуться на страницу игры" } } } };
+        function localize() { document.querySelectorAll("[data-i18n]").forEach(e => { const t = e.getAttribute("data-i18n"), n = i18next.t(t); n && (e.innerHTML = n) }) } function setLangUI(e) { const t = document.getElementById("langThumb"), n = document.getElementById("langThumbMobile"), o = e && e.startsWith("ru"); t && (t.classList.toggle("left-1", !o), t.classList.toggle("right-1", o)), n && (n.classList.toggle("left-1", !o), n.classList.toggle("right-1", o)) } function setUrlLangParam(e) { const t = new URL(window.location.href); t.searchParams.set("lang", e), window.history.replaceState({}, "", t) } function bindLangToggle(e) { const t = document.getElementById(e); t && t.addEventListener("click", () => { const e = (i18next.language || "en").startsWith("ru") ? "en" : "ru"; i18next.changeLanguage(e, () => { try { localStorage.setItem("i18nextLng", e) } catch (e) { } localize(), document.title = i18next.t("brand") + " — " + i18next.t("comingsoon.title"), setLangUI(e), setUrlLangParam(e) }) }) } function loadCounter() { if (document.getElementById("counterjs")) return; const e = document.createElement("script"); e.id = "counterjs", e.defer = !0, e.src = "https://cdn.counter.dev/script.js", e.dataset.id = "cc931e21-a972-4ffe-aaf1-52b0f23da9d3", e.dataset.utcoffset = String(-new Date().getTimezoneOffset() / 60), document.head.appendChild(e) }
+        function initFx() { const e = window.matchMedia("(prefers-reduced-motion: reduce)").matches; if (e || !window.gsap) return; gsap.from("header", { y: -60, opacity: 0, duration: .6, ease: "power2.out" }), gsap.from("h1, h1 + p", { y: 12, opacity: 0, duration: .6, delay: .1, ease: "power2.out", stagger: .05 }), gsap.from("#returnBtn", { scale: .92, duration: .5, delay: .2, ease: "power2.out" }); const t = document.getElementById("returnBtn"); t.addEventListener("mouseenter", () => gsap.to(t, { y: -2, duration: .15, ease: "power2.out" })), t.addEventListener("mouseleave", () => gsap.to(t, { y: 0, duration: .15, ease: "power2.out" })) }
+        window.addEventListener("DOMContentLoaded", () => { i18next.use(window.i18nextBrowserLanguageDetector).init({ resources: resources, fallbackLng: "en", detection: { order: ["querystring", "cookie", "localStorage", "navigator"], caches: ["localStorage", "cookie"], lookupQuerystring: "lang" } }, () => { const e = i18next.language || "en"; document.documentElement.lang = e.startsWith("ru") ? "ru" : "en", localize(), document.body.style.visibility = "visible", document.title = i18next.t("brand") + " — " + i18next.t("comingsoon.title"), setLangUI(e), bindLangToggle("langToggle"), bindLangToggle("langToggleMobile"), initFx() }), loadCounter() });
+    </script>
+</body>
+
+</html>

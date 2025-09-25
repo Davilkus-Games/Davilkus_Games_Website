@@ -66,7 +66,8 @@
 
   <!-- i18n -->
   <script defer src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
 
   <!-- MicroModal for screenshot lightbox -->
   <script defer src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
@@ -86,39 +87,92 @@
   </script>
 
   <style>
-    ::-webkit-scrollbar{width:10px;height:10px}
-    ::-webkit-scrollbar-track{background:#0b0f1a}
-    ::-webkit-scrollbar-thumb{background:#1b2336;border-radius:10px}
-    ::-webkit-scrollbar-thumb:hover{background:#2a3552}
+    body {
+      visibility: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0b0f1a
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1b2336;
+      border-radius: 10px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2a3552
+    }
 
     /* Hero background image behind content (reduced blur) */
-    .hero-bg{position:relative}
-    .hero-bg::before{content:"";position:absolute;inset:0;background:url('/assets/showcase/scp087.webp') center/cover no-repeat;filter:blur(6px) brightness(.5);transform:scale(1.04);z-index:0;pointer-events:none}
+    .hero-bg {
+      position: relative
+    }
+
+    .hero-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('/assets/showcase/scp087.webp') center/cover no-repeat;
+      filter: blur(6px) brightness(.5);
+      transform: scale(1.04);
+      z-index: 0;
+      pointer-events: none
+    }
 
     /* Screenshots row */
-    .shots-track{scroll-snap-type:x mandatory}
-    .shot{scroll-snap-align:center}
+    .shots-track {
+      scroll-snap-type: x mandatory
+    }
+
+    .shot {
+      scroll-snap-align: center
+    }
 
     /* Modal sizing */
-    .modal__overlay{background:rgba(0,0,0,.6)}
+    .modal__overlay {
+      background: rgba(0, 0, 0, .6)
+    }
 
     /* Keep MicroModal hidden until opened */
-    .micromodal-slide{display:none}
-    .micromodal-slide.is-open{display:block}
-    .modal[aria-hidden="true"]{display:none}
-    .modal[aria-hidden="false"]{display:block}
+    .micromodal-slide {
+      display: none
+    }
+
+    .micromodal-slide.is-open {
+      display: block
+    }
+
+    .modal[aria-hidden="true"] {
+      display: none
+    }
+
+    .modal[aria-hidden="false"] {
+      display: block
+    }
 
     /* Clean scroll behavior, edge-fade, and top scrollbar */
-    #shotsTrack{
-      -webkit-overflow-scrolling:touch;
-      overscroll-behavior-x:contain;
-      scroll-behavior:smooth;
-      scroll-snap-type:x mandatory;
-      mask-image:linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+    #shotsTrack {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
     }
+
     /* put the native scrollbar on top */
-    .scrollbar-top{ transform: rotateX(180deg); }
-    .scrollbar-top > *{ transform: rotateX(180deg); }
+    .scrollbar-top {
+      transform: rotateX(180deg);
+    }
+
+    .scrollbar-top>* {
+      transform: rotateX(180deg);
+    }
   </style>
 </head>
 
@@ -128,27 +182,34 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3 group">
         <img src="/assets/logo.webp" alt="Davilkus Games logo" width="64" height="64" class="h-9 w-9 rounded-2xl" />
-        <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus Games</span>
+        <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus
+          Games</span>
       </a>
       <div class="hidden md:flex items-center gap-6 text-sm">
         <nav class="flex items-center gap-8">
           <a href="/games/" class="hover:opacity-80 transition" data-i18n="nav.games">Games</a>
-          <a href="/?goto=about" class="hover:opacity-80 transition" data-i18n="nav.about">About</a>
-          <a href="/?goto=contact" class="hover:opacity-80 transition" data-i18n="nav.contact">Contact Us</a>
+          <a href="/#about" class="hover:opacity-80 transition" data-i18n="nav.about">About</a>
+          <a href="/#contact" class="hover:opacity-80 transition" data-i18n="nav.contact">Contact Us</a>
         </nav>
-        <button id="langToggle" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.75rem] h-8 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
+        <button id="langToggle"
+          class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.75rem] h-8 select-none focus:outline-none focus:ring-2 focus:ring-brand transition"
+          aria-label="Toggle language">
           <span class="flex-1 text-center text-[10px]">EN</span>
           <span class="flex-1 text-center text-[10px]">RU</span>
           <span id="langThumb" class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
         </button>
       </div>
       <div class="md:hidden flex items-center gap-2">
-        <button id="langToggleMobile" class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.25rem] h-7 select-none focus:outline-none focus:ring-2 focus:ring-brand transition" aria-label="Toggle language">
+        <button id="langToggleMobile"
+          class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.25rem] h-7 select-none focus:outline-none focus:ring-2 focus:ring-brand transition"
+          aria-label="Toggle language">
           <span class="flex-1 text-center text-[9px]">EN</span>
           <span class="flex-1 text-center text-[9px]">RU</span>
-          <span id="langThumbMobile" class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
+          <span id="langThumbMobile"
+            class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
         </button>
-        <button id="menuBtn" class="p-2 rounded-lg hover:bg-panel/70 focus:outline-none focus:ring-2 focus:ring-brand" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <button id="menuBtn" class="p-2 rounded-lg hover:bg-panel/70 focus:outline-none focus:ring-2 focus:ring-brand"
+          aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
           <img src="/assets/icons/menu.svg" alt="menu" class="w-6 h-6" />
         </button>
       </div>
@@ -156,8 +217,8 @@
     <div id="mobileMenu" class="hidden md:hidden border-t border-line bg-header/95 menu-overlay" aria-hidden="true">
       <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
         <a href="/games/" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.games">Games</a>
-        <a href="/?goto=about" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.about">About</a>
-        <a href="/?goto=contact" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.contact">Contact Us</a>
+        <a href="/#about" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.about">About</a>
+        <a href="/#contact" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.contact">Contact Us</a>
       </div>
     </div>
   </header>
@@ -166,27 +227,36 @@
     <!-- Hero / top block with blurred bg image -->
     <section class="relative hero-bg overflow-hidden">
       <!-- gradient like 404 -->
-      <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]"></div>
+      <div
+        class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]">
+      </div>
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
           <div class="md:col-span-2">
-            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight" data-i18n="title">SCP-087: Into the Abyss</h1>
-            <p class="mt-3 md:mt-4 text-sm md:text-base text-ink/80" data-i18n="tagline">Fan-made psychological horror based on SCP-087 — the endless stairwell.</p>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight" data-i18n="title">SCP-087: Into the Abyss
+            </h1>
+            <p class="mt-3 md:mt-4 text-sm md:text-base text-ink/80" data-i18n="tagline">Fan-made psychological horror
+              based on SCP-087 — the endless stairwell.</p>
 
             <!-- CTA row -->
             <div class="mt-7 md:mt-9 flex flex-wrap gap-3">
-              <a href="/games/scp087/play/index.html" class="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand/60">
+              <a href="/games/scp087/play/"
+                class="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand/60">
                 <span data-i18n="btn.play">Play Here</span>
               </a>
-              <a href="https://play.google.com/store/apps/details?id=com.davilkus.scp087" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header">
+              <a href="https://play.google.com/store/apps/details?id=com.DavilkusGames.SCP087" target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header">
                 <img src="/assets/icons/google-play.svg" alt="Google Play" class="w-5 h-5" />
                 <span data-i18n="btn.gp">Get it on Google Play</span>
               </a>
-              <a href="https://yandex.com/games/app/xxxxx" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header">
+              <a href="https://yandex.com/games/app/418827" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header">
                 <img src="/assets/icons/yandex-games.svg" alt="Yandex Games" class="w-5 h-5" />
                 <span data-i18n="btn.yg">Yandex Games</span>
               </a>
-              <a href="https://itch.io" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header">
+              <a href="https://itch.io" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header">
                 <img src="/assets/icons/itchio.svg" alt="itch.io" class="w-5 h-5" />
                 <span>itch.io</span>
               </a>
@@ -194,7 +264,8 @@
           </div>
           <!-- Game icon on the right -->
           <div class="md:col-span-1 md:justify-self-end">
-            <div class="bg-header/70 border border-line rounded-2xl p-2 shadow-soft w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56">
+            <div
+              class="bg-header/70 border border-line rounded-2xl p-2 shadow-soft w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56">
               <img src="game-icon.webp" alt="SCP-087 icon" class="w-full h-full object-cover rounded-xl" />
             </div>
           </div>
@@ -204,7 +275,9 @@
 
     <!-- Screenshots row (Steam-style) -->
     <section class="relative py-6">
-      <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]"></div>
+      <div
+        class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]">
+      </div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div id="shotsTrack" class="shots-track overflow-x-auto -mx-4 px-4 flex gap-4 scrollbar-top">
           <!-- Thumbs injected via JS -->
@@ -214,17 +287,26 @@
 
     <!-- Description & meta -->
     <section class="relative">
-      <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]"></div>
+      <div
+        class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]">
+      </div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 grid md:grid-cols-3 gap-6 md:gap-8">
         <!-- Long description -->
         <article class="md:col-span-2 bg-panel/60 border border-line rounded-2xl p-5 md:p-6 shadow-soft" data-animate>
           <h2 class="text-xl font-semibold mb-4" data-i18n="sections.desc">Description</h2>
           <div class="text-[15px] leading-relaxed space-y-4">
-            <p data-i18n="desc.p1"><strong>Item Number:</strong> SCP-087<br/><strong>Object Class:</strong> Euclid</p>
-            <p data-i18n="desc.p2">SCP-087 is a stairwell of indeterminate depth, located within [REDACTED]. Visibility is restricted, and all light sources above 75W prove ineffective.</p>
-            <p data-i18n="desc.p3">At approximately 200m depth, distress vocalizations resembling a child’s cries have been recorded. Attempts to locate the source have failed. Explorations confirm the presence of an anomalous entity, designated SCP-087-1 — a face lacking a mouth, nostrils, or eyes. Its nature and behavior remain unclassified.</p>
-            <p data-i18n="desc.p4">Following Exploration IV, external auditory anomalies were documented. Access to SCP-087 is now prohibited.</p>
-            <p data-i18n="desc.p5">This is a first-person psychological horror game. Descend alone into the dark, procedurally-generated stairwell. Experience unpredictable reality shifts, radio messages, hallucinations, and fatal encounters with SCP-087-1.</p>
+            <p data-i18n="desc.p1"><strong>Item Number:</strong> SCP-087<br /><strong>Object Class:</strong> Euclid</p>
+            <p data-i18n="desc.p2">SCP-087 is a stairwell of indeterminate depth, located within [REDACTED]. Visibility
+              is restricted, and all light sources above 75W prove ineffective.</p>
+            <p data-i18n="desc.p3">At approximately 200m depth, distress vocalizations resembling a child’s cries have
+              been recorded. Attempts to locate the source have failed. Explorations confirm the presence of an
+              anomalous entity, designated SCP-087-1 — a face lacking a mouth, nostrils, or eyes. Its nature and
+              behavior remain unclassified.</p>
+            <p data-i18n="desc.p4">Following Exploration IV, external auditory anomalies were documented. Access to
+              SCP-087 is now prohibited.</p>
+            <p data-i18n="desc.p5">This is a first-person psychological horror game. Descend alone into the dark,
+              procedurally-generated stairwell. Experience unpredictable reality shifts, radio messages, hallucinations,
+              and fatal encounters with SCP-087-1.</p>
             <ul class="list-disc pl-6">
               <li data-i18n="desc.l1">Offline play</li>
               <li data-i18n="desc.l2">Atmospheric horror</li>
@@ -233,8 +315,14 @@
             </ul>
             <p class="italic" data-i18n="desc.p6">Survive. As long as you can.</p>
             <div class="pt-5 mt-3 border-t border-line/60 space-y-2">
-              <p class="text-ink/70 text-sm" data-i18n="disc.p1">This is an unofficial fan-made game based on “SCP-087.” The SCP Foundation and its content, including the SCP logo and related concepts, are licensed under Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0). This project is not affiliated with the SCP Foundation or its authors.</p>
-              <p class="text-ink/70 text-sm">“SCP-087” by Zaeyde, from the SCP Wiki: <a class="underline" href="https://scpwiki.com/scp-087" target="_blank" rel="noopener noreferrer">scpwiki.com/scp-087</a>. <span data-i18n="disc.p2">Licensed under CC BY-SA 3.0.</span></p>
+              <p class="text-ink/70 text-sm" data-i18n="disc.p1">This is an unofficial fan-made game based on “SCP-087.”
+                The SCP Foundation and its content, including the SCP logo and related concepts, are licensed under
+                Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0). This project is not affiliated with the SCP
+                Foundation or its authors.</p>
+              <p class="text-ink/70 text-sm">“SCP-087” by Zaeyde, from the SCP Wiki: <a class="underline"
+                  href="https://scpwiki.com/scp-087" target="_blank" rel="noopener noreferrer">scpwiki.com/scp-087</a>.
+                <span data-i18n="disc.p2">Licensed under CC BY-SA 3.0.</span>
+              </p>
             </div>
           </div>
         </article>
@@ -292,15 +380,21 @@
 
     <!-- Video (cookie gated) -->
     <section class="relative pb-12">
-      <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]"></div>
+      <div
+        class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]">
+      </div>
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-xl font-semibold mb-4" data-i18n="sections.trailer">Trailer</h2>
-        <div id="ytWrap" class="relative w-full aspect-video rounded-2xl overflow-hidden border border-line bg-header/70">
+        <div id="ytWrap"
+          class="relative w-full aspect-video rounded-2xl overflow-hidden border border-line bg-header/70">
           <div id="ytPlaceholder" class="absolute inset-0 grid place-items-center gap-3 p-6 text-center">
             <p class="text-sm text-ink/80" data-i18n="yt.consent">Enable cookies to load the YouTube video.</p>
             <div class="flex items-center justify-center gap-2">
-              <button id="openCookie" class="px-4 py-2 rounded-lg bg-header/80 border border-line hover:bg-header text-sm">Privacy settings</button>
-              <button id="acceptCookies" class="px-4 py-2 rounded-lg bg-brand hover:bg-brandDark text-white text-sm" data-i18n="cookie.accept">Accept</button>
+              <button id="openCookie"
+                class="px-4 py-2 rounded-lg bg-header/80 border border-line hover:bg-header text-sm">Privacy
+                settings</button>
+              <button id="acceptCookies" class="px-4 py-2 rounded-lg bg-brand hover:bg-brandDark text-white text-sm"
+                data-i18n="cookie.accept">Accept</button>
             </div>
           </div>
         </div>
@@ -310,7 +404,8 @@
 
   <!-- Footer -->
   <footer class="bg-header border-t border-line">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div>
         <div class="text-base md:text-lg">© 2025 Davilkus Games</div>
         <div class="mt-2 flex items-center gap-4 text-xs">
@@ -319,12 +414,24 @@
         </div>
       </div>
       <div class="flex items-center gap-5">
-        <a href="https://discord.gg/y3hE847S" class="opacity-80 hover:opacity-100" aria-label="Discord"><img src="/assets/icons/discord.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="Discord" /></a>
-        <a href="https://t.me/davilkus_games_news" class="opacity-80 hover:opacity-100" aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="Telegram" /></a>
-        <a href="https://www.youtube.com/@davilkusgames" class="opacity-80 hover:opacity-100" aria-label="YouTube"><img src="/assets/icons/youtube.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="YouTube" /></a>
-        <a href="https://x.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="X"><img src="/assets/icons/x.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="X" /></a>
-        <a href="https://github.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="GitHub"><img src="/assets/icons/github.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="GitHub" /></a>
-        <a href="https://vk.com/davilkusgames" class="opacity-80 hover:opacity-100" aria-label="VK"><img src="/assets/icons/vk.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8" alt="VK" /></a>
+        <a href="https://discord.gg/y3hE847S" class="opacity-80 hover:opacity-100" aria-label="Discord"><img
+            src="/assets/icons/discord.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+            alt="Discord" /></a>
+        <a href="https://t.me/davilkus_games_news" class="opacity-80 hover:opacity-100" aria-label="Telegram"><img
+            src="/assets/icons/telegram.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+            alt="Telegram" /></a>
+        <a href="https://www.youtube.com/@davilkusgames" class="opacity-80 hover:opacity-100" aria-label="YouTube"><img
+            src="/assets/icons/youtube.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+            alt="YouTube" /></a>
+        <a href="https://x.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="X"><img
+            src="/assets/icons/x.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+            alt="X" /></a>
+        <a href="https://github.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="GitHub"><img
+            src="/assets/icons/github.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+            alt="GitHub" /></a>
+        <a href="https://vk.com/davilkusgames" class="opacity-80 hover:opacity-100" aria-label="VK"><img
+            src="/assets/icons/vk.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+            alt="VK" /></a>
       </div>
     </div>
   </footer>
@@ -336,11 +443,16 @@
         <img src="/assets/icons/cookie.svg" alt="cookie" width="28" height="28" class="w-8 h-8 mt-0.5" />
         <div class="flex-1">
           <div class="font-semibold text-sm md:text-base mb-0.5" data-i18n="cookie.title">Cookie time!</div>
-          <p class="text-xs md:text-sm text-ink/80" data-i18n="cookie.desc">We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.</p>
+          <p class="text-xs md:text-sm text-ink/80" data-i18n="cookie.desc">We use cookies to ensure you get the best
+            experience on our website. By using our website you agree to our use of cookies.</p>
         </div>
         <div class="flex items-center gap-2 self-center">
-          <button id="cookieDecline" class="text-sm px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium transition" data-i18n="cookie.decline">Decline</button>
-          <button id="cookieAccept" class="text-sm px-3 py-1.5 rounded-lg bg-brand hover:bg-brandDark text-white font-medium transition" data-i18n="cookie.accept">Accept</button>
+          <button id="cookieDecline"
+            class="text-sm px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium transition"
+            data-i18n="cookie.decline">Decline</button>
+          <button id="cookieAccept"
+            class="text-sm px-3 py-1.5 rounded-lg bg-brand hover:bg-brandDark text-white font-medium transition"
+            data-i18n="cookie.accept">Accept</button>
         </div>
       </div>
     </div>
@@ -349,17 +461,34 @@
   <!-- Screenshot modal -->
   <div class="modal micromodal-slide" id="shotModal" aria-hidden="true">
     <div class="modal__overlay fixed inset-0 z-[1000] grid place-items-center p-4" tabindex="-1" data-micromodal-close>
-      <div class="modal__container relative z-[1001] bg-header/95 border border-line rounded-2xl shadow-soft max-w-5xl w-full" role="dialog" aria-modal="true" aria-labelledby="shotModal-title">
-        <button class="absolute top-3 right-3 w-10 h-10 grid place-items-center rounded-lg bg-header/80 border border-line hover:bg-header" aria-label="Close" data-micromodal-close>
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      <div
+        class="modal__container relative z-[1001] bg-header/95 border border-line rounded-2xl shadow-soft max-w-5xl w-full"
+        role="dialog" aria-modal="true" aria-labelledby="shotModal-title">
+        <button
+          class="absolute top-3 right-3 w-10 h-10 grid place-items-center rounded-lg bg-header/80 border border-line hover:bg-header"
+          aria-label="Close" data-micromodal-close>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 6l12 12M18 6l-12 12" />
+          </svg>
         </button>
         <div class="relative aspect-video">
           <img id="shotLarge" alt="Screenshot" class="absolute inset-0 w-full h-full object-contain bg-black/60" />
-          <button id="shotPrev" class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 grid place-items-center rounded-full bg-header/80 border border-line hover:bg-header" aria-label="Previous">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19L8 12l7-7"/></svg>
+          <button id="shotPrev"
+            class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 grid place-items-center rounded-full bg-header/80 border border-line hover:bg-header"
+            aria-label="Previous">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 19L8 12l7-7" />
+            </svg>
           </button>
-          <button id="shotNext" class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 grid place-items-center rounded-full bg-header/80 border border-line hover:bg-header" aria-label="Next">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          <button id="shotNext"
+            class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 grid place-items-center rounded-full bg-header/80 border border-line hover:bg-header"
+            aria-label="Next">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
           </button>
         </div>
       </div>
@@ -369,253 +498,62 @@
   <script>
     const hasGSAP = () => !!window.gsap;
 
-    // Mobile menu (bug-fixed) + focus trap
+    // Mobile menu (unified)
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     let menuOpen = false; let outsideHandler; let trapHandler; let first; let last;
     const focusables = 'a,button,[tabindex]:not([tabindex="-1"])';
-
-    function openMenu() {
-      menuOpen = true;
-      if (hasGSAP()) gsap.killTweensOf(mobileMenu);
-      mobileMenu.classList.remove('hidden');
-      mobileMenu.setAttribute('aria-hidden', 'false');
-      menuBtn.setAttribute('aria-expanded', 'true');
-      if (hasGSAP()) gsap.fromTo(mobileMenu, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.35, ease: 'power3.out' });
-      const focusableEls = mobileMenu.querySelectorAll(focusables);
-      first = focusableEls[0]; last = focusableEls[focusableEls.length - 1];
-      first && first.focus();
-      trapHandler = (e) => {
-        if (e.key !== 'Tab' || !first || !last) return;
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-      };
-      document.addEventListener('keydown', trapHandler);
-      outsideHandler = (e) => { if (mobileMenu.contains(e.target) || menuBtn.contains(e.target)) return; closeMenu(); };
-      document.addEventListener('pointerdown', outsideHandler, { passive: true });
-    }
-    function closeMenu() {
-      menuOpen = false;
-      if (hasGSAP()) gsap.killTweensOf(mobileMenu);
-      if (hasGSAP()) gsap.to(mobileMenu, { height: 0, opacity: 0, duration: 0.3, ease: 'power3.inOut', onComplete: () => mobileMenu.classList.add('hidden') });
-      else mobileMenu.classList.add('hidden');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.focus();
-      document.removeEventListener('keydown', trapHandler);
-      document.removeEventListener('pointerdown', outsideHandler);
-      first = last = null;
-    }
+    function openMenu() { menuOpen = !0, hasGSAP() && gsap.killTweensOf(mobileMenu), mobileMenu.classList.remove("hidden"), mobileMenu.setAttribute("aria-hidden", "false"), menuBtn.setAttribute("aria-expanded", "true"), hasGSAP() && gsap.fromTo(mobileMenu, { height: 0, opacity: 0 }, { height: "auto", opacity: 1, duration: .35, ease: "power3.out" }); const e = mobileMenu.querySelectorAll(focusables); first = e[0], last = e[e.length - 1], first && first.focus(), trapHandler = e => { if ("Tab" !== e.key || !first || !last) return; e.shiftKey && document.activeElement === first ? (e.preventDefault(), last.focus()) : e.shiftKey || document.activeElement !== last || (e.preventDefault(), first.focus()) }, document.addEventListener("keydown", trapHandler), outsideHandler = e => { if (mobileMenu.contains(e.target) || menuBtn.contains(e.target)) return; closeMenu() }, document.addEventListener("pointerdown", outsideHandler, { passive: !0 }) }
+    function closeMenu() { menuOpen = !1, hasGSAP() && gsap.killTweensOf(mobileMenu), hasGSAP() ? gsap.to(mobileMenu, { height: 0, opacity: 0, duration: .3, ease: "power3.inOut", onComplete: () => mobileMenu.classList.add("hidden") }) : mobileMenu.classList.add("hidden"), mobileMenu.setAttribute("aria-hidden", "true"), menuBtn.setAttribute("aria-expanded", "false"), menuBtn.focus(), document.removeEventListener("keydown", trapHandler), document.removeEventListener("pointerdown", outsideHandler), first = last = null }
     menuBtn && menuBtn.addEventListener('click', () => { menuOpen ? closeMenu() : openMenu(); });
     document.addEventListener('keydown', e => (e.key === 'Escape' && menuOpen) && closeMenu());
 
-    // i18n resources (flat keys)
+    // i18n resources
     const resources = {
-      en: { translation: {
-        brand:'Davilkus Games',
-        nav:{ games:'Games', about:'About', contact:'Contact Us' },
-        title:'SCP-087: Into the Abyss',
-        tagline:'Fan-made psychological horror based on SCP-087 — the endless stairwell.',
-        sections:{ desc:'Description', info:'Game Info', trailer:'Trailer', credits:'Team & Sources' },
-        info:{ status:'Status', release:'Release date', updated:'Last update', platforms:'Platforms', statusVal:'Released', platformsVal:'Android; Web', releaseVal:'March 17', updatedVal:'June 5' },
-        credits:{ dev:'Developer', comp:'Composer', lore:'Lore source', loreVal:'SCP-087 by Zaeyde — SCP Wiki' },
-        desc:{
-          p1:'Item Number: SCP-087\nObject Class: Euclid',
-          p2:'SCP-087 is a stairwell of indeterminate depth, located within [REDACTED]. Visibility is restricted, and all light sources above 75W prove ineffective.',
-          p3:'At approximately 200m depth, distress vocalizations resembling a child’s cries have been recorded. Attempts to locate the source have failed. Explorations confirm the presence of an anomalous entity, designated SCP-087-1 — a face lacking a mouth, nostrils, or eyes. Its nature and behavior remain unclassified.',
-          p4:'Following Exploration IV, external auditory anomalies were documented. Access to SCP-087 is now prohibited.',
-          p5:'This is a first-person psychological horror game. Descend alone into the dark, procedurally-generated stairwell. Experience unpredictable reality shifts, radio messages, hallucinations and fatal encounters with SCP-087-1.',
-          l1:'Offline play', l2:'Atmospheric horror', l3:'SCP lore-inspired', l4:'Single-player only',
-          p6:'Survive. As long as you can.'
-        },
-        disc:{ p1:'This is an unofficial fan-made game based on “SCP-087.” The SCP Foundation and its content, including the SCP logo and related concepts, are licensed under Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0). This project is not affiliated with the SCP Foundation or its authors.', p2:'Licensed under CC BY-SA 3.0.' },
-        yt:{ consent:'Enable cookies to load the YouTube video.' },
-        btn:{ gp:'Get it on Google Play', yg:'Yandex Games', play:'Play Here' },
-        cookie:{ title:'Cookie time!', desc:'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', accept:'Accept', decline:'Decline' }
-      }},
-      ru: { translation: {
-        brand:'Davilkus Games',
-        nav:{ games:'Игры', about:'О нас', contact:'Контакты' },
-        title:'SCP-087: Лестница в Бездну',
-        tagline:'Фанатский психологический хоррор по мотивам SCP-087 — бесконечной лестницы.',
-        sections:{ desc:'Описание', info:'Информация об игре', trailer:'Трейлер', credits:'Команда и источники' },
-        info:{ status:'Статус', release:'Дата выхода', updated:'Последнее обновление', platforms:'Платформы', statusVal:'Релиз', platformsVal:'Android; Web', releaseVal:'17 марта', updatedVal:'5 июня' },
-        credits:{ dev:'Разработчик', comp:'Композитор', lore:'Источник лора', loreVal:'SCP-087 от Zaeyde — SCP Wiki' },
-        desc:{
-          p1:'Номер объекта: SCP-087\nКласс объекта: Евклид',
-          p2:'SCP-087 — лестничный пролёт неопределённой глубины, расположенный в [УДАЛЕНО]. Видимость ограничена, любые источники света мощностью свыше 75 Вт оказываются неэффективны.',
-          p3:'На глубине около 200 м зафиксированы крики, похожие на детские. Попытки определить источник не увенчались успехом. Исследования подтвердили наличие аномальной сущности, обозначенной SCP-087-1 — лица без рта, ноздрей и глаз. Её природа и поведение не классифицированы.',
-          p4:'После Исследования IV были зафиксированы внешние слуховые аномалии. Доступ к SCP-087 запрещён.',
-          p5:'Это психологический хоррор от первого лица. Спускайтесь в тёмный процедурно‑генерируемый пролёт. Переживите сдвиги реальности, радиосообщения, галлюцинации и смертельные встречи с SCP-087-1.',
-          l1:'Оффлайн‑режим', l2:'Атмосферный хоррор', l3:'По мотивам SCP‑лор', l4:'Только одиночная игра',
-          p6:'Выживай. Сколько сможешь.'
-        },
-        disc:{ p1:'Неофициальная фанатская игра по мотивам «SCP-087». Фонд SCP и его материалы, включая логотип SCP и связанные концепции, лицензируются по Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0). Проект не аффилирован с Фондом SCP или его авторами.', p2:'Лицензия: CC BY-SA 3.0.' },
-        yt:{ consent:'Включите файлы cookie, чтобы загрузить видео YouTube.' },
-        btn:{ gp:'В Google Play', yg:'Яндекс Игры', play:'Играть здесь' },
-        cookie:{ title:'Время печенек!', desc:'Мы используем файлы cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на их использование.', accept:'Принять', decline:'Отклонить' }
-      }}
+      en: {
+        translation: {
+          brand: 'Davilkus Games', nav: { games: 'Games', about: 'About', contact: 'Contact Us' }, title: 'SCP-087: Into the Abyss', tagline: 'Fan-made psychological horror based on SCP-087 — the endless stairwell.', sections: { desc: 'Description', info: 'Game Info', trailer: 'Trailer', credits: 'Team & Sources' }, info: { status: 'Status', release: 'Release date', updated: 'Last update', platforms: 'Platforms', statusVal: 'Released', platformsVal: 'Android; Web', releaseVal: 'March 17', updatedVal: 'June 5' }, credits: { dev: 'Developer', comp: 'Composer', lore: 'Lore source', loreVal: 'SCP-087 by Zaeyde — SCP Wiki' },
+          desc: { p1: '<strong>Item Number:</strong> SCP-087<br/><strong>Object Class:</strong> Euclid', p2: 'SCP-087 is a stairwell of indeterminate depth, located within [REDACTED]. Visibility is restricted, and all light sources above 75W prove ineffective.', p3: 'At approximately 200m depth, distress vocalizations resembling a child’s cries have been recorded. Attempts to locate the source have failed. Explorations confirm the presence of an anomalous entity, designated SCP-087-1 — a face lacking a mouth, nostrils, or eyes. Its nature and behavior remain unclassified.', p4: 'Following Exploration IV, external auditory anomalies were documented. Access to SCP-087 is now prohibited.', p5: 'This is a first-person psychological horror game. Descend alone into the dark, procedurally-generated stairwell. Experience unpredictable reality shifts, radio messages, hallucinations, and fatal encounters with SCP-087-1.', l1: 'Offline play', l2: 'Atmospheric horror', l3: 'SCP lore-inspired', l4: 'Single-player only', p6: 'Survive. As long as you can.' },
+          disc: { p1: 'This is an unofficial fan-made game based on “SCP-087.” The SCP Foundation and its content, including the SCP logo and related concepts, are licensed under Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0). This project is not affiliated with the SCP Foundation or its authors.', p2: 'Licensed under CC BY-SA 3.0.' },
+          yt: { consent: 'Enable cookies to load the YouTube video.' }, btn: { gp: 'Get it on Google Play', yg: 'Yandex Games', play: 'Play Here' }, cookie: { title: 'Cookie time!', desc: 'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', accept: 'Accept', decline: 'Decline' }
+        }
+      },
+      ru: {
+        translation: {
+          brand: 'Davilkus Games', nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' }, title: 'SCP-087: Лестница в Бездну', tagline: 'Фанатский психологический хоррор по мотивам SCP-087 — бесконечной лестницы.', sections: { desc: 'Описание', info: 'Информация об игре', trailer: 'Трейлер', credits: 'Команда и источники' }, info: { status: 'Статус', release: 'Дата выхода', updated: 'Последнее обновление', platforms: 'Платформы', statusVal: 'Релиз', platformsVal: 'Android; Web', releaseVal: '17 марта', updatedVal: '5 июня' }, credits: { dev: 'Разработчик', comp: 'Композитор', lore: 'Источник лора', loreVal: 'SCP-087 от Zaeyde — SCP Wiki' },
+          desc: { p1: '<strong>Номер объекта:</strong> SCP-087<br/><strong>Класс объекта:</strong> Евклид', p2: 'SCP-087 — лестничный пролёт неопределённой глубины, расположенный в [УДАЛЕНО]. Видимость ограничена, любые источники света мощностью свыше 75 Вт оказываются неэффективны.', p3: 'На глубине около 200 м зафиксированы крики, похожие на детские. Попытки определить источник не увенчались успехом. Исследования подтвердили наличие аномальной сущности, обозначенной SCP-087-1 — лица без рта, ноздрей и глаз. Её природа и поведение не классифицированы.', p4: 'После Исследования IV были зафиксированы внешние слуховые аномалии. Доступ к SCP-087 запрещён.', p5: 'Это психологический хоррор от первого лица. Спускайтесь в тёмный процедурно‑генерируемый пролёт. Переживите сдвиги реальности, радиосообщения, галлюцинации и смертельные встречи с SCP-087-1.', l1: 'Оффлайн‑режим', l2: 'Атмосферный хоррор', l3: 'По мотивам SCP‑лор', l4: 'Только одиночная игра', p6: 'Выживай. Сколько сможешь.' },
+          disc: { p1: 'Неофициальная фанатская игра по мотивам «SCP-087». Фонд SCP и его материалы, включая логотип SCP и связанные концепции, лицензируются по Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0). Проект не аффилирован с Фондом SCP или его авторами.', p2: 'Лицензия: CC BY-SA 3.0.' },
+          yt: { consent: 'Включите файлы cookie, чтобы загрузить видео YouTube.' }, btn: { gp: 'В Google Play', yg: 'Яндекс Игры', play: 'Играть здесь' }, cookie: { title: 'Время печенек!', desc: 'Мы используем файлы cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на их использование.', accept: 'Принять', decline: 'Отклонить' }
+        }
+      }
     };
 
-    function localize(){
-      document.querySelectorAll('[data-i18n]').forEach(el=>{ const key=el.getAttribute('data-i18n'); const val=i18next.t(key); if(!val) return; if(val.includes('\n')){ el.innerHTML = val.replace(/\n/g,'<br/>'); } else { el.textContent = val; } });
-      const lang = i18next.language || 'en';
-      document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
-      document.title = i18next.t('title') + ' — Davilkus Games';
-    }
+    function localize() { document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); const val = i18next.t(key); if (val) el.innerHTML = val; }); }
+    function setLangUI(lang) { const thumb = document.getElementById('langThumb'); const thumbM = document.getElementById('langThumbMobile'); const isRU = lang && lang.startsWith('ru'); if (thumb) { thumb.classList.toggle('left-1', !isRU); thumb.classList.toggle('right-1', isRU) } if (thumbM) { thumbM.classList.toggle('left-1', !isRU); thumbM.classList.toggle('right-1', isRU) } }
+    function setUrlLangParam(lang) { const url = new URL(window.location.href); url.searchParams.set('lang', lang); window.history.replaceState({}, '', url); }
+    function bindLangToggle(id) { const btn = document.getElementById(id); if (!btn) return; btn.addEventListener('click', () => { const newLang = (i18next.language || 'en').startsWith('ru') ? 'en' : 'ru'; i18next.changeLanguage(newLang, () => { try { localStorage.setItem('i18nextLng', newLang) } catch (e) { } localize(); document.title = i18next.t('title') + ' — Davilkus Games'; setLangUI(newLang); setUrlLangParam(newLang) }) }) }
+    function initCookieBar() { const key = 'dg_cookie_v1', bar = document.getElementById('cookieBar'), accept = document.getElementById('cookieAccept'), decline = document.getElementById('cookieDecline'); let stored = null; try { stored = localStorage.getItem(key) } catch (e) { } const show = () => { bar.classList.remove('hidden'); if (hasGSAP()) gsap.fromTo(bar, { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: .45, ease: 'power3.out' }) }, hide = () => { if (hasGSAP()) gsap.to('#cookieBar', { y: 90, opacity: 0, duration: .35, ease: 'power3.inOut', onComplete: () => bar.classList.add('hidden') }); else bar.classList.add('hidden') }; if (stored === 'accepted') return; show(); accept && accept.addEventListener('click', () => { try { localStorage.setItem(key, 'accepted') } catch (e) { } hide(); loadYouTube() }); decline && decline.addEventListener('click', () => { try { localStorage.setItem(key, 'declined') } catch (e) { } hide() }) }
+    function markActiveNav() { document.querySelectorAll('nav a[href="/games/"], #mobileMenu a[href="/games/"]').forEach(link => { link && link.setAttribute('aria-current', 'page'); }); }
+    function loadCounter() { if (document.getElementById('counterjs')) return; const s = document.createElement('script'); s.id = 'counterjs'; s.defer = !0; s.src = 'https://cdn.counter.dev/script.js'; s.dataset.id = 'cc931e21-a972-4ffe-aaf1-52b0f23da9d3'; s.dataset.utcoffset = String(-new Date().getTimezoneOffset() / 60); document.head.appendChild(s) }
 
-    function setLangUI(lang){
-      const thumb=document.getElementById('langThumb'); const thumbM=document.getElementById('langThumbMobile');
-      const isRU=lang && lang.startsWith('ru');
-      if(thumb){ thumb.classList.toggle('left-1',!isRU); thumb.classList.toggle('right-1',isRU); }
-      if(thumbM){ thumbM.classList.toggle('left-1',!isRU); thumbM.classList.toggle('right-1',isRU); }
-    }
-    function setUrlLangParam(lang){ const url=new URL(window.location.href); url.searchParams.set('lang',lang); window.history.replaceState({},'',url); }
-    function bindLangToggle(id){ const btn=document.getElementById(id); if(!btn) return; btn.addEventListener('click',()=>{ const newLang=(i18next.language||'en').startsWith('ru')?'en':'ru'; i18next.changeLanguage(newLang,()=>{ try{localStorage.setItem('i18nextLng',newLang);}catch(_){} localize(); setLangUI(newLang); setUrlLangParam(newLang); }); }); }
+    // Page-specific logic
+    function loadYouTube() { let stored = null; try { stored = localStorage.getItem('dg_cookie_v1') } catch (e) { } if (stored !== 'accepted') return; const wrap = document.getElementById('ytWrap'), ph = document.getElementById('ytPlaceholder'); if (!wrap || wrap.dataset.loaded) return; const iframe = document.createElement('iframe'); iframe.width = '560'; iframe.height = '315'; iframe.src = 'https://www.youtube.com/embed/dk5-FnV_1Mk?rel=0&modestbranding=1'; iframe.title = 'YouTube video player'; iframe.frameBorder = '0'; iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'; iframe.allowFullscreen = !0; iframe.className = 'absolute inset-0 w-full h-full'; wrap.appendChild(iframe); wrap.dataset.loaded = '1'; if (ph) ph.remove() }
+    const SHOTS = Array.from({ length: 5 }, (_, i) => `/games/scp087/screenshots/screenshot_${i}.webp`); let shotIndex = 0, dragging = !1;
+    function renderShots() { const track = document.getElementById('shotsTrack'); if (!track) return; const frag = document.createDocumentFragment(); SHOTS.forEach((src, idx) => { const a = document.createElement('button'); a.type = 'button'; a.className = 'shot relative shrink-0 w-[300px] md:w-[360px] aspect-video rounded-xl overflow-hidden border border-line bg-header/60 hover:bg-header focus:outline-none focus:ring-2 focus:ring-brand/40'; const img = document.createElement('img'); img.src = src; img.alt = `Screenshot ${idx + 1}`; img.loading = 'lazy'; img.decoding = 'async'; img.className = 'absolute inset-0 w-full h-full object-cover'; img.onerror = () => a.remove(); a.appendChild(img); a.addEventListener('click', () => { if (!dragging) openShot(idx) }); frag.appendChild(a) }); track.innerHTML = ''; track.appendChild(frag); track.addEventListener('wheel', e => { const dx = Math.abs(e.deltaX), dy = Math.abs(e.deltaY); if (dy > dx) { track.scrollLeft += e.deltaY; e.preventDefault() } }, { passive: !1 }); let isDown = !1, startX = 0, startLeft = 0; track.addEventListener('pointerdown', e => { isDown = !0; dragging = !1; startX = e.clientX; startLeft = track.scrollLeft }); track.addEventListener('pointermove', e => { if (!isDown) return; const dx = e.clientX - startX; if (Math.abs(dx) > 6) dragging = !0; track.scrollLeft = startLeft - dx });['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => track.addEventListener(ev, () => { isDown = !1; setTimeout(() => dragging = !1, 0) })) }
+    function openShot(idx) { shotIndex = idx; updateLarge(); if (window.MicroModal && typeof MicroModal.show === 'function') { MicroModal.show('shotModal', { disableScroll: !0 }) } else { const m = document.getElementById('shotModal'); if (m) { m.classList.add('is-open'); m.setAttribute('aria-hidden', 'false') } } }
+    function updateLarge() { const img = document.getElementById('shotLarge'), src = SHOTS[(shotIndex + SHOTS.length) % SHOTS.length]; if (img) img.src = src }
 
-    // Cookie bar
-    function initCookieBar(){
-      const key='dg_cookie_v1';
-      const bar=document.getElementById('cookieBar');
-      const accept=document.getElementById('cookieAccept');
-      const decline=document.getElementById('cookieDecline');
-      let stored=null; try{ stored=localStorage.getItem(key); }catch(_){ }
-      const show=()=>{ bar.classList.remove('hidden'); if(hasGSAP()) gsap.fromTo(bar,{y:90,opacity:0},{y:0,opacity:1,duration:.45,ease:'power3.out'}); };
-      const hide=()=>{ if(hasGSAP()) gsap.to('#cookieBar',{y:90,opacity:0,duration:.35,ease:'power3.inOut',onComplete:()=>bar.classList.add('hidden')}); else bar.classList.add('hidden'); };
-      if(stored==='accepted') return; show();
-      accept && accept.addEventListener('click',()=>{ try{ localStorage.setItem(key,'accepted'); }catch(_){ } hide(); loadYouTube(); });
-      decline && decline.addEventListener('click',()=>{ try{ localStorage.setItem(key,'declined'); }catch(_){ } hide(); });
-    }
-
-    function markActiveNav(){ const gamesLink=document.querySelector('nav a[href="/games/"]'); gamesLink && gamesLink.setAttribute('aria-current','page'); }
-
-    // YouTube embed loader
-    function loadYouTube(){
-      const key='dg_cookie_v1';
-      let stored=null; try{ stored=localStorage.getItem(key);}catch(_){ }
-      if(stored!=='accepted') return; // only if consented
-      const wrap=document.getElementById('ytWrap'); const ph=document.getElementById('ytPlaceholder');
-      if(!wrap || wrap.dataset.loaded) return;
-      const iframe=document.createElement('iframe');
-      iframe.width='560'; iframe.height='315';
-      iframe.src='https://www.youtube.com/embed/dk5-FnV_1Mk?rel=0&modestbranding=1';
-      iframe.title='YouTube video player';
-      iframe.frameBorder='0';
-      iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      iframe.allowFullscreen=true;
-      iframe.className='absolute inset-0 w-full h-full';
-      wrap.appendChild(iframe); wrap.dataset.loaded='1'; if(ph) ph.remove();
-    }
-
-    // Screenshots (5 total)
-    const SHOTS = Array.from({length: 5}, (_, i) => `/games/scp087/screenshots/screenshot_${i}.webp`);
-    let shotIndex = 0;
-    let dragging = false; // NEW: shared drag guard
-
-    function renderShots(){
-      const track = document.getElementById('shotsTrack');
-      if(!track) return;
-      const frag = document.createDocumentFragment();
-      SHOTS.forEach((src, idx) => {
-        const a = document.createElement('button');
-        a.type='button';
-        a.className = 'shot relative shrink-0 w-[300px] md:w-[360px] aspect-video rounded-xl overflow-hidden border border-line bg-header/60 hover:bg-header focus:outline-none focus:ring-2 focus:ring-brand/40';
-        const img = document.createElement('img');
-        img.src = src; img.alt = `Screenshot ${idx+1}`; img.loading='lazy'; img.decoding='async';
-        img.className = 'absolute inset-0 w-full h-full object-cover';
-        img.onerror = () => a.remove();
-        a.appendChild(img);
-        // open on click only if we didn't drag
-        a.addEventListener('click', () => { if (!dragging) openShot(idx); });
-        frag.appendChild(a);
-      });
-      track.innerHTML = ''; track.appendChild(frag);
-
-      // Convert vertical wheel to horizontal scroll (desktop)
-      track.addEventListener('wheel', (e) => {
-        const dx = Math.abs(e.deltaX), dy = Math.abs(e.deltaY);
-        if (dy > dx) { track.scrollLeft += e.deltaY; e.preventDefault(); }
-      }, { passive: false });
-
-      // Drag-to-scroll without triggering click
-      let isDown = false, startX = 0, startLeft = 0;
-      track.addEventListener('pointerdown', (e) => {
-        isDown = true; 
-        dragging = false;
-        startX = e.clientX; 
-        startLeft = track.scrollLeft;
-      });
-      track.addEventListener('pointermove', (e) => {
-        if (!isDown) return;
-        const dx = e.clientX - startX;
-        if (Math.abs(dx) > 6) dragging = true;
-        track.scrollLeft = startLeft - dx;
-      });
-      ['pointerup','pointercancel','pointerleave'].forEach(ev => track.addEventListener(ev, () => { isDown = false; setTimeout(() => dragging = false, 0); }));
-    }
-
-    function openShot(idx){
-      shotIndex = idx;
-      updateLarge();
-      if (window.MicroModal && typeof MicroModal.show === 'function') {
-        MicroModal.show('shotModal', { disableScroll: true });
-      } else {
-        const m = document.getElementById('shotModal');
-        if (m) { m.classList.add('is-open'); m.setAttribute('aria-hidden','false'); }
-      }
-    }
-    function updateLarge(){
-      const img = document.getElementById('shotLarge');
-      const src = SHOTS[(shotIndex+SHOTS.length)%SHOTS.length];
-      if(img) img.src = src;
-    }
-
-    window.addEventListener('DOMContentLoaded', function(){
-      i18next
-        .use(window.i18nextBrowserLanguageDetector)
-        .init({ resources, fallbackLng:'en', detection:{ order:['querystring','cookie','localStorage','navigator'], caches:['localStorage','cookie'], lookupQuerystring:'lang' } }, ()=>{
-          const lang=i18next.language||'en';
-          localize(); setLangUI(lang);
-          bindLangToggle('langToggle'); bindLangToggle('langToggleMobile');
-        });
-
-      initCookieBar();
-      markActiveNav();
-
-      // Load YT immediately if already accepted
-      loadYouTube();
-
-      // Hook cookie placeholder buttons
-      const openCookie=document.getElementById('openCookie');
-      const acceptBtn=document.getElementById('acceptCookies');
-      openCookie && openCookie.addEventListener('click',()=>{
-        const bar=document.getElementById('cookieBar');
-        if(bar) { bar.classList.remove('hidden'); if(hasGSAP()) gsap.fromTo(bar,{y:90,opacity:0},{y:0,opacity:1,duration:.45,ease:'power3.out'}); }
-      });
-      acceptBtn && acceptBtn.addEventListener('click',()=>{
-        try{ localStorage.setItem('dg_cookie_v1','accepted'); }catch(_){ }
-        const bar=document.getElementById('cookieBar'); if(bar) bar.classList.add('hidden');
-        loadYouTube();
-      });
-
-      // Render screenshots & init modal
-      renderShots();
-      if(window.MicroModal){ MicroModal.init(); }
-
-      // Modal nav
-      document.getElementById('shotPrev')?.addEventListener('click', () => { shotIndex = (shotIndex - 1 + SHOTS.length) % SHOTS.length; updateLarge(); });
-      document.getElementById('shotNext')?.addEventListener('click', () => { shotIndex = (shotIndex + 1) % SHOTS.length; updateLarge(); });
-
-      // Keyboard nav while modal open
-      document.addEventListener('keydown', (e)=>{
-        const isOpen = document.getElementById('shotModal')?.classList.contains('is-open');
-        if(!isOpen) return;
-        if(e.key === 'ArrowLeft'){ shotIndex = (shotIndex - 1 + SHOTS.length) % SHOTS.length; updateLarge(); }
-        else if(e.key === 'ArrowRight'){ shotIndex = (shotIndex + 1) % SHOTS.length; updateLarge(); }
-      });
-
-      // Gentle entrances (no fade-out afterward)
-      if(hasGSAP()) document.querySelectorAll('[data-animate]').forEach((el,i)=> gsap.from(el,{ y:22, opacity:0, duration:.6, delay:i*0.05, ease:'power3.out' }));
+    // Main initialization
+    window.addEventListener('DOMContentLoaded', function () {
+      i18next.use(window.i18nextBrowserLanguageDetector).init({ resources, fallbackLng: 'en', detection: { order: ['querystring', 'cookie', 'localStorage', 'navigator'], caches: ['localStorage', 'cookie'], lookupQuerystring: 'lang' } }, () => { const lang = i18next.language || 'en'; document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en'; localize(); document.body.style.visibility = 'visible'; document.title = i18next.t('title') + ' — Davilkus Games'; setLangUI(lang); bindLangToggle('langToggle'); bindLangToggle('langToggleMobile') });
+      initCookieBar(); markActiveNav(); loadCounter(); loadYouTube();
+      document.getElementById('openCookie')?.addEventListener('click', () => { const bar = document.getElementById('cookieBar'); if (bar) { bar.classList.remove('hidden'); if (hasGSAP()) gsap.fromTo(bar, { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: .45, ease: 'power3.out' }) } });
+      document.getElementById('acceptCookies')?.addEventListener('click', () => { try { localStorage.setItem('dg_cookie_v1', 'accepted') } catch (e) { } const bar = document.getElementById('cookieBar'); if (bar) bar.classList.add('hidden'); loadYouTube() });
+      renderShots(); if (window.MicroModal) { MicroModal.init() }
+      document.getElementById('shotPrev')?.addEventListener('click', () => { shotIndex = (shotIndex - 1 + SHOTS.length) % SHOTS.length; updateLarge() });
+      document.getElementById('shotNext')?.addEventListener('click', () => { shotIndex = (shotIndex + 1) % SHOTS.length; updateLarge() });
+      document.addEventListener('keydown', e => { const isOpen = document.getElementById('shotModal')?.getAttribute('aria-hidden') === 'false' || document.getElementById('shotModal')?.classList.contains('is-open'); if (!isOpen) return; if (e.key === 'ArrowLeft') { shotIndex = (shotIndex - 1 + SHOTS.length) % SHOTS.length; updateLarge() } else if (e.key === 'ArrowRight') { shotIndex = (shotIndex + 1) % SHOTS.length; updateLarge() } });
+      if (hasGSAP()) document.querySelectorAll('[data-animate]').forEach((el, i) => gsap.from(el, { y: 22, opacity: 0, duration: .6, delay: i * .05, ease: 'power3.out' }));
     });
   </script>
 </body>
