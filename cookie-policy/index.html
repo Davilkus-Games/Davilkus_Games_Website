@@ -28,7 +28,7 @@
   <meta property="og:image" content="https://davilkusgames.com/assets/logo.webp" />
   <meta property="og:image:width" content="512" />
   <meta property="og:image:height" content="512" />
-  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:type" content="image/webp" />
   <meta property="og:image:alt" content="Davilkus Games logo" />
 
   <!-- Twitter Card -->
@@ -73,6 +73,8 @@
   <script defer src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
 
   <style>
+    body { visibility: hidden; }
+
     /* Basic page utilities */
     ::-webkit-scrollbar{ width:10px; height:10px }
     ::-webkit-scrollbar-track{ background:#0b0f1a }
@@ -107,13 +109,52 @@
 <body class="bg-bg text-ink font-sans antialiased">
   <!-- Header -->
   <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
-      <a href="/" class="flex items-center gap-3 group" aria-label="Go to homepage">
-        <img src="/assets/logo.webp" alt="Davilkus Games logo" width="64" height="64" class="h-9 w-9 rounded-2xl" />
-        <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus Games</span>
-      </a>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3 group">
+      <img src="/assets/logo.webp" alt="Davilkus Games logo" width="64" height="64" class="h-9 w-9 rounded-2xl" />
+      <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus
+        Games</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-6 text-sm">
+      <nav class="flex items-center gap-8">
+        <a href="/games/" class="hover:opacity-80 transition" data-i18n="nav.games">Games</a>
+        <a href="/#about" class="hover:opacity-80 transition" data-i18n="nav.about">About</a>
+        <a href="/#contact" class="hover:opacity-80 transition" data-i18n="nav.contact">Contact Us</a>
+      </nav>
+      <button id="langToggle"
+        class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.75rem] h-8 select-none focus:outline-none focus:ring-2 focus:ring-brand transition"
+        aria-label="Toggle language">
+        <span class="flex-1 text-center text-[10px]">EN</span>
+        <span class="flex-1 text-center text-[10px]">RU</span>
+        <span id="langThumb" class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
+      </button>
     </div>
-  </header>
+
+    <div class="md:hidden flex items-center gap-2">
+      <button id="langToggleMobile"
+        class="relative inline-flex items-center bg-header/60 border border-line rounded-full px-1 py-1 w-[4.25rem] h-7 select-none focus:outline-none focus:ring-2 focus:ring-brand transition"
+        aria-label="Toggle language">
+        <span class="flex-1 text-center text-[9px]">EN</span>
+        <span class="flex-1 text-center text-[9px]">RU</span>
+        <span id="langThumbMobile"
+          class="absolute inset-y-1 left-1 w-1/2 rounded-full bg-brand transition-all"></span>
+      </button>
+      <button id="menuBtn" class="p-2 rounded-lg hover:bg-panel/70 focus:outline-none focus:ring-2 focus:ring-brand"
+        aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <img src="/assets/icons/menu.svg" alt="menu" class="w-6 h-6" />
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="hidden md:hidden border-t border-line bg-header/95 menu-overlay" aria-hidden="true">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
+      <a href="/games/" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.games">Games</a>
+      <a href="/#about" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.about">About</a>
+      <a href="/#contact" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.contact">Contact Us</a>
+    </div>
+  </div>
+</header>
 
   <main class="pt-28">
     <section class="relative">
@@ -191,144 +232,260 @@
 
   <!-- Footer -->
   <footer class="bg-header border-t border-line">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-      <div>
-        <div class="text-sm">© 2025 Davilkus Games</div>
-        <div class="mt-2 flex items-center gap-4 text-xs">
-          <a href="/privacy-policy/" class="hover:opacity-80">Privacy Policy</a>
-          <a href="/cookie-policy/" class="hover:opacity-80">Cookie Policy</a>
-        </div>
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div>
+      <div class="text-base md:text-lg">© 2025 Davilkus Games</div>
+      <div class="mt-2 flex items-center gap-4 text-xs">
+        <a href="/privacy-policy/" class="opacity-60 hover:opacity-80 transition">Privacy Policy</a>
+        <a href="/cookie-policy/" class="opacity-60 hover:opacity-80 transition">Cookie Policy</a>
       </div>
     </div>
-  </footer>
+    <div class="flex items-center gap-5">
+      <a href="https://discord.gg/y3hE847S" class="opacity-80 hover:opacity-100" aria-label="Discord"><img
+          src="/assets/icons/discord.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+          alt="Discord" /></a>
+      <a href="https://t.me/davilkus_games_news" class="opacity-80 hover:opacity-100" aria-label="Telegram"><img
+          src="/assets/icons/telegram.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+          alt="Telegram" /></a>
+      <a href="https://www.youtube.com/@davilkusgames" class="opacity-80 hover:opacity-100" aria-label="YouTube"><img
+          src="/assets/icons/youtube.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+          alt="YouTube" /></a>
+      <a href="https://x.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="X"><img
+          src="/assets/icons/x.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+          alt="X" /></a>
+      <a href="https://github.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="GitHub"><img
+          src="/assets/icons/github.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+          alt="GitHub" /></a>
+      <a href="https://vk.com/davilkusgames" class="opacity-80 hover:opacity-100" aria-label="VK"><img
+          src="/assets/icons/vk.svg" width="32" height="32" loading="lazy" decoding="async" class="w-8 h-8"
+          alt="VK" /></a>
+    </div>
+  </div>
+</footer>
 
   <script>
-    const resources = {
-      en: {
-        translation: {
-          brand: 'Davilkus Games',
-          cp: {
-            title: 'Cookie Policy',
-            updatedLabel: 'Last updated:',
-            date: '2025-08-08',
-            intro: [
-              'This Cookie Policy explains how Davilkus Games (“we”, “us”) uses cookies on our website. We use cookies only for YouTube embeds. Our analytics do not use cookies. For details about data we process without cookies, see our Privacy Policy.'
-            ],
-            sections: {
-              what: {
-                title: 'What are cookies?',
-                body: 'Cookies are small text files stored on your device by a website. They can be used to remember preferences, keep you signed in, or measure usage. We keep our use of cookies to a minimum.'
-              },
-              usage: {
-                title: 'How we use cookies',
-                body: [
-                  'We embed videos from YouTube on some pages. When a YouTube embed loads or you interact with it, YouTube may set cookies in your browser (for example, to prevent abuse, remember player preferences, or measure performance).',
-                  'Our site analytics do not use cookies. We only collect anonymous usage statistics as described in our Privacy Policy.'
-                ],
-                items: [
-                  'Purpose: display and play YouTube videos.',
-                  'Provider: YouTube / Google.',
-                  'Type: third-party cookies set by youtube.com or its domains.'
-                ]
-              },
-              manage: {
-                title: 'Managing cookies',
-                body: [
-                  'You can manage or block cookies in your browser settings. Most browsers let you delete cookies, block third-party cookies, or prompt before storing new ones.',
-                  'If you block third-party cookies, embedded YouTube videos may not function correctly until cookies are allowed.'
-                ]
-              },
-              thirdparty: {
-                title: 'Third-party cookies',
-                body: 'Cookies set by YouTube are controlled by YouTube/Google and governed by their own policies. We do not control how these cookies are used once set.'
-              },
-              changes: {
-                title: 'Changes to this policy',
-                body: 'We may update this Cookie Policy from time to time. We will post the new version with a new “Last updated” date.'
-              },
-              contact: {
-                title: 'Contact us',
-                body: { prefix: 'Questions about this policy? Email', or: ' or ' }
-              }
-            }
-          }
-        }
-      },
-      ru: {
-        translation: {
-          brand: 'Davilkus Games',
-          cp: {
-            title: 'Политика использования файлов cookie',
-            updatedLabel: 'Последнее обновление:',
-            date: '2025-08-08',
-            intro: [
-              'Эта Политика cookie объясняет, как Davilkus Games («мы») использует cookie-файлы на нашем сайте. Мы используем cookie только для встраиваемых видео YouTube. Наша аналитика cookie не использует. Подробности об обработке данных без cookie см. в Политике конфиденциальности.'
-            ],
-            sections: {
-              what: {
-                title: 'Что такое cookie-файлы?',
-                body: 'Cookie — это небольшие текстовые файлы, которые сайт сохраняет на вашем устройстве. Они могут использоваться для запоминания настроек или измерения использования. Мы свели использование cookie к минимуму.'
-              },
-              usage: {
-                title: 'Как мы используем cookie',
-                body: [
-                  'Мы встраиваем видео с YouTube на некоторых страницах. Когда такой плеер загружается или вы взаимодействуете с ним, YouTube может устанавливать cookie в вашем браузере (например, для защиты от злоупотреблений, запоминания настроек плеера или измерения производительности).',
-                  'Наша аналитика не использует cookie. Мы собираем только анонимную статистику, как описано в Политике конфиденциальности.'
-                ],
-                items: [
-                  'Цель: отображение и воспроизведение видео YouTube.',
-                  'Провайдер: YouTube / Google.',
-                  'Тип: сторонние cookie доменов youtube.com и т.п.'
-                ]
-              },
-              manage: {
-                title: 'Управление cookie',
-                body: [
-                  'Вы можете управлять cookie в настройках браузера: удалять их, блокировать сторонние cookie или запрашивать подтверждение перед сохранением.',
-                  'Если заблокировать сторонние cookie, встроенные видео YouTube могут работать некорректно, пока cookie не будут разрешены.'
-                ]
-              },
-              thirdparty: {
-                title: 'Сторонние cookie',
-                body: 'Cookie, устанавливаемые YouTube, контролируются YouTube/Google и регулируются их собственными политиками. Мы не управляем их использованием после установки.'
-              },
-              changes: {
-                title: 'Изменения политики',
-                body: 'Мы можем обновлять эту Политику cookie. Новая версия будет опубликована с новой датой «Последнее обновление».'
-              },
-              contact: {
-                title: 'Связаться с нами',
-                body: { prefix: 'Вопросы по этой политике? Пишите на', or: ' или ' }
-              }
+  const hasGSAP = () => !!(window.gsap && window.ScrollTrigger);
+  const rmm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Mobile menu (from main page)
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  let menuOpen = false; let outsideHandler; let trapHandler; let first; let last;
+  const focusables = 'a,button,[tabindex]:not([tabindex="-1"])';
+
+  function openMenu() {
+    menuOpen = true;
+    if (hasGSAP()) gsap.killTweensOf(mobileMenu);
+    mobileMenu.classList.remove('hidden');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    if (hasGSAP()) gsap.fromTo(mobileMenu, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.35, ease: 'power3.out' });
+    const focusableEls = mobileMenu.querySelectorAll(focusables);
+    first = focusableEls[0]; last = focusableEls[focusableEls.length - 1];
+    first && first.focus();
+    trapHandler = (e) => {
+      if (e.key !== 'Tab' || !first || !last) return;
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', trapHandler);
+    outsideHandler = (e) => {
+      if (mobileMenu.contains(e.target) || menuBtn.contains(e.target)) return;
+      closeMenu();
+    };
+    document.addEventListener('pointerdown', outsideHandler, { passive: true });
+  }
+  function closeMenu() {
+    menuOpen = false;
+    if (hasGSAP()) gsap.killTweensOf(mobileMenu);
+    if (hasGSAP()) gsap.to(mobileMenu, { height: 0, opacity: 0, duration: 0.3, ease: 'power3.inOut', onComplete: () => mobileMenu.classList.add('hidden') });
+    else mobileMenu.classList.add('hidden');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.focus();
+    document.removeEventListener('keydown', trapHandler);
+    document.removeEventListener('pointerdown', outsideHandler);
+    first = last = null;
+  }
+  menuBtn && menuBtn.addEventListener('click', () => { menuOpen ? closeMenu() : openMenu(); });
+  document.addEventListener('keydown', e => (e.key === 'Escape' && menuOpen) && closeMenu());
+
+  // Translations
+  const resources = {
+    en: {
+      translation: {
+        brand: 'Davilkus Games',
+        nav: { games: 'Games', about: 'About', contact: 'Contact Us' },
+        cp: {
+          title: 'Cookie Policy',
+          updatedLabel: 'Last updated:',
+          date: '2025-08-08',
+          intro: [
+            'This Cookie Policy explains how Davilkus Games (“we”, “us”) uses cookies on our website. We use cookies only for YouTube embeds. Our analytics do not use cookies. For details about data we process without cookies, see our Privacy Policy.'
+          ],
+          sections: {
+            what: {
+              title: 'What are cookies?',
+              body: 'Cookies are small text files stored on your device by a website. They can be used to remember preferences, keep you signed in, or measure usage. We keep our use of cookies to a minimum.'
+            },
+            usage: {
+              title: 'How we use cookies',
+              body: [
+                'We embed videos from YouTube on some pages. When a YouTube embed loads or you interact with it, YouTube may set cookies in your browser (for example, to prevent abuse, remember player preferences, or measure performance).',
+                'Our site analytics do not use cookies. We only collect anonymous usage statistics as described in our Privacy Policy.'
+              ],
+              items: [
+                'Purpose: display and play YouTube videos.',
+                'Provider: YouTube / Google.',
+                'Type: third-party cookies set by youtube.com or its domains.'
+              ]
+            },
+            manage: {
+              title: 'Managing cookies',
+              body: [
+                'You can manage or block cookies in your browser settings. Most browsers let you delete cookies, block third-party cookies, or prompt before storing new ones.',
+                'If you block third-party cookies, embedded YouTube videos may not function correctly until cookies are allowed.'
+              ]
+            },
+            thirdparty: {
+              title: 'Third-party cookies',
+              body: 'Cookies set by YouTube are controlled by YouTube/Google and governed by their own policies. We do not control how these cookies are used once set.'
+            },
+            changes: {
+              title: 'Changes to this policy',
+              body: 'We may update this Cookie Policy from time to time. We will post the new version with a new “Last updated” date.'
+            },
+            contact: {
+              title: 'Contact us',
+              body: { prefix: 'Questions about this policy? Email', or: ' or ' }
             }
           }
         }
       }
-    };
-
-    function localize() {
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        const val = i18next.t(key);
-        if (!val) return;
-        if (el.children.length === 0) el.textContent = val; // don't wipe nested links
-      });
+    },
+    ru: {
+      translation: {
+        brand: 'Davilkus Games',
+        nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' },
+        cp: {
+          title: 'Политика использования файлов cookie',
+          updatedLabel: 'Последнее обновление:',
+          date: '2025-08-08',
+          intro: [
+            'Эта Политика cookie объясняет, как Davilkus Games («мы») использует cookie-файлы на нашем сайте. Мы используем cookie только для встраиваемых видео YouTube. Наша аналитика cookie не использует. Подробности об обработке данных без cookie см. в Политике конфиденциальности.'
+          ],
+          sections: {
+            what: {
+              title: 'Что такое cookie-файлы?',
+              body: 'Cookie — это небольшие текстовые файлы, которые сайт сохраняет на вашем устройстве. Они могут использоваться для запоминания настроек или измерения использования. Мы свели использование cookie к минимуму.'
+            },
+            usage: {
+              title: 'Как мы используем cookie',
+              body: [
+                'Мы встраиваем видео с YouTube на некоторых страницах. Когда такой плеер загружается или вы взаимодействуете с ним, YouTube может устанавливать cookie в вашем браузере (например, для защиты от злоупотреблений, запоминания настроек плеера или измерения производительности).',
+                'Наша аналитика не использует cookie. Мы собираем только анонимную статистику, как описано в Политике конфиденциальности.'
+              ],
+              items: [
+                'Цель: отображение и воспроизведение видео YouTube.',
+                'Провайдер: YouTube / Google.',
+                'Тип: сторонние cookie доменов youtube.com и т.п.'
+              ]
+            },
+            manage: {
+              title: 'Управление cookie',
+              body: [
+                'Вы можете управлять cookie в настройках браузера: удалять их, блокировать сторонние cookie или запрашивать подтверждение перед сохранением.',
+                'Если заблокировать сторонние cookie, встроенные видео YouTube могут работать некорректно, пока cookie не будут разрешены.'
+              ]
+            },
+            thirdparty: {
+              title: 'Сторонние cookie',
+              body: 'Cookie, устанавливаемые YouTube, контролируются YouTube/Google и регулируются их собственными политиками. Мы не управляем их использованием после установки.'
+            },
+            changes: {
+              title: 'Изменения политики',
+              body: 'Мы можем обновлять эту Политику cookie. Новая версия будет опубликована с новой датой «Последнее обновление».'
+            },
+            contact: {
+              title: 'Связаться с нами',
+              body: { prefix: 'Вопросы по этой политике? Пишите на', or: ' или ' }
+            }
+          }
+        }
+      }
     }
+  };
 
-    window.addEventListener('DOMContentLoaded', () => {
+  function localize() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          const val = i18next.t(key);
+          if (!val) return;
+          el.innerHTML = val;
+      });
+  }
+
+  function setLangUI(lang) {
+      const thumb = document.getElementById('langThumb');
+      const thumbM = document.getElementById('langThumbMobile');
+      const isRU = lang && lang.startsWith('ru');
+      if (thumb) { thumb.classList.toggle('left-1', !isRU); thumb.classList.toggle('right-1', isRU); }
+      if (thumbM) { thumbM.classList.toggle('left-1', !isRU); thumbM.classList.toggle('right-1', isRU); }
+  }
+
+  function setUrlLangParam(lang) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', url);
+  }
+
+  function bindLangToggle(id) {
+      const btn = document.getElementById(id);
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+          const newLang = (i18next.language || 'en').startsWith('ru') ? 'en' : 'ru';
+          i18next.changeLanguage(newLang, () => {
+              try { localStorage.setItem('i18nextLng', newLang); } catch (_) { }
+              document.documentElement.lang = newLang.startsWith('ru') ? 'ru' : 'en';
+              localize();
+              document.title = (i18next.t('brand') || 'Davilkus Games') + ' — ' + (i18next.t('cp.title') || 'Cookie Policy');
+              setLangUI(newLang);
+              setUrlLangParam(newLang);
+          });
+      });
+  }
+
+  // Counter.dev integration
+  function loadCounter() {
+      if (document.getElementById('counterjs')) return;
+      const s = document.createElement('script');
+      s.id = 'counterjs'; s.defer = true; s.src = 'https://cdn.counter.dev/script.js';
+      s.dataset.id = 'cc931e21-a972-4ffe-aaf1-52b0f23da9d3';
+      s.dataset.utcoffset = String(-new Date().getTimezoneOffset() / 60);
+      document.head.appendChild(s);
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
       i18next
-        .use(window.i18nextBrowserLanguageDetector)
-        .init({
-          resources,
-          fallbackLng: 'en',
-          detection: { order: ['querystring','cookie','localStorage','navigator'], caches: ['localStorage','cookie'], lookupQuerystring: 'lang' }
-        }, () => {
-          const lang = i18next.language || 'en';
-          document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
-          localize();
-          document.title = (i18next.t('brand') || 'Davilkus Games') + ' — ' + (i18next.t('cp.title') || 'Cookie Policy');
-        });
-    });
-  </script>
+          .use(window.i18nextBrowserLanguageDetector)
+          .init({
+              resources,
+              fallbackLng: 'en',
+              detection: { order: ['querystring', 'cookie', 'localStorage', 'navigator'], caches: ['localStorage', 'cookie'], lookupQuerystring: 'lang' }
+          }, () => {
+              const lang = i18next.language || 'en';
+              document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
+              localize();
+              document.body.style.visibility = 'visible'; // Make body visible after translation
+              document.title = (i18next.t('brand') || 'Davilkus Games') + ' — ' + (i18next.t('cp.title') || 'Cookie Policy');
+              setLangUI(lang);
+              bindLangToggle('langToggle');
+              bindLangToggle('langToggleMobile');
+          });
+
+      loadCounter();
+  });
+</script>
 </body>
 </html>
