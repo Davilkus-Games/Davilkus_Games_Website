@@ -28,7 +28,7 @@
   <meta property="og:image" content="https://davilkusgames.com/assets/logo.webp" />
   <meta property="og:image:width" content="512" />
   <meta property="og:image:height" content="512" />
-  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:type" content="image/webp" />
   <meta property="og:image:alt" content="Davilkus Games logo" />
 
   <!-- Twitter Card -->
@@ -106,6 +106,8 @@
   </script>
 
   <style>
+    body { visibility: hidden; }
+
     ::-webkit-scrollbar {
       width: 10px;
       height: 10px
@@ -646,19 +648,21 @@
           <div class="bg-panel/60 border border-line rounded-2xl p-6 md:p-8 shadow-soft">
             <h3 class="text-xl font-semibold mb-5" data-i18n="about.team">Team & Partners</h3>
             <div class="grid sm:grid-cols-2 gap-6">
+              <!-- Mikhail Maksimov -->
               <div
-                class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3"
+                class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition"
                 data-animate>
                 <div class="flex items-center gap-4">
-                  <img src="/assets/team/davilkus.webp" alt="Davilkus" width="56" height="56" loading="lazy"
+                  <img src="/assets/team/davilkus.webp" alt="Mikhail Maksimov" width="56" height="56" loading="lazy"
                     decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
-                    <div class="font-semibold">Davilkus</div>
-                    <div class="text-xs text-ink/70" data-i18n="roles.founder">Founder, Lead Dev</div>
+                    <div class="text-lg font-semibold leading-tight" data-i18n="team.mikhail">Михаил<br>Максимов</div>
+                    <div class="text-xs text-ink/70 mt-1 leading-snug" data-i18n="roles.founder">
+                      Со-основатель,<br>креативный директор</div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80" data-i18n="about.davilkus">Codes gameplay, networking, shaders.</p>
-                <div class="flex justify-end gap-2 pt-1">
+                <p class="text-sm text-ink/80 my-4" data-i18n="about.davilkus">Пишет геймплей, сеть и шейдеры.</p>
+                <div class="mt-auto flex justify-end gap-2 pt-1">
                   <a href="https://vk.com/davilkus"
                     class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
                     aria-label="VK"><img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy"
@@ -670,44 +674,49 @@
                 </div>
               </div>
 
+              <!-- Evgeny Ryzhenkov -->
               <div
-                class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3"
+                class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition"
                 data-animate>
                 <div class="flex items-center gap-4">
-                  <img src="/assets/team/haalo.webp" alt="Haalo" width="56" height="56" loading="lazy" decoding="async"
-                    class="w-14 h-14 rounded-full object-cover border border-line" />
+                  <img src="/assets/team/omega.webp" alt="Evgeny Ryzhenkov" width="56" height="56" loading="lazy"
+                    decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
-                    <div class="font-semibold">Haalo</div>
-                    <div class="text-xs text-ink/70" data-i18n="roles.cm">Community Manager</div>
+                    <div class="text-lg font-semibold leading-tight" data-i18n="team.evgeny">Евгений<br>Рыженков</div>
+                    <div class="text-xs text-ink/70 mt-1 leading-snug" data-i18n="roles.codev">Со-основатель,<br>арт
+                      директор</div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80" data-i18n="about.haalo">Keeps the community informed and engaged. Runs
-                  events.</p>
-                <div class="flex justify-end gap-2 pt-1">
-                  <a href="https://vk.com/nseleznev2020"
-                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
-                    aria-label="VK"><img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy"
-                      decoding="async" class="w-5 h-5" alt="VK" /></a>
-                  <a href="https://t.me/paylife2680"
+                <p class="text-sm text-ink/80 my-4" data-i18n="about.omega">UX-дизайн, 3D-модели и скрипты Unity.</p>
+                <div class="mt-auto flex justify-end gap-2 pt-1">
+                  <a href="https://t.me/omega_gamedev"
                     class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
                     aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy"
                       decoding="async" class="w-5 h-5" alt="Telegram" /></a>
+                  <a href="https://yandex.com/games/developer/88490"
+                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
+                    aria-label="Yandex Games"><img src="/assets/icons/yandex-games.svg" width="20" height="20"
+                      loading="lazy" decoding="async" class="w-5 h-5" alt="Yandex Games" /></a>
                 </div>
               </div>
 
+              <!-- Burger Kerman -->
               <div
-                class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3"
+                class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition"
                 data-animate>
                 <div class="flex items-center gap-4">
                   <img src="/assets/team/burger-kerman.webp" alt="BurgerKerman" width="56" height="56" loading="lazy"
                     decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
-                    <div class="font-semibold">Burger Kerman</div>
-                    <div class="text-xs text-ink/70" data-i18n="roles.partner">Partner – Composer</div>
+                    <div class="text-lg font-semibold leading-tight" data-i18n="team.burger">Burger<br>Kerman</div>
+                    <div class="text-xs text-ink/70 mt-1 leading-snug" data-i18n="roles.partner">
+                      Композитор,<br>звукорежиссер
+                    </div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80" data-i18n="about.burger">Writes original soundtracks for our games.</p>
-                <div class="flex justify-end gap-2 pt-1">
+                <p class="text-sm text-ink/80 my-4" data-i18n="about.burger">Пишет оригинальные саундтреки к нашим
+                  играм.</p>
+                <div class="mt-auto flex justify-end gap-2 pt-1">
                   <a href="https://open.spotify.com/artist/71yAyS7L72UpNn1VlymHQU"
                     class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
                     aria-label="Spotify"><img src="/assets/icons/spotify.svg" width="20" height="20" loading="lazy"
@@ -723,34 +732,34 @@
                 </div>
               </div>
 
+              <!-- Haalo -->
               <div
-                class="team-card group bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition space-y-3"
+                class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition"
                 data-animate>
                 <div class="flex items-center gap-4">
-                  <img src="/assets/team/omega-studio.webp" alt="OMEGA Studio" width="56" height="56" loading="lazy"
-                    decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
+                  <img src="/assets/team/haalo.webp" alt="Haalo" width="56" height="56" loading="lazy" decoding="async"
+                    class="w-14 h-14 rounded-full object-cover border border-line" />
                   <div>
-                    <div class="font-semibold">OMEGA Studio</div>
-                    <div class="text-xs text-ink/70" data-i18n="roles.codev">Partner – Co‑dev</div>
+                    <div class="text-lg font-semibold leading-tight" data-i18n="team.haalo">Николай<br>Селезнёв</div>
+                    <div class="text-xs text-ink/70 mt-1 leading-snug" data-i18n="roles.cm">Комьюнити-<br>менеджер</div>
                   </div>
                 </div>
-                <p class="text-sm text-ink/80" data-i18n="about.omega">UX design, 3D models, and Unity scripting.</p>
-                <div class="flex justify-end gap-2 pt-1">
-                  <a href="https://t.me/omega_gamedev"
+                <p class="text-sm text-ink/80 my-4" data-i18n="about.haalo">Держит сообщество в курсе, проводит ивенты.
+                </p>
+                <div class="mt-auto flex justify-end gap-2 pt-1">
+                  <a href="https://vk.com/nseleznev2020"
+                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
+                    aria-label="VK"><img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy"
+                      decoding="async" class="w-5 h-5" alt="VK" /></a>
+                  <a href="https://t.me/paylife2680"
                     class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
                     aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy"
                       decoding="async" class="w-5 h-5" alt="Telegram" /></a>
-                  <a href="https://yandex.com/games/developer/88490"
-                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
-                    aria-label="Yandex Games"><img src="/assets/icons/yandex-games.svg" width="20" height="20"
-                      loading="lazy" decoding="async" class="w-5 h-5" alt="Yandex Games" /></a>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
-      </div>
     </section>
 
     <div class="border-t border-line"></div>
@@ -997,7 +1006,8 @@
             burger: 'Writes original soundtracks for our games.',
             omega: 'UX design, 3D models, and Unity scripting.'
           },
-          roles: { founder: 'Founder, Lead Dev', cm: 'Community Manager', partner: 'Partner – Composer', codev: 'Partner – Co‑dev' },
+          team: { mikhail: 'Mikhail<br>Maksimov', evgeny: 'Evgeny<br>Ryzhenkov', burger: 'Burger<br>Kerman', haalo: 'Nikolai<br>Seleznev' },
+          roles: { founder: 'Co-founder,<br>Creative Director', cm: 'Community<br>Manager', partner: 'Composer,<br>Sound Engineer', codev: 'Co-founder,<br>Art Director' },
           contact: { title: 'Contact Us', emailTitle: 'Email', general: 'General', support: 'In‑game Support', direct: 'Direct', socialTitle: 'Community' },
           cookie: { title: 'Cookie time!', desc: 'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', accept: 'Accept', decline: 'Decline' }
         }
@@ -1016,7 +1026,7 @@
           buttons: { play: 'Играть!', coming: 'Скоро', more: 'Подробнее' },
           about: {
             title: 'О нас',
-            body1: 'Davilkus Games — небольшая инди-студия из России. Мы создаём игры для веба, мобильных устройств и ПК, публикуя их в Google Play, itch.io, Yandex Games и на других платформах.',
+            body1: 'Davilkus Games — небольшая инди-студия из России. Мы создаём игры для веба, мобильных устройств и ПК, публикуя их в Google Play, itch.io, Яндекс Игры и на других платформах.',
             body2: 'Хоррор — один из наших ключевых жанров: мы стараемся погрузить игроков в напряжённые, атмосферные миры, но при этом не ограничиваемся только хоррором.',
             body3: 'Наш приоритет — интересные игровые механики и глубокая атмосфера, удерживающая внимание. Каждая игра оптимизирована для высокой производительности и доступности на любых устройствах.',
             body4: 'Мы ценим своё сообщество и поддерживаем его активность — через обновления, события и прямое общение с игроками.',
@@ -1026,7 +1036,8 @@
             burger: 'Пишет оригинальные саундтреки к нашим играм.',
             omega: 'UX-дизайн, 3D-модели и скрипты Unity.'
           },
-          roles: { founder: 'Основатель, лид‑разработчик', cm: 'Комьюнити‑менеджер', partner: 'Партнёр — композитор', codev: 'Партнёр — со‑разработчик' },
+          team: { mikhail: 'Михаил<br>Максимов', evgeny: 'Евгений<br>Рыженков', burger: 'Burger<br>Kerman', haalo: 'Николай<br>Селезнёв' },
+          roles: { founder: 'Со-основатель,<br>креативный директор', cm: 'Комьюнити-<br>менеджер', partner: 'Композитор,<br>звукорежиссер', codev: 'Со-основатель,<br>арт директор' },
           contact: { title: 'Контакты', emailTitle: 'Email', general: 'Общий', support: 'Поддержка в игре', direct: 'Лично', socialTitle: 'Сообщество' },
           cookie: { title: 'Время печенек!', desc: 'Мы используем файлы cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на их использование.', accept: 'Принять', decline: 'Отклонить' }
         }
@@ -1038,7 +1049,7 @@
         const key = el.getAttribute('data-i18n');
         const val = i18next.t(key);
         if (!val) return;
-        el.textContent = val;
+        el.innerHTML = val;
       });
     }
 
@@ -1221,6 +1232,7 @@
           const lang = i18next.language || 'en';
           document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
           localize();
+          document.body.style.visibility = 'visible';
           document.title = i18next.t('brand') + ' — Indie Game Studio';
           setLangUI(lang);
 
