@@ -1189,7 +1189,7 @@
           btnPlay.removeAttribute('tabindex');
           btnPlay.classList.remove('bg-gray-600', 'cursor-not-allowed');
           btnPlay.classList.add('bg-brand', 'hover:bg-brandDark');
-          btnPlay.href = `/games/${game.slug}#play`;
+          btnPlay.href = `/games/${game.slug}/play`;
           btnPlay.title = '';
           if (playText) playText.textContent = i18next.t('buttons.play');
         }
