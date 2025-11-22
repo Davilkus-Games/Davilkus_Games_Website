@@ -1,0 +1,18 @@
+{
+  "id": 7,
+  "title": "Velocity Rivals",
+  "description": "Anti-gravity racing at mach 2. Don't blink.",
+  "genre": "Racing",
+  "rating": 7.5,
+  "age_rating": "6+",
+  "platforms": ["PS5", "Xbox", "Desktop"],
+  "tags": ["Speed", "Sci-Fi", "Multiplayer"],
+  "specs": {
+    "min_memory": 16,
+    "storage_gb": 80
+  },
+  "team": {
+    "studio": "SpeedFreaks",
+    "country": "Italy"
+  }
+}

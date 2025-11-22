@@ -1,0 +1,18 @@
+{
+  "id": 3,
+  "title": "Void Echoes",
+  "description": "A psychological horror set on an abandoned space station. The silence is loud.",
+  "genre": "Horror",
+  "rating": 7.8,
+  "age_rating": "18+",
+  "platforms": ["Desktop", "Xbox", "PS5"],
+  "tags": ["Space", "Scary", "First-Person"],
+  "specs": {
+    "min_memory": 16,
+    "storage_gb": 50
+  },
+  "team": {
+    "studio": "Dark Matter Studio",
+    "country": "USA"
+  }
+}

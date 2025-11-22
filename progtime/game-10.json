@@ -1,0 +1,18 @@
+{
+  "id": 10,
+  "title": "Mars Colony Builder",
+  "description": "Terraform the red planet. Manage oxygen, water, and sanity of colonists.",
+  "genre": "Strategy",
+  "rating": 8.5,
+  "age_rating": "6+",
+  "platforms": ["Desktop"],
+  "tags": ["Space", "City Builder", "Science"],
+  "specs": {
+    "min_memory": 12,
+    "storage_gb": 10
+  },
+  "team": {
+    "studio": "Red Planet Inc",
+    "country": "France"
+  }
+}

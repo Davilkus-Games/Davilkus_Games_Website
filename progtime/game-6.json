@@ -1,0 +1,18 @@
+{
+  "id": 6,
+  "title": "Pixel Dungeon Crawler X",
+  "description": "Roguelike with permadeath. 8-bit graphics but infinite replayability.",
+  "genre": "RPG",
+  "rating": 9.1,
+  "age_rating": "12+",
+  "platforms": ["Mobile", "Desktop", "Web"],
+  "tags": ["Pixel Art", "Hardcore", "Roguelike"],
+  "specs": {
+    "min_memory": 1,
+    "storage_gb": 0.2
+  },
+  "team": {
+    "studio": "Retro Core",
+    "country": "Poland"
+  }
+}

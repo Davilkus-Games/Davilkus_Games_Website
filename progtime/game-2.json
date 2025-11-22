@@ -1,0 +1,18 @@
+{
+  "id": 2,
+  "title": "Orc Tavern Tycoon",
+  "description": "Manage a fantasy tavern. Serve grog to angry Orcs and try not to get smashed.",
+  "genre": "Simulation",
+  "rating": 8.2,
+  "age_rating": "16+",
+  "platforms": ["Mobile", "Desktop"],
+  "tags": ["Fantasy", "Management", "Funny"],
+  "specs": {
+    "min_memory": 4,
+    "storage_gb": 2
+  },
+  "team": {
+    "studio": "GreenSkin Games",
+    "country": "Germany"
+  }
+}
