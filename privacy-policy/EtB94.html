@@ -1,94 +1,212 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="dark scroll-smooth">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Privacy Policy - Exit the Backrooms: Level 94</title>
+    <meta name="description" content="Privacy Policy for Exit the Backrooms: Level 94 by Davilkus Games." />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <meta name="robots" content="index, follow">
+
+    <meta name="theme-color" content="#0B0F1A" />
+
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Apple Color Emoji'] },
+                    colors: {
+                        bg: '#0B0F1A', panel: '#0F1524', ink: '#E8EAF2', brand: '#2563eb', brandDark: '#1e40af', header: '#070a12', line: '#1b2336'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- i18n logic (For header/footer consistency) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
+
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: #000000;
-            background-color: #ffffff;
-            line-height: 1.5;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        h1, h2, h3 {
-            color: #000000;
-        }
-        a {
-            color: #0000EE;
-        }
+        body { visibility: hidden; }
+        ::-webkit-scrollbar { width: 10px; height: 10px }
+        ::-webkit-scrollbar-track { background: #0b0f1a }
+        ::-webkit-scrollbar-thumb { background: #1b2336; border-radius: 10px }
+        ::-webkit-scrollbar-thumb:hover { background: #2a3552 }
+        ::selection { background: #2563eb; color: #ffffff; }
+        
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+        
+        /* Typography for the legal text */
+        .prose h1 { font-size: 2.25rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.025em; color: white; }
+        .prose h3 { font-size: 1.5rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 1rem; color: white; letter-spacing: -0.015em; }
+        .prose p { margin-bottom: 1.25rem; line-height: 1.75; color: #E8EAF2; opacity: 0.9; }
+        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; color: #E8EAF2; opacity: 0.9; }
+        .prose li { margin-bottom: 0.5rem; }
+        .prose a { color: #3b82f6; text-decoration: none; transition: color 0.2s; }
+        .prose a:hover { color: #60a5fa; text-decoration: underline; }
+        .prose strong { color: white; font-weight: 600; }
     </style>
 </head>
-<body>
 
-    <h1>Privacy Policy</h1>
-    <p><strong>Effective Date:</strong> 2025-12-14</p>
+<body class="bg-bg text-ink font-sans antialiased">
 
-    <p><strong>Davilkus Games</strong> built the <strong>Exit the Backrooms: Level 94</strong> app as a Free app. This SERVICE is provided by Davilkus Games at no cost and is intended for use as is.</p>
+    <!-- Header (Standard) -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <img src="/assets/logo.webp" alt="Davilkus Games logo" width="64" height="64" class="h-9 w-9 rounded-2xl" />
+                <span class="text-lg font-semibold tracking-tight group-hover:text-white" data-i18n="brand">Davilkus Games</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6 text-sm">
+                <nav class="flex items-center gap-8">
+                    <a href="/games/" class="hover:opacity-80 transition" data-i18n="nav.games">Games</a>
+                    <a href="/#about" class="hover:opacity-80 transition" data-i18n="nav.about">About</a>
+                    <a href="/#contact" class="hover:opacity-80 transition" data-i18n="nav.contact">Contact Us</a>
+                </nav>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center gap-2">
+                <button id="menuBtn" class="p-2 rounded-lg hover:bg-panel/70 focus:outline-none" aria-label="Open menu">
+                    <img src="/assets/icons/menu.svg" alt="menu" class="w-6 h-6" />
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden border-t border-line bg-header/95">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
+                <a href="/games/" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.games">Games</a>
+                <a href="/#about" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.about">About</a>
+                <a href="/#contact" class="py-3 px-3 rounded-lg hover:bg-panel/70" data-i18n="nav.contact">Contact Us</a>
+            </div>
+        </div>
+    </header>
 
-    <p>This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service.</p>
+    <main class="pt-28 pb-20">
+        <!-- Content Container -->
+        <article class="max-w-3xl mx-auto px-6 prose">
+            <h2>Exit the Backrooms: Level 94</h2>
+            <h1>Privacy Policy</h1>
+            <p class="text-sm text-ink/60"><strong>Effective Date:</strong> 2025-12-14</p>
 
-    <p>If you choose to use our Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that we collect is used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.</p>
+            <div class="h-px bg-white/10 my-8"></div>
 
-    <h3>Information Collection and Use</h3>
+            <p><strong>Davilkus Games</strong> built the <strong>Exit the Backrooms: Level 94</strong> app as a Free app. This SERVICE is provided by Davilkus Games at no cost and is intended for use as is.</p>
 
-    <p>For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information. The information that we request will be retained on your device and is not collected by us in any way, with the exception of data collected by third-party services as described below.</p>
+            <p>This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service.</p>
 
-    <p><strong>Device Data and Advertising IDs</strong><br>
-    The app does use third-party services that may collect information used to identify you. This includes your Device ID and Advertising ID (AAID). This data is used primarily for the delivery of advertisements and fraud prevention.</p>
+            <p>If you choose to use our Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that we collect is used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.</p>
 
-    <h3>Third-Party Service Providers</h3>
+            <h3>Information Collection and Use</h3>
 
-    <p>We use a mediation platform called <strong>CAS.AI (CleverAdsSolutions)</strong> to manage and display advertisements within the game. Through this mediation, the app utilizes third-party services that may collect information used to identify your device.</p>
+            <p>For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information. The information that we request will be retained on your device and is not collected by us in any way, with the exception of data collected by third-party services as described below.</p>
 
-    <p>Links to the privacy policies of the third-party service providers used by the app:</p>
+            <p><strong>Device Data and Advertising IDs</strong><br>
+            The app does use third-party services that may collect information used to identify you. This includes your Device ID and Advertising ID (AAID). This data is used primarily for the delivery of advertisements and fraud prevention.</p>
 
-    <ul>
-        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Play Services</a></li>
-        <li><a href="https://support.google.com/admob/answer/6128543?hl=en" target="_blank" rel="noopener noreferrer">AdMob</a></li>
-        <li><a href="https://unity3d.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Unity Ads</a></li>
-        <li><a href="https://yandex.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Yandex Ads</a></li>
-        <li><a href="https://cleveradssolutions.com/privacy-policy" target="_blank" rel="noopener noreferrer">CAS.AI Privacy Policy</a></li>
-    </ul>
+            <h3>Third-Party Service Providers</h3>
 
-    <h3>Log Data</h3>
+            <p>We use a mediation platform called <strong>CAS.AI (CleverAdsSolutions)</strong> to manage and display advertisements within the game. Through this mediation, the app utilizes third-party services that may collect information used to identify your device.</p>
 
-    <p>We want to inform you that whenever you use our Service, in a case of an error in the app we collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing our Service, the time and date of your use of the Service, and other statistics.</p>
+            <p>Links to the privacy policies of the third-party service providers used by the app:</p>
 
-    <h3>Cookies</h3>
+            <ul>
+                <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Play Services</a></li>
+                <li><a href="https://support.google.com/admob/answer/6128543?hl=en" target="_blank" rel="noopener noreferrer">AdMob</a></li>
+                <li><a href="https://unity3d.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Unity Ads</a></li>
+                <li><a href="https://yandex.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Yandex Ads</a></li>
+                <li><a href="https://cleveradssolutions.com/privacy-policy" target="_blank" rel="noopener noreferrer">CAS.AI Privacy Policy</a></li>
+            </ul>
 
-    <p>Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.</p>
+            <h3>Log Data</h3>
 
-    <p>This Service does not use these “cookies” explicitly. However, the app may use third-party code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device.</p>
+            <p>We want to inform you that whenever you use our Service, in a case of an error in the app we collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing our Service, the time and date of your use of the Service, and other statistics.</p>
 
-    <h3>Security</h3>
+            <h3>Cookies</h3>
 
-    <p>We value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.</p>
+            <p>Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.</p>
 
-    <h3>Children’s Privacy</h3>
+            <p>This Service does not use these “cookies” explicitly. However, the app may use third-party code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device.</p>
 
-    <p>These Services do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. In the case we discover that a child under 13 has provided us with personal information, we immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we will be able to do the necessary actions.</p>
+            <h3>Security</h3>
 
-    <h3>Data Deletion Requests</h3>
+            <p>We value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.</p>
 
-    <p>Pursuant to Google Play policies, users have the right to request the deletion of their data. Since this app does not create user accounts, we do not store personal user profiles. However, if you wish to request the deletion of any data associated with your Advertising ID collected by our ad partners, please contact us at the email addresses listed below.</p>
+            <h3>Children’s Privacy</h3>
 
-    <h3>Changes to This Privacy Policy</h3>
+            <p>These Services do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. In the case we discover that a child under 13 has provided us with personal information, we immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we will be able to do the necessary actions.</p>
 
-    <p>We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+            <h3>Data Deletion Requests</h3>
 
-    <h3>Contact Us</h3>
+            <p>Pursuant to Google Play policies, users have the right to request the deletion of their data. Since this app does not create user accounts, we do not store personal user profiles. However, if you wish to request the deletion of any data associated with your Advertising ID collected by our ad partners, please contact us at the email addresses listed below.</p>
 
-    <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at:</p>
+            <h3>Changes to This Privacy Policy</h3>
 
-    <ul>
-        <li><a href="mailto:davilkusgames@gmail.com">davilkusgames@gmail.com</a></li>
-        <li><a href="mailto:support@davilkusgames.com">support@davilkusgames.com</a></li>
-        <li><a href="mailto:contact@davilkusgames.com">contact@davilkusgames.com</a></li>
-    </ul>
+            <p>We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
 
+            <h3>Contact Us</h3>
+
+            <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at:</p>
+
+            <ul>
+                <li><a href="mailto:davilkusgames@gmail.com">davilkusgames@gmail.com</a></li>
+                <li><a href="mailto:support@davilkusgames.com">support@davilkusgames.com</a></li>
+                <li><a href="mailto:contact@davilkusgames.com">contact@davilkusgames.com</a></li>
+            </ul>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-header border-t border-line">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="text-center md:text-left text-sm text-ink/60">
+                © 2025 Davilkus Games LLC
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple logic just to show the page and handle mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if(menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Initialize translations for Header (but keep body content static English)
+        const resources = {
+            en: { translation: { brand: 'Davilkus Games', nav: { games: 'Games', about: 'About', contact: 'Contact Us' } } },
+            ru: { translation: { brand: 'Davilkus Games', nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' } } }
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.i18next && window.i18nextBrowserLanguageDetector) {
+                i18next.use(window.i18nextBrowserLanguageDetector).init({
+                    resources, fallbackLng: 'en'
+                }, () => {
+                    document.querySelectorAll('[data-i18n]').forEach(el => {
+                        const key = el.getAttribute('data-i18n');
+                        const val = i18next.t(key);
+                        if (val) el.innerHTML = val;
+                    });
+                    document.body.style.visibility = 'visible';
+                });
+            } else {
+                document.body.style.visibility = 'visible';
+            }
+        });
+    </script>
 </body>
 </html>

@@ -8,9 +8,11 @@
     <title>Davilkus Games — 404</title>
     <meta name="description" content="Lost in the void? Return to the hub." />
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    
+    <!-- Do not index the 404 page -->
     <meta name="robots" content="noindex, nofollow">
 
-    <!-- Canonical (client-side i18n, no hreflang variants) -->
+    <!-- Canonical -->
     <meta property="og:locale" content="en_US">
     <meta property="og:locale:alternate" content="ru_RU">
 
@@ -74,6 +76,18 @@
     <style>
         body {
             visibility: hidden;
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale; 
+        }
+
+        /* Consistent Vignette */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 5; 
+            background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,0,0.6) 100%);
         }
 
         ::-webkit-scrollbar {
@@ -94,53 +108,27 @@
             background: #2a3552
         }
 
-        .noise::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.07'/></svg>");
-            mix-blend-mode: soft-light;
-            opacity: .25;
+        ::selection {
+            background: #2563eb; /* Brand Blue */
+            color: #ffffff;
+        }
+        
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
-        .vignette::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, .55) 100%);
+        h1, h2, h3, .font-semibold, .font-bold {
+            letter-spacing: -0.015em;
         }
-
-        .scanlines {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03) 1px, transparent 2px, transparent 3px);
-            opacity: .06;
-        }
-
+        
+        /* RESTORED FLICKER EFFECT */
         @keyframes flicker {
-
-            0%,
-            19%,
-            21%,
-            23%,
-            80%,
-            100% {
-                opacity: 1
-            }
-
-            20%,
-            22% {
-                opacity: .55
-            }
-
-            81% {
-                opacity: .85
-            }
+            0%, 19%, 21%, 23%, 80%, 100% { opacity: 1 }
+            20%, 22% { opacity: .55 }
+            81% { opacity: .85 }
         }
-
         .flicker {
             animation: flicker 6s infinite;
         }
@@ -155,9 +143,8 @@
     </style>
 </head>
 
-<body class="bg-bg text-ink font-sans antialiased noise vignette">
-    <div class="scanlines" aria-hidden="true"></div>
-
+<body class="bg-bg text-ink font-sans antialiased">
+    
     <!-- Header -->
     <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -235,7 +222,7 @@
 
                     <div class="pt-2">
                         <a href="/"
-                            class="inline-flex items-center gap-3 text-base md:text-lg font-medium px-6 md:px-7 py-3 md:py-3.5 rounded-xl bg-brand hover:bg-brandDark transition shadow-soft will-change-transform"
+                            class="inline-flex items-center gap-3 text-base md:text-lg font-medium px-6 md:px-7 py-3 md:py-3.5 rounded-xl bg-brand hover:bg-brandDark transition shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] will-change-transform"
                             id="returnBtn" style="opacity:1">
                             <img src="/assets/icons/exit404.svg" class="w-5 h-5" alt="" aria-hidden="true"
                                 aria-label="Return to homepage">
@@ -290,7 +277,7 @@
     <script>
         const hasGSAP = () => !!window.gsap;
 
-        // Mobile menu logic (from main page)
+        // Mobile menu logic
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         let menuOpen = false; let outsideHandler; let trapHandler; let first; let last;
@@ -334,6 +321,7 @@
         const resources = {
             en: {
                 translation: {
+                    meta: { title: 'Davilkus Games — 404' },
                     brand: 'Davilkus Games',
                     nav: { games: 'Games', about: 'About', contact: 'Contact Us' },
                     notfound: {
@@ -347,6 +335,7 @@
             },
             ru: {
                 translation: {
+                    meta: { title: 'Davilkus Games — 404' },
                     brand: 'Davilkus Games',
                     nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' },
                     notfound: {
@@ -391,7 +380,7 @@
                     try { localStorage.setItem('i18nextLng', newLang); } catch (_) { }
                     document.documentElement.lang = newLang.startsWith('ru') ? 'ru' : 'en';
                     localize();
-                    document.title = (i18next.t('brand') || 'Davilkus Games') + ' — 404';
+                    document.title = i18next.t('meta.title');
                     setLangUI(newLang);
                     setUrlLangParam(newLang);
                 });
@@ -433,7 +422,7 @@
                     document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
                     localize();
                     document.body.style.visibility = 'visible';
-                    document.title = (i18next.t('brand') || 'Davilkus Games') + ' — 404';
+                    document.title = i18next.t('meta.title');
                     setLangUI(lang);
                     bindLangToggle('langToggle');
                     bindLangToggle('langToggleMobile');

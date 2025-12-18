@@ -13,7 +13,7 @@
     <!-- Allow indexing -->
     <meta name="robots" content="index, follow">
 
-    <!-- Canonical + hreflang (client-side i18n via ?lang=) -->
+    <!-- Canonical + hreflang -->
     <link rel="canonical" href="https://davilkusgames.com/privacy-policy/" />
     <meta property="og:locale" content="en_US">
     <meta property="og:locale:alternate" content="ru_RU">
@@ -72,13 +72,31 @@
         }
     </script>
 
+    <!-- GSAP -->
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
     <!-- i18next + detector -->
     <script defer src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
     <script defer
         src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
 
     <style>
-        body { visibility: hidden; }
+        body {
+            visibility: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Consistent Vignette */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 5;
+            background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
+        }
 
         ::-webkit-scrollbar {
             width: 10px;
@@ -98,7 +116,17 @@
             background: #2a3552
         }
 
-        /* Sticky left label on desktop */
+        ::selection {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        /* Typography */
+        h1, h2, h3, .font-semibold, .font-bold {
+            letter-spacing: -0.015em;
+        }
+
+        /* Sticky Layout */
         .sticky-col {
             position: sticky;
             top: 5.25rem;
@@ -107,78 +135,48 @@
 
         .content {
             position: relative;
-            z-index: 1;
+            z-index: 10; /* Above vignette if needed, though vignette is pointer-events-none */
         }
 
         .content a {
             text-decoration: underline;
+            text-decoration-color: rgba(232, 234, 242, 0.3);
+            text-underline-offset: 4px;
+            transition: color 0.2s, text-decoration-color 0.2s;
         }
 
-        .content h2 {
-            margin-top: 2rem;
+        .content a:hover {
+            color: #2563eb;
+            text-decoration-color: #2563eb;
         }
 
-        .content h3 {
-            margin-top: 1.25rem;
-        }
-
-        .content p+p {
-            margin-top: .75rem;
-        }
-
+        .content h2 { margin-top: 2.25rem; margin-bottom: 1rem; }
+        .content h3 { margin-top: 1.5rem; margin-bottom: .75rem; }
+        .content p+p { margin-top: 1rem; }
+        
         .content ul {
             list-style: disc;
             margin-left: 1.25rem;
             padding-left: .75rem;
-        }
-
-        .content li+li {
-            margin-top: .4rem;
-        }
-
-        .content h2,
-        .content h3 {
-            scroll-margin-top: 6rem;
-        }
-
-        .content h2 {
-            margin-top: 2.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .content h3 {
-            margin-top: 1.5rem;
-            margin-bottom: .75rem;
-        }
-
-        .content h2+*,
-        .content h3+* {
-            margin-top: 1rem;
-        }
-
-        .content p+p {
-            margin-top: 1rem;
-        }
-
-        .content ul {
             margin-top: .625rem;
         }
+        .content li+li { margin-top: .4rem; }
+
+        /* Scroll margin for anchors */
+        .content h2, .content h3 { scroll-margin-top: 6rem; }
 
         .pp-title {
             max-width: 20ch;
-            /* clamp line length */
             line-height: 1.05;
             overflow-wrap: anywhere;
-            /* break long tokens if needed */
             word-break: break-word;
             hyphens: auto;
-            /* nice hyphenation where supported */
         }
     </style>
 </head>
 
 <body class="bg-bg text-ink font-sans antialiased">
-    <!-- Header (keep simple, like your 404) -->
+    <!-- Header -->
     <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="/" class="flex items-center gap-3 group">
@@ -233,8 +231,9 @@
 
     <main class="pt-28">
         <section class="relative">
+            <!-- Background Gradient (Consistent with Games page) -->
             <div
-                class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]">
+                class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.12),_transparent_60%)]">
             </div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-18">
@@ -256,10 +255,9 @@
                     <!-- Content -->
                     <article class="md:col-span-9 content text-[15px] md:text-base leading-relaxed text-ink/90">
                         <p data-i18n="pp.intro.0">
-                            This Privacy Policy explains how Davilkus Games (“we”, “us”) handles information on our
-                            website and game pages. We do not create user accounts and we do not collect personal
-                            information, except limited anonymous analytics as described below. Our Cookie Policy is
-                            published separately.
+                            This Privacy Policy explains how Davilkus Games handles information on our
+                            website. We do not create user accounts and we do not collect personal
+                            information, except limited anonymous analytics as described below.
                         </p>
 
                         <h2 class="text-2xl font-semibold" data-i18n="pp.sections.scope.title">Scope</h2>
@@ -310,8 +308,7 @@
 
                         <h2 class="text-2xl font-semibold" data-i18n="pp.sections.retention.title">Retention</h2>
                         <p data-i18n="pp.sections.retention.body">
-                            Analytics records are kept only as long as necessary for aggregate reporting and security
-                            (typically short to moderate periods, depending on the analytics provider’s defaults). We do
+                            Analytics records are kept only as long as necessary for aggregate reporting and security. We do
                             not attempt to re-identify individuals.
                         </p>
 
@@ -319,20 +316,11 @@
                         </h2>
                         <p data-i18n="pp.sections.sharing.body.0">
                             We do not sell your data. We may share anonymous, aggregated insights (e.g., visits by
-                            country) publicly. Service providers that operate analytics or hosting may process limited
-                            data on our behalf under contracts and only as instructed.
+                            country) publicly.
                         </p>
                         <p data-i18n="pp.sections.sharing.body.1">
                             We may disclose information if required by law or to respond to valid legal requests, or to
                             protect our rights, users, or the public.
-                        </p>
-
-                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.transfers.title">International
-                            Transfers</h2>
-                        <p data-i18n="pp.sections.transfers.body">
-                            Our site infrastructure and service providers may be located in various countries. Where
-                            required, we rely on appropriate safeguards for cross-border transfers (such as standard
-                            contractual clauses) provided by our vendors.
                         </p>
 
                         <h2 class="text-2xl font-semibold" data-i18n="pp.sections.rights.title">Your Rights</h2>
@@ -365,20 +353,6 @@
                         <p data-i18n="pp.sections.thirdparty.body">
                             Our site may link to third-party platforms (e.g., Discord, YouTube, Telegram) or storefronts
                             (e.g., Google Play, itch.io). Their privacy practices are governed by their own policies.
-                        </p>
-
-                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.dnt.title">“Do Not Track”</h2>
-                        <p data-i18n="pp.sections.dnt.body">
-                            Some browsers send a “Do Not Track” signal. Because there is no common industry standard,
-                            our website does not respond to these signals. You can control analytics and storage via
-                            your browser settings and our separate Cookie Policy when applicable.
-                        </p>
-
-                        <h2 class="text-2xl font-semibold" data-i18n="pp.sections.changes.title">Changes to This Policy
-                        </h2>
-                        <p data-i18n="pp.sections.changes.body">
-                            We may update this Privacy Policy from time to time. We will post the new version with a new
-                            “Last updated” date. Material changes will be highlighted for a reasonable period.
                         </p>
 
                         <h2 class="text-2xl font-semibold" data-i18n="pp.sections.contact.title">Contact Us</h2>
@@ -429,6 +403,31 @@
             </div>
         </div>
     </footer>
+
+    <!-- Safelist Tailwind utilities toggled by JS -->
+    <div class="hidden left-1 right-1"></div>
+
+    <!-- Cookie Bar -->
+    <div id="cookieBar" class="fixed left-4 right-4 md:left-8 md:right-auto bottom-4 md:bottom-6 z-[60] hidden">
+        <div class="w-full md:w-auto max-w-2xl bg-header border border-line rounded-xl shadow-soft px-4 py-3">
+            <div class="flex items-start gap-3">
+                <img src="/assets/icons/cookie.svg" alt="cookie" width="28" height="28" class="w-8 h-8 mt-0.5" />
+                <div class="flex-1">
+                    <div class="font-semibold text-sm md:text-base mb-0.5" data-i18n="cookie.title">Cookie time!</div>
+                    <p class="text-xs md:text-sm text-ink/80" data-i18n="cookie.desc">We use cookies to ensure you get
+                        the best experience on our website. By using our website you agree to our use of cookies.</p>
+                </div>
+                <div class="flex items-center gap-2 self-center">
+                    <button id="cookieDecline"
+                        class="text-sm px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium transition"
+                        data-i18n="cookie.decline">Decline</button>
+                    <button id="cookieAccept"
+                        class="text-sm px-3 py-1.5 rounded-lg bg-brand hover:bg-brandDark text-white font-medium transition"
+                        data-i18n="cookie.accept">Accept</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
   const hasGSAP = () => !!(window.gsap && window.ScrollTrigger);
@@ -483,12 +482,13 @@
         translation: {
           brand: 'Davilkus Games',
           nav: { games: 'Games', about: 'About', contact: 'Contact Us' },
+          cookie: { title: 'Cookie time!', desc: 'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', accept: 'Accept', decline: 'Decline' },
           pp: {
               title: 'Privacy Policy',
               updatedLabel: 'Last updated:',
               date: '2025-08-08',
               intro: [
-                  'This Privacy Policy explains how Davilkus Games (“we”, “us”) handles information on our website and game pages. We do not create user accounts and we do not collect personal information, except limited anonymous analytics as described below. Our Cookie Policy is published separately.'
+                  'This Privacy Policy explains how Davilkus Games (“we”, “us”) handles information on our website. We do not create user accounts and we do not collect personal information, except limited anonymous analytics as described below. Our Cookie Policy is published separately.'
               ],
               sections: {
                   scope: {
@@ -554,12 +554,13 @@
         translation: {
           brand: 'Davilkus Games',
           nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' },
+          cookie: { title: 'Время печенек!', desc: 'Мы используем файлы cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на их использование.', accept: 'Принять', decline: 'Отклонить' },
           pp: {
               title: 'Политика конфиденциальности',
               updatedLabel: 'Последнее обновление:',
               date: '2025-08-08',
               intro: [
-                  'Эта Политика конфиденциальности объясняет, как Davilkus Games («мы») обрабатывает информацию на нашем сайте и страницах игр. Мы не создаём учётные записи пользователей и не собираем персональные данные, за исключением ограниченной анонимной аналитики, описанной ниже. Политика использования файлов cookie опубликована отдельно.'
+                  'Эта Политика конфиденциальности объясняет, как Davilkus Games («мы») обрабатывает информацию на нашем сайте. Мы не создаём учётные записи пользователей и не собираем персональные данные, за исключением ограниченной анонимной аналитики, описанной ниже. Политика использования файлов cookie опубликована отдельно.'
               ],
               sections: {
                   scope: {
@@ -662,6 +663,20 @@
       });
   }
 
+  function initCookieBar() {
+      const key = 'dg_cookie_v1';
+      const bar = document.getElementById('cookieBar');
+      const accept = document.getElementById('cookieAccept');
+      const decline = document.getElementById('cookieDecline');
+      let stored = null; try { stored = localStorage.getItem(key); } catch (_) { }
+      const showBar = () => { bar.classList.remove('hidden'); if (hasGSAP()) gsap.fromTo(bar, { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }); };
+      const hideBar = () => { if (hasGSAP()) gsap.to('#cookieBar', { y: 90, opacity: 0, duration: 0.35, ease: 'power3.inOut', onComplete: () => bar.classList.add('hidden') }); else bar.classList.add('hidden'); };
+      if (stored === 'accepted') return;
+      showBar();
+      accept && accept.addEventListener('click', () => { try { localStorage.setItem(key, 'accepted'); } catch (_) { } hideBar(); });
+      decline && decline.addEventListener('click', () => { try { localStorage.setItem(key, 'declined'); } catch (_) { } hideBar(); });
+  }
+
   // Counter.dev integration
   function loadCounter() {
       if (document.getElementById('counterjs')) return;
@@ -669,6 +684,7 @@
       s.id = 'counterjs'; s.defer = true; s.src = 'https://cdn.counter.dev/script.js';
       s.dataset.id = 'cc931e21-a972-4ffe-aaf1-52b0f23da9d3';
       s.dataset.utcoffset = String(-new Date().getTimezoneOffset() / 60);
+      s.dataset.path = '/privacy-policy/';
       document.head.appendChild(s);
   }
 
@@ -690,6 +706,7 @@
               bindLangToggle('langToggleMobile');
           });
 
+      initCookieBar();
       loadCounter();
   });
 </script>

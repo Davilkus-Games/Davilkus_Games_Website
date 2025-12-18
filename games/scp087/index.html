@@ -61,7 +61,7 @@
     }
   </script>
 
-  <!-- GSAP (optional) -->
+  <!-- GSAP -->
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
   <!-- i18n -->
@@ -89,6 +89,19 @@
   <style>
     body {
       visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Consistent Vignette */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
     }
 
     ::-webkit-scrollbar {
@@ -109,7 +122,16 @@
       background: #2a3552
     }
 
-    /* Hero background image behind content (reduced blur) */
+    ::selection {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    h1, h2, h3, .font-semibold, .font-bold {
+      letter-spacing: -0.015em;
+    }
+
+    /* Hero background image behind content */
     .hero-bg {
       position: relative
     }
@@ -119,8 +141,8 @@
       position: absolute;
       inset: 0;
       background: url('/assets/showcase/scp087.webp') center/cover no-repeat;
-      filter: blur(6px) brightness(.5);
-      transform: scale(1.04);
+      filter: blur(8px) brightness(.4);
+      transform: scale(1.05);
       z-index: 0;
       pointer-events: none
     }
@@ -136,10 +158,10 @@
 
     /* Modal sizing */
     .modal__overlay {
-      background: rgba(0, 0, 0, .6)
+      background: rgba(0, 0, 0, .85);
+      backdrop-filter: blur(5px);
     }
 
-    /* Keep MicroModal hidden until opened */
     .micromodal-slide {
       display: none
     }
@@ -156,7 +178,6 @@
       display: block
     }
 
-    /* Clean scroll behavior, edge-fade, and top scrollbar */
     #shotsTrack {
       -webkit-overflow-scrolling: touch;
       overscroll-behavior-x: contain;
@@ -226,37 +247,36 @@
   <main class="pt-16">
     <!-- Hero / top block with blurred bg image -->
     <section class="relative hero-bg overflow-hidden">
-      <!-- gradient like 404 -->
-      <div
-        class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]">
-      </div>
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <!-- gradient -->
+      <div class="absolute inset-0 z-10 bg-gradient-to-b from-black/20 via-black/40 to-bg"></div>
+      
+      <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
           <div class="md:col-span-2">
-            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight" data-i18n="title">SCP-087: Into the Abyss
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-md" data-i18n="title">SCP-087: Into the Abyss
             </h1>
-            <p class="mt-3 md:mt-4 text-sm md:text-base text-ink/80" data-i18n="tagline">Fan-made psychological horror
+            <p class="mt-3 md:mt-4 text-sm md:text-base text-gray-200 leading-relaxed max-w-2xl drop-shadow" data-i18n="tagline">Fan-made psychological horror
               based on SCP-087 — the endless stairwell.</p>
 
             <!-- CTA row -->
             <div class="mt-7 md:mt-9 flex flex-wrap gap-3">
               <a href="/games/scp087/play/"
-                class="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand/60">
+                class="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand/60 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] transition-all">
                 <span data-i18n="btn.play">Play Here</span>
               </a>
               <a href="https://play.google.com/store/apps/details?id=com.DavilkusGames.SCP087" target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header">
+                class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header backdrop-blur">
                 <img src="/assets/icons/google-play.svg" alt="Google Play" class="w-5 h-5" />
                 <span data-i18n="btn.gp">Get it on Google Play</span>
               </a>
               <a href="https://yandex.com/games/app/418827" target="_blank" rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header">
+                class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header backdrop-blur">
                 <img src="/assets/icons/yandex-games.svg" alt="Yandex Games" class="w-5 h-5" />
                 <span data-i18n="btn.yg">Yandex Games</span>
               </a>
               <a href="https://itch.io" target="_blank" rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header">
+                class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header backdrop-blur">
                 <img src="/assets/icons/itchio.svg" alt="itch.io" class="w-5 h-5" />
                 <span>itch.io</span>
               </a>
@@ -265,7 +285,7 @@
           <!-- Game icon on the right -->
           <div class="md:col-span-1 md:justify-self-end">
             <div
-              class="bg-header/70 border border-line rounded-2xl p-2 shadow-soft w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56">
+              class="bg-header/40 border border-white/10 rounded-2xl p-2 shadow-2xl backdrop-blur-sm w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56">
               <img src="game-icon.webp" alt="SCP-087 icon" class="w-full h-full object-cover rounded-xl" />
             </div>
           </div>
@@ -275,9 +295,6 @@
 
     <!-- Screenshots row (Steam-style) -->
     <section class="relative py-6">
-      <div
-        class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]">
-      </div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div id="shotsTrack" class="shots-track overflow-x-auto -mx-4 px-4 flex gap-4 scrollbar-top">
           <!-- Thumbs injected via JS -->
@@ -287,14 +304,11 @@
 
     <!-- Description & meta -->
     <section class="relative">
-      <div
-        class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]">
-      </div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 grid md:grid-cols-3 gap-6 md:gap-8">
         <!-- Long description -->
         <article class="md:col-span-2 bg-panel/60 border border-line rounded-2xl p-5 md:p-6 shadow-soft" data-animate>
           <h2 class="text-xl font-semibold mb-4" data-i18n="sections.desc">Description</h2>
-          <div class="text-[15px] leading-relaxed space-y-4">
+          <div class="text-[15px] leading-relaxed space-y-4 text-ink/90">
             <p data-i18n="desc.p1"><strong>Item Number:</strong> SCP-087<br /><strong>Object Class:</strong> Euclid</p>
             <p data-i18n="desc.p2">SCP-087 is a stairwell of indeterminate depth, located within [REDACTED]. Visibility
               is restricted, and all light sources above 75W prove ineffective.</p>
@@ -307,19 +321,19 @@
             <p data-i18n="desc.p5">This is a first-person psychological horror game. Descend alone into the dark,
               procedurally-generated stairwell. Experience unpredictable reality shifts, radio messages, hallucinations,
               and fatal encounters with SCP-087-1.</p>
-            <ul class="list-disc pl-6">
+            <ul class="list-disc pl-6 space-y-1">
               <li data-i18n="desc.l1">Offline play</li>
               <li data-i18n="desc.l2">Atmospheric horror</li>
               <li data-i18n="desc.l3">SCP lore-inspired</li>
               <li data-i18n="desc.l4">Single-player only</li>
             </ul>
-            <p class="italic" data-i18n="desc.p6">Survive. As long as you can.</p>
-            <div class="pt-5 mt-3 border-t border-line/60 space-y-2">
-              <p class="text-ink/70 text-sm" data-i18n="disc.p1">This is an unofficial fan-made game based on “SCP-087.”
+            <p class="italic text-ink/70" data-i18n="desc.p6">Survive. As long as you can.</p>
+            <div class="pt-5 mt-3 border-t border-white/5 space-y-2">
+              <p class="text-ink/60 text-sm" data-i18n="disc.p1">This is an unofficial fan-made game based on “SCP-087.”
                 The SCP Foundation and its content, including the SCP logo and related concepts, are licensed under
                 Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0). This project is not affiliated with the SCP
                 Foundation or its authors.</p>
-              <p class="text-ink/70 text-sm">“SCP-087” by Zaeyde, from the SCP Wiki: <a class="underline"
+              <p class="text-ink/60 text-sm">“SCP-087” by Zaeyde, from the SCP Wiki: <a class="underline"
                   href="https://scpwiki.com/scp-087" target="_blank" rel="noopener noreferrer">scpwiki.com/scp-087</a>.
                 <span data-i18n="disc.p2">Licensed under CC BY-SA 3.0.</span>
               </p>
@@ -333,7 +347,7 @@
           <aside>
             <div class="bg-panel/60 border border-line rounded-2xl p-5 shadow-soft" data-animate>
               <h2 class="text-lg font-semibold mb-4" data-i18n="sections.info">Game Info</h2>
-              <dl class="text-sm divide-y divide-line/60">
+              <dl class="text-sm divide-y divide-white/5">
                 <div class="flex items-center justify-between py-2">
                   <dt class="text-ink/70" data-i18n="info.status">Status</dt>
                   <dd class="font-semibold" data-i18n="info.statusVal">Released</dd>
@@ -358,7 +372,7 @@
           <aside>
             <div class="bg-panel/60 border border-line rounded-2xl p-5 shadow-soft" data-animate>
               <h2 class="text-lg font-semibold mb-4" data-i18n="sections.credits">Team & Sources</h2>
-              <dl class="text-sm divide-y divide-line/60">
+              <dl class="text-sm divide-y divide-white/5">
                 <div class="flex items-center justify-between py-2">
                   <dt class="text-ink/70" data-i18n="credits.dev">Developer</dt>
                   <dd class="font-semibold">Davilkus</dd>
@@ -380,13 +394,10 @@
 
     <!-- Video (cookie gated) -->
     <section class="relative pb-12">
-      <div
-        class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]">
-      </div>
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-xl font-semibold mb-4" data-i18n="sections.trailer">Trailer</h2>
         <div id="ytWrap"
-          class="relative w-full aspect-video rounded-2xl overflow-hidden border border-line bg-header/70">
+          class="relative w-full aspect-video rounded-2xl overflow-hidden border border-line bg-header/70 shadow-soft">
           <div id="ytPlaceholder" class="absolute inset-0 grid place-items-center gap-3 p-6 text-center">
             <p class="text-sm text-ink/80" data-i18n="yt.consent">Enable cookies to load the YouTube video.</p>
             <div class="flex items-center justify-center gap-2">
@@ -537,7 +548,30 @@
     function loadCounter() { if (document.getElementById('counterjs')) return; const s = document.createElement('script'); s.id = 'counterjs'; s.defer = !0; s.src = 'https://cdn.counter.dev/script.js'; s.dataset.id = 'cc931e21-a972-4ffe-aaf1-52b0f23da9d3'; s.dataset.utcoffset = String(-new Date().getTimezoneOffset() / 60); document.head.appendChild(s) }
 
     // Page-specific logic
-    function loadYouTube() { let stored = null; try { stored = localStorage.getItem('dg_cookie_v1') } catch (e) { } if (stored !== 'accepted') return; const wrap = document.getElementById('ytWrap'), ph = document.getElementById('ytPlaceholder'); if (!wrap || wrap.dataset.loaded) return; const iframe = document.createElement('iframe'); iframe.width = '560'; iframe.height = '315'; iframe.src = 'https://www.youtube.com/embed/dk5-FnV_1Mk?rel=0&modestbranding=1'; iframe.title = 'YouTube video player'; iframe.frameBorder = '0'; iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'; iframe.allowFullscreen = !0; iframe.className = 'absolute inset-0 w-full h-full'; wrap.appendChild(iframe); wrap.dataset.loaded = '1'; if (ph) ph.remove() }
+    function loadYouTube() { 
+        let stored = null; 
+        try { stored = localStorage.getItem('dg_cookie_v1') } catch (e) { } 
+        if (stored !== 'accepted') return; 
+        
+        const wrap = document.getElementById('ytWrap'), ph = document.getElementById('ytPlaceholder'); 
+        if (!wrap || wrap.dataset.loaded) return; 
+        
+        // IMPORTANT: Replace YOUR_YT_VIDEO_ID with the real ID
+        const iframe = document.createElement('iframe'); 
+        iframe.width = '560'; 
+        iframe.height = '315'; 
+        iframe.src = 'https://www.youtube.com/embed/dk5-FnV_1Mk?autoplay=1'; 
+        iframe.title = 'YouTube video player'; 
+        iframe.frameBorder = '0'; 
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'; 
+        iframe.allowFullscreen = !0; 
+        iframe.className = 'absolute inset-0 w-full h-full'; 
+        
+        wrap.appendChild(iframe); 
+        wrap.dataset.loaded = '1'; 
+        if (ph) ph.remove() 
+    }
+    
     const SHOTS = Array.from({ length: 5 }, (_, i) => `/games/scp087/screenshots/screenshot_${i}.webp`); let shotIndex = 0, dragging = !1;
     function renderShots() { const track = document.getElementById('shotsTrack'); if (!track) return; const frag = document.createDocumentFragment(); SHOTS.forEach((src, idx) => { const a = document.createElement('button'); a.type = 'button'; a.className = 'shot relative shrink-0 w-[300px] md:w-[360px] aspect-video rounded-xl overflow-hidden border border-line bg-header/60 hover:bg-header focus:outline-none focus:ring-2 focus:ring-brand/40'; const img = document.createElement('img'); img.src = src; img.alt = `Screenshot ${idx + 1}`; img.loading = 'lazy'; img.decoding = 'async'; img.className = 'absolute inset-0 w-full h-full object-cover'; img.onerror = () => a.remove(); a.appendChild(img); a.addEventListener('click', () => { if (!dragging) openShot(idx) }); frag.appendChild(a) }); track.innerHTML = ''; track.appendChild(frag); track.addEventListener('wheel', e => { const dx = Math.abs(e.deltaX), dy = Math.abs(e.deltaY); if (dy > dx) { track.scrollLeft += e.deltaY; e.preventDefault() } }, { passive: !1 }); let isDown = !1, startX = 0, startLeft = 0; track.addEventListener('pointerdown', e => { isDown = !0; dragging = !1; startX = e.clientX; startLeft = track.scrollLeft }); track.addEventListener('pointermove', e => { if (!isDown) return; const dx = e.clientX - startX; if (Math.abs(dx) > 6) dragging = !0; track.scrollLeft = startLeft - dx });['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => track.addEventListener(ev, () => { isDown = !1; setTimeout(() => dragging = !1, 0) })) }
     function openShot(idx) { shotIndex = idx; updateLarge(); if (window.MicroModal && typeof MicroModal.show === 'function') { MicroModal.show('shotModal', { disableScroll: !0 }) } else { const m = document.getElementById('shotModal'); if (m) { m.classList.add('is-open'); m.setAttribute('aria-hidden', 'false') } } }
