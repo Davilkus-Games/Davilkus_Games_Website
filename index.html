@@ -484,11 +484,30 @@
             </p>
           </div>
 
+             <!-- PRESS KIT BLOCK -->
+            <div class="mt-8 pt-6 border-t border-white/5">
+              <div class="bg-panel/40 border border-line rounded-xl p-5 flex items-start gap-4 hover:border-brand/30 transition-colors">
+                <div class="shrink-0 p-3 bg-brand/10 rounded-lg text-brand">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-base text-ink" data-i18n="press.title">Press Kit</h3>
+                  <p class="text-sm text-ink/70 mt-1 mb-3" data-i18n="press.desc">Writing an article? Download official logos, screenshots, and info.</p>
+                  <!-- Google Drive Link -->
+                  <a href="https://drive.google.com/drive/folders/1hrd5J48-jRt_m48fQQe8g2tLj9kRMzEq" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:text-brandDark transition group">
+                    <span data-i18n="press.btn">Open Google Drive</span>
+                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- END PRESS KIT BLOCK -->
+
           <div class="bg-panel/60 border border-line rounded-2xl p-6 md:p-8 shadow-soft">
             <h3 class="text-xl font-semibold mb-5" data-i18n="about.team">Team & Partners</h3>
             <div class="grid sm:grid-cols-2 gap-6">
   <!-- Mikhail Maksimov -->
-  <div class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
+  <div class="team-card group flex flex-col bg-header/40 border border-line hover:border-brand/50 rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
     <!-- Added shrink-0 to img container and min-w-0 to text container -->
     <div class="flex items-center gap-4">
       <img src="/assets/team/davilkus.webp" alt="Mikhail Maksimov" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line shrink-0" />
@@ -512,7 +531,7 @@
   </div>
 
   <!-- Evgeny Ryzhenkov -->
-  <div class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
+  <div class="team-card group flex flex-col bg-header/40 border border-line hover:border-brand/50 rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
     <div class="flex items-center gap-4">
       <img src="/assets/team/omega.webp" alt="Evgeny Ryzhenkov" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line shrink-0" />
       <div class="min-w-0 flex-1">
@@ -534,7 +553,7 @@
   </div>
 
   <!-- Burger Kerman -->
-  <div class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
+  <div class="team-card group flex flex-col bg-header/40 border border-line hover:border-brand/50 rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
     <div class="flex items-center gap-4">
       <img src="/assets/team/burger-kerman.webp" alt="BurgerKerman" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line shrink-0" />
       <div class="min-w-0 flex-1">
@@ -559,7 +578,7 @@
   </div>
 
   <!-- Haalo -->
-  <div class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
+  <div class="team-card group flex flex-col bg-header/40 border border-line hover:border-brand/50 rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
     <div class="flex items-center gap-4">
       <img src="/assets/team/haalo.webp" alt="Haalo" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line shrink-0" />
       <div class="min-w-0 flex-1">
@@ -828,6 +847,11 @@
             burger: 'Writes original soundtracks for our games.',
             omega: 'UX design, 3D models, and Unity scripting.'
           },
+          press: {
+            title: 'Press Kit',
+            desc: 'Writing an article? Download official logos, screenshots, and info.',
+            btn: 'Open Google Drive'
+          },
           team: { mikhail: 'Mikhail Maksimov', evgeny: 'Evgeny Ryzhenkov', burger: 'Burger Kerman', haalo: 'Nikolai Seleznev' },
           roles: { founder: 'Co-founder, Creative Director', cm: 'Community Manager', partner: 'Composer, Sound Engineer', codev: 'Co-founder, Art Director' },
           contact: { title: 'Contact Us', emailTitle: 'Email', general: 'General', support: 'In‑game Support', direct: 'Direct', socialTitle: 'Community' },
@@ -857,6 +881,11 @@
             haalo: 'Держит сообщество в курсе, проводит ивенты.',
             burger: 'Пишет оригинальные саундтреки к нашим играм.',
             omega: 'UX-дизайн, 3D-модели и скрипты Unity.'
+          },
+          press: {
+            title: 'Пресс-кит',
+            desc: 'Пишете статью? Скачайте официальные логотипы, скриншоты и информацию.',
+            btn: 'Открыть Google Drive'
           },
           team: { mikhail: 'Михаил Максимов', evgeny: 'Евгений Рыженков', burger: 'Burger Kerman', haalo: 'Николай Селезнёв' },
           roles: { founder: 'Со-основатель, креативный директор', cm: 'Комьюнити-менеджер', partner: 'Композитор, звукорежиссер', codev: 'Со-основатель, арт директор' },
