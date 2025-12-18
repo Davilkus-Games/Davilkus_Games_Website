@@ -106,7 +106,21 @@
   </script>
 
   <style>
-    body { visibility: hidden; }
+    body 
+    { 
+        visibility: hidden; 
+        -webkit-font-smoothing: antialiased; 
+        -moz-osx-font-smoothing: grayscale; 
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5; 
+      background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,0,0.6) 100%);
+    }
 
     ::-webkit-scrollbar {
       width: 10px;
@@ -124,6 +138,21 @@
 
     ::-webkit-scrollbar-thumb:hover {
       background: #2a3552
+    }
+
+       ::selection {
+      background: #2563eb; /* Brand Blue */
+      color: #ffffff;
+    }
+    
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1, h2, h3, .font-semibold, .font-bold {
+      letter-spacing: -0.015em; /* Tighter, more modern tracking for headings */
     }
 
     /* Top-right dots as thin bars */
@@ -192,25 +221,6 @@
       transform: scale(1.08);
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.18'/></svg>");
-      mix-blend-mode: soft-light;
-      animation: dg-grain 6s steps(6, end) infinite;
-      opacity: .55;
-      /* overlay strength */
-    }
-
-    @keyframes dg-grain {
-      to {
-        transform: translate(-120px, -120px)
-      }
-    }
-
     @media (prefers-reduced-motion:reduce) {
       body::before {
         animation: none
@@ -235,229 +245,58 @@
       }
     }
 
-    /* ===== HARD VHS GLITCH ===== */
+   /* ===== MODERN CHROMATIC ABERRATION ===== */
     .glitch-hard {
       position: relative;
       display: inline-block;
-      filter: contrast(1.1) saturate(1.1);
-      will-change: transform, filter;
-      animation: glitch-flicker 1.6s steps(1, end) infinite;
+      color: #fff;
+      mix-blend-mode: normal;
     }
 
-    /* Red/Cyan chromatic layers */
+    /* Static offset layers (Red/Cyan) */
     .glitch-hard::before,
     .glitch-hard::after {
       content: attr(data-text);
       position: absolute;
-      inset: 0;
-      pointer-events: none;
-      mix-blend-mode: screen;
-      opacity: .42;
-      /* crank here */
-      clip-path: inset(0 0 0 0);
-    }
-
-    .glitch-hard::before {
-      color: #ff0033;
-      transform: translate(-2px, -1px);
-      animation: glitch-r 1.3s steps(2, end) infinite;
-    }
-
-    .glitch-hard::after {
-      color: #00eaff;
-      transform: translate(2px, 1px);
-      animation: glitch-c 1.7s steps(2, end) infinite;
-    }
-
-    /* Sliced mask on the base to simulate tearing */
-    .glitch-hard>.glitch-slice {
-      position: absolute;
-      left: 0;
-      right: 0;
       top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
-      color: inherit;
-      overflow: visible;
+      opacity: 0.8;
       pointer-events: none;
-      text-shadow: 0 0 1px rgba(255, 255, 255, .25);
-      animation: glitch-slice 1.2s steps(1, end) infinite;
+      background: transparent;
     }
 
-    /* Keyframes */
-    @keyframes glitch-flicker {
-
-      0%,
-      3% {
-        filter: contrast(1.15) saturate(1.2)
-      }
-
-      4% {
-        filter: brightness(1.4) contrast(1.3) saturate(1.4)
-      }
-
-      5%,
-      9% {
-        transform: translate(0, 0) skew(0deg)
-      }
-
-      10% {
-        transform: translate(-2px, 1px) skew(-0.8deg)
-      }
-
-      11% {
-        transform: translate(2px, -1px) skew(0.6deg)
-      }
-
-      12%,
-      18% {
-        transform: translate(0, 0)
-      }
-
-      28% {
-        transform: translateY(-1px)
-      }
-
-      29% {
-        transform: translateY(1px)
-      }
-
-      30%,
-      100% {
-        transform: translate(0, 0)
-      }
+    /* Cyan Shift */
+    .glitch-hard::before {
+      color: #0ff;
+      z-index: -1;
+      transform: translate(-2px, 0);
+      mix-blend-mode: screen;
     }
 
-    @keyframes glitch-r {
-      0% {
-        clip-path: inset(0 0 0 0);
-        transform: translate(-2px, -1px)
-      }
-
-      10% {
-        clip-path: inset(12% 0 70% 0)
-      }
-
-      20% {
-        clip-path: inset(62% 0 15% 0);
-        transform: translate(-3px, 0)
-      }
-
-      30% {
-        clip-path: inset(35% 0 40% 0)
-      }
-
-      40% {
-        clip-path: inset(5% 0 80% 0)
-      }
-
-      50% {
-        clip-path: inset(70% 0 5% 0);
-        transform: translate(-1px, 1px)
-      }
-
-      60% {
-        clip-path: inset(30% 0 35% 0)
-      }
-
-      70% {
-        clip-path: inset(45% 0 20% 0)
-      }
-
-      80% {
-        clip-path: inset(15% 0 60% 0)
-      }
-
-      100% {
-        clip-path: inset(0 0 0 0);
-        transform: translate(-2px, -1px)
-      }
+    /* Red Shift */
+    .glitch-hard::after {
+      color: #f00;
+      z-index: -2;
+      transform: translate(2px, 0);
+      mix-blend-mode: screen;
+      animation: glitch-twitch 4s infinite; /* Occasional twitch */
     }
 
-    @keyframes glitch-c {
-      0% {
-        clip-path: inset(0 0 0 0);
-        transform: translate(2px, 1px)
-      }
-
-      8% {
-        clip-path: inset(60% 0 10% 0)
-      }
-
-      18% {
-        clip-path: inset(25% 0 50% 0);
-        transform: translate(3px, 0)
-      }
-
-      26% {
-        clip-path: inset(10% 0 70% 0)
-      }
-
-      38% {
-        clip-path: inset(75% 0 5% 0)
-      }
-
-      52% {
-        clip-path: inset(40% 0 25% 0);
-        transform: translate(1px, -1px)
-      }
-
-      66% {
-        clip-path: inset(20% 0 55% 0)
-      }
-
-      82% {
-        clip-path: inset(5% 0 80% 0)
-      }
-
-      100% {
-        clip-path: inset(0 0 0 0);
-        transform: translate(2px, 1px)
-      }
+    /* Subtle occasional twitch animation */
+    @keyframes glitch-twitch {
+      0%, 95% { transform: translate(2px, 0); }
+      96% { transform: translate(-2px, 1px); }
+      97% { transform: translate(1px, -1px); }
+      98% { transform: translate(0px, 2px); }
+      99% { transform: translate(-1px, 1px); }
+      100% { transform: translate(2px, 0); }
     }
 
-    @keyframes glitch-slice {
-      0% {
-        clip-path: inset(0 0 0 0)
-      }
-
-      6% {
-        clip-path: inset(12% 0 72% 0);
-        transform: translate(-2px, -1px)
-      }
-
-      12% {
-        clip-path: inset(65% 0 15% 0);
-        transform: translate(2px, 1px)
-      }
-
-      18% {
-        clip-path: inset(35% 0 35% 0)
-      }
-
-      26% {
-        clip-path: inset(5% 0 80% 0)
-      }
-
-      34% {
-        clip-path: inset(78% 0 4% 0)
-      }
-
-      50% {
-        clip-path: inset(28% 0 48% 0)
-      }
-
-      66% {
-        clip-path: inset(45% 0 25% 0)
-      }
-
-      82% {
-        clip-path: inset(20% 0 55% 0)
-      }
-
-      100% {
-        clip-path: inset(0 0 0 0);
-        transform: none
-      }
+    /* Slice is used for the dash, keep it simple or hide it if not needed */
+    .glitch-hard > .glitch-slice {
+      display: none; 
     }
 
     /* Motion safety */
@@ -579,8 +418,8 @@
           <!-- Buttons (bottom-right, but within same container width) -->
           <div class="mt-auto mb-8 md:mb-15 flex justify-end gap-3 md:gap-4">
             <a id="btnPlay" href="#"
-              class="pointer-events-auto inline-flex items-center justify-center rounded-full px-5 py-3 md:px-6 md:py-3.5 text-sm md:text-base font-semibold bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand/60 transition-shadow">
-              <span>Play!</span>
+                class="pointer-events-auto inline-flex items-center justify-center rounded-full px-5 py-3 md:px-6 md:py-3.5 text-sm md:text-base font-semibold bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand/60 transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)]">
+                <span>Play!</span>
             </a>
             <a id="btnMore" href="#"
               class="pointer-events-auto inline-flex items-center justify-center rounded-full px-5 py-3 md:px-6 md:py-3.5 text-sm md:text-base font-semibold bg-header/70 border border-line hover:bg-header focus:outline-none focus:ring-2 focus:ring-brand/40">
@@ -648,120 +487,99 @@
           <div class="bg-panel/60 border border-line rounded-2xl p-6 md:p-8 shadow-soft">
             <h3 class="text-xl font-semibold mb-5" data-i18n="about.team">Team & Partners</h3>
             <div class="grid sm:grid-cols-2 gap-6">
-              <!-- Mikhail Maksimov -->
-              <div
-                class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition"
-                data-animate>
-                <div class="flex items-center gap-4">
-                  <img src="/assets/team/davilkus.webp" alt="Mikhail Maksimov" width="56" height="56" loading="lazy"
-                    decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
-                  <div>
-                    <div class="text-lg font-semibold leading-tight" data-i18n="team.mikhail">Михаил<br>Максимов</div>
-                    <div class="text-xs text-ink/70 mt-1 leading-snug" data-i18n="roles.founder">
-                      Со-основатель,<br>креативный директор</div>
-                  </div>
-                </div>
-                <p class="text-sm text-ink/80 my-4" data-i18n="about.davilkus">Пишет геймплей, сеть и шейдеры.</p>
-                <div class="mt-auto flex justify-end gap-2 pt-1">
-                    <a href="https://t.me/michaelmaksimov"
-                       class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
-                       aria-label="Telegram">
-                        <img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy"
-                             decoding="async" class="w-5 h-5" alt="Telegram" />
-                    </a>
-                    <a href="https://vk.com/davilkus"
-                       class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
-                       aria-label="VK">
-                        <img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy"
-                             decoding="async" class="w-5 h-5" alt="VK" />
-                    </a>
-                </div>
-              </div>
+  <!-- Mikhail Maksimov -->
+  <div class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
+    <!-- Added shrink-0 to img container and min-w-0 to text container -->
+    <div class="flex items-center gap-4">
+      <img src="/assets/team/davilkus.webp" alt="Mikhail Maksimov" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line shrink-0" />
+      <div class="min-w-0 flex-1">
+        <div class="text-lg font-semibold leading-tight break-words" data-i18n="team.mikhail">Михаил Максимов</div>
+        <!-- Removed <br>, added leading-snug to handle natural wrapping -->
+        <div class="text-xs text-ink/70 mt-1 leading-snug" data-i18n="roles.founder">
+          Со-основатель, креативный директор
+        </div>
+      </div>
+    </div>
+    <p class="text-sm text-ink/80 my-4" data-i18n="about.davilkus">Пишет геймплей, сеть и шейдеры.</p>
+    <div class="mt-auto flex justify-end gap-2 pt-1">
+      <a href="https://t.me/michaelmaksimov" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Telegram">
+        <img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Telegram" />
+      </a>
+      <a href="https://vk.com/davilkus" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="VK">
+        <img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="VK" />
+      </a>
+    </div>
+  </div>
 
-              <!-- Evgeny Ryzhenkov -->
-              <div
-                class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition"
-                data-animate>
-                <div class="flex items-center gap-4">
-                  <img src="/assets/team/omega.webp" alt="Evgeny Ryzhenkov" width="56" height="56" loading="lazy"
-                    decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
-                  <div>
-                    <div class="text-lg font-semibold leading-tight" data-i18n="team.evgeny">Евгений<br>Рыженков</div>
-                    <div class="text-xs text-ink/70 mt-1 leading-snug" data-i18n="roles.codev">Со-основатель,<br>арт
-                      директор</div>
-                  </div>
-                </div>
-                <p class="text-sm text-ink/80 my-4" data-i18n="about.omega">UX-дизайн, 3D-модели и скрипты Unity.</p>
-                <div class="mt-auto flex justify-end gap-2 pt-1">
-                  <a href="https://t.me/omega_gamedev"
-                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
-                    aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy"
-                      decoding="async" class="w-5 h-5" alt="Telegram" /></a>
-                  <a href="https://yandex.com/games/developer/88490"
-                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
-                    aria-label="Yandex Games"><img src="/assets/icons/yandex-games.svg" width="20" height="20"
-                      loading="lazy" decoding="async" class="w-5 h-5" alt="Yandex Games" /></a>
-                </div>
-              </div>
+  <!-- Evgeny Ryzhenkov -->
+  <div class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
+    <div class="flex items-center gap-4">
+      <img src="/assets/team/omega.webp" alt="Evgeny Ryzhenkov" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line shrink-0" />
+      <div class="min-w-0 flex-1">
+        <div class="text-lg font-semibold leading-tight break-words" data-i18n="team.evgeny">Евгений Рыженков</div>
+        <div class="text-xs text-ink/70 mt-1 leading-snug" data-i18n="roles.codev">
+          Со-основатель, арт директор
+        </div>
+      </div>
+    </div>
+    <p class="text-sm text-ink/80 my-4" data-i18n="about.omega">UX-дизайн, 3D-модели и скрипты Unity.</p>
+    <div class="mt-auto flex justify-end gap-2 pt-1">
+      <a href="https://t.me/omega_gamedev" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Telegram">
+        <img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Telegram" />
+      </a>
+      <a href="https://yandex.com/games/developer/88490" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Yandex Games">
+        <img src="/assets/icons/yandex-games.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Yandex Games" />
+      </a>
+    </div>
+  </div>
 
-              <!-- Burger Kerman -->
-              <div
-                class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition"
-                data-animate>
-                <div class="flex items-center gap-4">
-                  <img src="/assets/team/burger-kerman.webp" alt="BurgerKerman" width="56" height="56" loading="lazy"
-                    decoding="async" class="w-14 h-14 rounded-full object-cover border border-line" />
-                  <div>
-                    <div class="text-lg font-semibold leading-tight" data-i18n="team.burger">Burger<br>Kerman</div>
-                    <div class="text-xs text-ink/70 mt-1 leading-snug" data-i18n="roles.partner">
-                      Композитор,<br>звукорежиссер
-                    </div>
-                  </div>
-                </div>
-                <p class="text-sm text-ink/80 my-4" data-i18n="about.burger">Пишет оригинальные саундтреки к нашим
-                  играм.</p>
-                <div class="mt-auto flex justify-end gap-2 pt-1">
-                  <a href="https://open.spotify.com/artist/71yAyS7L72UpNn1VlymHQU"
-                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
-                    aria-label="Spotify"><img src="/assets/icons/spotify.svg" width="20" height="20" loading="lazy"
-                      decoding="async" class="w-5 h-5" alt="Spotify" /></a>
-                  <a href="https://music.yandex.ru/artist/19603802"
-                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
-                    aria-label="Yandex Music"><img src="/assets/icons/yandex-music.svg" width="20" height="20"
-                      loading="lazy" decoding="async" class="w-5 h-5" alt="Yandex Music" /></a>
-                  <a href="https://www.youtube.com/@BurgerKerman"
-                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
-                    aria-label="YouTube"><img src="/assets/icons/youtube.svg" width="20" height="20" loading="lazy"
-                      decoding="async" class="w-5 h-5" alt="YouTube" /></a>
-                </div>
-              </div>
+  <!-- Burger Kerman -->
+  <div class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
+    <div class="flex items-center gap-4">
+      <img src="/assets/team/burger-kerman.webp" alt="BurgerKerman" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line shrink-0" />
+      <div class="min-w-0 flex-1">
+        <div class="text-lg font-semibold leading-tight break-words" data-i18n="team.burger">Burger Kerman</div>
+        <div class="text-xs text-ink/70 mt-1 leading-snug" data-i18n="roles.partner">
+          Композитор, звукорежиссер
+        </div>
+      </div>
+    </div>
+    <p class="text-sm text-ink/80 my-4" data-i18n="about.burger">Пишет оригинальные саундтреки к нашим играм.</p>
+    <div class="mt-auto flex justify-end gap-2 pt-1">
+      <a href="https://open.spotify.com/artist/71yAyS7L72UpNn1VlymHQU" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Spotify">
+        <img src="/assets/icons/spotify.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Spotify" />
+      </a>
+      <a href="https://music.yandex.ru/artist/19603802" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Yandex Music">
+        <img src="/assets/icons/yandex-music.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Yandex Music" />
+      </a>
+      <a href="https://www.youtube.com/@BurgerKerman" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="YouTube">
+        <img src="/assets/icons/youtube.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="YouTube" />
+      </a>
+    </div>
+  </div>
 
-              <!-- Haalo -->
-              <div
-                class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition"
-                data-animate>
-                <div class="flex items-center gap-4">
-                  <img src="/assets/team/haalo.webp" alt="Haalo" width="56" height="56" loading="lazy" decoding="async"
-                    class="w-14 h-14 rounded-full object-cover border border-line" />
-                  <div>
-                    <div class="text-lg font-semibold leading-tight" data-i18n="team.haalo">Николай<br>Селезнёв</div>
-                    <div class="text-xs text-ink/70 mt-1 leading-snug" data-i18n="roles.cm">Комьюнити-<br>менеджер</div>
-                  </div>
-                </div>
-                <p class="text-sm text-ink/80 my-4" data-i18n="about.haalo">Держит сообщество в курсе, проводит ивенты.
-                </p>
-                <div class="mt-auto flex justify-end gap-2 pt-1">
-                  <a href="https://vk.com/nseleznev2020"
-                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
-                    aria-label="VK"><img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy"
-                      decoding="async" class="w-5 h-5" alt="VK" /></a>
-                  <a href="https://t.me/paylife2680"
-                    class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform"
-                    aria-label="Telegram"><img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy"
-                      decoding="async" class="w-5 h-5" alt="Telegram" /></a>
-                </div>
-              </div>
-            </div>
+  <!-- Haalo -->
+  <div class="team-card group flex flex-col bg-header/40 border border-line rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
+    <div class="flex items-center gap-4">
+      <img src="/assets/team/haalo.webp" alt="Haalo" width="56" height="56" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover border border-line shrink-0" />
+      <div class="min-w-0 flex-1">
+        <div class="text-lg font-semibold leading-tight break-words" data-i18n="team.haalo">Николай Селезнёв</div>
+        <div class="text-xs text-ink/70 mt-1 leading-snug" data-i18n="roles.cm">
+          Комьюнити-менеджер
+        </div>
+      </div>
+    </div>
+    <p class="text-sm text-ink/80 my-4" data-i18n="about.haalo">Держит сообщество в курсе, проводит ивенты.</p>
+    <div class="mt-auto flex justify-end gap-2 pt-1">
+      <a href="https://vk.com/nseleznev2020" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="VK">
+        <img src="/assets/icons/vk.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="VK" />
+      </a>
+      <a href="https://t.me/paylife2680" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition-transform" aria-label="Telegram">
+        <img src="/assets/icons/telegram.svg" width="20" height="20" loading="lazy" decoding="async" class="w-5 h-5" alt="Telegram" />
+      </a>
+    </div>
+  </div>
+</div>
           </div>
         </div>
     </section>
@@ -985,13 +803,13 @@
     }
 
     // i18n
-    const resources = {
+      const resources = {
       en: {
         translation: {
+          meta: { title: 'Davilkus Games — Indie Game Studio' }, // NEW
           brand: 'Davilkus Games',
           nav: { games: 'Games', about: 'About', contact: 'Contact Us' },
           games: {
-            etb94: { title: 'Exit the Backrooms: Level 94', tagline: 'A mysterious, dreamlike level beyond the familiar Backrooms.' },
             scp087: { title: 'SCP-087: Into the Abyss', tagline: 'Descend into the endless darkness of SCP-087.' },
             etb2: { title: 'Exit the Backrooms: Level 2', tagline: 'You find yourself in a labyrinth of technical corridors filled with entities...' },
             etb37: { title: 'Exit the Backrooms: Level 37', tagline: 'You find yourself in an endless complex of liminal pools, but there is someone else here...' },
@@ -1010,18 +828,18 @@
             burger: 'Writes original soundtracks for our games.',
             omega: 'UX design, 3D models, and Unity scripting.'
           },
-          team: { mikhail: 'Mikhail<br>Maksimov', evgeny: 'Evgeny<br>Ryzhenkov', burger: 'Burger<br>Kerman', haalo: 'Nikolai<br>Seleznev' },
-          roles: { founder: 'Co-founder,<br>Creative Director', cm: 'Community<br>Manager', partner: 'Composer,<br>Sound Engineer', codev: 'Co-founder,<br>Art Director' },
+          team: { mikhail: 'Mikhail Maksimov', evgeny: 'Evgeny Ryzhenkov', burger: 'Burger Kerman', haalo: 'Nikolai Seleznev' },
+          roles: { founder: 'Co-founder, Creative Director', cm: 'Community Manager', partner: 'Composer, Sound Engineer', codev: 'Co-founder, Art Director' },
           contact: { title: 'Contact Us', emailTitle: 'Email', general: 'General', support: 'In‑game Support', direct: 'Direct', socialTitle: 'Community' },
           cookie: { title: 'Cookie time!', desc: 'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', accept: 'Accept', decline: 'Decline' }
         }
       },
       ru: {
         translation: {
+          meta: { title: 'Davilkus Games — Инди-студия разработки игр' }, // NEW: Fixed Russian Title
           brand: 'Davilkus Games',
           nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' },
           games: {
-            etb94: { title: 'Побег из Закулисья: Уровень 94', tagline: 'Таинственный, похожий на сон уровень за пределами знакомого Закулисья.' },
             scp087: { title: 'SCP-087: Лестница в Бездну', tagline: 'Спуститесь в бесконечную темноту SCP-087.' },
             etb2: { title: 'Побег из Закулисья: Уровень 2', tagline: 'Вы оказались в лабиринте технических коридоров, заполненных сущностями...' },
             etb37: { title: 'Побег из Закулисья: Уровень 37', tagline: 'Вы оказались в бесконечном комплексе лиминальных бассейнов, но здесь есть кто-то еще...' },
@@ -1040,8 +858,8 @@
             burger: 'Пишет оригинальные саундтреки к нашим играм.',
             omega: 'UX-дизайн, 3D-модели и скрипты Unity.'
           },
-          team: { mikhail: 'Михаил<br>Максимов', evgeny: 'Евгений<br>Рыженков', burger: 'Burger<br>Kerman', haalo: 'Николай<br>Селезнёв' },
-          roles: { founder: 'Со-основатель,<br>креативный директор', cm: 'Комьюнити-<br>менеджер', partner: 'Композитор,<br>звукорежиссер', codev: 'Со-основатель,<br>арт директор' },
+          team: { mikhail: 'Михаил Максимов', evgeny: 'Евгений Рыженков', burger: 'Burger Kerman', haalo: 'Николай Селезнёв' },
+          roles: { founder: 'Со-основатель, креативный директор', cm: 'Комьюнити-менеджер', partner: 'Композитор, звукорежиссер', codev: 'Со-основатель, арт директор' },
           contact: { title: 'Контакты', emailTitle: 'Email', general: 'Общий', support: 'Поддержка в игре', direct: 'Лично', socialTitle: 'Сообщество' },
           cookie: { title: 'Время печенек!', desc: 'Мы используем файлы cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на их использование.', accept: 'Принять', decline: 'Отклонить' }
         }
@@ -1230,15 +1048,28 @@
       }
 
       // i18next init
-      i18next
+     i18next
         .use(window.i18nextBrowserLanguageDetector)
-        .init({ resources, fallbackLng: 'en', detection: { order: ['querystring', 'cookie', 'localStorage', 'navigator'], caches: ['localStorage', 'cookie'], lookupQuerystring: 'lang' } }, () => {
+        .init({ 
+          resources, 
+          fallbackLng: 'en', 
+
+          detection: { 
+            order: ['querystring', 'cookie', 'localStorage', 'navigator'], 
+            caches: ['localStorage', 'cookie'], 
+            lookupQuerystring: 'lang' 
+          } 
+        }, () => {
           const lang = i18next.language || 'en';
+          
           document.documentElement.lang = lang.startsWith('ru') ? 'ru' : 'en';
+          
+          document.title = i18next.t('meta.title'); 
+          
           localize();
           document.body.style.visibility = 'visible';
-          document.title = i18next.t('brand') + ' — Indie Game Studio';
-          setLangUI(lang);
+          
+          setLangUI(lang); 
 
           bindLangToggle('langToggle');
           bindLangToggle('langToggleMobile');
