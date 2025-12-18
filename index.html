@@ -826,7 +826,7 @@
       const resources = {
       en: {
         translation: {
-          meta: { title: 'Davilkus Games — Indie Game Studio' }, // NEW
+          meta: { title: 'Davilkus Games — Indie Game Studio' }, 
           brand: 'Davilkus Games',
           nav: { games: 'Games', about: 'About', contact: 'Contact Us' },
           games: {
@@ -861,7 +861,7 @@
       },
       ru: {
         translation: {
-          meta: { title: 'Davilkus Games — Инди-студия разработки игр' }, // NEW: Fixed Russian Title
+          meta: { title: 'Davilkus Games — Инди-студия разработки игр' }, 
           brand: 'Davilkus Games',
           nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' },
           games: {
@@ -928,7 +928,9 @@
           try { localStorage.setItem('i18nextLng', newLang); } catch (_) { }
           document.documentElement.lang = newLang.startsWith('ru') ? 'ru' : 'en';
           localize();
-          document.title = i18next.t('brand') + ' - Indie Game Studio';
+          
+          document.title = i18next.t('meta.title'); 
+
           setLangUI(newLang);
           setUrlLangParam(newLang);
           applyContent();
