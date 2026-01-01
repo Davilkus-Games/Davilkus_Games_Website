@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Davilkus Games — Snake</title>
+    <title>Davilkus Games — 404</title>
     <meta name="description" content="Lost in the void? Return to the hub." />
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
     
@@ -31,7 +31,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@DavilkusGames" />
-    <!-- <meta name="twitter:title" content="404 — Page not found" /> -->
+    <meta name="twitter:title" content="404 — Page not found" />
     <meta name="twitter:description" content="Lost in the void? Follow the exit sign to get back to the hub." />
     <meta name="twitter:image" content="https://davilkusgames.com/assets/logo.webp" />
 
@@ -78,9 +78,6 @@
             visibility: hidden;
             -webkit-font-smoothing: antialiased; 
             -moz-osx-font-smoothing: grayscale; 
-            
-            
-            
         }
 
         /* Consistent Vignette */
@@ -124,11 +121,6 @@
 
         h1, h2, h3, .font-semibold, .font-bold {
             letter-spacing: -0.015em;
-        }
-        canvas {
-            border: 1px solid white;
-
-            
         }
         
         /* RESTORED FLICKER EFFECT */
@@ -493,8 +485,7 @@
 </head>
 
     
-<body class="bg-bg text-ink font-sans antialiased min-h-screen flex flex-col">
-
+<body class="bg-bg text-ink font-sans antialiased">
     
     <!-- Header -->
     <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-line">
@@ -549,170 +540,50 @@
         </div>
     </header>
     
-    <main class="pt-16 flex-1 flex items-center justify-center px-4">
+    <main class="pt-24">
+        <section class="relative">
+            <div
+                class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(37,99,235,0.12),_transparent_60%)]">
+            </div>
 
-        
-        <div class="flex flex-col items-center gap-4">
-          <div class="text-2xl md:text-3xl font-semibold tracking-tight lamp404 tv-noise tv-horror text-ink/90 select-none">
-            Secret Hub
-          </div>
-        
-          <canvas width="400" height="400" id="game" class="block"></canvas>
-        </div>
-        
-        <script>
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+                <div class="text-center space-y-8">
+                    <h1
+                        class="text-[64px] leading-none md:text-[96px] font-extrabold tracking-tight flicker select-none">
+                        <span class="block lamp404 tv-noise tv-horror" data-text="404">404</span>
+                        <span class="block tv-horror text-2xl md:text-3xl mt-3 opacity-80" data-i18n="notfound.subtitle">Page not
+                            found</span>
+                    </h1>
 
-        
-        var canvas = document.getElementById('game');
-        var context = canvas.getContext('2d');
-        
-        // the canvas width & height, snake x & y, and the apple x & y, all need to be a multiples of the grid size in order for collision detection to work
-        // (e.g. 16 * 25 = 400)
-        var grid = 16;
-        var count = 0;
-        
-        var snake = {
-          x: 160,
-          y: 160,
-        
-          // snake velocity. moves one grid length every frame in either the x or y direction
-          dx: grid,
-          dy: 0,
-        
-          // keep track of all grids the snake body occupies
-          cells: [],
-        
-          // length of the snake. grows when eating an apple
-          maxCells: 4
-        };
-        var apple = {
-          x: 320,
-          y: 320
-        };
-        
-        // get random whole numbers in a specific range
-        // @see https://stackoverflow.com/a/1527820/2124254
-        function getRandomInt(min, max) {
-          return Math.floor(Math.random() * (max - min)) + min;
-        }
-        
-        // game loop
-        function loop() {
-          requestAnimationFrame(loop);
-        
-          // slow game loop to 15 fps instead of 60 (60/15 = 4)
-          if (++count < 4) {
-            return;
-          }
-        
-          count = 0;
-          context.clearRect(0,0,canvas.width,canvas.height);
-        
-          // move snake by it's velocity
-          snake.x += snake.dx;
-          snake.y += snake.dy;
-        
-          // wrap snake position horizontally on edge of screen
-          if (snake.x < 0) {
-            snake.x = canvas.width - grid;
-          }
-          else if (snake.x >= canvas.width) {
-            snake.x = 0;
-          }
-        
-          // wrap snake position vertically on edge of screen
-          if (snake.y < 0) {
-            snake.y = canvas.height - grid;
-          }
-          else if (snake.y >= canvas.height) {
-            snake.y = 0;
-          }
-        
-          // keep track of where snake has been. front of the array is always the head
-          snake.cells.unshift({x: snake.x, y: snake.y});
-        
-          // remove cells as we move away from them
-          if (snake.cells.length > snake.maxCells) {
-            snake.cells.pop();
-          }
-        
-          // draw apple
-          context.fillStyle = 'red';
-          context.fillRect(apple.x, apple.y, grid-1, grid-1);
-        
-          // draw snake one cell at a time
-          context.fillStyle = 'green';
-          snake.cells.forEach(function(cell, index) {
-        
-            // drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
-            context.fillRect(cell.x, cell.y, grid-1, grid-1);
-        
-            // snake ate apple
-            if (cell.x === apple.x && cell.y === apple.y) {
-              snake.maxCells++;
-        
-              // canvas is 400x400 which is 25x25 grids
-              apple.x = getRandomInt(0, 25) * grid;
-              apple.y = getRandomInt(0, 25) * grid;
-            }
-        
-            // check collision with all cells after this one (modified bubble sort)
-            for (var i = index + 1; i < snake.cells.length; i++) {
-        
-              // snake occupies same space as a body part. reset game
-              if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-                snake.x = 160;
-                snake.y = 160;
-                snake.cells = [];
-                snake.maxCells = 4;
-                snake.dx = grid;
-                snake.dy = 0;
-        
-                apple.x = getRandomInt(0, 25) * grid;
-                apple.y = getRandomInt(0, 25) * grid;
-              }
-            }
-          });
-        }
-        
-        // listen to keyboard events to move the snake
-        document.addEventListener('keydown', function(e) {
-          // prevent snake from backtracking on itself by checking that it's
-          // not already moving on the same axis (pressing left while moving
-          // left won't do anything, and pressing right while moving left
-          // shouldn't let you collide with your own body)
-        
-          // left arrow key
-          if (e.which === 37 && snake.dx === 0) {
-            snake.dx = -grid;
-            snake.dy = 0;
-          }
-          // up arrow key
-          else if (e.which === 38 && snake.dy === 0) {
-            snake.dy = -grid;
-            snake.dx = 0;
-          }
-          // right arrow key
-          else if (e.which === 39 && snake.dx === 0) {
-            snake.dx = grid;
-            snake.dy = 0;
-          }
-          // down arrow key
-          else if (e.which === 40 && snake.dy === 0) {
-            snake.dy = grid;
-            snake.dx = 0;
-          }
-        });
-        
-        // start the game
-        requestAnimationFrame(loop);
-        </script>
-        
-        
+                    <p class="max-w-2xl mx-auto text-base md:text-lg text-ink/80">
+                        <span data-i18n="notfound.desc">
+                            Oops. You’ve noclipped into an empty level. The hum of the lights goes on forever.
+                            Follow the exit sign to get back to the Hub.
+                        </span>
+                    </p>
+
+                    <div class="pt-2">
+                        <a href="/"
+                            class="inline-flex items-center gap-3 text-base md:text-lg font-medium px-6 md:px-7 py-3 md:py-3.5 rounded-xl bg-brand hover:bg-brandDark transition shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] will-change-transform"
+                            id="returnBtn" style="opacity:1">
+                            <img src="/assets/icons/exit404.svg" class="w-5 h-5" alt="" aria-hidden="true"
+                                aria-label="Return to homepage">
+                            <span data-i18n="notfound.cta">Return to Hub</span>
+                        </a>
+                    </div>
+
+                    <div class="text-sm text-ink/60 pt-4">
+                        <a href="/games/" class="hover:opacity-80" data-i18n="notfound.games">See our games</a>
+                        <span class="mx-3">•</span>
+                        <a href="/#contact" class="hover:opacity-80" data-i18n="notfound.contact">Contact us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-    <!-- Footer -->
-    <footer class="bg-header border-t border-line mt-auto">
 
+    <!-- Footer -->
+    <footer class="bg-header border-t border-line">
         <div
             class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
