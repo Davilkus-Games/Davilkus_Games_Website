@@ -132,6 +132,245 @@
         .flicker {
             animation: flicker 6s infinite;
         }
+        .lamp404 {
+            position: relative;
+            display: inline-block;
+            isolation: isolate;          
+            filter: drop-shadow(0 0 14px rgba(255,255,255,0.06));
+            animation: lampFlicker 3.8s infinite;
+            will-change: opacity, filter, transform;
+        }
+        
+        .lamp404::before {
+            content: "";
+            position: absolute;
+            inset: -10%;
+            z-index: 1;
+            pointer-events: none;
+        
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.10), transparent 55%);
+            opacity: 0.25;
+            filter: blur(10px);
+            animation: glowPulse 3.8s infinite;
+        }
+        @keyframes lampFlicker {
+            0%   { opacity: 1;   filter: drop-shadow(0 0 18px rgba(255,255,255,.07)); transform: translateY(0); }
+            6%   { opacity: .92; }
+            7%   { opacity: .55; }
+            8%   { opacity: .98; }
+            16%  { opacity: .86; }
+            17%  { opacity: .30; }
+            18%  { opacity: .95; }
+            27%  { opacity: .88; }
+            28%  { opacity: .62; transform: translateY(.5px); }
+            29%  { opacity: .98; transform: translateY(0); }
+            44%  { opacity: .92; }
+            45%  { opacity: .40; }
+            46%  { opacity: 1; }
+            62%  { opacity: .90; }
+            63%  { opacity: .20; }
+            64%  { opacity: .95; }
+            79%  { opacity: .88; }
+            80%  { opacity: .50; }
+            81%  { opacity: 1; }
+            100% { opacity: .94; }
+        }
+        
+        @keyframes noiseDrift {
+            0%   { background-position: 0 0;     opacity: .35; }
+            50%  { background-position: 24px -8px; opacity: .55; }
+            100% { background-position: -18px 14px; opacity: .40; }
+        }
+        
+        @keyframes glowPulse {
+            0%   { opacity: .20; transform: scale(1); }
+            28%  { opacity: .12; transform: scale(0.98); }
+            29%  { opacity: .26; transform: scale(1.02); }
+            63%  { opacity: .10; transform: scale(0.985); }
+            64%  { opacity: .28; transform: scale(1.03); }
+            100% { opacity: .20; transform: scale(1); }
+        }
+        .tv-noise {
+            position: relative;
+            isolation: isolate;
+        }
+
+        
+        .tv-noise::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+        
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(255,255,255,0.06) 0px,
+                rgba(255,255,255,0.06) 1px,
+                rgba(0,0,0,0.12) 2px,
+                rgba(0,0,0,0.12) 3px
+            );
+        
+            mix-blend-mode: overlay;
+            opacity: 0.35;
+            animation: scanLines 1.6s linear infinite;
+        }
+        @keyframes tvNoise {
+            0%   { background-position: 0 0; opacity: .25; }
+            20%  { opacity: .45; }
+            40%  { background-position: -30px 20px; opacity: .30; }
+            60%  { opacity: .50; }
+            80%  { background-position: 25px -15px; opacity: .28; }
+            100% { background-position: 0 0; opacity: .35; }
+        }
+        
+        @keyframes scanLines {
+            0%   { background-position-y: 0; }
+            100% { background-position-y: 6px; }
+        }
+        .tv-horror{
+          position: relative;
+          display: inline-block;
+          isolation: isolate;
+          will-change: transform, filter, opacity;
+          animation: horrorFlicker 3.2s infinite;
+        }
+        .tv-horror .crt-layer{ display:none; } /* на всякий случай, если вдруг */
+        
+        .tv-horror::before{
+          
+          content:"";
+          position:absolute;
+          inset:-2%;
+          z-index:2;
+          pointer-events:none;
+        
+          background:
+            /* scanlines */
+            repeating-linear-gradient(
+              to bottom,
+              rgba(255,255,255,0.06) 0px,
+              rgba(255,255,255,0.06) 1px,
+              rgba(0,0,0,0.18) 2px,
+              rgba(0,0,0,0.18) 4px
+            ),
+            
+            radial-gradient(circle at 50% 45%, rgba(255,255,255,0.08), transparent 55%);
+        
+          mix-blend-mode: overlay;
+          opacity: 0.45;
+          filter: blur(0.2px);
+          animation: scanCreep 1.25s linear infinite;
+        }
+        
+        .tv-horror::after{
+          content: attr(data-text);
+          position:absolute;
+          inset:0;
+          z-index:4;
+          pointer-events:none;
+        
+          /* жёсткий белый шум */
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+          background-size: 140px 140px;
+          background-repeat: repeat;
+        
+          -webkit-background-clip:text;
+          background-clip:text;
+          color: transparent;
+        
+          mix-blend-mode: screen;
+          opacity: 0.35;
+          animation: grainJitter 0.5s steps(2) infinite;
+        }
+        
+        .tv-horror[data-text]{
+          text-shadow:
+            /* красный канал */
+            -2px 0 0 rgba(255,80,80,0.35),
+            /* синий канал */
+             2px 0 0 rgba(90,160,255,0.28),
+            /* зеленоватый паразитный */
+             0 1px 0 rgba(140,255,180,0.12);
+          filter: drop-shadow(0 0 24px rgba(255,255,255,0.05));
+        }
+        
+        .tv-horror > span { position: relative; } 
+        .tv-horror{
+          
+        }
+        .tv-horror ._noop{ display:none; }
+        
+        .tv-horror{
+          
+          animation:
+            horrorFlicker 3.2s infinite,
+            microShake 0.28s infinite;
+        }
+        @keyframes horrorFlicker{
+          0%{opacity:1}
+          8%{opacity:.85}
+          9%{opacity:.55}
+          10%{opacity:1}
+        
+          28%{opacity:.90}
+          29%{opacity:.60}
+          30%{opacity:1}
+        
+          55%{opacity:.88}
+          56%{opacity:.45}
+          57%{opacity:1}
+        
+          100%{opacity:.92}
+        }
+
+        
+        @keyframes grainJitter{
+          0%{background-position:0 0; opacity:.45}
+          25%{background-position:-22px 14px; opacity:.70}
+          50%{background-position:18px -10px; opacity:.52}
+          75%{background-position:-10px -26px; opacity:.78}
+          100%{background-position:0 0; opacity:.55}
+        }
+        
+        @keyframes scanCreep{
+          0%{transform:translateY(0)}
+          50%{transform:translateY(6px)}
+          51%{transform:translateY(-3px)}
+          100%{transform:translateY(0)}
+        }
+        
+        @keyframes microShake{
+          0%{transform:translate(0,0) skewX(0deg)}
+          8%{transform:translate(0.6px,-0.4px) skewX(-0.2deg)}
+          16%{transform:translate(-0.7px,0.3px) skewX(0.25deg)}
+          24%{transform:translate(0.4px,0.2px) skewX(-0.1deg)}
+          32%{transform:translate(-0.5px,-0.2px) skewX(0.15deg)}
+          40%{transform:translate(0,0) skewX(0deg)}
+        
+          
+          41%{transform:translate(-6px,1px) skewX(-1.2deg)}
+          42%{transform:translate(5px,-1px) skewX(1.1deg)}
+          43%{transform:translate(0,0) skewX(0deg)}
+        
+          60%{transform:translate(0.5px,0) skewX(-0.2deg)}
+          68%{transform:translate(-0.4px,0.3px) skewX(0.2deg)}
+          76%{transform:translate(0.3px,-0.3px) skewX(-0.1deg)}
+          84%{transform:translate(0,0) skewX(0deg)}
+        
+          
+          85%{transform:translate(4px,0.5px) skewX(0.9deg)}
+          86%{transform:translate(-5px,-0.5px) skewX(-1deg)}
+          87%{transform:translate(0,0) skewX(0deg)}
+          100%{transform:translate(0,0) skewX(0deg)}
+        }
+        
+        
+        @media (prefers-reduced-motion: reduce){
+          .tv-horror, .tv-horror::before, .tv-horror::after{
+            animation:none !important;
+          }
+        }
 
         @media (prefers-reduced-motion: reduce) {
             * {
@@ -140,9 +379,112 @@
                 transition-duration: .001ms !important;
             }
         }
+        .lamp404{
+          position: relative;
+          display: inline-block;
+          isolation: isolate;
+          will-change: opacity, transform, filter;
+        }
+        
+        .tv-noise::before{
+          content:"";
+          position:absolute;
+          inset:0;
+          z-index:2;
+          pointer-events:none;
+        
+          background: repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.06) 0px,
+            rgba(255,255,255,0.06) 1px,
+            rgba(0,0,0,0.18) 2px,
+            rgba(0,0,0,0.18) 4px
+          );
+        
+          mix-blend-mode: overlay;
+          opacity: .45;
+          animation: scanLines 1.2s linear infinite;
+        }
+        
+        .tv-noise::after{
+          content: attr(data-text);
+          position:absolute;
+          inset:0;
+          z-index:3;
+          pointer-events:none;
+        
+          /* noise texture */
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.35' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+          background-size: 140px 140px;
+          background-repeat: repeat;
+        
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          -webkit-text-fill-color: transparent;
+        
+          mix-blend-mode: screen;
+          opacity: .55;
+          animation: noiseJitter .09s steps(2) infinite;
+        }
+        .tv-noise{
+          animation:
+            horrorFlicker 4.2s infinite,
+            microShake 0.80s infinite;
+          text-shadow:
+            -2px 0 0 rgba(255,80,80,0.35),
+             2px 0 0 rgba(90,160,255,0.28);
+        }
+        
+        @keyframes noiseJitter{
+          0%{background-position:0 0; opacity:.40}
+          25%{background-position:-22px 14px; opacity:.70}
+          50%{background-position:18px -10px; opacity:.50}
+          75%{background-position:-10px -26px; opacity:.80}
+          100%{background-position:0 0; opacity:.55}
+        }
+        
+        @keyframes scanLines{
+          0%{transform:translateY(0)}
+          100%{transform:translateY(6px)}
+        }
+        
+        @keyframes horrorFlicker{
+          0%{opacity:1}
+          5%{opacity:.35}
+          6%{opacity:1}
+          14%{opacity:.12}
+          15%{opacity:1}
+          42%{opacity:.05}   /* blackout кадр */
+          43%{opacity:1}
+          68%{opacity:.25}
+          69%{opacity:1}
+          87%{opacity:.38}
+          88%{opacity:1}
+          100%{opacity:.92}
+        }
+        
+        @keyframes microShake{
+          0%{transform:translate(0,0) skewX(0deg)}
+          16%{transform:translate(-0.7px,0.3px) skewX(0.25deg)}
+          32%{transform:translate(-0.5px,-0.2px) skewX(0.15deg)}
+          41%{transform:translate(-6px,1px) skewX(-1.2deg)}
+          42%{transform:translate(5px,-1px) skewX(1.1deg)}
+          43%{transform:translate(0,0) skewX(0deg)}
+          85%{transform:translate(4px,0.5px) skewX(0.9deg)}
+          86%{transform:translate(-5px,-0.5px) skewX(-1deg)}
+          87%{transform:translate(0,0) skewX(0deg)}
+          100%{transform:translate(0,0) skewX(0deg)}
+        }
+        
+        @media (prefers-reduced-motion: reduce){
+          .tv-noise, .tv-noise::before, .tv-noise::after{ animation:none !important; }
+        }
+
     </style>
 </head>
 
+    
 <body class="bg-bg text-ink font-sans antialiased">
     
     <!-- Header -->
@@ -197,7 +539,7 @@
             </div>
         </div>
     </header>
-
+    
     <main class="pt-24">
         <section class="relative">
             <div
@@ -208,8 +550,8 @@
                 <div class="text-center space-y-8">
                     <h1
                         class="text-[64px] leading-none md:text-[96px] font-extrabold tracking-tight flicker select-none">
-                        <span class="block">404</span>
-                        <span class="block text-2xl md:text-3xl mt-3 opacity-80" data-i18n="notfound.subtitle">Page not
+                        <span class="block lamp404 tv-noise tv-horror" data-text="404">404</span>
+                        <span class="block tv-horror text-2xl md:text-3xl mt-3 opacity-80" data-i18n="notfound.subtitle">Page not
                             found</span>
                     </h1>
 
