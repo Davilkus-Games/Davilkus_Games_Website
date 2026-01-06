@@ -41,7 +41,7 @@
   <meta name="theme-color" content="#0B0F1A" />
 
   <!-- Preload the first hero image -->
-  <link rel="preload" as="image" href="/assets/showcase/scp087.webp" imagesrcset="/assets/showcase/scp087.webp"
+  <link rel="preload" as="image" href="/assets/showcase/etb_level94.webp" imagesrcset="/assets/showcase/etb_level94.webp"
     type="image/webp" />
 
   <!-- Inter font & CDNs -->
@@ -370,12 +370,10 @@
       <!-- Slides -->
       <div class="swiper hero-swiper h-full relative z-0">
         <div class="swiper-wrapper">
-          <!--
           <div class="swiper-slide relative">
             <img src="/assets/showcase/etb_level94.webp" alt="Exit the Backrooms: Level 94"
               class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
           </div>
-        -->
           <div class="swiper-slide relative">
             <img src="/assets/showcase/scp087.webp" alt="SCP-087: Into the Abyss" width="1920" height="1080"
               class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
@@ -830,6 +828,7 @@
           brand: 'Davilkus Games',
           nav: { games: 'Games', about: 'About', contact: 'Contact Us' },
           games: {
+            etb94: { title: 'Exit the Backrooms: Level 94', tagline: '❝The sun never moves. The neighbors are made of plastic.❞' },
             scp087: { title: 'SCP-087: Into the Abyss', tagline: 'Descend into the endless darkness of SCP-087.' },
             etb2: { title: 'Exit the Backrooms: Level 2', tagline: 'You find yourself in a labyrinth of technical corridors filled with entities...' },
             etb37: { title: 'Exit the Backrooms: Level 37', tagline: 'You find yourself in an endless complex of liminal pools, but there is someone else here...' },
@@ -865,6 +864,7 @@
           brand: 'Davilkus Games',
           nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' },
           games: {
+            etb94: { title: 'Побег из Закулисья: Уровень 94', tagline: '❝Солнце никогда не движется. Соседи сделаны из пластика.❞' },
             scp087: { title: 'SCP-087: Лестница в Бездну', tagline: 'Спуститесь в бесконечную темноту SCP-087.' },
             etb2: { title: 'Побег из Закулисья: Уровень 2', tagline: 'Вы оказались в лабиринте технических коридоров, заполненных сущностями...' },
             etb37: { title: 'Побег из Закулисья: Уровень 37', tagline: 'Вы оказались в бесконечном комплексе лиминальных бассейнов, но здесь есть кто-то еще...' },
@@ -1016,6 +1016,7 @@
 
     window.addEventListener('DOMContentLoaded', function () {
       const GAMES = [
+        { titleKey: 'games.etb94.title', taglineKey: 'games.etb94.tagline', slug: 'etb94', status: 'active' },
         { titleKey: 'games.scp087.title', taglineKey: 'games.scp087.tagline', slug: 'scp087', status: 'active' },
         { titleKey: 'games.etb2.title', taglineKey: 'games.etb2.tagline', slug: 'etb-level2', status: 'active' },
         { titleKey: 'games.etb37.title', taglineKey: 'games.etb37.tagline', slug: 'etb-level37', status: 'active' },
