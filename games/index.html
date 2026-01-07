@@ -402,7 +402,8 @@
                     document.title = i18next.t('meta.title');
                     setLangUI(newLang);
                     setUrlLangParam(newLang);
-                    renderGames(); // Update cards on lang change
+                    renderGames(); 
+                    initFx();
                 });
             });
         }
