@@ -615,17 +615,25 @@
                 gsap.from(el, { y: 24, opacity: 0, duration: 0.8, delay: i * 0.06, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
             });
             gsap.from('header', { y: -40, opacity: 0, duration: 0.7, ease: 'power3.out' });
-            // Magnetic
-            const mag = (el, str = 18) => {
-                if (!el || rmm) return;
-                el.addEventListener('mousemove', e => {
-                    const b = el.getBoundingClientRect();
-                    gsap.to(el, { x: ((e.clientX - (b.left + b.width / 2)) / (b.width / 2)) * str, y: ((e.clientY - (b.top + b.height / 2)) / (b.height / 2)) * str, duration: 0.18 });
+            // Magnetic 
+            function magnetic(el, strength = 18) {
+                if (!el) return;
+                if (rmm) return; 
+                const bounds = () => el.getBoundingClientRect();
+                el.addEventListener('mousemove', (e) => {
+                    const b = bounds();
+                    const x = (e.clientX - (b.left + b.width / 2)) / (b.width / 2);
+                    const y = (e.clientY - (b.top + b.height / 2)) / (b.height / 2);
+                    gsap.to(el, { x: x * strength, y: y * strength, duration: 0.18, ease: 'power2.out' });
                 });
-                el.addEventListener('mouseleave', () => gsap.to(el, { x: 0, y: 0, duration: 0.25 }));
-            };
-            mag(document.getElementById('btnPlay'));
-            mag(document.getElementById('btnMore'), 14);
+                el.addEventListener('mouseleave', () => gsap.to(el, { x: 0, y: 0, duration: 0.25, ease: 'power2.out' }));
+            }
+            
+            // Apply to Hero Buttons
+            magnetic(document.getElementById('btnPlay'));
+            magnetic(document.getElementById('btnMore'), 14);
+            
+            document.querySelectorAll('.magnetic-btn').forEach(btn => magnetic(btn, 14));
             // Tilt
             document.querySelectorAll('.team-card').forEach(card => {
                 if (rmm) return;
@@ -721,6 +729,16 @@
                     window.applyContent(); 
                 });
             });
+        }
+
+        function loadCounter() { 
+            if (document.getElementById('counterjs')) return; 
+            const s = document.createElement('script'); 
+            s.id = 'counterjs'; s.defer = true; s.src = 'https://cdn.counter.dev/script.js'; 
+            s.dataset.id = 'cc931e21-a972-4ffe-aaf1-52b0f23da9d3'; 
+            s.dataset.utcoffset = String(-new Date().getTimezoneOffset() / 60); 
+
+            document.head.appendChild(s); 
         }
 
         /* --- App Logic --- */
@@ -838,6 +856,7 @@
             });
 
             if (hasGSAP()) initAnimations();
+            loadCounter();
 
             /* Chance of Random Swapping Co-Founders :DDD */
             (function() {
@@ -849,14 +868,39 @@
                 }
             })();
 
-            /* --- Cookie Bar --- */
-            const cKey = 'dg_cookie_v1', cBar = document.getElementById('cookieBar');
-            if (!localStorage.getItem(cKey)) {
-                cBar.classList.remove('hidden');
-                if (hasGSAP()) gsap.fromTo(cBar, { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 });
-                document.getElementById('cookieAccept').addEventListener('click', () => { localStorage.setItem(cKey, 'yes'); cBar.classList.add('hidden'); });
-                document.getElementById('cookieDecline').addEventListener('click', () => { localStorage.setItem(cKey, 'no'); cBar.classList.add('hidden'); });
+           /* --- Cookie Bar --- */
+           function initCookieBar() { 
+                const key = 'dg_cookie_v1';
+                const bar = document.getElementById('cookieBar');
+                const accept = document.getElementById('cookieAccept');
+                const decline = document.getElementById('cookieDecline'); 
+                
+                let stored = null; 
+                try { stored = localStorage.getItem(key) } catch (e) { } 
+                
+                const show = () => { 
+                    bar.classList.remove('hidden'); 
+                    if (hasGSAP()) gsap.fromTo(bar, { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' });
+                };
+                
+                const hide = () => { 
+                    if (hasGSAP()) gsap.to(bar, { y: 90, opacity: 0, duration: 0.35, ease: 'power3.inOut', onComplete: () => bar.classList.add('hidden') }); 
+                    else bar.classList.add('hidden'); 
+                }; 
+                
+                if (stored) return; 
+                show(); 
+                
+                accept && accept.addEventListener('click', () => { 
+                    try { localStorage.setItem(key, 'accepted') } catch (e) { } 
+                    hide(); 
+                }); 
+                decline && decline.addEventListener('click', () => { 
+                    try { localStorage.setItem(key, 'declined') } catch (e) { } 
+                    hide(); 
+                }); 
             }
+            initCookieBar();
 
             /* --- Spotlight Mouse --- */
             if (!rmm) {
