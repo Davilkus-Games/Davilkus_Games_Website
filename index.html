@@ -397,52 +397,58 @@
       <!-- Soft spotlight layer (below overlay, above slides) -->
       <div id="heroLight" class="hero-spotlight pointer-events-none" aria-hidden="true"></div>
 
-      <!-- Overlay layer aligned to site container -->
-      <div class="absolute inset-0 z-40 pointer-events-none">
-        <div class="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex flex-col">
-          <!-- Title + tagline (top-left, aligned with logo gutters) -->
-          <div class="mt-8 md:mt-10 max-w-3xl">
-            <div id="heroLabel"
-              class="inline-flex flex-col gap-1 px-3 py-2 rounded-lg bg-header/70 border border-line pointer-events-auto">
-              <span id="heroTitle" class="glitch-hard text-2xl md:text-3xl font-bold" data-text="—">
-                —
-                <span class="glitch-slice" aria-hidden="true"></span>
-              </span>
+<!-- Overlay layer: Cinematic Glass Card Layout -->
+      <div class="absolute inset-0 z-40 pointer-events-none flex flex-col justify-end pb-12 md:pb-16">
+        <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-end justify-between gap-6">
+          
+          <!-- MAIN CARD: Glassmorphism effect -->
+          <div class="max-w-2xl w-full bg-header/60 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl pointer-events-auto transform transition-all duration-500 hover:border-white/20 hover:bg-header/70 group/card">
+            
+          <!-- Platform Pills (Static for now, looks professional) -->
+            <div id="heroPills" class="flex items-center gap-2 mb-4 opacity-70">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-white/10 border border-white/5 text-white">Android</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-white/10 border border-white/5 text-white">Web</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-white/10 border border-white/5 text-white">PC</span>
+            </div>
 
-              <span id="heroTag" class="text-sm md:text-base text-ink/70 line-clamp-2">—</span>
+            <!-- Title Wrapper -->
+            <div id="heroLabel" class="mb-3">
+              <h2 class="relative">
+                <span id="heroTitle" class="glitch-hard text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-[0.9]" data-text="—">
+                  —
+                  <span class="glitch-slice" aria-hidden="true"></span>
+                </span>
+              </h2>
+            </div>
+
+            <!-- Tagline -->
+            <p id="heroTag" class="text-base md:text-lg text-ink/90 leading-relaxed line-clamp-3 mb-8 max-w-lg border-l-2 border-brand pl-4">
+              —
+            </p>
+
+            <!-- Buttons Row -->
+            <div class="flex flex-wrap items-center gap-3 md:gap-4">
+              <a id="btnPlay" href="#"
+                  class="pointer-events-auto flex-1 md:flex-none inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-base font-bold bg-brand hover:bg-brandDark text-white focus:outline-none focus:ring-2 focus:ring-brand/60 transition-all shadow-[0_0_30px_rgba(37,99,235,0.3)] hover:shadow-[0_0_40px_rgba(37,99,235,0.5)] hover:-translate-y-0.5">
+                  <img src="/assets/icons/play.svg" class="w-5 h-5" alt="" onerror="this.style.display='none'"/> 
+                  <span>Play Now</span>
+              </a>
+              <a id="btnMore" href="#"
+                class="pointer-events-auto flex-1 md:flex-none inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-base font-semibold bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-white/20 backdrop-blur-sm transition-all">
+                <span>Details</span>
+              </a>
             </div>
           </div>
 
-          <!-- Buttons (bottom-right, but within same container width) -->
-          <div class="mt-auto mb-8 md:mb-15 flex justify-end gap-3 md:gap-4">
-            <a id="btnPlay" href="#"
-                class="pointer-events-auto inline-flex items-center justify-center rounded-full px-5 py-3 md:px-6 md:py-3.5 text-sm md:text-base font-semibold bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand/60 transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)]">
-                <span>Play!</span>
-            </a>
-            <a id="btnMore" href="#"
-              class="pointer-events-auto inline-flex items-center justify-center rounded-full px-5 py-3 md:px-6 md:py-3.5 text-sm md:text-base font-semibold bg-header/70 border border-line hover:bg-header focus:outline-none focus:ring-2 focus:ring-brand/40">
-              <span>Learn More</span>
-            </a>
+          <!-- Navigation Controls (Moved to Bottom Right) -->
+          <div class="hidden md:flex gap-3 pointer-events-auto pb-2">
+            <button class="hero-prev w-14 h-14 rounded-full border border-white/10 bg-black/40 hover:bg-brand hover:border-brand hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] backdrop-blur-md flex items-center justify-center transition-all group" aria-label="Previous slide">
+              <svg viewBox="0 0 24 24" class="w-6 h-6 text-white transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19L8 12l7-7" /></svg>
+            </button>
+            <button class="hero-next w-14 h-14 rounded-full border border-white/10 bg-black/40 hover:bg-brand hover:border-brand hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] backdrop-blur-md flex items-center justify-center transition-all group" aria-label="Next slide">
+              <svg viewBox="0 0 24 24" class="w-6 h-6 text-white transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7" /></svg>
+            </button>
           </div>
-
-          <!-- Navigation arrows -->
-          <button
-            class="hero-prev absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-50 cursor-pointer pointer-events-auto"
-            aria-label="Previous slide">
-            <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="white" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M15 19L8 12l7-7" />
-            </svg>
-          </button>
-
-          <button
-            class="hero-next absolute right-6 md:right-10 top-1/2 -translate-y-1/2 z-50 cursor-pointer pointer-events-auto"
-            aria-label="Next slide">
-            <svg viewBox="0 0 24 24" class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="white" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
 
         </div>
       </div>
@@ -1076,15 +1082,20 @@
 
       function overlayFadeIn(initial = false) {
         if (rmm || !window.gsap) return;
-        const dur = initial ? .5 : .25;
-        const y = initial ? 10 : 0;
-        gsap.fromTo(['#heroLabel', '#heroTag', '#btnMore', '#btnPlay'],
-          { y, opacity: 0 }, { y: 0, opacity: 1, duration: dur, ease: 'power2.out', stagger: initial ? .06 : 0 });
+        const dur = initial ? 0.6 : 0.4;
+        const y = 20; 
+
+        gsap.fromTo(['#heroPills', '#heroLabel', '#heroTag', '#btnPlay', '#btnMore'],
+          { y: y, opacity: 0 }, 
+          { y: 0, opacity: 1, duration: dur, ease: 'power3.out', stagger: 0.08 }
+        );
       }
 
       function overlayFadeOut() {
         if (rmm || !window.gsap) return;
-        return gsap.to(['#heroLabel', '#heroTag', '#btnMore', '#btnPlay'], { opacity: 0, duration: .2, ease: 'power1.in' });
+        return gsap.to(['#heroPills', '#heroLabel', '#heroTag', '#btnPlay', '#btnMore'], 
+          { opacity: 0, y: -10, duration: 0.2, ease: 'power1.in' }
+        );
       }
 
       // i18next init
