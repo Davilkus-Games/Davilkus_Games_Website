@@ -4,27 +4,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SCP-087: Into the Abyss — Davilkus Games</title>
+  <title>Exit the Backrooms: Level 94 — Davilkus Games</title>
   <meta name="description"
-    content="Fan-made psychological horror based on SCP-087 — the endless stairwell. Descend alone into a procedurally-generated abyss and survive as long as you can." />
+    content="The sun never moves. The neighbors are made of plastic. Escape the animated nightmare of Level 94 in this survival horror adventure." />
 
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
 
   <!-- Canonical & hreflang -->
-  <link rel="canonical" href="https://davilkusgames.com/games/scp087" />
+  <link rel="canonical" href="https://davilkusgames.com/games/exit-the-backrooms-94" />
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="ru_RU">
-  <link rel="alternate" href="https://davilkusgames.com/games/scp087?lang=en" hreflang="en">
-  <link rel="alternate" href="https://davilkusgames.com/games/scp087?lang=ru" hreflang="ru">
-  <link rel="alternate" href="https://davilkusgames.com/games/scp087" hreflang="x-default">
+  <link rel="alternate" href="https://davilkusgames.com/games/exit-the-backrooms-94?lang=en" hreflang="en">
+  <link rel="alternate" href="https://davilkusgames.com/games/exit-the-backrooms-94?lang=ru" hreflang="ru">
+  <link rel="alternate" href="https://davilkusgames.com/games/exit-the-backrooms-94" hreflang="x-default">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="SCP-087: Into the Abyss" />
+  <meta property="og:title" content="Exit the Backrooms: Level 94" />
   <meta property="og:site_name" content="Davilkus Games" />
-  <meta property="og:description" content="Fan-made psychological horror based on SCP-087 — the endless stairwell." />
-  <meta property="og:url" content="https://davilkusgames.com/games/scp087" />
-  <meta property="og:image" content="https://davilkusgames.com/assets/showcase/scp087.webp" />
+  <meta property="og:description" content="The sun never moves. The neighbors are made of plastic. Escape the animated nightmare." />
+  <meta property="og:url" content="https://davilkusgames.com/games/exit-the-backrooms-94" />
+  <meta property="og:image" content="https://davilkusgames.com/games/exit-the-backrooms-94/background.webp" />
   <meta property="og:image:width" content="1920" />
   <meta property="og:image:height" content="1080" />
   <meta property="og:image:type" content="image/webp" />
@@ -32,14 +32,14 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@DavilkusGames" />
-  <meta name="twitter:title" content="SCP-087: Into the Abyss" />
-  <meta name="twitter:description" content="Fan-made psychological horror based on SCP-087 — the endless stairwell." />
-  <meta name="twitter:image" content="https://davilkusgames.com/assets/showcase/scp087.webp" />
+  <meta name="twitter:title" content="Exit the Backrooms: Level 94" />
+  <meta name="twitter:description" content="The sun never moves. The neighbors are made of plastic. Escape the animated nightmare." />
+  <meta name="twitter:image" content="https://davilkusgames.com/games/exit-the-backrooms-94/background.webp" />
 
   <meta name="theme-color" content="#0B0F1A" />
 
   <!-- Preload Hero Image -->
-  <link rel="preload" as="image" href="/assets/showcase/scp087.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="background.webp" type="image/webp" fetchpriority="high" />
 
   <!-- Fonts/CDNs -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,7 +64,7 @@
     }
   </script>
 
-  <!-- GSAP + ScrollTrigger (Added ScrollTrigger for consistency) -->
+  <!-- GSAP + ScrollTrigger -->
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
@@ -81,11 +81,11 @@
   {
     "@context":"https://schema.org",
     "@type":"VideoGame",
-    "name":"SCP-087: Into the Abyss",
-    "url":"https://davilkusgames.com/games/scp087",
-    "image":"https://davilkusgames.com/assets/showcase/scp087.webp",
-    "gamePlatform":["Android","Web"],
-    "operatingSystem":["Android","Web"],
+    "name":"Exit the Backrooms: Level 94",
+    "url":"https://davilkusgames.com/games/exit-the-backrooms-94",
+    "image":"https://davilkusgames.com/games/exit-the-backrooms-94/background.webp",
+    "gamePlatform":["Android","Web","Windows","Linux","macOS"],
+    "operatingSystem":["Android","Web","Windows","Linux","macOS"],
     "author": {"@type":"Organization","name":"Davilkus Games"}
   }
   </script>
@@ -135,7 +135,7 @@
       letter-spacing: -0.015em;
     }
 
-    /* --- Spotlight (from main page) --- */
+    /* --- Spotlight --- */
     .hero-spotlight {
       position: absolute;
       inset: -10% -10% 0 -10%;
@@ -153,7 +153,7 @@
       }
     }
 
-    /* --- Glitch Effect (from main page) --- */
+    /* --- Glitch Effect --- */
     .glitch-hard {
       position: relative;
       display: inline-block;
@@ -306,11 +306,11 @@
   </header>
 
   <main class="pt-16">
-    <!-- Hero (Redesigned to match main page structure/lighting) -->
+    <!-- Hero -->
     <section id="hero" class="relative overflow-hidden bg-black">
       <!-- Background Image -->
       <div class="absolute inset-0 z-0">
-         <img src="background.webp" alt="SCP-087 Background" class="w-full h-full object-cover opacity-60" fetchpriority="high" />
+         <img src="background.webp" alt="Level 94 Background" class="w-full h-full object-cover opacity-60" fetchpriority="high" />
       </div>
 
       <!-- Spotlight Layer -->
@@ -323,29 +323,28 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
           <div class="md:col-span-2">
             <!-- Glitch Title -->
-            <h1 class="glitch-hard text-3xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-md" data-i18n="title" data-text="SCP-087: Into the Abyss">SCP-087: Into the Abyss</h1>
+            <h1 class="glitch-hard text-3xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-md" data-i18n="title" data-text="Exit the Backrooms: Level 94">Exit the Backrooms: Level 94</h1>
             
-            <p class="mt-4 md:mt-5 text-sm md:text-base text-gray-200 leading-relaxed max-w-2xl drop-shadow" data-i18n="tagline">Fan-made psychological horror
-              based on SCP-087 — the endless stairwell.</p>
+            <p class="mt-4 md:mt-5 text-sm md:text-base text-gray-200 leading-relaxed max-w-2xl drop-shadow" data-i18n="tagline">The sun never moves. The neighbors are made of plastic. Escape the animated nightmare.</p>
 
             <!-- CTA row -->
             <div class="mt-8 md:mt-10 flex flex-wrap gap-3">
-              <a href="/games/scp087/play/" id="btnPlay"
+              <a href="play/" id="btnPlay"
                 class="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold bg-brand hover:bg-brandDark focus:outline-none focus:ring-2 focus:ring-brand/60 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] transition-all">
                 <span data-i18n="btn.play">Play Here</span>
               </a>
-              <a href="https://play.google.com/store/apps/details?id=com.DavilkusGames.SCP087" target="_blank"
+              <a href="https://play.google.com/store/apps/details?id=com.DavilkusGames.ExitTheBackrooms_94" target="_blank"
                 rel="noopener noreferrer"
                 class="magnetic-btn inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header backdrop-blur transition-colors">
                 <img src="/assets/icons/google-play.svg" alt="Google Play" class="w-5 h-5" />
                 <span data-i18n="btn.gp">Get it on Google Play</span>
               </a>
-              <a href="https://yandex.com/games/app/418827" target="_blank" rel="noopener noreferrer"
+              <a href="https://yandex.ru/games" target="_blank" rel="noopener noreferrer"
                 class="magnetic-btn inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header backdrop-blur transition-colors">
                 <img src="/assets/icons/yandex-games.svg" alt="Yandex Games" class="w-5 h-5" />
                 <span data-i18n="btn.yg">Yandex Games</span>
               </a>
-              <a href="https://itch.io" target="_blank" rel="noopener noreferrer"
+              <a href="https://davilkus-games.itch.io/exit-the-backrooms-level-94" target="_blank" rel="noopener noreferrer"
                 class="magnetic-btn inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-header/80 border border-line hover:bg-header backdrop-blur transition-colors">
                 <img src="/assets/icons/itchio.svg" alt="itch.io" class="w-5 h-5" />
                 <span>itch.io</span>
@@ -356,14 +355,14 @@
           <div class="md:col-span-1 md:justify-self-end mt-4 md:mt-0">
             <div
               class="bg-header/40 border border-white/10 rounded-2xl p-2 shadow-2xl backdrop-blur-sm w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56">
-              <img src="game-icon.webp" alt="SCP-087 icon" class="w-full h-full object-cover rounded-xl" />
+              <img src="game-icon.webp" alt="Level 94 icon" class="w-full h-full object-cover rounded-xl" />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Screenshots row (Steam-style) -->
+    <!-- Screenshots row -->
     <section class="relative py-8">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div id="shotsTrack" class="shots-track overflow-x-auto -mx-4 px-4 flex gap-4 scrollbar-top">
@@ -379,34 +378,35 @@
         <article class="md:col-span-2 bg-panel/60 border border-line rounded-2xl p-5 md:p-6 shadow-soft" data-animate>
           <h2 class="text-xl font-semibold mb-4" data-i18n="sections.desc">Description</h2>
           <div class="text-[15px] leading-relaxed space-y-4 text-ink/90">
-            <p data-i18n="desc.p1"><strong>Item Number:</strong> SCP-087<br /><strong>Object Class:</strong> Euclid</p>
-            <p data-i18n="desc.p2">SCP-087 is a stairwell of indeterminate depth, located within [REDACTED]. Visibility
-              is restricted, and all light sources above 75W prove ineffective.</p>
-            <p data-i18n="desc.p3">At approximately 200m depth, distress vocalizations resembling a child’s cries have
-              been recorded. Attempts to locate the source have failed. Explorations confirm the presence of an
-              anomalous entity, designated SCP-087-1 — a face lacking a mouth, nostrils, or eyes. Its nature and
-              behavior remain unclassified.</p>
-            <p data-i18n="desc.p4">Following Exploration IV, external auditory anomalies were documented. Access to
-              SCP-087 is now prohibited.</p>
-            <p data-i18n="desc.p5">This is a first-person psychological horror game. Descend alone into the dark,
-              procedurally-generated stairwell. Experience unpredictable reality shifts, radio messages, hallucinations,
-              and fatal encounters with SCP-087-1.</p>
+            <p class="font-medium text-white italic text-center" data-i18n="desc.quote">"The sun never moves. The neighbors are made of plastic."</p>
+            <p data-i18n="desc.p1">Chamomile was just an ordinary art student… until she opened the wrong door. You have clipped into Level 94: Motion.</p>
+            <p data-i18n="desc.p2">It looks like a childhood drawing come to life—rolling green hills, cardboard houses, and a silence that feels heavy. To escape, you must find and restore a mysterious Projector that reveals the truth. But the cheerful music is a lie.</p>
+            <h3 class="font-bold text-white pt-2" data-i18n="desc.h1">PHASE 1: THE DAY</h3>
+            <p data-i18n="desc.p3">Explore. Scavenge. Prepare. Raid cardboard houses for batteries and Almond Water. Watch your sanity, and locate the film reels before the sun goes down.</p>
+            <h3 class="font-bold text-white pt-2" data-i18n="desc.h2">PHASE 2: THE NIGHT</h3>
+            <p data-i18n="desc.p4">The sun sets in seconds. When the sky turns black, the entities wake up. You are no longer the explorer; you are the prey.</p>
+            
             <ul class="list-disc pl-6 space-y-1">
-              <li data-i18n="desc.l1">Offline play</li>
-              <li data-i18n="desc.l2">Atmospheric horror</li>
-              <li data-i18n="desc.l3">SCP lore-inspired</li>
-              <li data-i18n="desc.l4">Single-player only</li>
+              <li data-i18n="desc.l1"><strong>The Animations:</strong> Jerky, faceless puppets. If you see one, run.</li>
+              <li data-i18n="desc.l2"><strong>Skin-Stealers:</strong> They hunt by sound. If you hear heavy footsteps, hide.</li>
+              <li data-i18n="desc.l3"><strong>Smilers:</strong> Glowing teeth in the dark. Burn them back with your Flashlight.</li>
             </ul>
-            <p class="italic text-ink/70" data-i18n="desc.p6">Survive. As long as you can.</p>
-            <div class="pt-5 mt-3 border-t border-white/5 space-y-2">
-              <p class="text-ink/60 text-sm" data-i18n="disc.p1">This is an unofficial fan-made game based on “SCP-087.”
-                The SCP Foundation and its content, including the SCP logo and related concepts, are licensed under
-                Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0). This project is not affiliated with the SCP
-                Foundation or its authors.</p>
-              <p class="text-ink/60 text-sm">“SCP-087” by Zaeyde, from the SCP Wiki: <a class="underline"
-                  href="https://scpwiki.com/scp-087" target="_blank" rel="noopener noreferrer">scpwiki.com/scp-087</a>.
-                <span data-i18n="disc.p2">Licensed under CC BY-SA 3.0.</span>
-              </p>
+
+            <h3 class="font-bold text-white pt-2" data-i18n="desc.h3">HOW TO SURVIVE</h3>
+            <ul class="list-disc pl-6 space-y-1">
+               <li data-i18n="desc.l4">Hide in closets—but don't let them see you enter.</li>
+               <li data-i18n="desc.l5">Listen closely. Sound is your only warning.</li>
+               <li data-i18n="desc.l6">Don't sleep in the wrong bed.</li>
+            </ul>
+
+            <div class="pt-5 mt-3 border-t border-white/5 space-y-3">
+              <p class="text-ink/60 text-xs uppercase font-bold tracking-wider" data-i18n="disc.header">Warnings & Attribution</p>
+              <div class="text-ink/60 text-sm space-y-2">
+                <p><strong data-i18n="disc.epilepsyT">EPILEPSY WARNING</strong>: <span data-i18n="disc.epilepsy">Contains flashing lights/glitch effects.</span></p>
+                <p><strong data-i18n="disc.aiT">AI NOTICE</strong>: <span data-i18n="disc.ai">AI tools assisted with minor texts/assets. Voice acting uses Speech-to-Speech technology.</span></p>
+                <p><strong data-i18n="disc.tipsT">TIPS</strong>: <span data-i18n="disc.tips">Headphones recommended. Controller supported.</span></p>
+                <p class="pt-1 border-t border-white/5" data-i18n="disc.license">Based on "The Backrooms". Content, Lore, and Level 94 concepts are from The Backrooms Wiki (Wikidot). Licensed under Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0).</p>
+              </div>
             </div>
           </div>
         </article>
@@ -424,15 +424,15 @@
                 </div>
                 <div class="flex items-center justify-between py-2">
                   <dt class="text-ink/70" data-i18n="info.release">Release date</dt>
-                  <dd class="font-semibold" data-i18n="info.releaseVal">March 17</dd>
+                  <dd class="font-semibold" data-i18n="info.releaseVal">Dec 17, 2025</dd>
                 </div>
                 <div class="flex items-center justify-between py-2">
                   <dt class="text-ink/70" data-i18n="info.updated">Last update</dt>
-                  <dd class="font-semibold" data-i18n="info.updatedVal">June 5</dd>
+                  <dd class="font-semibold" data-i18n="info.updatedVal">Dec 26, 2025</dd>
                 </div>
                 <div class="flex items-start justify-between py-2">
                   <dt class="text-ink/70" data-i18n="info.platforms">Platforms</dt>
-                  <dd class="font-semibold text-right" data-i18n="info.platformsVal">Android; Web</dd>
+                  <dd class="font-semibold text-right" data-i18n="info.platformsVal">Android, Web, PC</dd>
                 </div>
               </dl>
             </div>
@@ -445,15 +445,15 @@
               <dl class="text-sm divide-y divide-white/5">
                 <div class="flex items-center justify-between py-2">
                   <dt class="text-ink/70" data-i18n="credits.dev">Developer</dt>
-                  <dd class="font-semibold">Davilkus</dd>
+                  <dd class="font-semibold">Davilkus Games</dd>
                 </div>
-                <div class="flex items-center justify-between py-2">
+                <div class="flex items-start justify-between py-2">
                   <dt class="text-ink/70" data-i18n="credits.comp">Composer</dt>
-                  <dd class="font-semibold">BurgerKerman</dd>
+                  <dd class="font-semibold text-right">BurgerKerman<br><span class="text-xs font-normal opacity-70">& Kevin MacLeod</span></dd>
                 </div>
                 <div class="flex items-start justify-between py-2">
                   <dt class="text-ink/70" data-i18n="credits.lore">Lore source</dt>
-                  <dd class="font-semibold text-right" data-i18n="credits.loreVal">SCP-087 by Zaeyde — SCP Wiki</dd>
+                  <dd class="font-semibold text-right" data-i18n="credits.loreVal">Level 94 (Backrooms Wiki) by Stretchsterz, Dr Bierre, ShadowOfTheProphet</dd>
                 </div>
               </dl>
             </div>
@@ -630,18 +630,78 @@
     const resources = {
       en: {
         translation: {
-          brand: 'Davilkus Games', nav: { games: 'Games', about: 'About', contact: 'Contact Us' }, title: 'SCP-087: Into the Abyss', tagline: 'Fan-made psychological horror based on SCP-087 — the endless stairwell.', sections: { desc: 'Description', info: 'Game Info', trailer: 'Trailer', credits: 'Team & Sources' }, info: { status: 'Status', release: 'Release date', updated: 'Last update', platforms: 'Platforms', statusVal: 'Released', platformsVal: 'Android; Web', releaseVal: 'March 17', updatedVal: 'June 5' }, credits: { dev: 'Developer', comp: 'Composer', lore: 'Lore source', loreVal: 'SCP-087 by Zaeyde — SCP Wiki' },
-          desc: { p1: '<strong>Item Number:</strong> SCP-087<br/><strong>Object Class:</strong> Euclid', p2: 'SCP-087 is a stairwell of indeterminate depth, located within [REDACTED]. Visibility is restricted, and all light sources above 75W prove ineffective.', p3: 'At approximately 200m depth, distress vocalizations resembling a child’s cries have been recorded. Attempts to locate the source have failed. Explorations confirm the presence of an anomalous entity, designated SCP-087-1 — a face lacking a mouth, nostrils, or eyes. Its nature and behavior remain unclassified.', p4: 'Following Exploration IV, external auditory anomalies were documented. Access to SCP-087 is now prohibited.', p5: 'This is a first-person psychological horror game. Descend alone into the dark, procedurally-generated stairwell. Experience unpredictable reality shifts, radio messages, hallucinations, and fatal encounters with SCP-087-1.', l1: 'Offline play', l2: 'Atmospheric horror', l3: 'SCP lore-inspired', l4: 'Single-player only', p6: 'Survive. As long as you can.' },
-          disc: { p1: 'This is an unofficial fan-made game based on “SCP-087.” The SCP Foundation and its content, including the SCP logo and related concepts, are licensed under Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0). This project is not affiliated with the SCP Foundation or its authors.', p2: 'Licensed under CC BY-SA 3.0.' },
-          yt: { consent: 'Enable cookies to load the YouTube video.' }, btn: { gp: 'Get it on Google Play', yg: 'Yandex Games', play: 'Play Here' }, cookie: { title: 'Cookie time!', desc: 'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', accept: 'Accept', decline: 'Decline' }
+          brand: 'Davilkus Games', 
+          nav: { games: 'Games', about: 'About', contact: 'Contact Us' }, 
+          title: 'Exit the Backrooms: Level 94', 
+          tagline: 'The sun never moves. The neighbors are made of plastic. Escape the animated nightmare.', 
+          sections: { desc: 'Description', info: 'Game Info', trailer: 'Trailer', credits: 'Team & Sources' }, 
+          info: { status: 'Status', release: 'Release date', updated: 'Last update', platforms: 'Platforms', statusVal: 'Released', platformsVal: 'Android, Web, Windows, Linux, MacOS', releaseVal: 'Dec 17, 2025', updatedVal: 'Dec 26, 2025' }, 
+          credits: { dev: 'Developer', comp: 'Composer', lore: 'Lore source', loreVal: 'Level 94 (Backrooms Wiki) by Stretchsterz, Dr Bierre, ShadowOfTheProphet' },
+          
+          desc: { 
+            quote: '❝ The sun never moves. The neighbors are made of plastic. ❞',
+            p1: 'Chamomile was just an ordinary art student… until she opened the wrong door. You have clipped into Level 94: Motion.', 
+            p2: 'It looks like a childhood drawing come to life—rolling green hills, cardboard houses, and a silence that feels heavy. To escape, you must find and restore a mysterious Projector that reveals the truth. But the cheerful music is a lie.', 
+            h1: 'PHASE 1: THE DAY',
+            p3: 'Explore. Scavenge. Prepare. Raid cardboard houses for batteries, keys, and Almond Water. Watch your stamina and sanity. The silence will get to you. Locate the film reels before the sun goes down.',
+            h2: 'PHASE 2: THE NIGHT',
+            p4: 'The sun sets in seconds. HIDE. When the sky turns black, the entities wake up. You are no longer the explorer; you are the prey.',
+            l1: '<strong>The Animations:</strong> Jerky, faceless puppets. If you see one, run. They are the natives.', 
+            l2: '<strong>Skin-Stealers:</strong> They hunt by sound. If you hear heavy footsteps, hide.', 
+            l3: '<strong>Smilers:</strong> Glowing teeth in the dark. Burn them back with your Flashlight.',
+            h3: 'HOW TO SURVIVE',
+            l4: 'Hide in closets—but don\'t let them see you enter.',
+            l5: 'Listen closely. Sound is your only warning.',
+            l6: 'Don\'t sleep in the wrong bed.'
+          },
+          disc: { 
+            header: 'Warnings & Attribution',
+            epilepsyT: 'EPILEPSY WARNING', epilepsy: 'Contains flashing lights/glitch effects.',
+            aiT: 'AI NOTICE', ai: 'AI tools assisted with minor texts/assets. Voice acting uses Speech-to-Speech technology.',
+            tipsT: 'TIPS', tips: 'Headphones recommended. Controller supported.',
+            license: 'Based on "The Backrooms". Content, Lore, and Level 94 concepts are from The Backrooms Wiki (Wikidot). Licensed under Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0).' 
+          },
+          yt: { consent: 'Enable cookies to load the YouTube video.' }, 
+          btn: { gp: 'Get it on Google Play', yg: 'Yandex Games', play: 'Play Here' }, 
+          cookie: { title: 'Cookie time!', desc: 'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', accept: 'Accept', decline: 'Decline' }
         }
       },
       ru: {
         translation: {
-          brand: 'Davilkus Games', nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' }, title: 'SCP-087: Лестница в Бездну', tagline: 'Фанатский психологический хоррор по мотивам SCP-087 — бесконечной лестницы.', sections: { desc: 'Описание', info: 'Информация об игре', trailer: 'Трейлер', credits: 'Команда и источники' }, info: { status: 'Статус', release: 'Дата выхода', updated: 'Последнее обновление', platforms: 'Платформы', statusVal: 'Релиз', platformsVal: 'Android; Web', releaseVal: '17 марта', updatedVal: '5 июня' }, credits: { dev: 'Разработчик', comp: 'Композитор', lore: 'Источник лора', loreVal: 'SCP-087 от Zaeyde — SCP Wiki' },
-          desc: { p1: '<strong>Номер объекта:</strong> SCP-087<br/><strong>Класс объекта:</strong> Евклид', p2: 'SCP-087 — лестничный пролёт неопределённой глубины, расположенный в [УДАЛЕНО]. Видимость ограничена, любые источники света мощностью свыше 75 Вт оказываются неэффективны.', p3: 'На глубине около 200 м зафиксированы крики, похожие на детские. Попытки определить источник не увенчались успехом. Исследования подтвердили наличие аномальной сущности, обозначенной SCP-087-1 — лица без рта, ноздрей и глаз. Её природа и поведение не классифицированы.', p4: 'После Исследования IV были зафиксированы внешние слуховые аномалии. Доступ к SCP-087 запрещён.', p5: 'Это психологический хоррор от первого лица. Спускайтесь в тёмный процедурно‑генерируемый пролёт. Переживите сдвиги реальности, радиосообщения, галлюцинации и смертельные встречи с SCP-087-1.', l1: 'Оффлайн‑режим', l2: 'Атмосферный хоррор', l3: 'По мотивам SCP‑лор', l4: 'Только одиночная игра', p6: 'Выживай. Сколько сможешь.' },
-          disc: { p1: 'Неофициальная фанатская игра по мотивам «SCP-087». Фонд SCP и его материалы, включая логотип SCP и связанные концепции, лицензируются по Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0). Проект не аффилирован с Фондом SCP или его авторами.', p2: 'Лицензия: CC BY-SA 3.0.' },
-          yt: { consent: 'Включите файлы cookie, чтобы загрузить видео YouTube.' }, btn: { gp: 'В Google Play', yg: 'Яндекс Игры', play: 'Играть здесь' }, cookie: { title: 'Время печенек!', desc: 'Мы используем файлы cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на их использование.', accept: 'Принять', decline: 'Отклонить' }
+          brand: 'Davilkus Games', 
+          nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' }, 
+          title: 'Побег из Закулисья: Уровень 94', 
+          tagline: 'Солнце никогда не движется. Соседи сделаны из пластика. Сбегите из анимированного кошмара.', 
+          sections: { desc: 'Описание', info: 'Информация об игре', trailer: 'Трейлер', credits: 'Команда и источники' }, 
+          info: { status: 'Статус', release: 'Дата выхода', updated: 'Последнее обновление', platforms: 'Платформы', statusVal: 'Релиз', platformsVal: 'Android, Web, Windows, Linux, MacOS', releaseVal: '17 декабря 2025', updatedVal: '26 декабря 2025' }, 
+          credits: { dev: 'Разработчик', comp: 'Композитор', lore: 'Источник лора', loreVal: 'Level 94 (Backrooms Wiki) — Stretchsterz, Dr Bierre, ShadowOfTheProphet' },
+          
+          desc: { 
+            quote: '❝ Солнце никогда не движется. Соседи сделаны из пластика. ❞',
+            p1: 'Кэмомайл была обычной студенткой-художницей... пока не выпала из реальности. Она просыпается на Уровне 94.', 
+            p2: 'Это сюрреалистичный анимированный пейзаж из зелёных холмов и картонных домиков. Чтобы сбежать, нужно восстановить таинственный проектор. Но этот город не так спокоен, как кажется.', 
+            h1: 'ФАЗА 1: ДЕНЬ',
+            p3: 'Исследуй. Готовься. Ищи батарейки, ключи и Миндальную воду. Следи за рассудком. Тишина здесь обманчива. Найди киноплёнки до заката.',
+            h2: 'ФАЗА 2: НОЧЬ',
+            p4: 'Солнце садится быстро. Когда опускается тьма, появляются сущности. ПРЯЧЬСЯ. Теперь ты добыча.',
+            l1: '<strong>Анимашки:</strong> Непредсказуемые марионетки. Увидишь — беги.', 
+            l2: '<strong>Кожекрады:</strong> Охотятся на звук в темноте. Соблюдай тишину.', 
+            l3: '<strong>Улыбающиеся:</strong> Таятся в тенях. Используй фонарик, чтобы отогнать их.',
+            h3: 'КАК ВЫЖИТЬ',
+            l4: 'Прячься в шкафах — но чтобы никто не видел, как ты заходишь.',
+            l5: 'Слушай внимательно. Звук — твоё единственное предупреждение.',
+            l6: 'Управляй светом, выносливостью и временем.'
+          },
+          disc: { 
+            header: 'Предупреждения и Атрибуция',
+            epilepsyT: 'ЭПИЛЕПСИЯ', epilepsy: 'Игра содержит мигающие огни и глитч-эффекты.',
+            aiT: 'ИИ-КОНТЕНТ', ai: 'Использовался для вспомогательных текстов и обработки. Озвучка: Speech-to-Speech.',
+            tipsT: 'СОВЕТЫ', tips: 'Рекомендуются наушники. Поддержка контроллеров.',
+            license: 'Основано на «The Backrooms». Лор и концепция Уровня 94 взяты с The Backrooms Wiki (Wikidot). Лицензия Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0).' 
+          },
+          yt: { consent: 'Включите файлы cookie, чтобы загрузить видео YouTube.' }, 
+          btn: { gp: 'В Google Play', yg: 'Яндекс Игры', play: 'Играть здесь' }, 
+          cookie: { title: 'Время печенек!', desc: 'Мы используем файлы cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на их использование.', accept: 'Принять', decline: 'Отклонить' }
         }
       }
     };
@@ -734,7 +794,7 @@
         const iframe = document.createElement('iframe'); 
         iframe.width = '560'; 
         iframe.height = '315'; 
-        iframe.src = 'https://www.youtube.com/embed/dk5-FnV_1Mk'; 
+        iframe.src = 'https://www.youtube.com/embed/CwZ2wfG39d4?si=ExtB_94_trailer'; 
         iframe.title = 'YouTube video player'; 
         iframe.frameBorder = '0'; 
         iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'; 
@@ -746,7 +806,8 @@
         if (ph) ph.remove() 
     }
     
-    const SHOTS = Array.from({ length: 5 }, (_, i) => `/games/scp087/screenshots/screenshot_${i}.webp`); 
+    // 8 Screenshots: 0 to 7
+    const SHOTS = Array.from({ length: 8 }, (_, i) => `/games/exit-the-backrooms-94/screenshots/screenshot_${i}.webp`); 
     let shotIndex = 0, dragging = !1;
     function renderShots() { 
       const track = document.getElementById('shotsTrack'); 
@@ -845,7 +906,7 @@
         document.querySelectorAll('.magnetic-btn').forEach(btn => magnetic(btn, 14));
       }
 
-      // --- Spotlight mouse tracking (rAF throttled) ---
+      // --- Spotlight mouse tracking ---
       (() => {
         const rmm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (rmm) return;

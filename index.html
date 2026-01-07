@@ -41,7 +41,7 @@
   <meta name="theme-color" content="#0B0F1A" />
 
   <!-- Preload the first hero image -->
-  <link rel="preload" as="image" href="/assets/showcase/etb_level94.webp" imagesrcset="/assets/showcase/etb_level94.webp"
+  <link rel="preload" as="image" href="/assets/showcase/ExtB_94.webp" imagesrcset="/assets/showcase/ExtB_94.webp"
     type="image/webp" />
 
   <!-- Inter font & CDNs -->
@@ -371,19 +371,19 @@
       <div class="swiper hero-swiper h-full relative z-0">
         <div class="swiper-wrapper">
           <div class="swiper-slide relative">
-            <img src="/assets/showcase/etb_level94.webp" alt="Exit the Backrooms: Level 94"
+            <img src="/assets/showcase/ExtB_94.webp" alt="Exit the Backrooms: Level 94"
               class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
           </div>
           <div class="swiper-slide relative">
-            <img src="/assets/showcase/scp087.webp" alt="SCP-087: Into the Abyss" width="1920" height="1080"
+            <img src="/assets/showcase/SCP_087.webp" alt="SCP-087: Into the Abyss" width="1920" height="1080"
               class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
           </div>
           <div class="swiper-slide relative">
-            <img src="/assets/showcase/etb_level2.webp" alt="Exit the Backrooms: Level 2" width="1920" height="1080"
+            <img src="/assets/showcase/ExtB_2.webp" alt="Exit the Backrooms: Level 2" width="1920" height="1080"
               class="w-full h-full object-cover" loading="lazy" decoding="async" />
           </div>
           <div class="swiper-slide relative">
-            <img src="/assets/showcase/etb_level37.webp" alt="Exit the Backrooms: Level 37" width="1920" height="1080"
+            <img src="/assets/showcase/ExtB_37.webp" alt="Exit the Backrooms: Level 37" width="1920" height="1080"
               class="w-full h-full object-cover" loading="lazy" decoding="async" />
           </div>
           <div class="swiper-slide relative">
@@ -828,11 +828,11 @@
           brand: 'Davilkus Games',
           nav: { games: 'Games', about: 'About', contact: 'Contact Us' },
           games: {
-            etb94: { title: 'Exit the Backrooms: Level 94', tagline: '❝The sun never moves. The neighbors are made of plastic.❞' },
-            scp087: { title: 'SCP-087: Into the Abyss', tagline: 'Descend into the endless darkness of SCP-087.' },
-            etb2: { title: 'Exit the Backrooms: Level 2', tagline: 'You find yourself in a labyrinth of technical corridors filled with entities...' },
-            etb37: { title: 'Exit the Backrooms: Level 37', tagline: 'You find yourself in an endless complex of liminal pools, but there is someone else here...' },
-            sus: { title: 'Sus Horror', tagline: 'Can you escape from the spaceship?' },
+            exit-the-backrooms-94: { title: 'Exit the Backrooms: Level 94', tagline: '❝The sun never moves. The neighbors are made of plastic.❞' },
+            scp-087-into-the-abyss: { title: 'SCP-087: Into the Abyss', tagline: 'Descend into the endless darkness of SCP-087.' },
+            exit-the-backrooms-2: { title: 'Exit the Backrooms: Level 2', tagline: 'You find yourself in a labyrinth of technical corridors filled with entities...' },
+            exit-the-backrooms-37: { title: 'Exit the Backrooms: Level 37', tagline: 'You find yourself in an endless complex of liminal pools, but there is someone else here...' },
+            sus-horror: { title: 'Sus Horror', tagline: 'Can you escape from the spaceship?' },
           },
           buttons: { play: 'Play!', coming: 'Coming soon', more: 'Learn More' },
           about: {
@@ -864,11 +864,11 @@
           brand: 'Davilkus Games',
           nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' },
           games: {
-            etb94: { title: 'Побег из Закулисья: Уровень 94', tagline: '❝Солнце никогда не движется. Соседи сделаны из пластика.❞' },
-            scp087: { title: 'SCP-087: Лестница в Бездну', tagline: 'Спуститесь в бесконечную темноту SCP-087.' },
-            etb2: { title: 'Побег из Закулисья: Уровень 2', tagline: 'Вы оказались в лабиринте технических коридоров, заполненных сущностями...' },
-            etb37: { title: 'Побег из Закулисья: Уровень 37', tagline: 'Вы оказались в бесконечном комплексе лиминальных бассейнов, но здесь есть кто-то еще...' },
-            sus: { title: 'Sus Horror', tagline: 'Сможете ли вы сбежать с космического корабля?' },
+            exit-the-backrooms-94: { title: 'Побег из Закулисья: Уровень 94', tagline: '❝Солнце никогда не движется. Соседи сделаны из пластика.❞' },
+            scp-087-into-the-abyss: { title: 'SCP-087: Лестница в Бездну', tagline: 'Спуститесь в бесконечную темноту SCP-087.' },
+            exit-the-backrooms-2: { title: 'Побег из Закулисья: Уровень 2', tagline: 'Вы оказались в лабиринте технических коридоров, заполненных сущностями...' },
+            exit-the-backrooms-37: { title: 'Побег из Закулисья: Уровень 37', tagline: 'Вы оказались в бесконечном комплексе лиминальных бассейнов, но здесь есть кто-то еще...' },
+            sus-horror: { title: 'Sus Horror', tagline: 'Сможете ли вы сбежать с космического корабля?' },
           },
           buttons: { play: 'Играть!', coming: 'Скоро', more: 'Подробнее' },
           about: {
@@ -1016,11 +1016,11 @@
 
     window.addEventListener('DOMContentLoaded', function () {
       const GAMES = [
-        { titleKey: 'games.etb94.title', taglineKey: 'games.etb94.tagline', slug: 'etb94', status: 'active' },
-        { titleKey: 'games.scp087.title', taglineKey: 'games.scp087.tagline', slug: 'scp087', status: 'active' },
-        { titleKey: 'games.etb2.title', taglineKey: 'games.etb2.tagline', slug: 'etb-level2', status: 'active' },
-        { titleKey: 'games.etb37.title', taglineKey: 'games.etb37.tagline', slug: 'etb-level37', status: 'active' },
-        { titleKey: 'games.sus.title', taglineKey: 'games.sus.tagline', slug: 'sus-horror', status: 'active' },
+        { titleKey: 'games.exit-the-backrooms-94.title', taglineKey: 'games.exit-the-backrooms-94.tagline', slug: 'exit-the-backrooms-94', status: 'active' },
+        { titleKey: 'games.scp-087-into-the-abyss.title', taglineKey: 'games.scp-087-into-the-abyss.tagline', slug: 'scp-087-into-the-abyss', status: 'active' },
+        { titleKey: 'games.exit-the-backrooms-2.title', taglineKey: 'games.exit-the-backrooms-2.tagline', slug: 'exit-the-backrooms-2', status: 'active' },
+        { titleKey: 'games.exit-the-backrooms-37.title', taglineKey: 'games.exit-the-backrooms-37.tagline', slug: 'exit-the-backrooms-37', status: 'active' },
+        { titleKey: 'games.sus-horror.title', taglineKey: 'games.sus-horror.tagline', slug: 'sus-horror', status: 'active' },
       ];
 
       const titleEl = document.getElementById('heroTitle');
