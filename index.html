@@ -452,7 +452,7 @@
                     </div>
                     <div class="bg-panel/60 border border-line rounded-2xl p-6 md:p-8 shadow-soft">
                         <h3 class="text-xl font-semibold mb-5" data-i18n="about.team">Team & Partners</h3>
-                        <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="grid sm:grid-cols-2 gap-6" id="teamContainer">
                             <!-- Mikhail -->
                             <div class="team-card group flex flex-col bg-header/40 border border-line hover:border-brand/50 rounded-xl p-5 md:p-6 hover:shadow-soft transition" data-animate>
                                 <div class="flex items-center gap-4">
@@ -804,6 +804,16 @@
             });
 
             if (hasGSAP()) initAnimations();
+
+            /* Chance of Random Swapping Co-Founders :DDD */
+            (function() {
+                const teamContainer = document.getElementById('teamContainer');
+                if (teamContainer && teamContainer.children.length >= 2) {
+                    if (Math.random() < 0.5) {
+                        teamContainer.insertBefore(teamContainer.children[1], teamContainer.children[0]);
+                    }
+                }
+            })();
 
             /* --- Cookie Bar --- */
             const cKey = 'dg_cookie_v1', cBar = document.getElementById('cookieBar');
