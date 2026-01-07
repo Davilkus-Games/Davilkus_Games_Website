@@ -309,18 +309,15 @@
   </header>
 
   <main class="pt-16">
-    <!-- Hero -->
-    <section id="hero" class="relative overflow-hidden bg-black">
-      <!-- Background Image -->
-      <div class="absolute inset-0 z-0">
-         <img src="/assets/showcase/SCP_087.webp" alt="SCP 087 Background" class="w-full h-full object-cover opacity-60" fetchpriority="high" />
+    <section id="hero" class="relative overflow-hidden">
+      
+      <div class="absolute inset-0 z-0 [mask-image:linear-gradient(to_bottom,black_60%,transparent)]">
+         <img src="/assets/showcase/ExtB_94.webp" alt="Level 94 Background" class="w-full h-full object-cover opacity-80" fetchpriority="high" />
       </div>
 
-      <!-- Spotlight Layer -->
       <div id="heroLight" class="hero-spotlight" aria-hidden="true"></div>
 
-      <!-- Gradient Overlay -->
-      <div class="absolute inset-0 z-10 bg-gradient-to-b from-black/20 via-black/40 to-bg"></div>
+      <div class="absolute inset-0 z-10 bg-gradient-to-b from-black/40 via-transparent to-black/80"></div>
       
       <div class="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
@@ -366,10 +363,11 @@
       </div>
     </section>
 
-    <!-- Screenshots row (Steam-style) -->
-    <section class="relative py-8">
+    <!-- Screenshots row -->
+    <section class="relative border-y border-white/5 bg-black/40 backdrop-blur-md py-10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div id="shotsTrack" class="shots-track overflow-x-auto -mx-4 px-4 flex gap-4 scrollbar-top">
+        <h2 class="text-sm font-bold text-white/50 uppercase tracking-widest mb-4" data-i18n="sections.gallery">Gallery</h2>
+        <div id="shotsTrack" class="shots-track overflow-x-auto -mx-4 px-4 flex gap-4 scrollbar-top pb-2">
           <!-- Thumbs injected via JS -->
         </div>
       </div>
@@ -633,7 +631,7 @@
     const resources = {
       en: {
         translation: {
-          brand: 'Davilkus Games', nav: { games: 'Games', about: 'About', contact: 'Contact Us' }, title: 'SCP-087: Into the Abyss', tagline: 'Fan-made psychological horror based on SCP-087 — the endless stairwell.', sections: { desc: 'Description', info: 'Game Info', trailer: 'Trailer', credits: 'Team & Sources' }, info: { status: 'Status', release: 'Release date', updated: 'Last update', platforms: 'Platforms', statusVal: 'Released', platformsVal: 'Android; Web', releaseVal: 'March 17', updatedVal: 'June 5' }, credits: { dev: 'Developer', comp: 'Composer', lore: 'Lore source', loreVal: 'SCP-087 by Zaeyde — SCP Wiki' },
+          brand: 'Davilkus Games', nav: { games: 'Games', about: 'About', contact: 'Contact Us' }, title: 'SCP-087: Into the Abyss', tagline: 'Fan-made psychological horror based on SCP-087 — the endless stairwell.', sections: { desc: 'Description', gallery: 'Gallery', info: 'Game Info', trailer: 'Trailer', credits: 'Team & Sources' },, info: { status: 'Status', release: 'Release date', updated: 'Last update', platforms: 'Platforms', statusVal: 'Released', platformsVal: 'Android; Web', releaseVal: 'March 17', updatedVal: 'June 5' }, credits: { dev: 'Developer', comp: 'Composer', lore: 'Lore source', loreVal: 'SCP-087 by Zaeyde — SCP Wiki' },
           desc: { p1: '<strong>Item Number:</strong> SCP-087<br/><strong>Object Class:</strong> Euclid', p2: 'SCP-087 is a stairwell of indeterminate depth, located within [REDACTED]. Visibility is restricted, and all light sources above 75W prove ineffective.', p3: 'At approximately 200m depth, distress vocalizations resembling a child’s cries have been recorded. Attempts to locate the source have failed. Explorations confirm the presence of an anomalous entity, designated SCP-087-1 — a face lacking a mouth, nostrils, or eyes. Its nature and behavior remain unclassified.', p4: 'Following Exploration IV, external auditory anomalies were documented. Access to SCP-087 is now prohibited.', p5: 'This is a first-person psychological horror game. Descend alone into the dark, procedurally-generated stairwell. Experience unpredictable reality shifts, radio messages, hallucinations, and fatal encounters with SCP-087-1.', l1: 'Offline play', l2: 'Atmospheric horror', l3: 'SCP lore-inspired', l4: 'Single-player only', p6: 'Survive. As long as you can.' },
           disc: { p1: 'This is an unofficial fan-made game based on “SCP-087.” The SCP Foundation and its content, including the SCP logo and related concepts, are licensed under Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0). This project is not affiliated with the SCP Foundation or its authors.', p2: 'Licensed under CC BY-SA 3.0.' },
           yt: { consent: 'Enable cookies to load the YouTube video.' }, btn: { gp: 'Get it on Google Play', yg: 'Yandex Games', play: 'Play Here' }, cookie: { title: 'Cookie time!', desc: 'We use cookies to ensure you get the best experience on our website. By using our website you agree to our use of cookies.', accept: 'Accept', decline: 'Decline' }
@@ -641,7 +639,7 @@
       },
       ru: {
         translation: {
-          brand: 'Davilkus Games', nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' }, title: 'SCP-087: Лестница в Бездну', tagline: 'Фанатский психологический хоррор по мотивам SCP-087 — бесконечной лестницы.', sections: { desc: 'Описание', info: 'Информация об игре', trailer: 'Трейлер', credits: 'Команда и источники' }, info: { status: 'Статус', release: 'Дата выхода', updated: 'Последнее обновление', platforms: 'Платформы', statusVal: 'Релиз', platformsVal: 'Android; Web', releaseVal: '17 марта', updatedVal: '5 июня' }, credits: { dev: 'Разработчик', comp: 'Композитор', lore: 'Источник лора', loreVal: 'SCP-087 от Zaeyde — SCP Wiki' },
+          brand: 'Davilkus Games', nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' }, title: 'SCP-087: Лестница в Бездну', tagline: 'Фанатский психологический хоррор по мотивам SCP-087 — бесконечной лестницы.', sections: { desc: 'Описание', gallery: 'Галерея', info: 'Информация об игре', trailer: 'Трейлер', credits: 'Команда и источники' },, info: { status: 'Статус', release: 'Дата выхода', updated: 'Последнее обновление', platforms: 'Платформы', statusVal: 'Релиз', platformsVal: 'Android; Web', releaseVal: '17 марта', updatedVal: '5 июня' }, credits: { dev: 'Разработчик', comp: 'Композитор', lore: 'Источник лора', loreVal: 'SCP-087 от Zaeyde — SCP Wiki' },
           desc: { p1: '<strong>Номер объекта:</strong> SCP-087<br/><strong>Класс объекта:</strong> Евклид', p2: 'SCP-087 — лестничный пролёт неопределённой глубины, расположенный в [УДАЛЕНО]. Видимость ограничена, любые источники света мощностью свыше 75 Вт оказываются неэффективны.', p3: 'На глубине около 200 м зафиксированы крики, похожие на детские. Попытки определить источник не увенчались успехом. Исследования подтвердили наличие аномальной сущности, обозначенной SCP-087-1 — лица без рта, ноздрей и глаз. Её природа и поведение не классифицированы.', p4: 'После Исследования IV были зафиксированы внешние слуховые аномалии. Доступ к SCP-087 запрещён.', p5: 'Это психологический хоррор от первого лица. Спускайтесь в тёмный процедурно‑генерируемый пролёт. Переживите сдвиги реальности, радиосообщения, галлюцинации и смертельные встречи с SCP-087-1.', l1: 'Оффлайн‑режим', l2: 'Атмосферный хоррор', l3: 'По мотивам SCP‑лор', l4: 'Только одиночная игра', p6: 'Выживай. Сколько сможешь.' },
           disc: { p1: 'Неофициальная фанатская игра по мотивам «SCP-087». Фонд SCP и его материалы, включая логотип SCP и связанные концепции, лицензируются по Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0). Проект не аффилирован с Фондом SCP или его авторами.', p2: 'Лицензия: CC BY-SA 3.0.' },
           yt: { consent: 'Включите файлы cookie, чтобы загрузить видео YouTube.' }, btn: { gp: 'В Google Play', yg: 'Яндекс Игры', play: 'Играть здесь' }, cookie: { title: 'Время печенек!', desc: 'Мы используем файлы cookie, чтобы обеспечить лучший опыт на сайте. Продолжая пользоваться сайтом, вы соглашаетесь на их использование.', accept: 'Принять', decline: 'Отклонить' }

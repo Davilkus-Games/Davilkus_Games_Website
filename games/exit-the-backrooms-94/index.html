@@ -309,18 +309,15 @@
   </header>
 
   <main class="pt-16">
-    <!-- Hero -->
-    <section id="hero" class="relative overflow-hidden bg-black">
-      <!-- Background Image -->
-      <div class="absolute inset-0 z-0">
-         <img src="/assets/showcase/ExtB_94.webp" alt="Level 94 Background" class="w-full h-full object-cover opacity-60" fetchpriority="high" />
+    <section id="hero" class="relative overflow-hidden">
+      
+      <div class="absolute inset-0 z-0 [mask-image:linear-gradient(to_bottom,black_60%,transparent)]">
+         <img src="/assets/showcase/ExtB_94.webp" alt="Level 94 Background" class="w-full h-full object-cover opacity-80" fetchpriority="high" />
       </div>
 
-      <!-- Spotlight Layer -->
       <div id="heroLight" class="hero-spotlight" aria-hidden="true"></div>
 
-      <!-- Gradient Overlay -->
-      <div class="absolute inset-0 z-10 bg-gradient-to-b from-black/20 via-black/40 to-bg"></div>
+      <div class="absolute inset-0 z-10 bg-gradient-to-b from-black/40 via-transparent to-black/80"></div>
       
       <div class="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
@@ -366,9 +363,10 @@
     </section>
 
     <!-- Screenshots row -->
-    <section class="relative py-8">
+    <section class="relative border-y border-white/5 bg-black/40 backdrop-blur-md py-10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div id="shotsTrack" class="shots-track overflow-x-auto -mx-4 px-4 flex gap-4 scrollbar-top">
+        <h2 class="text-sm font-bold text-white/50 uppercase tracking-widest mb-4" data-i18n="sections.gallery">Gallery</h2>
+        <div id="shotsTrack" class="shots-track overflow-x-auto -mx-4 px-4 flex gap-4 scrollbar-top pb-2">
           <!-- Thumbs injected via JS -->
         </div>
       </div>
@@ -637,7 +635,7 @@
           nav: { games: 'Games', about: 'About', contact: 'Contact Us' }, 
           title: 'Exit the Backrooms: Level 94', 
           tagline: 'The sun never moves. The neighbors are made of plastic. Escape the animated nightmare.', 
-          sections: { desc: 'Description', info: 'Game Info', trailer: 'Trailer', credits: 'Team & Sources' }, 
+          sections: { desc: 'Description', gallery: 'Gallery', info: 'Game Info', trailer: 'Trailer', credits: 'Team & Sources' },, 
           info: { status: 'Status', release: 'Release date', updated: 'Last update', platforms: 'Platforms', statusVal: 'Released', platformsVal: 'Android, Web, Windows, Linux, MacOS', releaseVal: 'Dec 17, 2025', updatedVal: 'Dec 26, 2025' }, 
           credits: { dev: 'Developer', comp: 'Composer', lore: 'Lore source', loreVal: 'Level 94 (Backrooms Wiki) by Stretchsterz, Dr Bierre, ShadowOfTheProphet' },
           
@@ -675,7 +673,7 @@
           nav: { games: 'Игры', about: 'О нас', contact: 'Контакты' }, 
           title: 'Побег из Закулисья: Уровень 94', 
           tagline: 'Солнце никогда не движется. Соседи сделаны из пластика. Сбегите из анимированного кошмара.', 
-          sections: { desc: 'Описание', info: 'Информация об игре', trailer: 'Трейлер', credits: 'Команда и источники' }, 
+          sections: { desc: 'Описание', gallery: 'Галерея', info: 'Информация об игре', trailer: 'Трейлер', credits: 'Команда и источники' },, 
           info: { status: 'Статус', release: 'Дата выхода', updated: 'Последнее обновление', platforms: 'Платформы', statusVal: 'Релиз', platformsVal: 'Android, Web, Windows, Linux, MacOS', releaseVal: '17 декабря 2025', updatedVal: '26 декабря 2025' }, 
           credits: { dev: 'Разработчик', comp: 'Композитор', lore: 'Источник лора', loreVal: 'Level 94 (Backrooms Wiki) — Stretchsterz, Dr Bierre, ShadowOfTheProphet' },
           
