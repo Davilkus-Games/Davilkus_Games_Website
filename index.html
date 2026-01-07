@@ -909,8 +909,15 @@
       const thumb = document.getElementById('langThumb');
       const thumbM = document.getElementById('langThumbMobile');
       const isRU = lang && lang.startsWith('ru');
-      if (thumb) { thumb.classList.toggle('left-1', !isRU); thumb.classList.toggle('right-1', isRU); }
-      if (thumbM) { thumbM.classList.toggle('left-1', !isRU); thumbM.classList.toggle('right-1', isRU); }
+      
+      if (thumb) {
+        thumb.classList.toggle('right-1', !isRU);
+        thumb.classList.toggle('left-1', isRU);   
+      }
+      if (thumbM) {
+        thumbM.classList.toggle('right-1', !isRU);
+        thumbM.classList.toggle('left-1', isRU);  
+      }
     }
 
     function setUrlLangParam(lang) {
