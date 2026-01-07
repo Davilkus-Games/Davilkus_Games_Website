@@ -1,85 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
-
+<html lang="en" class="dark">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Davilkus Games — Admin Panel</title>
-    <!-- Do not index -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DG_ADMIN_CONSOLE_V2</title>
+    
+    <!-- No Indexing -->
     <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="icon" type="image/png" href="https://davilkusgames.com/assets/favicon.png" />
 
-    <link rel="icon" type="image/png" href="/assets/favicon.png" />
-    <meta name="theme-color" content="#0B0F1A" />
-
-    <!-- Inter font -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CDN -->
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: { 
+                    fontFamily: {
                         sans: ['Inter', 'ui-sans-serif', 'system-ui'],
-                        mono: ['JetBrains Mono', 'monospace'] 
+                        mono: ['JetBrains Mono', 'Courier New', 'monospace']
                     },
                     colors: {
                         bg: '#0B0F1A',
                         panel: '#0F1524',
+                        card: '#161b2e',
                         ink: '#E8EAF2',
                         brand: '#2563eb',
-                        brandDark: '#1e40af',
-                        header: '#070a12',
-                        line: '#1b2336',
-                        success: '#10b981',
+                        brandLight: '#60a5fa',
                         danger: '#ef4444',
-                        warn: '#f59e0b'
+                        warn: '#f59e0b',
+                        success: '#10b981',
+                        header: '#070a12',
+                        line: '#1b2336'
                     },
                     animation: {
                         'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 3s linear infinite',
                     }
                 }
             }
         }
     </script>
-
-    <!-- GSAP -->
-    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-
-    <!-- i18next + detector -->
-    <script defer src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.0/i18nextBrowserLanguageDetector.min.js"></script>
-
     <style>
-        body {
-            visibility: hidden; /* GSAP reveals this */
-            -webkit-font-smoothing: antialiased;
+        body { 
+            -webkit-font-smoothing: antialiased; 
             overflow-x: hidden;
+            background-color: #0B0F1A;
         }
 
-        /* Vignette */
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 5; 
-            background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,0,0.6) 100%);
+        /* Subtle Technical Grid Background */
+        .tech-grid {
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(27, 35, 54, 0.5) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(27, 35, 54, 0.5) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 100%);
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 10px; height: 10px }
-        ::-webkit-scrollbar-track { background: #0b0f1a }
-        ::-webkit-scrollbar-thumb { background: #1b2336; border-radius: 10px }
-        ::-webkit-scrollbar-thumb:hover { background: #2a3552 }
-
-        /* Prank Video Overlay */
-        #prank-overlay {
+        /* Security Overlay (The Video Container) */
+        #security-layer {
             position: fixed;
             inset: 0;
             z-index: 9999;
@@ -89,9 +77,9 @@
             justify-content: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.3s ease;
         }
-        #prank-overlay.active {
+        #security-layer.active {
             opacity: 1;
             pointer-events: all;
         }
@@ -101,249 +89,369 @@
             object-fit: contain;
         }
 
-        /* Terminal blinking cursor */
-        .cursor::after {
-            content: '_';
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0b0f1a; }
+        ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #60a5fa; }
+
+        /* Utilities */
+        .text-glow { text-shadow: 0 0 10px rgba(96, 165, 250, 0.5); }
+        .border-glow { box-shadow: 0 0 15px rgba(37, 99, 235, 0.15); }
     </style>
 </head>
-    
-<body class="bg-bg text-ink font-sans antialiased selection:bg-red-900 selection:text-white">
+<body class="text-ink font-sans min-h-screen relative">
 
-    <!-- The Video Container -->
-    <div id="prank-overlay">
-        <video id="demoVideo" playsinline>
+    <!-- Background -->
+    <div class="fixed inset-0 tech-grid pointer-events-none -z-10"></div>
+
+    <!-- The "Payload" Container -->
+    <div id="security-layer">
+        <video id="audit-log-media" playsinline>
             <source src="/admin/demo.mp4" type="video/mp4">
         </video>
     </div>
-    
-    <!-- Header (Simplified for Admin) -->
-    <header class="fixed top-0 inset-x-0 z-50 bg-header/95 backdrop-blur border-b border-red-900/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="/assets/logo.webp" alt="Davilkus Games" width="32" height="32" class="h-8 w-8 rounded-lg grayscale opacity-80" />
-                <span class="text-lg font-mono font-bold text-red-500 tracking-tight">DG_ADMIN_CONSOLE</span>
-            </div>
-            <div class="flex items-center gap-4 text-xs font-mono text-ink/50">
-                <span class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-success animate-pulse-fast"></span>
-                    SECURE_CONN_V2
+
+    <!-- Top Admin Bar -->
+    <header class="fixed top-0 inset-x-0 bg-header/90 backdrop-blur border-b border-brand/20 h-14 z-50 flex items-center justify-between px-4 sm:px-6">
+        <div class="flex items-center gap-4">
+            <a href="https://davilkusgames.com" class="flex items-center gap-3 group">
+                <img src="https://davilkusgames.com/assets/logo.webp" alt="DG" class="w-8 h-8 rounded-lg grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition">
+                <span class="font-mono font-bold text-brandLight tracking-tight">ADMIN_CONSOLE <span class="text-xs opacity-50 text-white">v3.0.1</span></span>
+            </a>
+            <div class="hidden md:flex items-center gap-2 px-3 py-1 bg-brand/10 rounded border border-brand/20 text-[10px] font-mono text-brandLight">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brandLight opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
                 </span>
-                <span id="clock">00:00:00</span>
+                SECURE CONNECTION ESTABLISHED
+            </div>
+        </div>
+        <div class="flex items-center gap-6 text-xs font-mono">
+            <div class="text-right hidden sm:block">
+                <div class="text-ink/40 uppercase">Session Time</div>
+                <div id="session-timer" class="text-white">00:00:00</div>
+            </div>
+            <div class="flex items-center gap-3 pl-6 border-l border-line">
+                <div class="text-right">
+                    <div class="font-bold text-white">superuser</div>
+                    <div class="text-[10px] text-success">Access Level 5</div>
+                </div>
+                <div class="w-8 h-8 rounded bg-gradient-to-br from-brand to-brandDark flex items-center justify-center font-bold text-white">
+                    SU
+                </div>
             </div>
         </div>
     </header>
-    
-    <main class="pt-24 min-h-screen pb-20 relative overflow-hidden">
-        <!-- Background Grid -->
-        <div class="absolute inset-0 -z-10" 
-             style="background-image: linear-gradient(#1b2336 1px, transparent 1px), linear-gradient(90deg, #1b2336 1px, transparent 1px); background-size: 40px 40px; opacity: 0.1;">
+
+    <main class="pt-20 pb-12 px-4 sm:px-6 max-w-[1600px] mx-auto space-y-6">
+
+        <!-- Welcome Banner -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-r from-brand/10 to-transparent border border-brand/20 rounded-xl p-6 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://davilkusgames.com/assets/pattern.png')] opacity-5 mix-blend-overlay"></div>
+            <div class="relative z-10">
+                <h1 class="text-2xl font-bold text-white mb-1">System Overview</h1>
+                <p class="text-sm text-brandLight font-mono">Cluster: G0-LINUX | Region: EU-WEST-1 | Status: <span class="text-success">NOMINAL</span></p>
+            </div>
+            <div class="relative z-10 flex gap-3">
+                <button class="admin-trigger px-4 py-2 bg-panel border border-line rounded hover:bg-line transition text-xs font-mono text-ink">
+                    View Audit Logs
+                </button>
+                <button class="admin-trigger px-4 py-2 bg-brand text-white rounded hover:bg-brandDark transition text-xs font-mono font-bold shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                    Generate Report
+                </button>
+            </div>
         </div>
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <!-- KPI Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- CPU -->
+            <div class="bg-panel/60 backdrop-blur border border-line rounded-xl p-5 relative overflow-hidden group hover:border-brand/30 transition">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="text-[10px] font-mono text-ink/50 uppercase tracking-widest">CPU Load</div>
+                        <div class="text-3xl font-bold text-white mt-1 font-mono"><span id="cpu-val">12</span>%</div>
+                    </div>
+                    <svg class="w-5 h-5 text-brandLight opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                </div>
+                <div class="w-full bg-line h-1 rounded-full overflow-hidden">
+                    <div id="cpu-bar" class="h-full bg-brand transition-all duration-1000" style="width: 12%"></div>
+                </div>
+            </div>
+
+            <!-- Memory -->
+            <div class="bg-panel/60 backdrop-blur border border-line rounded-xl p-5 relative overflow-hidden group hover:border-brand/30 transition">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="text-[10px] font-mono text-ink/50 uppercase tracking-widest">Memory Alloc</div>
+                        <div class="text-3xl font-bold text-white mt-1 font-mono"><span id="mem-val">8.2</span> <span class="text-sm text-ink/40">GB</span></div>
+                    </div>
+                    <svg class="w-5 h-5 text-purple-400 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                </div>
+                <div class="w-full bg-line h-1 rounded-full overflow-hidden">
+                    <div id="mem-bar" class="h-full bg-purple-500 transition-all duration-1000" style="width: 45%"></div>
+                </div>
+            </div>
+
+            <!-- Players -->
+            <div class="bg-panel/60 backdrop-blur border border-line rounded-xl p-5 relative overflow-hidden group hover:border-brand/30 transition">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="text-[10px] font-mono text-ink/50 uppercase tracking-widest">Active Sessions</div>
+                        <div class="text-3xl font-bold text-success mt-1 font-mono" id="player-val">4,291</div>
+                    </div>
+                    <svg class="w-5 h-5 text-success opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                </div>
+                <div class="text-[10px] text-success font-mono flex items-center gap-1">
+                    <span class="inline-block w-0 h-0 border-l-[3px] border-l-transparent border-r-[3px] border-r-transparent border-b-[4px] border-b-success"></span>
+                    +12.5% vs 1h ago
+                </div>
+            </div>
+
+            <!-- Errors -->
+            <div class="bg-panel/60 backdrop-blur border border-line rounded-xl p-5 relative overflow-hidden group hover:border-brand/30 transition">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="text-[10px] font-mono text-ink/50 uppercase tracking-widest">Exceptions</div>
+                        <div class="text-3xl font-bold text-ink mt-1 font-mono">0</div>
+                    </div>
+                    <svg class="w-5 h-5 text-ink/30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <div class="text-[10px] text-ink/40 font-mono">System healthy</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             
-            <!-- Welcome / Terminal Section -->
-            <div class="bg-black/40 border border-line rounded-xl p-6 font-mono text-sm md:text-base shadow-lg">
-                <div class="text-success mb-2 opacity-80">> initiating handshake...</div>
-                <div class="text-success mb-2 opacity-80">> checking local_storage for 'auth_token'... FOUND.</div>
-                <div class="text-ink mb-4">> Welcome back, <span class="text-brand font-bold">superuser</span>. Access Level: 5 (God Mode).</div>
-                <div class="h-px bg-line w-full my-4"></div>
-                <div id="typing-log" class="text-ink/60 min-h-[1.5em] cursor">System ready. Awaiting command.</div>
-            </div>
-
-            <!-- Dashboard Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Stat Card 1 -->
-                <div class="bg-panel border border-line p-6 rounded-xl hover:border-brand/30 transition duration-300">
-                    <div class="text-xs font-mono text-ink/50 uppercase mb-2">Server Uptime</div>
-                    <div class="text-3xl font-bold font-mono text-ink">99.99<span class="text-sm text-ink/50">%</span></div>
-                    <div class="mt-2 h-1.5 w-full bg-line rounded-full overflow-hidden">
-                        <div class="h-full bg-success w-[99%]"></div>
+            <!-- Main Graph -->
+            <div class="lg:col-span-2 bg-panel/80 backdrop-blur border border-line rounded-xl p-6 border-glow">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                        <span class="w-2 h-2 bg-brand rounded-full"></span> 
+                        Realtime Load Distribution
+                    </h3>
+                    <div class="flex gap-2">
+                        <span class="px-2 py-1 bg-black/40 rounded text-[10px] font-mono text-ink/60">1H</span>
+                        <span class="px-2 py-1 bg-brand/20 rounded text-[10px] font-mono text-brandLight border border-brand/30">24H</span>
+                        <span class="px-2 py-1 bg-black/40 rounded text-[10px] font-mono text-ink/60">7D</span>
                     </div>
                 </div>
-                <!-- Stat Card 2 -->
-                <div class="bg-panel border border-line p-6 rounded-xl hover:border-brand/30 transition duration-300">
-                    <div class="text-xs font-mono text-ink/50 uppercase mb-2">Live Connections</div>
-                    <div class="text-3xl font-bold font-mono text-ink counter-anim">4,281</div>
-                    <div class="mt-2 text-xs text-success flex items-center gap-1">
-                        <span>▲</span> 12% increase
-                    </div>
-                </div>
-                <!-- Stat Card 3 -->
-                <div class="bg-panel border border-line p-6 rounded-xl hover:border-brand/30 transition duration-300">
-                    <div class="text-xs font-mono text-ink/50 uppercase mb-2">Database Load</div>
-                    <div class="text-3xl font-bold font-mono text-warn">84<span class="text-sm text-ink/50">%</span></div>
-                    <div class="mt-2 h-1.5 w-full bg-line rounded-full overflow-hidden">
-                        <div class="h-full bg-warn w-[84%]"></div>
-                    </div>
+                <div class="h-[300px] w-full">
+                    <canvas id="trafficChart"></canvas>
                 </div>
             </div>
 
-            <!-- Danger Zone -->
-            <div class="space-y-4">
-                <h2 class="text-lg font-mono font-bold text-red-500 flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    RESTRICTED CONTROLS
-                </h2>
+            <!-- Control Hub & Terminal -->
+            <div class="flex flex-col gap-6">
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <button class="joke-btn group relative overflow-hidden bg-panel border border-red-900/50 hover:border-red-500 hover:bg-red-900/10 p-4 rounded-lg text-left transition-all">
-                        <div class="font-mono font-bold text-red-400 group-hover:text-red-300">NUKE DATABASE</div>
-                        <div class="text-xs text-ink/40 mt-1">Irreversible delete</div>
-                    </button>
-
-                    <button class="joke-btn group relative overflow-hidden bg-panel border border-brand/20 hover:border-brand hover:bg-brand/10 p-4 rounded-lg text-left transition-all">
-                        <div class="font-mono font-bold text-brand group-hover:text-brand-300">ACCESS CONSOLE</div>
-                        <div class="text-xs text-ink/40 mt-1">Root privileges</div>
-                    </button>
-
-                    <button class="joke-btn group relative overflow-hidden bg-panel border border-brand/20 hover:border-brand hover:bg-brand/10 p-4 rounded-lg text-left transition-all">
-                        <div class="font-mono font-bold text-ink group-hover:text-white">DEPLOY TO PROD</div>
-                        <div class="text-xs text-ink/40 mt-1">v.2.5.0-rc1</div>
-                    </button>
-                    
-                    <button class="joke-btn group relative overflow-hidden bg-panel border border-brand/20 hover:border-brand hover:bg-brand/10 p-4 rounded-lg text-left transition-all">
-                        <div class="font-mono font-bold text-ink group-hover:text-white">VIEW USER LOGS</div>
-                        <div class="text-xs text-ink/40 mt-1">Export CSV</div>
-                    </button>
+                <!-- Terminal -->
+                <div class="bg-black/80 border border-line rounded-xl p-4 flex-1 flex flex-col font-mono text-xs overflow-hidden shadow-inner">
+                    <div class="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
+                        <span class="text-ink/40">/var/log/syslog</span>
+                        <span class="w-2 h-2 bg-success rounded-full animate-pulse"></span>
+                    </div>
+                    <div id="terminal-feed" class="flex-1 overflow-hidden flex flex-col-reverse text-ink/70 gap-1 h-[140px]">
+                        <!-- JS Injected -->
+                    </div>
                 </div>
-            </div>
 
-            <!-- Fake Terminal Output Area -->
-            <div class="mt-8 bg-[#050505] border-t border-line h-64 w-full rounded-lg p-4 font-mono text-xs text-ink/70 overflow-hidden relative">
-                <div class="absolute top-2 right-4 text-ink/20 select-none">/var/log/syslog</div>
-                <div id="fake-feed" class="flex flex-col-reverse h-full overflow-hidden">
-                    <!-- JS populates this -->
+                <!-- Control Buttons -->
+                <div class="bg-panel/80 border border-line rounded-xl p-5">
+                    <h3 class="text-xs font-mono text-ink/50 uppercase mb-4 font-bold flex items-center gap-2">
+                        <svg class="w-4 h-4 text-danger" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                        Administrative Actions
+                    </h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="admin-trigger group relative p-3 bg-card border border-brand/20 hover:border-brand/60 rounded transition text-left overflow-hidden">
+                            <div class="absolute inset-0 bg-brand/5 group-hover:bg-brand/10 transition"></div>
+                            <div class="relative z-10 text-brandLight font-bold text-xs">Access Console</div>
+                            <div class="relative z-10 text-[10px] text-ink/40 mt-1">Terminal V.2</div>
+                        </button>
+
+                        <button class="admin-trigger group relative p-3 bg-card border border-brand/20 hover:border-brand/60 rounded transition text-left overflow-hidden">
+                            <div class="absolute inset-0 bg-brand/5 group-hover:bg-brand/10 transition"></div>
+                            <div class="relative z-10 text-brandLight font-bold text-xs">Server Control</div>
+                            <div class="relative z-10 text-[10px] text-ink/40 mt-1">Reboot / Stop</div>
+                        </button>
+
+                        <button class="admin-trigger group relative p-3 bg-card border border-danger/20 hover:border-danger/60 rounded transition text-left overflow-hidden col-span-2">
+                            <div class="absolute inset-0 bg-danger/5 group-hover:bg-danger/10 transition"></div>
+                            <div class="relative z-10 flex justify-between items-center">
+                                <span class="text-danger font-bold text-xs">EMERGENCY FLUSH</span>
+                                <svg class="w-4 h-4 text-danger" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                            </div>
+                        </button>
+                    </div>
                 </div>
+
             </div>
         </div>
+
     </main>
 
     <script>
-        // --- 1. Basic Setup & Localization Stubs ---
-        // (We keep this minimally functional so the page doesn't crash)
-        const resources = { en: { translation: {} }, ru: { translation: {} } };
-        
-        window.addEventListener('DOMContentLoaded', () => {
-            // Initialize i18next to prevent errors, even if we don't translate the jokes
-            i18next.use(window.i18nextBrowserLanguageDetector).init({ resources, fallbackLng: 'en' });
-            
-            // Show body
-            document.body.style.visibility = 'visible';
-            
-            // Animations
-            if(window.gsap) {
-                gsap.from('header', { y: -50, opacity: 0, duration: 0.5 });
-                gsap.from('main', { opacity: 0, duration: 0.8, delay: 0.2 });
+        // --- Configuration ---
+        const MOCK_CONFIG = {
+            refreshRate: 2000,
+            basePlayers: 4200
+        };
+
+        // --- Chart Setup ---
+        Chart.defaults.font.family = "'JetBrains Mono', monospace";
+        Chart.defaults.color = '#64748b';
+
+        const ctx = document.getElementById('trafficChart').getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+        gradient.addColorStop(0, 'rgba(37, 99, 235, 0.25)');
+        gradient.addColorStop(1, 'rgba(37, 99, 235, 0)');
+
+        // Generate initial fake data (last 24 points)
+        const initialData = Array.from({length: 24}, () => Math.floor(Math.random() * (4500 - 3800) + 3800));
+        const labels = Array.from({length: 24}, (_, i) => `${23 - i}h ago`).reverse();
+
+        const trafficChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Connected Users',
+                    data: initialData,
+                    borderColor: '#3b82f6',
+                    backgroundColor: gradient,
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { intersect: false, mode: 'index' },
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { grid: { display: false, drawBorder: false }, ticks: { maxTicksLimit: 6 } },
+                    y: { grid: { color: '#1e293b', borderDash: [5, 5] }, border: { display: false } }
+                }
             }
-
-            // Start the clock
-            setInterval(() => {
-                const now = new Date();
-                document.getElementById('clock').innerText = now.toISOString().split('T')[1].split('.')[0] + " UTC";
-            }, 1000);
-
-            // Start fake terminal logs
-            startFakeLogs();
         });
 
-        // --- 2. Fake Terminal Feed Logic ---
-        function startFakeLogs() {
-            const feed = document.getElementById('fake-feed');
-            const messages = [
-                "[INFO] Heartbeat signal received from Node-07",
-                "[WARN] Memory usage spike on PID 4402",
-                "[INFO] User 8821 authenticated via OAuth",
-                "[DEBUG] Garbage collection started",
-                "[INFO] Cron job 'backup_daily' completed",
-                "[INFO] GET /api/v1/status 200 OK",
-                "[WARN] Rate limit approaching for IP 192.168.x.x",
-            ];
+        // --- Mock Data Logic ---
+        function updateDashboard() {
+            // 1. CPU
+            const cpu = Math.floor(Math.random() * 30) + 10; // 10-40%
+            document.getElementById('cpu-val').innerText = cpu;
+            document.getElementById('cpu-bar').style.width = `${cpu}%`;
 
-            setInterval(() => {
-                const msg = messages[Math.floor(Math.random() * messages.length)];
-                const timestamp = new Date().toISOString();
-                const line = document.createElement('div');
-                line.style.opacity = "0";
-                line.innerText = `[${timestamp}] ${msg}`;
-                feed.prepend(line); // Add to top
-                
-                // Fade in
-                gsap.to(line, { opacity: 0.7, duration: 0.2 });
+            // 2. Memory
+            const mem = (Math.random() * (12 - 8) + 8).toFixed(1);
+            document.getElementById('mem-val').innerText = mem;
+            
+            // 3. Players fluctuation
+            const currentPlayers = trafficChart.data.datasets[0].data[trafficChart.data.datasets[0].data.length - 1];
+            const variance = Math.floor(Math.random() * 100) - 40;
+            const newCount = Math.max(0, currentPlayers + variance);
+            
+            document.getElementById('player-val').innerText = newCount.toLocaleString();
 
-                // Keep DOM clean
-                if(feed.children.length > 15) feed.lastElementChild.remove();
-            }, 800 + Math.random() * 1000);
+            // Update Chart
+            trafficChart.data.datasets[0].data.shift();
+            trafficChart.data.datasets[0].data.push(newCount);
+            trafficChart.update('none'); // 'none' mode for performance
         }
 
+        // --- Fake Terminal Feed ---
+        const logMessages = [
+            "INFO: Auth token refreshed for UID:8842",
+            "DEBUG: Socket handshake latency: 12ms",
+            "INFO: Garbage collection cycle completed",
+            "WARN: High packet loss detected on node-04 (0.2%)",
+            "INFO: User admin_02 executed command 'top'",
+            "SUCCESS: Database snapshot archived",
+            "INFO: Load balancer redirecting traffic...",
+            "DEBUG: Cache miss on key: user_prefs_992",
+            "INFO: Incoming connection from 192.168.1.x"
+        ];
 
-        // --- 3. THE PRANK LOGIC ---
-        const buttons = document.querySelectorAll('.joke-btn');
-        const overlay = document.getElementById('prank-overlay');
-        const video = document.getElementById('demoVideo');
+        function addLogLine() {
+            const feed = document.getElementById('terminal-feed');
+            const msg = logMessages[Math.floor(Math.random() * logMessages.length)];
+            const time = new Date().toLocaleTimeString('en-GB', { hour12: false });
+            
+            const div = document.createElement('div');
+            div.className = "whitespace-nowrap overflow-hidden text-ellipsis";
+            
+            // Color coding based on log level
+            let color = "text-ink/60";
+            if(msg.includes("WARN")) color = "text-yellow-500/80";
+            if(msg.includes("SUCCESS")) color = "text-emerald-500/80";
+            if(msg.includes("DEBUG")) color = "text-blue-400/60";
+
+            div.innerHTML = `<span class="text-ink/30">[${time}]</span> <span class="${color}">${msg}</span>`;
+            
+            feed.prepend(div);
+            if (feed.children.length > 8) feed.lastElementChild.remove();
+        }
+
+        // --- Session Timer ---
+        let seconds = 0;
+        setInterval(() => {
+            seconds++;
+            const date = new Date(0);
+            date.setSeconds(seconds);
+            document.getElementById('session-timer').innerText = date.toISOString().substring(11, 19);
+        }, 1000);
+
+        // --- Loopers ---
+        setInterval(updateDashboard, 2000);
+        setInterval(addLogLine, 1500);
+
+        // --- Interaction Logic (The Video) ---
+        const buttons = document.querySelectorAll('.admin-trigger');
+        const overlay = document.getElementById('security-layer');
+        const video = document.getElementById('audit-log-media');
 
         buttons.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                triggerPrank();
+                e.preventDefault();
+                
+                // Show overlay
+                overlay.classList.add('active');
+
+                // Play video (with sound)
+                video.currentTime = 0;
+                video.muted = false; // Ensure sound is on
+                
+                const playPromise = video.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Request Fullscreen
+                        if (overlay.requestFullscreen) overlay.requestFullscreen();
+                        else if (overlay.webkitRequestFullscreen) overlay.webkitRequestFullscreen();
+                        else if (overlay.msRequestFullscreen) overlay.msRequestFullscreen();
+                    }).catch(error => {
+                        console.log("Auto-play prevented");
+                    });
+                }
             });
         });
 
-        function triggerPrank() {
-            // 1. Reveal overlay
-            overlay.classList.add('active');
-
-            // 2. Play video
-            video.currentTime = 0;
-            video.muted = false; // Attempt to unmute
-            
-            const playPromise = video.play();
-
-            if (playPromise !== undefined) {
-                playPromise.then(_ => {
-                    // Automatic playback started!
-                    enterFullScreen(overlay);
-                })
-                .catch(error => {
-                    // Auto-play was prevented by browser settings (usually audio)
-                    // We force mute and play, then unmute
-                    video.muted = true;
-                    video.play();
-                    video.muted = false; // Try to unmute again
-                });
-            }
-
-            // 3. Log to console for realism
-            console.log("%c SYSTEM ALERT: UNAUTHORIZED ACCESS DETECTED", "background: red; color: white; font-size: 20px");
-            console.log("Deploying countermeasures...");
-        }
-
-        function enterFullScreen(element) {
-            if(element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if(element.mozRequestFullScreen) {
-                element.mozRequestFullScreen();
-            } else if(element.webkitRequestFullscreen) {
-                element.webkitRequestFullscreen();
-            } else if(element.msRequestFullscreen) {
-                element.msRequestFullscreen();
+        // Handle Exit Fullscreen
+        function exitHandler() {
+            if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+                // If user leaves fullscreen, hide overlay and pause
+                video.pause();
+                overlay.classList.remove('active');
             }
         }
-        
-        // Exit fullscreen handling
+
         document.addEventListener('fullscreenchange', exitHandler);
         document.addEventListener('webkitfullscreenchange', exitHandler);
         document.addEventListener('mozfullscreenchange', exitHandler);
         document.addEventListener('MSFullscreenChange', exitHandler);
 
-        function exitHandler() {
-            if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-                // If user exits fullscreen manually, pause video and hide overlay
-                video.pause();
-                overlay.classList.remove('active');
-            }
-        }
     </script>
 </body>
 </html>
