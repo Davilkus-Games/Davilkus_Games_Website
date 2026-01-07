@@ -335,8 +335,9 @@
                     buttons: { more: 'Learn More' },
                     page: { games: 'Games' },
                     games: {
+                        'exit-the-backrooms-94': { title: 'Exit the Backrooms: Level 94', tagline: '❝The sun never moves. The neighbors are made of plastic.❞' },
                         'scp-087-into-the-abyss': { title: 'SCP-087: Into the Abyss', tagline: 'Descend into the endless darkness of SCP-087.' },
-                        'exit-the-backrooms-94': { title: 'Exit the Backrooms: Level 2', tagline: 'You find yourself in a labyrinth of technical corridors filled with entities...' },
+                        'exit-the-backrooms-2': { title: 'Exit the Backrooms: Level 2', tagline: 'You find yourself in a labyrinth of technical corridors filled with entities...' },
                         'exit-the-backrooms-37': { title: 'Exit the Backrooms: Level 37', tagline: 'You find yourself in an endless complex of liminal pools, but there is someone else here...' },
                         'sus-horror': { title: 'Sus Horror', tagline: 'Can you escape from the spaceship?' },
                     },
@@ -351,6 +352,7 @@
                     buttons: { more: 'Подробнее' },
                     page: { games: 'Игры' },
                     games: {
+                        'exit-the-backrooms-94': { title: 'Побег из Закулисья: Уровень 94', tagline: '❝Солнце никогда не движется. Соседи сделаны из пластика.❞' },
                         'scp-087-into-the-abyss': { title: 'SCP-087: Лестница в Бездну', tagline: 'Спуститесь в бесконечную темноту SCP-087.' },
                         'exit-the-backrooms-2': { title: 'Побег из Закулисья: Уровень 2', tagline: 'Вы оказались в лабиринте технических коридоров, заполненных сущностями...' },
                         'exit-the-backrooms-37': { title: 'Побег из Закулисья: Уровень 37', tagline: 'Вы оказались в бесконечном комплексе лиминальных бассейнов, но здесь есть кто-то еще...' },
@@ -440,10 +442,25 @@
 
         // === Games Configuration ===
         const GAMES_JSON = [
-            { key: 'scp-087-into-the-abyss', image: '/assets/showcase/SCP_087.webp', href: '/games/scp-087-into-the-abyss', links: { google: 'https://play.google.com/store/apps/details?id=com.davilkus.scp087', yandex: 'https://yandex.com/games/app/xxxxx' } },
-            { key: 'exit-the-backrooms-2', image: '/assets/showcase/ExtB_2.webp', href: '/games/exit-the-backrooms-2', links: { google: 'https://play.google.com/store/apps/details?id=com.davilkus.etb.level2', yandex: 'https://yandex.com/games/app/xxxxx' } },
-            { key: 'exit-the-backrooms-37', image: '/assets/showcase/ExtB_37.webp', href: '/games/exit-the-backrooms-37', links: { google: 'https://play.google.com/store/apps/details?id=com.davilkus.etb.level37', yandex: 'https://yandex.com/games/app/xxxxx' } },
-            { key: 'sus-horror', image: '/assets/showcase/sus_horror.webp', href: '/games/sus-horror', links: { google: 'https://play.google.com/store/apps/details?id=com.davilkus.sus', yandex: 'https://yandex.com/games/app/xxxxx' } }
+            { 
+                key: 'exit-the-backrooms-94', 
+                image: '/assets/showcase/ExtB_94.webp', 
+                href: '/games/exit-the-backrooms-94', 
+                links: { 
+                    google: 'https://play.google.com/store/apps/details?id=com.DavilkusGames.ExitTheBackrooms_94', 
+                    itch: 'https://davilkus-games.itch.io/exit-the-backrooms-level-94',
+                    yandex: 'https://yandex.com/games/app/xxxxx' 
+                } 
+            },
+            { key: 'scp-087-into-the-abyss', image: '/assets/showcase/SCP_087.webp', href: '/games/scp-087-into-the-abyss', links: { google: 'https://play.google.com/store/apps/details?id=com.DavilkusGames.SCP087', yandex: 'https://yandex.ru/games/app/418827' } },
+            { key: 'exit-the-backrooms-2', image: '/assets/showcase/ExtB_2.webp', href: '/games/exit-the-backrooms-2', links: { google: 'https://play.google.com/store/apps/details?id=com.OnePixelGames.ExitTheBackrooms_2', yandex: 'https://yandex.ru/games/app/394986' } },
+            { key: 'exit-the-backrooms-37', image: '/assets/showcase/ExtB_37.webp', href: '/games/exit-the-backrooms-37', links: { google: 'https://play.google.com/store/apps/details?id=com.OnePixelGames.ExitTheBackrooms_37', yandex: 'https://yandex.ru/games/app/364019' } },
+            { 
+                key: 'sus-horror', 
+                image: '/assets/showcase/sus_horror.webp', 
+                href: '/games/sus-horror', 
+                links: {} 
+            }
         ];
 
         function gameData(key) {
@@ -456,8 +473,19 @@
         function cardTemplate(game) {
             const data = gameData(game.key);
             const more = i18next.t('buttons.more');
+            const l = game.links || {};
 
-            // Fixed opacity and replaced transparent background with solid bg-panel
+            const btn = (url, icon, alt) => url ? `
+                <a href="${url}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition hover:border-brand/40" aria-label="${alt}">
+                    <img src="/assets/icons/${icon}" alt="" class="w-5 h-5 opacity-80 hover:opacity-100" />
+                </a>` : '';
+
+            const storeButtons = `
+                ${btn(l.google, 'google-play.svg', 'Google Play')}
+                ${btn(l.itch, 'itchio.svg', 'itch.io')}
+                ${btn(l.yandex, 'yandex-games.svg', 'Yandex Games')}
+            `;
+
             return `
       <article class="flex flex-col bg-panel border border-line hover:border-brand/50 rounded-xl overflow-hidden hover:shadow-soft transition-all duration-300 group opacity-0 translate-y-4" data-animate>
         <!-- Image Container -->
@@ -475,12 +503,7 @@
             <div class="mt-auto flex items-center justify-between gap-4 pt-4 border-t border-white/5">
                 <!-- Stores -->
                 <div class="flex items-center gap-2">
-                    <a href="${game.links.google}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition hover:border-brand/40" aria-label="Google Play">
-                        <img src="/assets/icons/google-play.svg" alt="" class="w-5 h-5 opacity-80 hover:opacity-100" />
-                    </a>
-                    <a href="${game.links.yandex}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 grid place-items-center rounded-lg bg-header/60 hover:bg-header border border-line transition hover:border-brand/40" aria-label="Yandex Games">
-                         <img src="/assets/icons/yandex-games.svg" alt="" class="w-5 h-5 opacity-80 hover:opacity-100" />
-                    </a>
+                    ${storeButtons}
                 </div>
                 
                 <!-- CTA -->
