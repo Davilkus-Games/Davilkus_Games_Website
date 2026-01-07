@@ -246,12 +246,13 @@
     }
 
    /* ===== MODERN CHROMATIC ABERRATION ===== */
-    .glitch-hard {
-      position: relative;
-      display: inline-block;
-      color: #fff;
-      mix-blend-mode: normal;
-    }
+      .glitch-hard {
+          position: relative;
+          display: inline-block;
+          color: #fff;
+          mix-blend-mode: normal;
+          letter-spacing: -0.03em;
+      }
 
     /* Static offset layers (Red/Cyan) */
     .glitch-hard::before,
@@ -311,6 +312,14 @@
         filter: none;
       }
     }
+
+      .hero-vignette {
+          background: linear-gradient(to top, #0B0F1A 15%, rgba(11, 15, 26, 0.6) 50%, transparent 100%);
+      }
+
+      .hero-vignette-side {
+          background: linear-gradient(to right, #0B0F1A 0%, rgba(11, 15, 26, 0.4) 50%, transparent 100%);
+      }
   </style>
 </head>
 
@@ -365,99 +374,102 @@
   </header>
 
   <main class="pt-16">
-    <!-- Major showcase hero redesign (GSAP-controlled, fixed overlay) -->
-    <section id="hero" class="relative h-[65vh] min-h-[420px] overflow-hidden bg-black">
-      <!-- Slides -->
-      <div class="swiper hero-swiper h-full relative z-0">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide relative">
-            <img src="/assets/showcase/ExtB_94.webp" alt="Exit the Backrooms: Level 94"
-              class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
-          </div>
-          <div class="swiper-slide relative">
-            <img src="/assets/showcase/SCP_087.webp" alt="SCP-087: Into the Abyss" width="1920" height="1080"
-              class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
-          </div>
-          <div class="swiper-slide relative">
-            <img src="/assets/showcase/ExtB_2.webp" alt="Exit the Backrooms: Level 2" width="1920" height="1080"
-              class="w-full h-full object-cover" loading="lazy" decoding="async" />
-          </div>
-          <div class="swiper-slide relative">
-            <img src="/assets/showcase/ExtB_37.webp" alt="Exit the Backrooms: Level 37" width="1920" height="1080"
-              class="w-full h-full object-cover" loading="lazy" decoding="async" />
-          </div>
-          <div class="swiper-slide relative">
-            <img src="/assets/showcase/sus_horror.webp" alt="Sus Horror" width="1920" height="1080"
-              class="w-full h-full object-cover" loading="lazy" decoding="async" />
-          </div>
-        </div>
-        <div class="swiper-pagination absolute top-4 right-4"></div>
-      </div>
-
-      <!-- Soft spotlight layer (below overlay, above slides) -->
-      <div id="heroLight" class="hero-spotlight pointer-events-none" aria-hidden="true"></div>
-
-<!-- Overlay layer: Cinematic Glass Card Layout -->
-      <div class="absolute inset-0 z-40 pointer-events-none flex flex-col justify-end pb-12 md:pb-16">
-        <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-end justify-between gap-6">
-          
-          <!-- MAIN CARD: Glassmorphism effect -->
-          <div class="max-w-2xl w-full bg-header/60 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl pointer-events-auto transform transition-all duration-500 hover:border-white/20 hover:bg-header/70 group/card">
-            
-          <!-- Platform Pills (Static for now, looks professional) -->
-            <div id="heroPills" class="flex items-center gap-2 mb-4 opacity-70">
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-white/10 border border-white/5 text-white">Android</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-white/10 border border-white/5 text-white">Web</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-white/10 border border-white/5 text-white">PC</span>
-            </div>
-
-            <!-- Title Wrapper -->
-            <div id="heroLabel" class="mb-3">
-              <h2 class="relative">
-                <span id="heroTitle" class="glitch-hard text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-[0.9]" data-text="—">
-                  —
-                  <span class="glitch-slice" aria-hidden="true"></span>
-                </span>
-              </h2>
-            </div>
-
-            <!-- Tagline -->
-            <p id="heroTag" class="text-base md:text-lg text-ink/90 leading-relaxed line-clamp-3 mb-8 max-w-lg border-l-2 border-brand pl-4">
-              —
-            </p>
-
-            <!-- Buttons Row -->
-            <div class="flex flex-wrap items-center gap-3 md:gap-4">
-              <a id="btnPlay" href="#"
-                  class="pointer-events-auto flex-1 md:flex-none inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-base font-bold bg-brand hover:bg-brandDark text-white focus:outline-none focus:ring-2 focus:ring-brand/60 transition-all shadow-[0_0_30px_rgba(37,99,235,0.3)] hover:shadow-[0_0_40px_rgba(37,99,235,0.5)] hover:-translate-y-0.5">
-                  <img src="/assets/icons/play.svg" class="w-5 h-5" alt="" onerror="this.style.display='none'"/> 
-                  <span>Play Now</span>
-              </a>
-              <a id="btnMore" href="#"
-                class="pointer-events-auto flex-1 md:flex-none inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-base font-semibold bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-white/20 backdrop-blur-sm transition-all">
-                <span>Details</span>
-              </a>
-            </div>
+      <section id="hero" class="relative h-[70vh] min-h-[500px] w-full overflow-hidden bg-bg group">
+          <!-- Slides -->
+          <div class="swiper hero-swiper h-full w-full relative z-0">
+              <div class="swiper-wrapper">
+                  <div class="swiper-slide relative">
+                      <img src="/assets/showcase/ExtB_94.webp" alt="Exit the Backrooms: Level 94"
+                           class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
+                  </div>
+                  <div class="swiper-slide relative">
+                      <img src="/assets/showcase/SCP_087.webp" alt="SCP-087: Into the Abyss"
+                           class="w-full h-full object-cover" fetchpriority="high" decoding="async" />
+                  </div>
+                  <div class="swiper-slide relative">
+                      <img src="/assets/showcase/ExtB_2.webp" alt="Exit the Backrooms: Level 2"
+                           class="w-full h-full object-cover" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="swiper-slide relative">
+                      <img src="/assets/showcase/ExtB_37.webp" alt="Exit the Backrooms: Level 37"
+                           class="w-full h-full object-cover" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="swiper-slide relative">
+                      <img src="/assets/showcase/sus_horror.webp" alt="Sus Horror"
+                           class="w-full h-full object-cover" loading="lazy" decoding="async" />
+                  </div>
+              </div>
           </div>
 
-          <!-- Navigation Controls (Moved to Bottom Right) -->
-          <div class="hidden md:flex gap-3 pointer-events-auto pb-2">
-            <button class="hero-prev w-14 h-14 rounded-full border border-white/10 bg-black/40 hover:bg-brand hover:border-brand hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] backdrop-blur-md flex items-center justify-center transition-all group" aria-label="Previous slide">
-              <svg viewBox="0 0 24 24" class="w-6 h-6 text-white transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19L8 12l7-7" /></svg>
-            </button>
-            <button class="hero-next w-14 h-14 rounded-full border border-white/10 bg-black/40 hover:bg-brand hover:border-brand hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] backdrop-blur-md flex items-center justify-center transition-all group" aria-label="Next slide">
-              <svg viewBox="0 0 24 24" class="w-6 h-6 text-white transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7" /></svg>
-            </button>
+          <!-- CINEMATIC OVERLAYS (The "Valve" Look) -->
+          <!-- 1. Bottom fade to background color (seamless transition) -->
+          <div class="absolute inset-0 z-10 hero-vignette pointer-events-none"></div>
+          <!-- 2. Left side darken (for text readability) -->
+          <div class="absolute inset-0 z-10 hero-vignette-side pointer-events-none opacity-80"></div>
+          <!-- 3. Dynamic Spotlight -->
+          <div id="heroLight" class="hero-spotlight pointer-events-none z-20" aria-hidden="true"></div>
+
+          <!-- CONTENT LAYER -->
+          <div class="absolute inset-0 z-30 pointer-events-none flex flex-col justify-end pb-12 md:pb-20">
+              <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-end md:items-end justify-between gap-8">
+
+                  <!-- Text Block (No Box, just text on gradient) -->
+                  <div class="max-w-3xl w-full pointer-events-auto">
+
+                      <!-- Minimal Platform Pills -->
+                      <div id="heroPills" class="flex items-center gap-3 mb-4 opacity-0 translate-y-4">
+                          <span class="px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-widest bg-white/10 border border-white/10 text-white/90 backdrop-blur-sm">Android</span>
+                          <span class="px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-widest bg-white/10 border border-white/10 text-white/90 backdrop-blur-sm">Web</span>
+                          <span class="px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-widest bg-white/10 border border-white/10 text-white/90 backdrop-blur-sm">PC</span>
+                      </div>
+
+                      <!-- Huge Typography -->
+                      <div id="heroLabel" class="mb-4 overflow-hidden">
+                          <h2 class="relative">
+                              <span id="heroTitle" class="glitch-hard text-4xl md:text-6xl lg:text-7xl font-black uppercase text-white leading-[0.9] drop-shadow-lg" data-text="—">
+                                  —
+                                  <span class="glitch-slice" aria-hidden="true"></span>
+                              </span>
+                          </h2>
+                      </div>
+
+                      <!-- Clean Tagline -->
+                      <p id="heroTag" class="text-lg md:text-xl text-ink/90 font-medium leading-relaxed max-w-xl mb-8 opacity-0 translate-y-4 text-shadow-sm">
+                          —
+                      </p>
+
+                      <!-- Action Buttons -->
+                      <div class="flex flex-wrap items-center gap-4 opacity-0 translate-y-4" id="heroButtons">
+                          <a id="btnPlay" href="#"
+                             class="pointer-events-auto flex items-center justify-center gap-3 rounded-full px-8 py-4 text-base font-bold bg-brand hover:bg-white hover:text-black text-white focus:outline-none transition-all duration-300 shadow-[0_0_40px_rgba(37,99,235,0.4)] hover:shadow-[0_0_60px_rgba(255,255,255,0.4)] hover:-translate-y-1">
+                              <img src="/assets/icons/play.svg" class="w-5 h-5 transition-transform group-hover:scale-110" style="filter: brightness(0) invert(1);" alt="" />
+                              <span>Play Now</span>
+                          </a>
+                          <a id="btnMore" href="#"
+                             class="pointer-events-auto flex items-center justify-center rounded-full px-8 py-4 text-base font-semibold bg-white/5 border border-white/20 hover:bg-white/10 hover:border-white/40 text-white backdrop-blur-md transition-all duration-300">
+                              <span>Details</span>
+                          </a>
+                      </div>
+                  </div>
+
+                  <!-- Navigation (Minimal, Bottom Right) -->
+                  <div class="hidden md:flex gap-3 pointer-events-auto pb-1 opacity-0 translate-y-4" id="heroNav">
+                      <button class="hero-prev w-12 h-12 rounded-full border border-white/10 bg-black/20 hover:bg-white hover:text-black text-white backdrop-blur-sm flex items-center justify-center transition-all duration-300 group" aria-label="Previous slide">
+                          <svg viewBox="0 0 24 24" class="w-5 h-5 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19L8 12l7-7" /></svg>
+                      </button>
+                      <button class="hero-next w-12 h-12 rounded-full border border-white/10 bg-black/20 hover:bg-white hover:text-black text-white backdrop-blur-sm flex items-center justify-center transition-all duration-300 group" aria-label="Next slide">
+                          <svg viewBox="0 0 24 24" class="w-5 h-5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7" /></svg>
+                      </button>
+                  </div>
+
+              </div>
           </div>
 
-        </div>
-      </div>
-
-      <!-- Progress bar (full-bleed; bump z to stay above slides) -->
-      <div class="absolute bottom-0 left-0 w-full h-[3px] bg-white/15 z-40 pointer-events-none">
-        <div id="heroProgress" class="h-full w-0 bg-white/90"></div>
-      </div>
-    </section>
+          <!-- Progress Bar (Subtle) -->
+          <div class="absolute bottom-0 left-0 w-full h-[2px] bg-white/10 z-40 pointer-events-none">
+              <div id="heroProgress" class="h-full w-0 bg-brand shadow-[0_0_10px_#2563eb]"></div>
+          </div>
+      </section>
 
     <section id="about" class="relative py-16 md:py-15">
       <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.12),_transparent_60%)]">
@@ -1080,23 +1092,27 @@
         setButtons(game);
       };
 
-      function overlayFadeIn(initial = false) {
-        if (rmm || !window.gsap) return;
-        const dur = initial ? 0.6 : 0.4;
-        const y = 20; 
+        function overlayFadeIn(initial = false) {
+            if (rmm || !window.gsap) return;
+            const dur = initial ? 1.0 : 0.6;
 
-        gsap.fromTo(['#heroPills', '#heroLabel', '#heroTag', '#btnPlay', '#btnMore'],
-          { y: y, opacity: 0 }, 
-          { y: 0, opacity: 1, duration: dur, ease: 'power3.out', stagger: 0.08 }
-        );
-      }
+            // Target specific IDs now
+            const elements = ['#heroPills', '#heroTitle', '#heroTag', '#heroButtons', '#heroNav'];
 
-      function overlayFadeOut() {
-        if (rmm || !window.gsap) return;
-        return gsap.to(['#heroPills', '#heroLabel', '#heroTag', '#btnPlay', '#btnMore'], 
-          { opacity: 0, y: -10, duration: 0.2, ease: 'power1.in' }
-        );
-      }
+            gsap.fromTo(elements,
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: dur, ease: 'power3.out', stagger: 0.08, overwrite: 'auto' }
+            );
+        }
+
+        function overlayFadeOut() {
+            if (rmm || !window.gsap) return;
+            // Quicker fade out
+            const elements = ['#heroPills', '#heroTitle', '#heroTag', '#heroButtons', '#heroNav'];
+            return gsap.to(elements,
+                { opacity: 0, y: -10, duration: 0.3, ease: 'power2.in', overwrite: 'auto' }
+            );
+        }
 
       // i18next init
      i18next
