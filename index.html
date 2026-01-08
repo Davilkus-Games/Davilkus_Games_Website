@@ -7,31 +7,41 @@
     <title>Davilkus Games — Indie Game Studio</title>
     <meta name="description" content="Davilkus Games is a small indie studio crafting atmospheric, gameplay-first experiences. Explore our games, meet the team, and get in touch." />
 
-    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <meta name="robots" content="index, follow, max-image-preview:none" />
+    
+    <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo-192x192.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://davilkusgames.com/" />
     <meta property="og:locale" content="en_US">
     <meta property="og:locale:alternate" content="ru_RU">
 
+    <meta name="thumbnail" content="https://davilkusgames.com/assets/logo.webp" />
+
     <link rel="alternate" href="https://davilkusgames.com/?lang=en" hreflang="en">
     <link rel="alternate" href="https://davilkusgames.com/?lang=ru" hreflang="ru">
     <link rel="alternate" href="https://davilkusgames.com/" hreflang="x-default">
 
-    <!-- Open Graph -->
+    <!-- Open Graph (Social Media) -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Davilkus Games" />
     <meta property="og:site_name" content="Davilkus Games" />
     <meta property="og:description" content="Atmospheric indie games for PC, mobile, and web." />
     <meta property="og:url" content="https://davilkusgames.com/" />
-    <meta property="og:image" content="https://davilkusgames.com/assets/logo.webp" />
+    
+    <meta property="og:image" content="https://davilkusgames.com/assets/social-banner.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@DavilkusGames" />
     <meta name="twitter:title" content="Davilkus Games" />
     <meta name="twitter:description" content="Atmospheric indie games for PC, mobile, and web." />
-    <meta name="twitter:image" content="https://davilkusgames.com/assets/logo.webp" />
+    <meta name="twitter:image" content="https://davilkusgames.com/assets/social-banner.webp" />
 
     <meta name="theme-color" content="#0B0F1A" />
 
@@ -75,21 +85,48 @@
 
     <!-- JSON-LD -->
     <script type="application/ld+json">
-        {
-          "@context":"https://schema.org",
-          "@type":"Organization",
-          "name":"Davilkus Games",
-          "url":"https://davilkusgames.com",
-          "logo":"https://davilkusgames.com/assets/logo.webp",
-          "sameAs":[
-            "https://www.youtube.com/@davilkusgames",
-            "https://x.com/DavilkusGames",
-            "https://t.me/davilkus_games_news",
-            "https://vk.com/davilkusgames",
-            "https://github.com/DavilkusGames",
-            "https://discord.gg/y3hE847S"
-          ]
-        }
+        [
+            {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Davilkus Games",
+                "url": "https://davilkusgames.com",
+                "logo": "https://davilkusgames.com/assets/logo.webp",
+                "image": "https://davilkusgames.com/assets/logo.webp",
+                "description": "Indie game studio creating atmospheric horror games.",
+                "sameAs": [
+                    "https://www.youtube.com/@davilkusgames",
+                    "https://x.com/DavilkusGames",
+                    "https://t.me/davilkus_games_news",
+                    "https://vk.com/davilkusgames",
+                    "https://github.com/DavilkusGames",
+                    "https://discord.gg/y3hE847S"
+                ]
+            },
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "url": "https://davilkusgames.com",
+                "name": "Davilkus Games",
+                "hasPart": [
+                    {
+                        "@type": "SiteNavigationElement",
+                        "name": "Games",
+                        "url": "https://davilkusgames.com/games/"
+                    },
+                    {
+                        "@type": "SiteNavigationElement",
+                        "name": "Privacy Policy",
+                        "url": "https://davilkusgames.com/privacy-policy/"
+                    },
+                    {
+                        "@type": "SiteNavigationElement",
+                        "name": "Contact",
+                        "url": "https://davilkusgames.com/#contact"
+                    }
+                ]
+            }
+        ]
     </script>
 
     <style>
