@@ -9,9 +9,7 @@
 
     <meta name="robots" content="index, follow, max-image-preview:none" />
     
-    <link rel="icon" href="/assets/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo-192x192.png" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 
     <!-- Canonical -->
@@ -93,14 +91,14 @@
                 "url": "https://davilkusgames.com",
                 "logo": "https://davilkusgames.com/assets/logo.webp",
                 "image": "https://davilkusgames.com/assets/logo.webp",
-                "description": "Indie game studio creating atmospheric horror games.",
+                "description": "Indie game studio creating atmospheric, gameplay-first games.",
                 "sameAs": [
                     "https://www.youtube.com/@davilkusgames",
                     "https://x.com/DavilkusGames",
-                    "https://t.me/davilkus_games_news",
+                    "https://t.me/davilkusgames_official",
                     "https://vk.com/davilkusgames",
                     "https://github.com/DavilkusGames",
-                    "https://discord.gg/y3hE847S"
+                    "https://discord.gg/w3zRrUgxMw"
                 ]
             },
             {
@@ -203,6 +201,12 @@
         @media (prefers-reduced-motion:reduce) {
             body::before {
                 animation: none
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .glitch-hard::before, .glitch-hard::after {
+                display: none !important;
             }
         }
 
@@ -566,8 +570,8 @@
                     <div class="bg-panel/60 border border-line rounded-2xl p-6 shadow-soft" data-animate>
                         <h3 class="text-lg font-semibold mb-4 flex items-center gap-2"><img src="/assets/icons/community.svg" class="w-5 h-5" /><span data-i18n="contact.socialTitle">Community</span></h3>
                         <div class="flex flex-wrap gap-3">
-                            <a href="https://discord.gg/y3hE847S" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition"><img src="/assets/icons/discord.svg" class="w-5 h-5" /><span>Discord</span></a>
-                            <a href="https://t.me/davilkus_games_news" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition"><img src="/assets/icons/telegram.svg" class="w-5 h-5" /><span>Telegram</span></a>
+                            <a href="https://discord.gg/w3zRrUgxMw" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition"><img src="/assets/icons/discord.svg" class="w-5 h-5" /><span>Discord</span></a>
+                            <a href="https://t.me/davilkusgames_official" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition"><img src="/assets/icons/telegram.svg" class="w-5 h-5" /><span>Telegram</span></a>
                             <a href="https://www.youtube.com/@davilkusgames" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-header/60 hover:bg-header border border-line transition"><img src="/assets/icons/youtube.svg" class="w-5 h-5" /><span>YouTube</span></a>
                         </div>
                     </div>
@@ -583,8 +587,8 @@
                 <div class="mt-2 flex items-center gap-4 text-xs"><a href="/privacy-policy/" class="opacity-60 hover:opacity-80 transition">Privacy Policy</a><a href="/cookie-policy/" class="opacity-60 hover:opacity-80 transition">Cookie Policy</a></div>
             </div>
             <div class="flex items-center gap-5">
-                <a href="https://discord.gg/y3hE847S" class="opacity-80 hover:opacity-100" aria-label="Discord"><img src="/assets/icons/discord.svg" class="w-8 h-8" /></a>
-                <a href="https://t.me/davilkus_games_news" class="opacity-80 hover:opacity-100" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-8 h-8" /></a>
+                <a href="https://discord.gg/w3zRrUgxMw" class="opacity-80 hover:opacity-100" aria-label="Discord"><img src="/assets/icons/discord.svg" class="w-8 h-8" /></a>
+                <a href="https://t.me/davilkusgames_official" class="opacity-80 hover:opacity-100" aria-label="Telegram"><img src="/assets/icons/telegram.svg" class="w-8 h-8" /></a>
                 <a href="https://www.youtube.com/@davilkusgames" class="opacity-80 hover:opacity-100" aria-label="YouTube"><img src="/assets/icons/youtube.svg" class="w-8 h-8" /></a>
                 <a href="https://x.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="X"><img src="/assets/icons/x.svg" class="w-8 h-8" /></a>
                 <a href="https://github.com/DavilkusGames" class="opacity-80 hover:opacity-100" aria-label="GitHub"><img src="/assets/icons/github.svg" class="w-8 h-8" /></a>
@@ -874,9 +878,17 @@
 
                 const prog = document.getElementById('heroProgress');
                 heroSwiper.on('autoplayTimeLeft', (_, t, p) => { if (prog) prog.style.width = `${(1 - Math.max(0, Math.min(1, p))) * 100}%`; });
-                heroSwiper.on('slideChange', () => { if (prog) prog.style.width = '0%'; });
+                
+                heroSwiper.on('slideChange', () => { 
+                    if (prog) prog.style.width = '0%'; 
+                    window.applyContent(); 
+                });
+
                 heroSwiper.on('slideChangeTransitionStart', overlayFadeOut);
-                heroSwiper.on('slideChangeTransitionEnd', () => { window.applyContent(); overlayFadeIn(false); });
+                
+                heroSwiper.on('slideChangeTransitionEnd', () => { 
+                    overlayFadeIn(false); 
+                });
 
                 window.applyContent();
                 overlayFadeIn(true);
