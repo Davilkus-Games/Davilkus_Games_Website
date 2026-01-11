@@ -19,9 +19,9 @@
     "app_store_link": "[null]",
     "itch_io_link": "https://davilkus-games.itch.io/exit-the-backrooms-level-94",
 
-    "telegramQR_link": "https://davilkusgames.com/api-ingame/telegramQR.png",
-    "discordQR_link": "https://davilkusgames.com/api-ingame/discordQR.png",
-    "start_image_link": "https://davilkusgames.com/api-ingame/startImg_94.png",
+    "telegramQR_link": "[keep]",
+    "discordQR_link": "[keep]",
+    "start_image_link": "[null]",
 
     "dev_website_link": "https://davilkusgames.com"
 }
